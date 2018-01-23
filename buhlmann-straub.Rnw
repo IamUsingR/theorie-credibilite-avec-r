@@ -22,7 +22,7 @@ est particulièrement important dans les situations où la taille des
 contrats varie beaucoup.
 
 Par exemple, en accidents de travail, l'exposition au risque d'un
-employeur avec \nombre{1000} employés au beaucoup plus grande que
+employeur avec \nombre{1000} employés est beaucoup plus grande que
 celle d'un employeur avec seulement 10 employés.
 
 

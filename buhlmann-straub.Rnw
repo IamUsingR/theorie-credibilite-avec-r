@@ -350,7 +350,7 @@ toujours positif:
   \item On a en fait $\tilde{a} = f(\tilde{a})$. L'estimation est donc
     calculée par la méthode du point fixe.
   \item On peut démontrer que si $\hat{a} < 0$, alors $\tilde{a}$
-    converge vers 0.
+    converge vers $0$.
   \end{enumerate}
 \end{rems}
 

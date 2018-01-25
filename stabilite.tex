@@ -218,20 +218,22 @@ où $\varepsilon = 1 - p$ et $\zeta_\alpha$ est le $100(1 -
   pourrions aussi choisir de fixer le seuil en fonction du nombre
   d'années d'expérience. Pour cela, il suffit de définir
   \begin{displaymath}
-    S \equiv \bar{S} = \frac{S_1 + \dots + S_n}{n},
+    W = \frac{S_1 + \dots + S_n}{n},
   \end{displaymath}
   où $S_1, \dots, S_n$ sont des variables aléatoires indépendantes et
   identiquement distribuées et $S_t$ est l'expérience de l'année
-  $t = 1, \dots, n$.
-
-  Nous avons alors
+  $t = 1, \dots, n$.  Nous avons alors
   \begin{align*}
-    \esp{S} &= \esp{S_t} \\
-    \var{S} &= \frac{\var{S_t}}{n},
+    \esp{W} &= \esp{S_t} \\
+    \var{W} &= \frac{\var{S_t}}{n}.
   \end{align*}
-  d'où, en remplaçant ces expressions dans l'inégalité
-  \eqref{eq:stabilite:complete}, l'expérience d'un contrat est
-  considérée pleinement crédible après
+
+  En appliquant le critère de crédibilité complète sur la variable
+  aléatoire $W$, nous obtenons une expression en tous points
+  équivalente à l'inégalité \eqref{eq:stabilite:complete} dans
+  laquelle nous remplaçons l'espérance et la variance par les
+  expressions ci-dessus. L'expérience d'un contrat est considérée
+  pleinement crédible après
   \begin{equation*}
     n \geq
     \left(

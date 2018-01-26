@@ -41,7 +41,7 @@ On définit la notation suivante:
   s^2
   &= \esp{\var{S_{it}|\Theta_i}} \\
   &= \esp{\sigma^2(\Theta_i)} \\
-  &= \text{EVPV de la CAS} \displaybreak[4] \\
+  &= \text{EPV de la CAS} \displaybreak[4] \\
   a
   &= \var{\esp{S_{it}|\Theta_i}} \\
   &= \var{\mu(\Theta_i)} \\

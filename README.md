@@ -86,6 +86,8 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 #### Nouveautés
 
+- Section 3.1 sur l'estimation bayésienne déplacée en annexe. Toutes les autres annexes sont décalées.
+
 #### Autres modifications
 
 - Notation modifiée à l'exemple 2.3.

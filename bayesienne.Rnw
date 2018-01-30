@@ -355,6 +355,13 @@ proviennent d'un processus en deux étapes; voir la
   \label{fig:bayesienne:urne}
 \end{figure}
 
+\tipbox{Un modèle où la distribution d'une variable aléatoire $S$
+  dépend d'un paramètre $\theta$ et que celui-ci est considéré comme
+  une réalisation d'une variable aléatoire $\Theta$ est aussi connu
+  sous le nom de \emph{mélange continu}. La fonction $f(x|\theta)$ est
+  la fonction de vraisemblance et $\theta$ est le paramètre de
+  mélange.}
+
 
 \section{Prévision}
 \label{sec:bayesienne:prevision}
@@ -1058,8 +1065,9 @@ curve(dgamma(x, 19, 13), xlim = c(0, 4), main = "Après 10 années")
 \section{Crédibilité bayésienne linéaire (ou exacte)}
 \label{sec:bayesienne:lineaire}
 
-La prime bayésienne de l'\autoref{ex:bayesienne:bernoulli-beta}
-peut se réécrire sous la forme
+Examinons de plus près la prime bayésienne obtenue à
+l'\autoref{ex:bayesienne:bernoulli-beta} avec une combpeut se réécrire sous la
+forme
 \begin{align*}
   B_{n + 1}
   &= \frac{\alpha + \sum_{t = 1}^n S_t}{\alpha + \beta + n} \\

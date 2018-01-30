@@ -354,83 +354,105 @@ pour justifier de les regrouper dans un même porfeuille.
 \section{Prévision}
 \label{sec:bayesienne:prevision}
 
-Le but en crédibilité de précision consiste à calculer la «meilleure»
-prévision du montant total des sinistres (ou toute autre quantité
-d'intérêt) de la prochaine année, $S_{i, n + 1}$ pour $i = 1, \dots,
-I$.
+Tel que mentionné en introduction du chapitre, notre but en
+crédibilité de précision consiste à calculer la «meilleure» prime
+(pure) pour chacun des contrats de notre regroupement. D'un point de
+vue actuariel, cette prime est le montant espéré des sinistres d'un
+contrat quelconque, éventuellement en tenant compte des observations
+des années précédentes. D'un point de vue statistique, la prime peut
+aussi s'interpréter comme la \emph{prévision} du montant total des
+sinistres de la prochaine année.
 
-On utilise l'erreur quadratique moyenne comme mesure de distance.
+Dans la suite, nous considérerons que la meilleure prime (ou
+prévision) est celle qui minimise l'erreur quadratique moyenne.
+
+Nous définissons trois primes: la prime de risque, la prime collective
+et la prime bayésienne. Elles diffèrent par la quantité d'information
+dont nous disposons sur les contrats.
 
 \subsection{Prime de risque}
 \label{sec:bayesienne:prevision:risque}
 
 Si le niveau de risque du contrat $i$ est connu, alors la meilleure
-prévision est l'espérance
-\begin{equation*}
+prévision de ses sinistres futurs est l'espérance
+\begin{equation}
+  \label{eq:bayesienne:prime_risque}
   \mu(\theta_i)
   = \esp{S_{it}|\Theta = \theta_i}
   = \int_0^\infty x f(x|\theta_i)\, dx.
-\end{equation*}
-Cette fonction est appelée la \emph{prime de risque}. Or,
-\begin{itemize}
-\item le niveau de risque et, donc, la prime de risque sont inconnus;
-\item prévoir $S_{i, n + 1}$ et prévoir $\mu(\theta_i)$ deviennent
-  donc des problèmes équivalents.
-\end{itemize}
+\end{equation}
+Cette fonction est appelée la \emph{prime de risque}.
+
+La prime de risque serait la prime idéale à charger. Cependant, le
+niveau de risque $\theta_i$ et, donc, la prime de risque sont
+inconnus. Dès lors, prévoir $S_{i, n + 1}$ et prévoir $\mu(\theta_i)$
+deviennent des problèmes équivalents.
 
 \subsection{Prime collective}
 \label{sec:bayesienne:prevision:collective}
 
-Comme première approximation de la prime de risque, on peut utiliser
-la moyenne pondérée de toutes les primes de risque possibles:
-\begin{equation*}
+Nous cherchons à estimer --- ou prévoir --- la prime de risque. Comme
+première approximation, nous pouvons utiliser la moyenne pondérée de
+toutes les primes de risque:
+\begin{equation}
+  \label{eq:bayesienne:prime_collective}
   m
   = \esp{\mu(\Theta)}
   = \int_{-\infty}^\infty \mu(\theta) u(\theta)\, d\theta.
-\end{equation*}
+\end{equation}
 Cette approximation sera la même pour tous les contrats; c'est la
 \emph{prime collective}.
 
-\begin{rem}
-  On a
-  \begin{equation*}
-    m = \esp{\mu(\Theta)} = \esp{\esp{S_{it}|\Theta}} = \esp{S_{it}},
-  \end{equation*}
-  soit le montant moyen des sinistres dans le portefeuille.
-\end{rem}
+Vous remarquerez que
+\begin{equation*}
+  m = \esp{\mu(\Theta)} = \esp{\esp{S_{it}|\Theta}} = \esp{S_{it}}.
+\end{equation*}
+La prime collective est donc également égale au montant espéré des
+sinistres dans le portefeuille.
 
 \subsection{Prime bayésienne}
 \label{sec:bayesienne:prevision:bayesienne}
 
-On l'a vu, la prime collective est globalement adéquate, mais pas
-nécessairement équitable. En termes statistiques, cela signifie qu'il
-existe une meilleure approximation des primes de risque lorsque des
-données sont disponibles.
+Comme nous l'avons vu au \autoref{chap:introduction-historique}, la
+prime collective ci-dessus est globalement adéquate, mais elle n'est
+pas nécessairement équitable ou \emph{optimale}. Nous ne pouvons
+établir ce fait qu'à partir du moment où des données de sinistres
+deviennent disponibles. En termes statistiques, cela signifie qu'il
+existe une meilleure approximation des primes de risque dans ces
+circonstances.
 
 La meilleure approximation (ou estimation, ou prévision) de la prime
-de risque $\mu(\theta_i)$ est la fonction des observations
-$g^*(S_{i1}, \dots, S_{in})$ minimisant l'erreur quadratique moyenne
+de risque $\mu(\theta_i)$ est la fonction $g^*(x_1, \dots, x_n)$ des
+observations $x_1, \dots, x_n$ qui minimise l'erreur quadratique
+moyenne
 \begin{equation*}
-  \esp{(\mu(\Theta) - g(S_{i1}, \dots, S_{in}))^2},
+  \esp{(\mu(\Theta) - g(x_1, \dots, x_n))^2},
 \end{equation*}
 où $g()$ est une fonction quelconque.
 
-On peut démontrer (voir un livre de statistique mathématique) que la
-fonction $g^*(S_{i1}, \dots, S_{in})$ est la \emph{prime bayésienne}
-\begin{align*}
+Vous trouverez dans tout livre de statistique mathématique la
+démonstration à l'effet que
+\begin{equation*}
+  g^*(x_1, \dots, x_n) = \esp{\mu(\Theta)|x_1, \dots, x_n}.
+\end{equation*}
+Nous nommerons cette espérance la \emph{prime bayésienne}:
+\begin{equation}
+  \label{eq:bayesienne:prime_bayesienne}
   B_{i, n + 1}
-  &\equiv g^*(S_{i1}, \dots, S_{in}) \\
-  &= \esp{\mu(\Theta)|S_{i1}, \dots, S_{in}}
-   = \int_{-\infty}^\infty \mu(\theta)
-   u(\theta|S_{i1}, \dots, S_{in})\, d\theta,
-\end{align*}
-où $u(\theta|x_1, \dots, x_n)$ est la distribution à postériori des
-niveaux de risque. En d'autres mots, $U(\theta|x_1, \dots, x_n)$ est
-la fonction de structure révisée après l'observation de l'expérience
-$S_{i1} = x_1, \dots, S_{in} = x_n$.
+  = \esp{\mu(\Theta)|x_1, \dots, x_n}
+  = \int_{-\infty}^\infty \mu(\theta)
+  u(\theta|x_1, \dots, x_n)\, d\theta.
+\end{equation}
 
-Or, par la règle de Bayes et étant donné l'indépendance conditionnelle
-des observations,
+\importantbox{La prime bayésienne est la meilleure prévision de
+  $S_{i, n + 1}$ que l'on puisse calculer.}
+
+Ci-dessus, $u(\theta|x_1, \dots, x_n)$ est la distribution à
+postériori des niveaux de risque. En d'autres termes,
+$U(\theta|x_1, \dots, x_n)$ est la fonction de structure révisée après
+l'observation de l'expérience $S_{i1} = x_1, \dots, S_{in} = x_n$. Or,
+par la règle de Bayes et étant donné l'indépendance conditionnelle des
+observations,
 \begin{align*}
   u(\theta_i|x_1, \dots, x_n)
   &= \frac{f(x_1, \dots, x_n|\theta_i) u(\theta_i)}{%
@@ -443,56 +465,53 @@ des observations,
   u(\theta_i) \prod_{t = 1}^n f(x_t|\theta_i).
 \end{align*}
 
-\begin{rems}
-  \begin{enumerate}
-  \item La prime bayésienne est la meilleure prévision de $S_{i, n +
-      1}$ que l'on puisse calculer.
-  \item Comme la prime collective, la prime bayésienne est une moyenne
-    pondérée des primes de risque, mais utilisant la distribution à
-    postériori de $\Theta$ plutôt que la distribution à priori;
-    comparer
-    \begin{align*}
-      m &= \int_{-\infty}^\infty \mu(\theta) u(\theta)\, d\theta \\
-      \intertext{et} B_{i, n + 1} &= \int_{-\infty}^\infty \mu(\theta)
-      u(\theta|S_{i1}, \dots, S_{in})\, d\theta.
-    \end{align*}
-  \item À l'inverse, on peut interpréter la prime collective comme la
-    prime bayésienne de première année, lorsque aucune expérience
-    n'est disponible.
-  \item L'ordre des sinistres n'est pas pris en compte dans les
-    calculs puisque
-    \begin{equation*}
-      f(x_1, \dots, x_n|\theta_i) = \prod_{t = 1}^n f(x_t|\theta_i).
-    \end{equation*}
-  \end{enumerate}
-\end{rems}
+Comme la prime collective, la prime bayésienne est une moyenne
+pondérée des primes de risque, sauf que cette dernière utilise la
+distribution à postériori de $\Theta$ plutôt que la distribution à
+priori. En effet, comparez les deux équations ci-dessous:
+\begin{align*}
+  m &= \int_{-\infty}^\infty \mu(\theta) u(\theta)\, d\theta \\
+  B_{i, n + 1} &= \int_{-\infty}^\infty \mu(\theta)
+                 u(\theta|x_1, \dots, x_n)\, d\theta.
+\end{align*}
+
+À l'inverse, nous pouvons interpréter la prime collective comme la
+prime bayésienne de première année, lorsque aucune expérience n'est
+disponible.
+
+\tipbox{Puisque
+  \begin{equation*}
+    f(x_1, \dots, x_n|\theta_i) = \prod_{t = 1}^n f(x_t|\theta_i),
+  \end{equation*}
+  l'ordre des sinistres ne joue aucun rôle dans les calculs.}
+
+\warningbox{Dans la suite, nous allons ne considérer qu'un seul
+  contrat et laisser tomber l'indice $i$ dans la notation. En effet,
+  dans l'approche entièrement paramétrique adoptée dans ce chapitre,
+  le portefeuille de contrats ne joue aucun rôle concret.}
 
 \begin{exemple}
-  Soit
-  \begin{align*}
-    S_t|\Theta &\sim \text{Poisson}(\Theta) \\
-    \intertext{et}
-    \Pr[\Theta = \theta] &=
-                           \begin{cases}
-                             0,3, & \theta = \frac{1}{2} \\
-                             0,5, & \theta = 1 \\
-                             0,2, & \theta = 2.
-                           \end{cases}
-  \end{align*}
+  Soit $S_t|\Theta = \theta \sim \text{Poisson}(\theta)$ et
+  \begin{equation*}
+    \Pr[\Theta = \theta] =
+    \begin{cases}
+      0,3, & \theta = \frac{1}{2} \\
+      0,5, & \theta = 1 \\
+      0,2, & \theta = 2.
+    \end{cases}
+  \end{equation*}
+  Nous allons calculer les trois primes définies précédemment.
 
   \begin{enumerate}[a)]
-  \item Calculer les primes de risque.
-
-    On a $\esp{S_t|\Theta = \theta} = \theta$, d'où
+  \item Puisque $\esp{S_t|\Theta = \theta} = \theta$, les primes de
+    risque pour chacun des trois niveaux de risque sont:
     \begin{align*}
       \mu({\tfrac{1}{2}}) &= \tfrac{1}{2} \\
       \mu(1) &= 1 \\
       \mu(2) &= 2.
     \end{align*}
-
-  \item Calculer la prime collective.
-
-    On a
+  \item La prime collective est la moyenne pondérée des primes de
+    risque:
     \begin{align*}
       m
       &= \esp{\mu(\Theta)} \\
@@ -500,68 +519,65 @@ des observations,
       &= \frac{1}{2} (0,3) + 1 (0,5) + 2 (0,2) \\
       &= 1,05.
     \end{align*}
-    On ne peut calculer la prime collective avec la formule
-    $m = \esp{S_t}$ puisque la distribution marginale est inconnue.
-
-  \item Calculer la prime bayésienne pour la troisième année si
-    $S_1 = 2$ et $S_2 = 1$.
-
-    \begin{enumerate}[1.]
-    \item Calculer la distribution à postériori de $\Theta$:
-      \begin{equation*}
-        \Pr[\Theta = \theta|S_1 = 2, S_2 = 1] =
-        \frac{\Pr[S_1 = 2, S_2 = 1|\Theta = \theta] \Pr[\Theta = \theta]}
-        {\sum_{\theta} \Pr[S_1 = 2, S_2 = 1|\Theta = \theta] \Pr[\Theta = \theta]}
-      \end{equation*}
-      Or,
-      \begin{align*}
-        \Pr[S_1 = 2, S_2 = 1|\Theta = \theta]
-        &= \Pr[S_1 = 2|\Theta = \theta] \Pr[S_2 = 1|\Theta = \theta] \\
-        &= \frac{\theta^2 e^{-\theta}}{2!} \frac{\theta e^{-\theta}}{1!} \\
-        &= \frac{\theta^3 e^{-2\theta}}{2}
-      \end{align*}
-      et donc
-      \begin{equation*}
-        \Pr[\Theta = \theta|S_1 = 2, S_2 = 1] =
-        \begin{cases}
-          0,1245, & \theta = \frac{1}{2} \\
-          0,6109, & \theta = 1 \\
-          0,2646, & \theta = 2.
-        \end{cases}
-      \end{equation*}
-    \item Calculer la prime bayésienne:
-      \begin{align*}
-        B_3
-        &= \esp{\mu(\Theta)|S_1 = 2, S_2 = 1} \\
-        &= \esp{\Theta|S_1 = 2, S_2 = 1} \\
-        &= \frac{1}{2} (0,1245) + 1 (0,6109) + 2 (0,2646) \\
-        &= 1,20.
-      \end{align*}
-    \end{enumerate}
-    Dans le cas présent, $1,05 = m < B_3 < \bar{S} = 1,5$. Il importe
-    de noter que ce n'est pas toujours le cas avec la prime
-    bayésienne.
+    Nous pourrions également calculer la prime collective avec la
+    formule $m = \esp{S_t}$, mais la distribution marginale de $S_t$
+    est inconnue.
+  \item Supposons que $S_1 = 2$ et $S_2 = 1$. Pour calculer la prime
+    bayésienne pour la troisième année, nous devons d'abord calculer
+    la distribution à postériori de $\Theta$:
+    \begin{equation*}
+      \Pr[\Theta = \theta|S_1 = 2, S_2 = 1] =
+      \frac{\Pr[S_1 = 2, S_2 = 1|\Theta = \theta] \Pr[\Theta = \theta]}
+      {\sum_{\theta} \Pr[S_1 = 2, S_2 = 1|\Theta = \theta] \Pr[\Theta = \theta]}
+    \end{equation*}
+    Or,
+    \begin{align*}
+      \Pr[S_1 = 2, S_2 = 1|\Theta = \theta]
+      &= \Pr[S_1 = 2|\Theta = \theta] \Pr[S_2 = 1|\Theta = \theta] \\
+      &= \frac{\theta^2 e^{-\theta}}{2!} \frac{\theta e^{-\theta}}{1!} \\
+      &= \frac{\theta^3 e^{-2\theta}}{2}
+    \end{align*}
+    et donc
+    \begin{equation*}
+      \Pr[\Theta = \theta|S_1 = 2, S_2 = 1] =
+      \begin{cases}
+        0,1245, & \theta = \frac{1}{2} \\
+        0,6109, & \theta = 1 \\
+        0,2646, & \theta = 2.
+      \end{cases}
+    \end{equation*}
+    La prime bayésienne est donc:
+    \begin{align*}
+      B_3
+      &= \esp{\mu(\Theta)|S_1 = 2, S_2 = 1} \\
+      &= \esp{\Theta|S_1 = 2, S_2 = 1} \\
+      &= \frac{1}{2} (0,1245) + 1 (0,6109) + 2 (0,2646) \\
+      &= 1,20.
+    \end{align*}
   \end{enumerate}
+
+  Remarquez que, dans le cas présent, la prime bayésienne se trouve
+  entre la prime collective et la moyenne des observations au cours
+  des deux premières années: $1,05 = m < B_3 < \bar{S} = 1,5$. Ce
+  n'est pas toujours le cas avec la prime bayésienne. %
   \qed
 \end{exemple}
 
 \begin{exemple}
   \label{ex:bayesienne:bernoulli-beta}
-  Considérer le portefeuille simplifié de
-  l'\autoref{ex:introduction-historique:simplifie}. Un contrat ne peut
-  avoir au maximum qu'un seul sinistre de montant 1 par année. (En
-  d'autres termes, l'expérience consiste en une suite de 1 et de 0
-  selon qu'il y a eu un sinistre dans une année ou non.) La
-  probabilité d'avoir un sinistre est toutefois inconnue et
-  potentiellement différente pour chaque contrat.
+  Examinons de nouveau le portefeuille simplifié de
+  l'\autoref{ex:introduction-historique:simplifie}, cette fois dans le
+  cadre théorique que nous venons de mettre en place. Dans cet
+  exemple, un contrat ne peut avoir au maximum qu'un seul sinistre de
+  montant $1$ par année. (En d'autres termes, l'expérience consiste en
+  une suite de $1$ et de $0$ selon qu'il y a eu un sinistre dans une
+  année ou non.) La probabilité d'avoir un sinistre est toutefois
+  inconnue et potentiellement différente pour chaque contrat.
 
-  On a donc
-  \begin{equation*}
-    S_t|\Theta = \theta \sim \text{Bernoulli}(\theta),
-  \end{equation*}
-  où le paramètre $\theta$ est une réalisation d'une variable
-  aléatoire $\Theta$. On suppose une distribution bêta de paramètres
-  $\alpha$ et $\beta$ pour $\Theta$. Ainsi, on a
+  Nous avons $S_t|\Theta = \theta \sim \text{Bernoulli}(\theta)$ et
+  nous supposons que le paramètre $\theta$ est une réalisation d'une
+  variable aléatoire avec distribution bêta de paramètres $\alpha$ et
+  $\beta$. Ainsi,
   \begin{equation*}
     f(x|\theta) = \theta^x (1 - \theta)^{1 - x},
     \quad x = 0, 1
@@ -573,23 +589,22 @@ des observations,
     \theta^{\alpha - 1} (1 - \theta)^{\beta - 1},
     \quad 0 < \theta < 1.
   \end{equation*}
+
   \begin{enumerate}[a)]
-  \item Calculer la prime de risque.
-
-    On a $\esp{S_t|\Theta = \theta} = \theta$.
-  \item Calculer la prime collective.
-
-    On a
+  \item La prime de risque pour un contrat est
+    $\esp{S_t|\Theta = \theta} = \theta$.
+  \item La prime collective est, comme toujours, la moyenne des primes
+    de risque:
     \begin{align*}
       m
       &= \esp{\mu(\Theta)} \\
       &= \esp{\Theta} \\
       &= \frac{\alpha}{\alpha + \beta}.
     \end{align*}
-  \item Calculer la prime bayésienne après $n$ années.
-
-    Tout d'abord, la distribution à postériori de $\Theta$ après $n$
-    années d'expérience est, à une constante de proportionnalité près,
+  \item Nous souhaitons maintenant calculer la prime bayésienne après
+    $n$ années d'observations $x_1, \dots, x_n$. Pour ce faire, nous
+    déterminons d'abord la distribution à postériori de $\Theta$. À
+    une constante de proportionnalité, celle-ci est:
     \begin{align*}
       u(\theta|x_1, \dots, x_n)
       &\propto
@@ -599,9 +614,8 @@ des observations,
       &= \theta^{\alpha + \sum_{t = 1}^n x_t - 1} (1 - \theta)^{\beta +
         n - \sum_{t = 1}^n x_t - 1}.
     \end{align*}
-    La distribution de $\Theta|S_1 = x_1, \dots, S_n = x_n$ est donc
-    toujours une bêta, mais avec de nouveaux paramètres
-    $\tilde{\alpha} = \alpha + \sum_{t = 1}^n x_t$ et
+    Nous reconnaissons là une distribution bêta, mais avec de nouveaux
+    paramètres $\tilde{\alpha} = \alpha + \sum_{t = 1}^n x_t$ et
     $\tilde{\beta} = \beta + n - \sum_{t = 1}^n x_t$. Par conséquent,
     la prime bayésienne pour l'année $n + 1$ est
     \begin{align*}
@@ -617,17 +631,15 @@ des observations,
 
 \begin{exemple}
   \label{ex:bayesienne:bernoulli-uniforme}
-  On reprend le modèle de l'\autoref{ex:bayesienne:bernoulli-beta},
-  soit
-  \begin{equation*}
-    S_t|\Theta = \theta \sim \text{Bernoulli}(\theta),
-  \end{equation*}
-  mais en changeant la distribution de la variable $\Theta$ pour une
-  uniforme sur l'intervalle $(a, b)$.
+  Reprenons le modèle de l'\autoref{ex:bayesienne:bernoulli-beta},
+  soit une Bernoulli de paramètre $\theta$ pour la distribution de la
+  variable aléatoire $S_t|\Theta = \theta$, mais en changeant la
+  distribution de la variable aléatoire $\Theta$ pour une uniforme sur
+  l'intervalle $(a, b)$.
 
   Soit $n \bar{S} = \sum_{t = 1}^n S_t$ le montant total des sinistres
-  d'un contrat. \cite{Norberg:credibility:1979} démontre que la prime
-  bayésienne avec ce modèle est
+  d'un contrat après $n$ années. \cite{Norberg:credibility:1979}
+  démontre que la prime bayésienne avec ce modèle est
   \begin{equation*}
     B_{n + 1} =
     \dfrac{\sum_{j = 1}^{n - n \bar{S}} (-1)^j
@@ -654,7 +666,7 @@ On a déjà vu à la \autoref{sec:bayesienne:prevision:collective} que
 \end{equation*}
 De manière similaire, on peut démontrer que
 \begin{equation*}
-  B_{i, n + 1} = \esp{\mu(\Theta)|S_{i1}, \dots, S_{in}}
+  B_{i, n + 1} = \esp{\mu(\Theta)|x_1, \dots, x_n}
   = \esp{S_{i, n + 1}|S_{i1}, \dots, S_{in}}.
 \end{equation*}
 

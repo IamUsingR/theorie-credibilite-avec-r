@@ -82,10 +82,12 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ## Historique des versions
 
-###  (en développement)
+### (en développement)
 
 #### Nouveautés
 
+- Introduction du chapitre 1 entièrement révisée. Contenu inchangé, mais dorénavant en prose.
+- Chapitre 3 entièrement révisé.
 - Section 3.1 sur l'estimation bayésienne déplacée en annexe. Toutes les autres annexes sont décalées.
 
 #### Autres modifications

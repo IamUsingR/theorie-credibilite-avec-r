@@ -12,185 +12,196 @@
 \chapter{Introduction et perspective historique}
 \label{chap:introduction-historique}
 
-Théorie de la crédibilité: ensemble de techniques utilisées par les
-actuaires pour déterminer la prime d'un assuré/contrat dans un
-portefeuille hétérogène.
+Le premier but d'un assureur --- qu'il s'agisse d'un organisme
+gouvernemental ou d'une compagnie privée --- au moment d'établir une
+structure de tarification consiste à charger un montant suffisant de
+primes pour payer les sinistres futurs. Pour différentes raisons, dont
+la compétitivité, l'assureur pourra par la suite chercher à répartir
+de manière optimale ces primes entre les assurés. L'une des premières
+techniques employée pour répartir les primes est la classification des
+assurés en fonction de différentes caractéristiques comme l'âge, le
+sexe, le type de véhicule, etc. Néanmoins, il subsistera dans tout
+regroupement d'assurés une certaine forme d'hétérogénéité, de telle
+sorte qu'il faudra encore affiner la redistribution des primes à
+l'intérieur du groupe. C'est là qu'entrent en jeu les systèmes de
+tarification basée sur l'expérience (\emph{experience rating}) et,
+plus particulièrement, les méthodes de crédibilité.
 
-En faisant une tarification, un assureur cherche
-\begin{enumerate}
-\item d'abord à charger assez de primes pour payer les sinistres; puis
-\item distribuer équitablement ces primes entre les assurés.
-\end{enumerate}
+\section{Tarification basée sur l'expérience}
+\label{sec:introduction-historique:experiencerating}
 
-Plusieurs façons d'atteindre le second but:
-\begin{enumerate}
-\item d'abord par une structure de classification; puis
-\item par la tarification basée sur l'expérience (\emph{experience
-    rating}) $\Rightarrow$ théorie de la crédibilité.
-\end{enumerate}
+Comme le nom le laisse entendre, la tarification basée sur
+l'expérience a recours aux données de sinistres d'un assuré pour
+déterminer sa prime d'assurance. C'est une technique de tarification
+qui exige un volume d'expérience important. Elle est donc
+principalement utilisée en assurance automobile et en accidents du
+travail. En revanche, la tarification basée sur l'expérience n'est pas
+applicable en assurance-vie (on ne meurt qu'une fois!) ou encore en
+assurance habitation, où la fréquence des sinistres est trop faible.
 
-\begin{definition}[\emph{Experience rating}]
+De manière plus formelle, \citep{Buhlmann:credibility:1969} propose la
+définition suivante.
+
+\begin{definition}
   La tarification basée sur l'expérience vise à assigner à chaque
   risque sa prime juste et équitable. Cette prime pour une période
   dépend exclusivement de la distribution des sinistres (inconnue) de
-  ce risque pour la période. \citep{Buhlmann:credibility:1969}
+  ce risque pour la période.
 \end{definition}
 
-La tarification basée sur l'expérience exige un volume d'expérience
-important. Elle est donc principalement utilisée en
-\begin{itemize}
-\item assurance automobile
-\item accidents du travail.
-\end{itemize}
-Elle ne peut toutefois être utilisée, par exemple, en
-\begin{itemize}
-\item assurance-vie (on ne meurt qu'une fois)
-\item assurance habitation (fréquence trop faible)
-\end{itemize}
-
-
-\section{Illustration des principes de base}
-\label{sec:introduction-historique:illustration}
+L'exemple suivant pose le contexte et le problème de base de la
+tarification basée sur l'expérience.
 
 \begin{exemple}
   \label{ex:introduction-historique:simplifie}
-  Un portefeuille d'assurance est composé de dix contrats. Les
-  contrats sont à priori considérés équivalents. Les conditions
-  suivantes prévalent:
-  \begin{itemize}
-  \item tout contrat ne peut avoir qu'au plus un sinistre par année;
-  \item le montant de ce sinistre est $1$;
-  \item la prime collective est $0,20$, c'est-à-dire que l'assureur
-    s'attend à ce qu'en moyenne deux assurés sur dix aient un sinistre au
-    cours d'une année.
-  \end{itemize}
+  Un portefeuille d'assurance est composé de dix contrats. Chaque
+  contrat ne peut subir qu'un seul sinistre par année et le montant de
+  ce sinistre est $1$. Avant de recueillir des données d'expérience,
+  l'assureur considère que, du point de vue de leur niveau de risque,
+  tous les contrats sont équivalents. L'assureur prévoit devoir payer
+  deux sinistres au cours de la première année. Il charge donc à tous
+  les assurés un montant identique de $0,20$. C'est la \emph{prime
+    collective}.
 
+  L'expérience au sein du portefeuille après une année se trouve au
+  \autoref{tab:introduction-historique:simplifie:1}. Nous constatons
+  que montant de sinistre moyen par contrat s'élève à $1/10 = 0,10$.
+  La prime collective s'avère donc peut-être trop élevée. Cependant,
+  la quantité de données demeure plutôt faible pour tirer une
+  conclusion, tant sur le niveau de risque global du portefeuille que
+  sur celui de chacun des contrats.
 
-\subsection*{Situation après une année}
+  \begin{table}
+    \centering
+    \caption{Expérience du portefeuille de
+      l'\autoref*{ex:introduction-historique:simplifie} après une
+      année}
+    \label{tab:introduction-historique:simplifie:1}
+    \begin{tabularx}{\tablewidth}{c*{10}{Y}}
+      \toprule
+      & \multicolumn{10}{c}{Contrat} \\
+      \cmidrule{2-11}
+      Année & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+      \midrule
+      $1$ &   &   &   &   &   &   &   &   & 1 &   \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}
 
-Voici l'expérience au sein du portefeuille après une année.
+  Le \autoref{tab:introduction-historique:simplifie:2} contient
+  l'expérience du portefeuille après deux années. Le montant de
+  sinistre moyen par contrat est maintenant de $4/20 = 0,20$. La prime
+  collective semble donc globalement adéquate. L'assureur dispose
+  toujours de peu de données pour juger du niveau de risque des
+  différents contrats, mais nous remarquons que le contrat $9$ a déjà
+  subi deux sinistres.
 
-\begin{center}
-  \begin{tabularx}{\tablewidth}{c*{10}{Y}}
-    \toprule
-    & \multicolumn{10}{c}{Contrat} \\
-    \cmidrule{2-11}
-    Année & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
-    \midrule
-    $1$ &   &   &   &   &   &   &   &   & 1 &   \\
-    \bottomrule
-  \end{tabularx}
-\end{center}
+  \begin{table}
+    \centering
+    \caption{Expérience du portefeuille de
+      l'\autoref*{ex:introduction-historique:simplifie} après deux
+      années}
+    \label{tab:introduction-historique:simplifie:2}
+    \begin{tabularx}{\tablewidth}{c*{10}{Y}}
+      \toprule
+      & \multicolumn{10}{c}{Contrat} \\
+      \cmidrule{2-11}
+      Année & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+      \midrule
+      $1$ &   &   &   &   &   &   &   &   & 1 &   \\
+      \midrule
+      $2$ & 1 & 1 &   &   &   &   &   &   & 1 &   \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}
 
-\begin{itemize}
-\item Montant de sinistre moyen par contrat $= 1/10 = 0,10$.
-\item La prime collective est \emph{peut-être} trop élevée.
-\item Trop peu de données pour tirer une conclusion.
-\end{itemize}
+  Effectuons maintenant un bond dans le temps pour examiner la
+  situation après dix années, qui est reproduite au
+  \autoref{tab:introduction-historique:simplifie:10}. Le montant de
+  sinistre moyen par contrat de $23/100 = 0,23$. En revanche, ces
+  sinistres ne sont pas uniformément répartis dans le portefeuille: le
+  contrat $9$ en a subi sept et les contrats $7$, $8$ et $10$, aucun.
 
+  \begin{table}
+    \label{tab:introduction-historique:simplifie:10}
+    \caption{Expérience du portefeuille de
+      l'\autoref*{ex:introduction-historique:simplifie} après dix
+      années}
+    \centering
+    \begin{tabularx}{\tablewidth}{c*{10}{Y}}
+      \toprule
+      & \multicolumn{10}{c}{Contrat} \\
+      \cmidrule{2-11}
+      Année & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+      \midrule
+      $1$ &   &   &   &   &   &   &   &   & 1 &   \\
+      \midrule
+      $2$ & 1 & 1 & 1 &   &   &   &   &   & 1 &   \\
+      \midrule
+      $3$ & 1 &   &   &   &   &   &   &   & 1 &   \\
+      \midrule
+      $4$ &   &   & 1 &   &   &   &   &   & 1 &   \\
+      \midrule
+      $5$ &   &   &   &   &   &   &   &   & 1 &   \\
+      \midrule
+      $6$ &   & 1 &   &   &   &   &   &   &   &   \\
+      \midrule
+      $7$ & 1 & 1 &   & 1 & 1 &   &   &   &   &   \\
+      \midrule
+      $8$ & 1 &   &   & 1 &   & 1 &   &   & 1 &   \\
+      \midrule
+      $9$ & 1 &   &   &   & 1 &   &   &   &   &   \\
+      \midrule
+      $10$ & 1 &   &   &   &   &   &   &   & 1 &   \\
+      \midrule
+      $\bar{S}_i$ & 0,6 & 0,3 & 0,2 & 0,2 & 0,2 & 0,1 & 0 & 0 & 0,7 & 0 \\
+      \midrule
+      $\bar{S}$ & \multicolumn{10}{c}{0,23} \\
+      \bottomrule
+    \end{tabularx}
+  \end{table}
 
-\subsection*{Situation après deux années}
-
-Après deux années, l'expérience est maintenant comme suit.
-
-\begin{center}
-  \begin{tabularx}{\tablewidth}{c*{10}{Y}}
-    \toprule
-    & \multicolumn{10}{c}{Contrat} \\
-    \cmidrule{2-11}
-    Année & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
-    \midrule
-    $1$ &   &   &   &   &   &   &   &   & 1 &   \\
-    \midrule
-    $2$ & 1 & 1 &   &   &   &   &   &   & 1 &   \\
-    \bottomrule
-  \end{tabularx}
-\end{center}
-
-\begin{itemize}
-\item Montant de sinistre moyen par contrat $= 4/20 = 0,20$.
-\item La prime collective est adéquate.
-\item Le contrat $9$ a déjà eu deux sinistres.
-\end{itemize}
-
-
-\subsection*{Situation après dix années}
-
-Observons maintenant la situation après dix années.
-
-\begin{center}
-  \begin{tabularx}{\tablewidth}{c*{10}{Y}}
-    \toprule
-    & \multicolumn{10}{c}{Contrat} \\
-    \cmidrule{2-11}
-    Année & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
-    \midrule
-    $1$ &   &   &   &   &   &   &   &   & 1 &   \\
-    \midrule
-    $2$ & 1 & 1 & 1 &   &   &   &   &   & 1 &   \\
-    \midrule
-    $3$ & 1 &   &   &   &   &   &   &   & 1 &   \\
-    \midrule
-    $4$ &   &   & 1 &   &   &   &   &   & 1 &   \\
-    \midrule
-    $5$ &   &   &   &   &   &   &   &   & 1 &   \\
-    \midrule
-    $6$ &   & 1 &   &   &   &   &   &   &   &   \\
-    \midrule
-    $7$ & 1 & 1 &   & 1 & 1 &   &   &   &   &   \\
-    \midrule
-    $8$ & 1 &   &   & 1 &   & 1 &   &   & 1 &   \\
-    \midrule
-    $9$ & 1 &   &   &   & 1 &   &   &   &   &   \\
-    \midrule
-    $10$ & 1 &   &   &   &   &   &   &   & 1 &   \\
-    \midrule
-    $\bar{S}_i$ & 0,6 & 0,3 & 0,2 & 0,2 & 0,2 & 0,1 & 0 & 0 & 0,7 & 0 \\
-    \midrule
-    $\bar{S}$ & \multicolumn{10}{c}{0,23} \\
-    \bottomrule
-  \end{tabularx}
-\end{center}
-
-\begin{itemize}
-\item Montant de sinistre moyen par contrat $= 23/100 = 0,23$.
-\item La prime collective est raisonnablement adéquate.
-\item Le contrat $9$, avec ses sept sinistres, est en effet plus risqué.
-\item Les contrats $7$, $8$ et $10$ n'ont eu aucun sinistre.
-\end{itemize}
-
-
-
-\subsection*{Conclusions}
-
-\begin{itemize}
-\item La prime collective, si elle est globalement \emph{adéquate},
-  n'est en revanche clairement pas \emph{équitable}.
-\item Contrairement à l'hypothèse de départ de l'assureur, le
-  portefeuille est \emph{hétérogène}.
-\item Besoin d'une technique de tarification basée sur l'expérience
-  (\emph{experience rating}) pour adéquatement distribuer les primes
-  entre les assurés.
-\end{itemize}
+  Si la prime collective de ce portefeuille s'avère globalement
+  \emph{adéquate}, elle n'est, en revanche, clairement pas
+  \emph{équitable}. Afin d'éviter l'anti-sélection, l'assureur devrait
+  charger plus que la prime collective à certains assurés et moins à
+  d'autres. L'expérience de sinistres a démontré que, contrairement à
+  l'hypothèse de départ de l'assureur, le porfeuille est
+  \emph{hétérogène}. L'assureur devra donc avoir recours à une
+  technique de tarification basée sur l'expérience pour adéquatement
+  répartir les primes entre les assurés. %
   \qed
 \end{exemple}
 
-Deux grandes branches en théorie de la crédibilité:
+Il existe de nombreux système de tarification basée sur l'expérience,
+dont les systèmes bonus-malus, les polices avec participation ou les
+commissions en réassurance \citep{Neuhaus:experiencerating:EAS:2004,%
+  Buhlmann:credibility:1967,Buhlmann:credibility:1969}, mais les
+techniques les plus couramment employées demeurent les modèles de
+théorie de la crédibilité. La théorie de la crédibilité se divise en
+deux grandes branches.
 \begin{enumerate}
 \item Credibilité de stabilité, ou américaine, \emph{limited
-    fluctuations}.
-
-  L'assureur tient compte de l'expérience individuelle seulement si
-  celle-ci est suffisamment stable dans le temps.
-
+    fluctuations}. Dans cette approche, l'assureur tient compte de
+  l'expérience individuelle d'un contrat seulement si celle-ci est
+  suffisamment stable dans le temps.
 \item Crédibilité de précision, ou européenne, \emph{greatest
-    accuracy}.
-
-  L'assureur tient compte de l'expérience individuelle de façon à
-  obtenir la meilleure estimation de l'expérience future. Le poids de
-  l'expérience individuelle augmente avec l'hétérogénéité du
-  portefeuille.
+    accuracy}. Ici, l'assureur tient compte de l'expérience d'un
+  contrat de façon à obtenir la meilleure estimation de l'expérience
+  future. Le poids de l'expérience individuelle augmente avec
+  l'hétérogénéité du portefeuille.
 \end{enumerate}
+
+\tipbox{Nous pourrions tout à fait formuler
+  l'\autoref{ex:introduction-historique:simplifie} dans un contexte
+  tout autre que l'assurance. En effet, le
+  \autoref{tab:introduction-historique:simplifie:10} établit
+  simplement si un «évènement» est survenu ou non en dix «expériences»
+  et pour dix «sujets». Le but de l'exercice consiste à estimer la
+  probabilité qu'un évènement survienne lors d'une onzième expérience
+  en sachant que les sujets ne sont pas «équivalents». Ceci démontre
+  que nous pouvons utiliser les modèles de crédibilité dans tout
+  contexte de données hétérogènes.}
 
 
 \section{Historique et évolution de la théorie de la crédibilité}
@@ -198,7 +209,7 @@ Deux grandes branches en théorie de la crédibilité:
 
 \begin{quote}
   \itshape Cette section reprend une partie du chapitre 1 de
-  \cite{Goulet:masters}.
+  \citet{Goulet:masters}.
 \end{quote}
 
 La personne qui mentionne qu'elle étudie «la crédibilité» obtient
@@ -502,7 +513,7 @@ données ne sont fiables à $100~\%$.
 
 C'est pour répondre à ces critiques que fut introduit le concept de
 crédibilité partielle, dont on attribue la première véritable théorie
-sur le sujet à \cite{Whitney:1918}. Dès 1918 donc, Whitney mentionne la
+sur le sujet à \citet{Whitney:1918}. Dès 1918 donc, Whitney mentionne la
 «nécessité, par souci d'équité pour l'assuré, de pondérer d'un côté
 l'expérience collective et de l'autre l'expérience individuelle».
 L'essence de la crédibilité consistait à calculer cette pondération.
@@ -544,13 +555,13 @@ précision pour encourager plutôt celle visant la stabilité. La
 crédibilité de précision meurt dans l'{\oe}uf à cause de
 considérations d'ordre pratique.
 
-Whitney fut de plus critiqué par \cite{Fisher:Whitney:discussion:1919}
+Whitney fut de plus critiqué par \citet{Fisher:Whitney:discussion:1919}
 pour avoir utilisé une méthode jugée hérétique à l'époque en
 statistique, la règle de Bayes. Fisher cite d'ailleurs quelques
 personnes faisant autorité s'étant prononcées contre l'usage de cette
 règle. En fait, Whitney utilise la version la plus simple de la règle,
 celle même proposée par Bayes\footnote{%
-  Selon \cite{Bailey:1950}.}, %
+  Selon \citet{Bailey:1950}.}, %
 qui suppose qu'à priori tous les événements ont une chance égale de se
 réaliser. Cette modélisation était appelée par ses adeptes le
 «Principe de la raison insuffisante» et par ses détracteurs
@@ -571,11 +582,12 @@ stabilité. Encore aujourd'hui, c'est l'approche privilégiée aux
 théorie, elle, n'a pas cessé d'évoluer.
 
 L'approche de précision tente à nouveau sa chance par l'entremise de
-Arthur L.~Bailey, et ce à deux reprises (\cite{Bailey:1945} et
-\cite{Bailey:1950}). En 1945 d'abord, Bailey obtient une expression pour
-la crédibilité dans ce qui semble être l'univers non paramétrique
-exploré plus tard par Bühlmann. Seulement, une notation confuse rend
-le texte difficilement déchiffrable et le condamne à la marginalité.
+Arthur L.~Bailey, et ce, à deux reprises
+\citep{Bailey:1945,Bailey:1950}. En 1945 d'abord, Bailey obtient une
+expression pour la crédibilité dans ce qui semble être l'univers non
+paramétrique exploré plus tard par Bühlmann. Seulement, une notation
+confuse rend le texte difficilement déchiffrable et le condamne à la
+marginalité.
 
 L'article de 1950 avait, lui, davantage le potentiel pour ébranler les
 acquis en théorie de la crédibilité. Bailey débute son article en
@@ -586,7 +598,7 @@ que de nos jours: les statisticiens «purs» crient au scandale,
 estimant les méthodes actuarielles contraires à toute théorie
 statistique, et les actuaires leur répondent que «peut-être, mais ça
 fonctionne!» Le point majeur de discorde est l'utilisation par les
-actuaires de la règle de Bayes. Ainsi, \cite{Bailey:1950} écrit:
+actuaires de la règle de Bayes. Ainsi, \citet{Bailey:1950} écrit:
 
 \begin{quote}
   «Présentement, presque toutes les méthodes d'estimation présentées
@@ -641,8 +653,8 @@ deux points principaux: l'introduction explicite du principe de Bayes
 dans le processus de tarification et la découverte de la linéarité de
 l'estimateur bayésien sous certaines conditions%
 \footnote{Sur ce point toutefois, il est difficile de savoir qui fut
-  le pionnier. \cite{Norberg:credibility:1979} relève que
-  \cite{Keffer:1929} a obtenu le même résultat pour le modèle
+  le pionnier. \citet{Norberg:credibility:1979} relève que
+  \citet{Keffer:1929} a obtenu le même résultat pour le modèle
   Poisson/gamma. Toujours selon Norberg, il existerait aussi des
   références antérieures à 1929.} %
 Ces développements parvinrent aux oreilles de la communauté
@@ -729,30 +741,30 @@ démontre \citep{Jewell:exact:1974} que l'estimateur bayésien est
 linéaire pour toute fonction de vraisemblance membre de la famille
 exponentielle utilisée avec sa conjuguée naturelle. Ce faisant, Jewell
 ne fait que confirmer certains des résultats obtenus avant lui par
-\cite{Bailey:1950} et \cite{Mayerson:bayesian:1964}, mais les unifie
+\citet{Bailey:1950} et \citet{Mayerson:bayesian:1964}, mais les unifie
 en une formulation générale.
 
 Les deux années suivantes furent fastes pour la théorie de la
-crédibilité. D'abord, \cite{Hachemeister:1975} généralise le modèle de
+crédibilité. D'abord, \citet{Hachemeister:1975} généralise le modèle de
 Bühlmann--Straub en incorporant la régression linéaire à la théorie de
 la crédibilité de précision. Plus tard, on poussera même cette idée un
 peu plus loin en étudiant la régression non-linéaire
 \citep{DeVylder:non-linear:1985}. Puis, non satisfait de la manière
 qu'a le modèle de Bühlmann--Straub d'intégrer à la prime les données
-collatérales, \cite{Jewell:hierarchical:1975} présente sa solution: la
+collatérales, \citet{Jewell:hierarchical:1975} présente sa solution: la
 crédibilité hiérarchique. Ce qui est maintenant appelé le modèle
 hiérarchique de Jewell constitue une importante généralisation de
 plusieurs modèles de crédibilité. Toujours en 1975,
-\cite{Gerber:updating:1975} définissent les propriétés et les
+\citet{Gerber:updating:1975} définissent les propriétés et les
 conditions menant à des primes de crédibilité de type «mise à jour»
 (\emph{updating type}). En 1976, \citep{DeVylder:semilinear:1976}
 présente ses modèles de crédibilité semi-linéaire et semi-linéaire
 optimal. La même année, il propose une formulation du problème de la
 crédibilité en termes d'espaces de Hilbert
 \citep{DeVylder:geometrical:1976}. Norberg et
-\cite{Taylor:abstractcredibility:1977} se sont également intéressés à
+\citet{Taylor:abstractcredibility:1977} se sont également intéressés à
 l'étude de la théorie de la crédibilité dans le cadre abstrait des
-espaces de Hilbert. \cite{Norberg:credibility:1979} a publié un imposant
+espaces de Hilbert. \citet{Norberg:credibility:1979} a publié un imposant
 article révisant l'essentiel de la théorie de la crédibilité connu
 jusqu'alors. Il s'agit, encore aujourd'hui, d'une référence de choix
 pour qui désire approfondir des connaissances de base en théorie de la
@@ -761,10 +773,10 @@ crédibilité.
 Si les années 1970 furent celles de l'apparition de nombreux modèles de
 crédibilité de précision, les années 1980 furent plutôt celles de
 l'étude des estimateurs des paramètres de structure.
-\cite{DeVylder:estimation:1978,DeVylder:estimation:1981,DeVylder:estimation:PCiI:1984}
+\citet{DeVylder:estimation:1978,DeVylder:estimation:1981,DeVylder:estimation:PCiI:1984}
 s'est alors avéré un acteur important, de même que
-\cite{Norberg:empiricalbayes:1980}, \cite{Gisler:trimming:1980} et
-\cite{Dubey:estimation:1981}. On doit à ces derniers la première étude
+\citet{Norberg:empiricalbayes:1980}, \citet{Gisler:trimming:1980} et
+\citet{Dubey:estimation:1981}. On doit à ces derniers la première étude
 exhaustive des propriétés asymptotiques des estimateurs de variance
 dans le modèle de Bühlmann--Straub. La découverte de nouveaux
 estimateurs et leur maîtrise va permettre la plus large diffusion de
@@ -783,8 +795,8 @@ années 1990 a été marquée par un ralentissement dans la recherche en
 théorie de la crédibilité. Au cours des dernières années cependant, on
 note un regain d'intérêt pour la recherche d'estimateurs des
 paramètres de structure plus efficaces et dont les propriétés seraient
-davantage connues. Ainsi, \cite{Kunsch:robust:1992} et
-\cite{Gisler:robust:1993} introduisent la statistique robuste en
+davantage connues. Ainsi, \citet{Kunsch:robust:1992} et
+\citet{Gisler:robust:1993} introduisent la statistique robuste en
 théorie de la crédibilité, ce qui ouvre par le fait même un nouveau et
 vaste champ de recherche. De leur côté, De~Vylder et Goovaerts,
 toujours très actifs dans le domaine, proposent dans une série
@@ -800,7 +812,7 @@ La grande majorité des intéressés à la théorie de la crédibilité se
 rallient au modèle de base proposé par Bühlmann de même qu'à ses
 extensions. De plus, l'historique tracé ci-dessus correspondant à ce
 qui est généralement admis dans le domaine. À une exception près
-semble-t-il: \cite{Zehnwirth:studyguide:1991} qui, sans renier les
+semble-t-il: \citet{Zehnwirth:studyguide:1991} qui, sans renier les
 travaux de Bühlmann, a une manière bien à lui de concevoir et
 présenter la théorie de la crédibilité de précision. Selon lui, les
 formules de crédibilité sont si étroitement liées à la régression

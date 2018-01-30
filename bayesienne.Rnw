@@ -47,8 +47,9 @@ cette prime est non seulement simple à calculer, mais qu'elle adopte
 une forme linéaire facile à interpréter.
 
 Si le contexte et la terminologie de l'approche bayésienne en
-statistique ne vous sont pas familiers, révisez le contenu de
-l'\autoref{chap:estimation-bayesienne} avant d'aller plus loin.
+statistique ne vous sont pas familiers ou frais à la mémoire, révisez
+le contenu de l'\autoref{chap:estimation-bayesienne} avant d'aller
+plus loin.
 
 
 \section{Mise en situation}
@@ -443,7 +444,7 @@ Nous nommerons cette espérance la \emph{prime bayésienne}:
 \begin{equation}
   \label{eq:bayesienne:prime_bayesienne}
   B_{i, n + 1}
-  = \esp{\mu(\Theta)|x_1, \dots, x_n}
+  = \esp{\mu(\Theta)|S_{i1} = x_1, \dots, S_{in} = x_n}
   = \int_{-\infty}^\infty \mu(\theta)
   u(\theta|x_1, \dots, x_n)\, d\theta.
 \end{equation}
@@ -496,6 +497,7 @@ disponible.
   portefeuille de contrats ne joue aucun rôle concret.}
 
 \begin{exemple}
+  \label{ex:bayesienne:poisson-discrete}
   Soit $S_t|\Theta = \theta \sim \text{Poisson}(\theta)$ et
   \begin{equation*}
     \Pr[\Theta = \theta] =
@@ -665,19 +667,25 @@ disponible.
 \section{Approche par la distribution prédictive}
 \label{sec:bayesienne:predictive}
 
-On a déjà vu à la \autoref{sec:bayesienne:prevision:collective} que
+Cette section introduit une manière alternative de calculer la prime
+bayésienne. Nous avons déjà effleuré l'idée à la
+\autoref{sec:bayesienne:prevision:collective} lorsque nous avons
+présenté la prime collective à la fois comme la moyenne des primes de
+risque ou comme le montant espéré des sinistres:
 \begin{equation*}
   m = \esp{\mu(\Theta)} = \esp{S_{it}}.
 \end{equation*}
-De manière similaire, on peut démontrer que
-\begin{equation*}
-  B_{i, n + 1} = \esp{\mu(\Theta)|x_1, \dots, x_n}
-  = \esp{S_{i, n + 1}|S_{i1}, \dots, S_{in}}.
-\end{equation*}
+De manière similaire, nous pouvons démontrer que
+\begin{equation}
+  \label{eq:bayesienne:predictive}
+  B_{i, n + 1} = \esp{\mu(\Theta)|S_{i1} = x_1, \dots, S_{in} = x_n}
+  = \esp{S_{i, n + 1}|S_{i1} = x_1, \dots, S_{in} = x_n}.
+\end{equation}
 
-La distribution de $S_{n + 1}|S_1, \dots, S_n$ avec fonction de
-densité de probabilité $f(x|x_1, \dots, x_n)$ est appelée la
-\emph{distribution prédictive} de la variable aléatoire $S_{n + 1}$.
+La distribution de la variable aléatoire
+$S_{n + 1}|S_1 = x_1, \dots, S_n = x_1$ avec fonction de densité de
+probabilité $f(x|x_1, \dots, x_n)$ est appelée la \emph{distribution
+  prédictive} de la variable aléatoire $S_{n + 1}$.
 
 \begin{thm}
   \label{thm:bayesienne:predictive}
@@ -688,8 +696,9 @@ densité de probabilité $f(x|x_1, \dots, x_n)$ est appelée la
     u(\theta|x_1, \dots, x_n)\, d\theta.
   \end{equation*}
 \end{thm}
-
 \begin{proof}
+  Par la règle de Bayes et par l'indépendance conditionnelle des
+  montants de sinistres, nous obtenons:
   \begin{align*}
     f(x|x_1, \dots, x_n)
     &= \frac{f(x, x_1, \dots, x_n)}{f(x_1, \dots, x_n)} \\
@@ -707,37 +716,36 @@ densité de probabilité $f(x|x_1, \dots, x_n)$ est appelée la
   \end{align*}
 \end{proof}
 
-\begin{rem}
-  Puisque
-  \begin{equation*}
-    f(x) = \int_{-\infty}^\infty f(x|\theta) u(\theta)\, d\theta,
-  \end{equation*}
-  alors la seule différence entre l'expression de $f(x)$ et celle de
-  $f(x|x_1, \dots, x_n)$ réside dans l'utilisation de la distribution
-  à priori de $\Theta$ pour la première et de la distribution à
-  postériori pour la seconde. Par conséquent,
-  \begin{center}
-    \begin{minipage}[c]{0.35\textwidth}
-      \flushleft $u(\theta|x_1, \dots, x_n)$ du même type que
-      $u(\theta)$
-    \end{minipage}
-    \hspace{0.5cm} $\Rightarrow$ \hspace{0.5cm}
-    \begin{minipage}[c]{0.35\textwidth}
-      \flushleft $f(x|x_1, \dots, x_n)$ du même type que $f(x)$.
-    \end{minipage}
-  \end{center}
-\end{rem}
+Puisque la fonction de densité de probabilité de la distribution
+marginale de la variable aléatoire $S_t$ est
+\begin{equation*}
+  f(x) = \int_{-\infty}^\infty f(x|\theta) u(\theta)\, d\theta,
+\end{equation*}
+alors la seule différence entre l'expression de $f(x)$ et celle de
+$f(x|x_1, \dots, x_n)$ réside dans l'utilisation de la distribution à
+priori de $\Theta$ pour la première et de la distribution à postériori
+pour la seconde.
 
-Du \autoref{thm:bayesienne:predictive}, on a
+\tipbox{\label{tip:baysienne:predictive} La conséquence de la remarque
+  précédente, c'est que si la distribution à posteriori de $\Theta$
+  est du même type que la distribution à priori, alors la distribution
+  prédictive est du même type que la distribution marginale.}
+
+Nous avons posé la relation \eqref{eq:bayesienne:predictive} de
+manière quelque peu intuitive. Démontrons maintenant qu'elle est
+vraie. Nous savons déjà que
+\begin{equation*}
+  \esp{\mu(\Theta)|S_{i1} = x_1, \dots, S_{in} = x_n}
+  = \int_{-\infty}^\infty
+  \mu(\theta) u(\theta|x_1, \dots, x_n)\, d\theta
+\end{equation*}
+et
+\begin{equation*}
+  \mu(\theta) = \int_0^\infty x f(x|\theta)\, dx.
+\end{equation*}
+Par conséquent,
 \begin{align*}
   \esp{\mu(\Theta)|S_{i1} = x_1, \dots, S_{in} = x_n}
-  &= \int_{-\infty}^\infty
-  \mu(\theta) u(\theta|x_1, \dots, x_n)\, d\theta \\
-  &= \int_{-\infty}^\infty
-  \left(
-    \int_0^\infty x f(x|\theta)\, dx
-  \right)
-  u(\theta|x_1, \dots, x_n)\, d\theta \\
   &= \int_{-\infty}^\infty \int_0^\infty
   x f(x|\theta) u(\theta|x_1, \dots, x_n)\, dx\, d\theta \\
   &= \int_0^\infty
@@ -746,7 +754,11 @@ Du \autoref{thm:bayesienne:predictive}, on a
     \int_{-\infty}^\infty
     f(x|\theta) u(\theta|x_1, \dots, x_n)\, d\theta
   \right)
-  dx \\
+  dx
+\end{align*}
+d'où, par le \autoref{thm:bayesienne:predictive},
+\begin{align*}
+  \esp{\mu(\Theta)|S_{i1} = x_1, \dots, S_{in} = x_n}
   &= \int_0^\infty x f(x|x_1, \dots, x_n)\, dx \\
   &= \esp{S_{i, n + 1}|S_{i1} = x_1, \dots, S_{in} = x_n}.
 \end{align*}
@@ -754,6 +766,293 @@ Du \autoref{thm:bayesienne:predictive}, on a
 Avec cette approche, la prime collective et la prime bayésienne
 s'interprètent toutes deux comme le montant moyen des sinistres dans
 le portefeuille, mais avec des pondérations différentes.
+
+\begin{exemple}[Cas Poisson/gamma]
+  \label{ex:bayesienne:poisson-gamma}
+  Le présent exemple joue un rôle important dans la suite. Soit
+  \begin{align*}
+    S_t|\Theta = \theta &\sim \text{Poisson}(\theta) \\
+                 \Theta &\sim \text{Gamma}(\alpha, \lambda),
+  \end{align*}
+  c'est-à-dire
+  \begin{align*}
+    f(x|\theta)
+    &= \frac{\theta^x e^{-\theta}}{x!}, \quad x = 0, 1, \dots \\
+    u(\theta)
+    &= \frac{\lambda^\alpha}{\Gamma(\alpha)}\,
+    \theta^{\alpha - 1} e^{-\lambda \theta}, \quad \theta > 0.
+  \end{align*}
+  Comme dans les exemples \ref{ex:bayesienne:poisson-discrete} et
+  \ref{ex:bayesienne:bernoulli-beta}, nous allons calculer les primes
+  de risque, collective et bayésienne. Nous disposons toutefois
+  maintenant de l'approche par la distribution prédictive pour
+  effectuer nos calculs.
+
+  \begin{enumerate}[a)]
+  \item La prime de risque est
+    \begin{equation*}
+      \mu(\theta) = \esp{S_t|\Theta = \theta} = \theta.
+    \end{equation*}
+    Dans la suite, nous aurons également besoin de la variance
+    conditionnelle
+    \begin{equation*}
+      \sigma^2(\theta) = \var{S_t|\Theta = \theta} = \theta.
+    \end{equation*}
+
+  \item La prime collective est
+    \begin{equation*}
+      m = \esp{\mu(\Theta)} = \esp{\Theta} = \frac{\alpha}{\lambda}.
+    \end{equation*}
+
+  \item Calculons maintenant la prime bayésienne à partir de la
+    distribution à postériori de $\Theta$. Tout d'abord, nous avons
+    que
+    \begin{align*}
+      u(\theta|x_1, \dots, x_n)
+      &\propto u(\theta) \prod_{t = 1}^n f(x_t|\theta) \\
+      &\propto \theta^{\alpha - 1} e^{-\lambda \theta}
+      \prod_{t = 1}^n \theta^{x_t} e^{-\theta} \\
+      &= \theta^{\alpha + \sum_{t = 1}^n x_t - 1}
+      e^{-(\lambda + n) \theta},
+    \end{align*}
+    d'où la distribution à postériori de $\Theta$ est aussi une
+    distribution gamma, mais avec de nouveaux paramètres:
+    \begin{equation*}
+      \Theta|S_1, \dots, S_n \sim \text{Gamma}(\tilde{\alpha} = \alpha
+      + \sum_{t = 1}^n S_t, \tilde{\lambda} = \lambda + n).
+    \end{equation*}
+    Par conséquent, la prime bayésienne est
+    \begin{align*}
+      B_{n + 1}
+      &= \esp{\mu(\Theta)|S_1, \dots, S_n} \\
+      &= \esp{\Theta|S_1, \dots, S_n} \\
+      &= \frac{\tilde{\alpha}}{\tilde{\lambda}} \\
+      &= \frac{\alpha + \sum_{t = 1}^n S_t}{\lambda + n}
+    \end{align*}
+
+  \item Avant d'examiner la distribution prédictive, calculons la
+    distribution marginale de $S_t$. Nous avons
+    \begin{align*}
+      f(x)
+      &= \int_0^\infty f(x|\theta) u(\theta)\, d\theta \\
+      &= \frac{\lambda^\alpha}{\Gamma(\alpha) x!}
+      \int_0^\infty \theta^x e^{-\theta}
+      \theta^{\alpha - 1} e^{-\lambda \theta}\, d\theta \\
+      &= \frac{\lambda^\alpha}{\Gamma(\alpha) \Gamma(x + 1)}
+      \int_0^\infty \theta^{\alpha + x - 1}
+      e^{-(\lambda + 1) \theta}\, d\theta \\
+      &= \frac{\lambda^\alpha}{\Gamma(\alpha) \Gamma(x + 1)}
+      \frac{\Gamma(\alpha + x)}{(\lambda + 1)^{\alpha + x}} \\
+      &= \frac{\Gamma(\alpha + x)}{\Gamma(\alpha) \Gamma(x + 1)}
+      \left(
+        \frac{\lambda}{\lambda + 1}
+      \right)^\alpha
+      \left(
+        \frac{1}{\lambda + 1}
+      \right)^x \\
+      &= \binom{\alpha + x - 1}{\alpha - 1}
+        \left(
+          \frac{\lambda}{\lambda + 1}
+        \right)^\alpha
+        \left(
+          \frac{1}{\lambda + 1}
+        \right)^x
+        \quad x = 0, 1, \dots.
+    \end{align*}
+    Nous identifions cette fonction de masse de probabilité comme
+    celle d'une binomiale négative de paramètres $r = \alpha$ et
+    $p = \lambda/(\lambda + 1)$ (voir la
+    \autoref{sec:distributions:binomialeneg}).
+
+    Nous pouvons obtenir le même résultat par les fonctions
+    génératrices des moments. En effet,
+    \begin{align*}
+      M_S(t)
+      &= \esp{e^{t S}} \\
+      &= \esp{\esp{e^{t S}|\Theta}} \\
+      &= \esp{M_{S|\Theta}(t)} \\
+      &= \esp{e^{\Theta (e^t - 1)}} \\
+      &= M_\Theta(e^t - 1) \\
+      &=
+      \left(
+        \frac{\lambda}{\lambda + 1 - e^t}
+      \right)^\alpha \\
+      &=
+      \left(
+        \frac{\lambda/(\lambda + 1)}{1 - e^t/(\lambda + 1)}
+      \right)^\alpha,
+    \end{align*}
+    ce qui est la fonction génératrice des moments d'une binomiale
+    négative de paramètres $\alpha$ et $\lambda/(\lambda + 1)$.
+
+    Ce lien entre les lois de Poisson, gamma et binomiale négative
+    constitue un résultat classique en théorie des probabilités.
+    Répétons-le pour le mettre en exergue: si
+    \begin{align*}
+      S|\Theta = \theta &\sim \text{Poisson}(\theta) \\
+      \Theta &\sim \text{Gamma}(\alpha, \lambda)
+    \end{align*}
+    alors
+    \begin{equation*}
+      S \sim \text{Binomiale négative}
+      \left(
+        \alpha, \frac{\lambda}{\lambda + 1}
+      \right).
+    \end{equation*}
+
+    Des résultats ci-dessus découle que la prime collective est
+    \begin{equation*}
+      m = \esp{S_t} = \frac{\alpha (1 - \lambda/(\lambda + 1))}{\lambda/(\lambda
+      + 1)} = \frac{\alpha}{\lambda},
+    \end{equation*}
+    soit le même résultat que précédemment.
+
+  \item Les distributions à priori et à postériori de $\Theta$
+    sont toutes deux des distributions gamma, la seconde avec des
+    paramètres mis à jour suite à l'ajout de données:
+    \begin{equation*}
+      \Theta \sim \text{Gamma}(\alpha, \lambda)
+    \end{equation*}
+    et
+    \begin{equation*}
+      \Theta|S_1 = x_1, \dots, S_n = x_n
+      \sim \text{Gamma}(\tilde{\alpha}, \tilde{\lambda}).
+    \end{equation*}
+    C'est le contexte de la remarque de la
+    \autopageref{tip:baysienne:predictive}. Nous pouvons directement
+    établir que la distribution prédictive de $S_{n + 1}$ est:
+    \begin{equation*}
+      S_{n + 1}|S_1 = x_1, \dots, S_n = x_n
+      \sim \text{Binomiale négative}(\tilde{r}, \tilde{p})
+    \end{equation*}
+    avec
+    \begin{align*}
+      \tilde{r}
+      &= \tilde{\alpha} = \alpha + \sum_{t = 1}^n x_t \\
+      \tilde{p}
+      &= \frac{\tilde{\lambda}}{\tilde{\lambda} + 1} =
+      \frac{\lambda + n}{\lambda + n + 1}.
+    \end{align*}
+    Par conséquent, la prime bayésienne, calculée cette fois à partir
+    de la distribution prédictive, est:
+    \begin{align*}
+      B_{n + 1}
+      &= \esp{S_{n + 1}|S_1, \dots, S_n} \\
+      &= \frac{\tilde{\alpha}}{\tilde{\lambda}} \\
+      &= \frac{\alpha + \sum_{t = 1}^n S_t}{\lambda + n}.
+    \end{align*}
+
+  \item Afin de fournir un autre exemple de calculs équivalents, mais
+    qui empruntent un chemin différent, calculons $\var{S}$. En
+    premier lieu, nous pouvons procéder en conditionnant sur $\Theta$:
+    \begin{align*}
+      \var{S}
+      &= \esp{\var{S|\Theta}} + \var{\esp{S|\Theta}} \\
+      &= \esp{\sigma^2(\Theta)} + \var{\mu(\Theta)} \\
+      &= \esp{\Theta} + \var{\Theta} \\
+      &= \frac{\alpha}{\lambda} + \frac{\alpha}{\lambda^2} \\
+      &= \frac{\alpha (\lambda + 1)}{\lambda^2}.
+    \end{align*}
+    En second lieu, nous pouvons calculer la variance directement
+    depuis la marginale:
+    \begin{align*}
+      \var{S}
+      &= \frac{r (1 - p)}{p^2} \\
+      &= \frac{\alpha (\lambda + 1)}{\lambda^2}.
+    \end{align*}
+
+  \item Le \autoref{tab:bayesienne:poisson-gamma} contient les
+    résultats de la prime bayésienne des dix premières années si la
+    distribution à priori de la variable aléatoire $\Theta$ est une
+    gamma de paramètres $\alpha = 3$ et $\lambda = 3$, et que les
+    montants de sinistres au cours de ces années sont les suivants:
+    $5, 3, 0, 1, 1, 2, 0, 2, 0, 2$.
+
+    La \autoref{fig:bayesienne:poisson-gamma} illustre que la
+    distribution à postériori de $\Theta$ est de plus en plus
+    concentrée autour de sa moyenne au fur et à mesure que
+    l'expérience s'accumule. En d'autres termes, l'incertitude sur le
+    niveau de risque du contrat sous étude diminue. Du même coup, la
+    précision de la prime bayésienne s'améliore. En effet, la vraie
+    valeur de $\theta$ est utilisée pour générer les sinistres
+    ci-dessus est $1,48$. %
+    \qed
+  \end{enumerate}
+
+  \begin{table}
+    \centering
+    \caption{Primes bayésiennes de
+      l'\autoref{ex:bayesienne:poisson-gamma}}
+    \label{tab:bayesienne:poisson-gamma}
+    \begin{tabular}{*{5}{>{$}r<{$}}>{$}l<{$}}
+      \toprule
+      n &
+      x_n &
+      \sum x_t &
+      \alpha + \sum x_t &
+      \lambda + n &
+      B_{n+1} \\
+      \midrule
+      0 & $--$ & $--$ &  3 &  3 & 1,0     \\
+      1 &  5 &  5 &  8 &  4 & 2,0     \\
+      2 &  3 &  8 & 11 &  5 & 2,2   \\
+      3 &  0 &  8 & 11 &  6 & 1,83  \\
+      4 &  1 &  9 & 12 &  7 & 1,71  \\
+      5 &  1 & 10 & 13 &  8 & 1,625 \\
+      6 &  2 & 12 & 15 &  9 & 1,667 \\
+      7 &  0 & 12 & 15 & 10 & 1,5   \\
+      8 &  2 & 14 & 17 & 11 & 1,54  \\
+      9 &  0 & 14 & 17 & 12 & 1,42  \\
+      10 &  2 & 16 & 19 & 13 & 1,46  \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{figure}[t]
+    \setkeys{Gin}{width=\textwidth}
+    \begin{minipage}[t]{0.45\textwidth}
+      \centering
+<<echo=FALSE, fig=TRUE, width=5, height=5>>=
+par(mar = c(3, 2, 3, 2))
+curve(dgamma(x, 3, 3), xlim = c(0, 4), main = "À priori")
+@
+      \subcaption{Gamma avec $\alpha = 3$ et $\lambda =
+        3$. L'espérance est égale à $1$.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+      \centering
+<<echo=FALSE, fig=TRUE, width=5, height=5>>=
+par(mar = c(3, 2, 3, 2))
+curve(dgamma(x, 8, 4), xlim = c(0, 4), main = "Après 1 année")
+@
+      \subcaption{Gamma avec $\alpha = 8$ et $\lambda =
+        4$. L'espérance est égale à $2$.}
+    \end{minipage}
+    \begin{minipage}[t]{0.45\textwidth}
+      \centering
+<<echo=FALSE, fig=TRUE, width=5, height=5>>=
+par(mar = c(3, 2, 3, 2))
+curve(dgamma(x, 13, 8), xlim = c(0, 4), main = "Après 5 années")
+@
+      \subcaption{Gamma avec $\alpha = 13$ et $\lambda =
+        8$. L'espérance est égale à $1,625$.}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+      \centering
+<<echo=FALSE, fig=TRUE, width=5, height=5>>=
+par(mar = c(3, 2, 3, 2))
+curve(dgamma(x, 19, 13), xlim = c(0, 4), main = "Après 10 années")
+@
+      \subcaption{Gamma avec $\alpha = 19$ et $\lambda =
+        13$. L'espérance est égale à $1,46$.}
+    \end{minipage}
+    \caption{Distributions à priori et à postériori de la variable
+      aléatoire $\Theta$ dans l'\autoref{ex:bayesienne:poisson-gamma}}
+    \label{fig:bayesienne:poisson-gamma}
+  \end{figure}
+\end{exemple}
 
 
 \section{Crédibilité bayésienne linéaire (ou exacte)}
@@ -773,6 +1072,17 @@ où
   z = \frac{n}{n + K}, \quad K = \alpha + \beta.
 \end{equation*}
 
+
+    %%   &= \frac{n}{n + \lambda}\, \bar{S} +
+    %%   \frac{\lambda}{n + \lambda} \frac{\alpha}{\lambda} \\
+    %%   &= z \bar{S} + (1 - z) m
+    %% \end{align*}
+    %% avec
+    %% \begin{equation*}
+    %%   z = \frac{n}{n + \lambda}.
+    %% \end{equation*}
+
+
 Une prime de la forme
 \begin{equation*}
   \pi_{n + 1} = z \bar{S} + (1 - z) m
@@ -784,268 +1094,6 @@ est appelée \emph{prime de crédibilité} et $0 \leq z \leq 1$ est le
 que la prime bayésienne est une prime de crédibilité pour certaines
 combinaisons de distributions.
 
-\begin{exemple}[Cas Poisson/gamma]
-  \label{ex:bayesienne:poisson-gamma}
-
-  Soit
-  \begin{align*}
-    S_t|\Theta = \theta &\sim \text{Poisson}(\theta) \\
-                 \Theta &\sim \text{Gamma}(\alpha, \lambda),
-  \end{align*}
-  c'est-à-dire
-  \begin{align*}
-    f(x|\theta)
-    &= \frac{\theta^x e^{-\theta}}{x!}, \quad x = 0, 1, \dots \\
-    u(\theta)
-    &= \frac{\lambda^\alpha}{\Gamma(\alpha)}\,
-    \theta^{\alpha - 1} e^{-\lambda \theta}, \quad \theta > 0.
-  \end{align*}
-  \begin{enumerate}[a)]
-  \item Calculer la prime de risque.
-
-    On a
-    \begin{equation*}
-      \mu(\theta) = \esp{S_t|\Theta = \theta} = \theta.
-    \end{equation*}
-    On calcule également, pour usage futur,
-    \begin{equation*}
-      \sigma^2(\theta) = \var{S_t|\Theta = \theta} = \theta.
-    \end{equation*}
-
-  \item Calculer la prime collective.
-
-    On a
-    \begin{equation*}
-      m = \esp{\mu(\Theta)} = \esp{\Theta} = \frac{\alpha}{\lambda}.
-    \end{equation*}
-
-  \item Calculer la prime bayésienne à partir de la distribution à
-    postériori de $\Theta$.
-
-    Tout d'abord, on a
-    \begin{align*}
-      u(\theta|x_1, \dots, x_n)
-      &\propto u(\theta) \prod_{t = 1}^n f(x_t|\theta) \\
-      &\propto \theta^{\alpha - 1} e^{-\lambda \theta}
-      \prod_{t = 1}^n \theta^{x_t} e^{-\theta} \\
-      &= \theta^{\alpha + \sum_{t = 1}^n x_t - 1}
-      e^{-(\lambda + n) \theta},
-    \end{align*}
-    d'où $\Theta|S_1, \dots, S_n \sim \text{Gamma}(\tilde{\alpha} =
-    \alpha + \sum_{t = 1}^n S_t, \tilde{\lambda} = \lambda + n)$. Par
-    conséquent, la prime bayésienne est
-    \begin{align*}
-      B_{n + 1}
-      &= \esp{\mu(\Theta)|S_1, \dots, S_n} \\
-      &= \esp{\Theta|S_1, \dots, S_n} \\
-      &= \frac{\tilde{\alpha}}{\tilde{\lambda}} \\
-      &= \frac{\alpha + \sum_{t = 1}^n S_t}{\lambda + n} \\
-      &= \frac{n}{n + \lambda}\, \bar{S} +
-      \frac{\lambda}{n + \lambda} \frac{\alpha}{\lambda} \\
-      &= z \bar{S} + (1 - z) m
-    \end{align*}
-    avec
-    \begin{equation*}
-      z = \frac{n}{n + \lambda}.
-    \end{equation*}
-    La prime bayésienne est donc linéaire dans le cas Poisson/gamma.
-
-  \item Calculer la distribution marginale de $S_t$.
-
-    On a
-    \begin{align*}
-      f(x)
-      &= \int_0^\infty f(x|\theta) u(\theta)\, d\theta \\
-      &= \frac{\lambda^\alpha}{\Gamma(\alpha) x!}
-      \int_0^\infty \theta^x e^{-\theta}
-      \theta^{\alpha - 1} e^{-\lambda \theta}\, d\theta \\
-      &= \frac{\lambda^\alpha}{\Gamma(\alpha) \Gamma(x + 1)}
-      \int_0^\infty \theta^{\alpha + x - 1}
-      e^{-(\lambda + 1) \theta}\, d\theta \\
-      &= \frac{\lambda^\alpha}{\Gamma(\alpha) \Gamma(x + 1)}
-      \frac{\Gamma(\alpha + x)}{(\lambda + 1)^{\alpha + x}} \\
-      &= \frac{\Gamma(\alpha + x)}{\Gamma(\alpha) \Gamma(x + 1)}
-      \left(
-        \frac{\lambda}{\lambda + 1}
-      \right)^\alpha
-      \left(
-        \frac{1}{\lambda + 1}
-      \right)^x \\
-      &= \binom{\alpha + x - 1}{\alpha - 1} p^\alpha (1 - p)^x, \quad
-      x = 0, 1, \dots,
-    \end{align*}
-    d'où $S_t \sim \text{Binomiale négative}(r = \alpha, p =
-    \frac{\lambda}{\lambda + 1})$. Par conséquent,
-    \begin{equation*}
-      m = \esp{S_t} = \frac{r (1 - p)}{p} = \frac{\alpha}{\lambda}.
-    \end{equation*}
-
-    \emph{Astuce}: on peut obtenir le même résultat par les fonctions
-    génératrices des moments:
-    \begin{align*}
-      M_S(t)
-      &= \esp{e^{t S}} \\
-      &= \esp{\esp{e^{t S}|\Theta}} \\
-      &= \esp{M_{S|\Theta}(t)} \\
-      &= \esp{e^{\Theta (e^t - 1)}} \\
-      &= M_\Theta(e^t - 1) \\
-      &=
-      \left(
-        \frac{\lambda}{\lambda + 1 - e^t}
-      \right)^\alpha \\
-      &=
-      \left(
-        \frac{\frac{\lambda}{\lambda + 1}}{1 - \frac{1}{\lambda + 1} e^t}
-      \right)^\alpha,
-    \end{align*}
-    ce qui est la fonction génératrice des moments d'une binomiale
-    négative de paramètres $\alpha$ et $\frac{\lambda}{\lambda + 1}$.
-  \item Calculer la prime bayésienne à partir de la distribution
-    prédictive.
-
-    Puisque
-    \begin{equation*}
-      \Theta \sim \text{Gamma}(\alpha, \lambda)
-    \end{equation*}
-    et
-    \begin{equation*}
-      \Theta|S_1 = x_1, \dots, S_n = x_n
-      \sim \text{Gamma}(\tilde{\alpha}, \tilde{\lambda}),
-    \end{equation*}
-    alors
-    \begin{equation*}
-      S_{n + 1}|S_1 = x_1, \dots, S_n = x_n
-      \sim \text{Binomiale négative}(\tilde{r}, \tilde{p})
-    \end{equation*}
-    avec
-    \begin{align*}
-      \tilde{r}
-      &= \tilde{\alpha} = \alpha + \sum_{t = 1}^n x_t \\
-      \tilde{p}
-      &= \frac{\tilde{\lambda}}{\tilde{\lambda} + 1} =
-      \frac{\lambda + n}{\lambda + n + 1}.
-    \end{align*}
-    Par conséquent,
-    \begin{align*}
-      B_{n + 1}
-      &= \esp{S_{n + 1}|S_1, \dots, S_n} \\
-      &= \frac{\tilde{\alpha}}{\tilde{\lambda}} \\
-      &= \frac{\alpha + \sum_{t = 1}^n S_t}{\lambda + n}.
-    \end{align*}
-
-  \item Calculer $\var{S}$.
-
-    On peut procéder de deux façons.
-    \begin{enumerate}[1.]
-    \item En conditionnant sur $\Theta$:
-      \begin{align*}
-        \var{S}
-        &= \esp{\var{S|\Theta}} + \var{\esp{S|\Theta}} \\
-        &= \esp{\sigma^2(\Theta)} + \var{\mu(\Theta)} \\
-        &= \esp{\Theta} + \var{\Theta} \\
-        &= \frac{\alpha}{\lambda} + \frac{\alpha}{\lambda^2} \\
-        &= \frac{\alpha (\lambda + 1)}{\lambda^2}.
-      \end{align*}
-    \item Directement depuis la marginale:
-      \begin{align*}
-        \var{S}
-        &= \frac{r (1 - p)}{p^2} \\
-        &= \frac{\alpha (\lambda + 1)}{\lambda^2}.
-      \end{align*}
-    \end{enumerate}
-  \item Calculer la prime bayésienne pour les dix prochaines années si
-    à priori $\Theta \sim \text{Gamma}(3, 3)$ et que les montants de
-    sinistres au cours de ces années sont les suivants: 5, 3, 0, 1, 1,
-    2, 0, 2, 0, 2.
-
-    La prime bayésienne dans le cas Poisson/gamma est
-    \begin{equation*}
-      B_{n+1} = \frac{\alpha + \sum_{t=1}^n x_t}{\lambda + n}.
-    \end{equation*}
-    On a donc le tableau suivant:
-
-    \begin{center}
-      \begin{tabular}{rrrrrr}
-        \toprule
-        $n$ &
-        $x_n$ &
-        $\sum x_t$ &
-        $\alpha + \sum x_t$ &
-        $\lambda + n$ &
-        $B_{n+1}$ \\
-        \midrule
-        0 & -- & -- &  3 &  3 & 1     \\
-        1 &  5 &  5 &  8 &  4 & 2     \\
-        2 &  3 &  8 & 11 &  5 & 2,2   \\
-        3 &  0 &  8 & 11 &  6 & 1,83  \\
-        4 &  1 &  9 & 12 &  7 & 1,71  \\
-        5 &  1 & 10 & 13 &  8 & 1,625 \\
-        6 &  2 & 12 & 15 &  9 & 1,667 \\
-        7 &  0 & 12 & 15 & 10 & 1,5   \\
-        8 &  2 & 14 & 17 & 11 & 1,54  \\
-        9 &  0 & 14 & 17 & 12 & 1,42  \\
-        10 &  2 & 16 & 19 & 13 & 1,46  \\
-        \bottomrule
-      \end{tabular}
-    \end{center}
-
-    Conclusions:
-    \begin{itemize}
-    \item La distribution à postériori de $\Theta$ est de plus en plus
-      concentrée autour de sa moyenne au fur et à mesure que
-      l'expérience s'accumule (voir les figures
-      \ref{fig:bayesienne:gamma1}--\ref{fig:bayesienne:gamma4}).
-    \item La précision de la prime bayésienne s'améliore (la vraie
-      valeur de $\theta$ est 1,48 dans cet exemple).
-    \end{itemize}
-
-    \setkeys{Gin}{width=\textwidth}
-
-    \begin{figure}[h]
-      \begin{minipage}[t]{0.45\textwidth}
-        \centering
-<<echo=FALSE, fig=TRUE>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 3, 3), xlim = c(0, 4), main = "à priori")
-@
-        \caption{Distribution gamma avec $\alpha = 3$ et $\lambda =
-          3$. L'espérance est égale à $1$.}
-        \label{fig:bayesienne:gamma1}
-      \end{minipage}
-      \hfill
-      \begin{minipage}[t]{0.45\textwidth}
-        \centering
-<<echo=FALSE, fig=TRUE>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 8, 4), xlim = c(0, 4), main = "Après 1 année")
-@
-        \caption{Distribution gamma avec $\alpha = 8$ et $\lambda =
-          4$. L'espérance est égale à $2$.}
-      \end{minipage}
-      \begin{minipage}[t]{0.45\textwidth}
-        \centering
-<<echo=FALSE, fig=TRUE>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 13, 8), xlim = c(0, 4), main = "Après 5 années")
-@
-        \caption{Distribution gamma avec $\alpha = 13$ et $\lambda =
-          8$. L'espérance est égale à $1,625$.}
-      \end{minipage}
-      \hfill
-      \begin{minipage}[t]{0.45\textwidth}
-        \centering
-<<echo=FALSE, fig=TRUE>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 19, 13), xlim = c(0, 4), main = "Après 10 années")
-@
-        \caption{Distribution gamma avec $\alpha = 19$ et $\lambda =
-          13$. L'espérance est égale à $1,46$.}
-        \label{fig:bayesienne:gamma4}
-      \end{minipage}
-    \end{figure}
-  \end{enumerate}
-  \qed
-\end{exemple}
 
 \begin{exemple}[Cas exponentielle/gamma]
   \label{ex:bayesienne:poisson-exponentielle}

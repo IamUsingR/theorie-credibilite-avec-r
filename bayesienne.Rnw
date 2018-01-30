@@ -46,6 +46,10 @@ s'avérer ardu et nous établirons les conditions faisant en sorte que
 cette prime est non seulement simple à calculer, mais qu'elle adopte
 une forme linéaire facile à interpréter.
 
+Si le contexte et la terminologie de l'approche bayésienne en
+statistique ne vous sont pas familiers, révisez le contenu de
+l'\autoref{chap:estimation-bayesienne} avant d'aller plus loin.
+
 
 \section{Mise en situation}
 \label{sec:bayesienne:mise}
@@ -322,10 +326,10 @@ pour justifier de les regrouper dans un même porfeuille.
   \qed
 \end{exemple}
 
-\tipbox{En théorie des probabilités, notre modèle d'hétérogénéité est
-  un modèle dit «urne d'urne» en ce sens que les montants de sinistres
-  proviennent d'un processus en deux étapes; voir la
-  \autoref{fig:bayesienne:urne} pour une illustration.}
+En théorie des probabilités, notre modèle d'hétérogénéité est un
+modèle dit «urne d'urne» en ce sens que les montants de sinistres
+proviennent d'un processus en deux étapes; voir la
+\autoref{fig:bayesienne:urne} pour une illustration.
 
 \begin{figure}
   \centering
@@ -479,16 +483,17 @@ priori. En effet, comparez les deux équations ci-dessous:
 prime bayésienne de première année, lorsque aucune expérience n'est
 disponible.
 
-\tipbox{Puisque
+\tipbox{Puisque les montants de sinistres apparaissent seulement sous
+  forme de produit dans la fonction de vraisemblance
   \begin{equation*}
     f(x_1, \dots, x_n|\theta_i) = \prod_{t = 1}^n f(x_t|\theta_i),
   \end{equation*}
-  l'ordre des sinistres ne joue aucun rôle dans les calculs.}
+  leur ordre ne joue aucun rôle dans les calculs.}
 
-\warningbox{Dans la suite, nous allons ne considérer qu'un seul
-  contrat et laisser tomber l'indice $i$ dans la notation. En effet,
-  dans l'approche entièrement paramétrique adoptée dans ce chapitre,
-  le portefeuille de contrats ne joue aucun rôle concret.}
+\warningbox{Dans la suite, nous n'allons considérer qu'un seul contrat
+  et laisser tomber l'indice $i$ dans la notation. En effet, dans
+  l'approche entièrement paramétrique adoptée dans ce chapitre, le
+  portefeuille de contrats ne joue aucun rôle concret.}
 
 \begin{exemple}
   Soit $S_t|\Theta = \theta \sim \text{Poisson}(\theta)$ et
@@ -576,8 +581,8 @@ disponible.
 
   Nous avons $S_t|\Theta = \theta \sim \text{Bernoulli}(\theta)$ et
   nous supposons que le paramètre $\theta$ est une réalisation d'une
-  variable aléatoire avec distribution bêta de paramètres $\alpha$ et
-  $\beta$. Ainsi,
+  variable aléatoire avec distribution bêta de paramètres $a$ et
+  $b$. Ainsi,
   \begin{equation*}
     f(x|\theta) = \theta^x (1 - \theta)^{1 - x},
     \quad x = 0, 1
@@ -585,8 +590,8 @@ disponible.
   et
   \begin{equation*}
     u(\theta)
-    = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}\,
-    \theta^{\alpha - 1} (1 - \theta)^{\beta - 1},
+    = \frac{\Gamma(a + b)}{\Gamma(a) \Gamma(b)}\,
+    \theta^{a - 1} (1 - \theta)^{b - 1},
     \quad 0 < \theta < 1.
   \end{equation*}
 
@@ -599,7 +604,7 @@ disponible.
       m
       &= \esp{\mu(\Theta)} \\
       &= \esp{\Theta} \\
-      &= \frac{\alpha}{\alpha + \beta}.
+      &= \frac{a}{a + b}.
     \end{align*}
   \item Nous souhaitons maintenant calculer la prime bayésienne après
     $n$ années d'observations $x_1, \dots, x_n$. Pour ce faire, nous
@@ -609,21 +614,21 @@ disponible.
       u(\theta|x_1, \dots, x_n)
       &\propto
         u(\theta_i) \prod_{t = 1}^n f(x_t|\theta_i) \\
-      &\propto \theta^{\alpha - 1} (1 - \theta)^{\beta - 1}
+      &\propto \theta^{a - 1} (1 - \theta)^{b - 1}
         \prod_{t = 1}^n \theta^{x_t} (1 - \theta)^{1 - x_t} \\
-      &= \theta^{\alpha + \sum_{t = 1}^n x_t - 1} (1 - \theta)^{\beta +
+      &= \theta^{a + \sum_{t = 1}^n x_t - 1} (1 - \theta)^{b +
         n - \sum_{t = 1}^n x_t - 1}.
     \end{align*}
     Nous reconnaissons là une distribution bêta, mais avec de nouveaux
-    paramètres $\tilde{\alpha} = \alpha + \sum_{t = 1}^n x_t$ et
-    $\tilde{\beta} = \beta + n - \sum_{t = 1}^n x_t$. Par conséquent,
+    paramètres $\tilde{a} = a + \sum_{t = 1}^n x_t$ et
+    $\tilde{b} = b + n - \sum_{t = 1}^n x_t$. Par conséquent,
     la prime bayésienne pour l'année $n + 1$ est
     \begin{align*}
       B_{n + 1}
       &= \esp{\mu(\Theta)|S_1, \dots, S_n} \\
       &= \esp{\Theta|S_1, \dots, S_n} \\
-      &= \frac{\tilde{\alpha}}{\tilde{\alpha} + \tilde{\beta}} \\
-      &= \frac{\alpha + \sum_{t = 1}^n S_t}{\alpha + \beta + n}.
+      &= \frac{\tilde{a}}{\tilde{a} + \tilde{b}} \\
+      &= \frac{a + \sum_{t = 1}^n S_t}{a + b + n}.
     \end{align*}
   \end{enumerate}
   \qed

@@ -1062,46 +1062,94 @@ curve(dgamma(x, 19, 13), xlim = c(0, 4), main = "Après 10 années")
 \end{exemple}
 
 
-\section{Crédibilité bayésienne linéaire (ou exacte)}
+\section{Crédibilité bayésienne linéaire}
 \label{sec:bayesienne:lineaire}
 
 Examinons de plus près la prime bayésienne obtenue à
-l'\autoref{ex:bayesienne:bernoulli-beta} avec une combpeut se réécrire sous la
-forme
+l'\autoref{ex:bayesienne:bernoulli-beta} avec une fonction de
+vraisemblance Bernoulli et une distribution du paramètre de mélange
+bêta. Nous avons obtenu
+\begin{equation*}
+  B_{n + 1} = \frac{\alpha + \sum_{t = 1}^n S_t}{\alpha + \beta + n}.
+\end{equation*}
+Or, cette expression se réécrire ainsi:
 \begin{align*}
   B_{n + 1}
-  &= \frac{\alpha + \sum_{t = 1}^n S_t}{\alpha + \beta + n} \\
+  %% &= \frac{n}{n + \alpha + \beta}\, \frac{\sum_{t = 1}^n S_t}{n} +
+  %% \frac{\alpha}{n + \alpha + \beta} \\
   &= \frac{n}{n + \alpha + \beta}\, \bar{S} +
   \frac{\alpha + \beta}{n + \alpha + \beta} \frac{\alpha}{\alpha + \beta} \\
   &= z \bar{S} + (1 - z) m,
 \end{align*}
-où
+où $\bar{S} = n^{-1} \sum_{t = 1}^n S_t$, $m$ est la prime collective
+et
 \begin{equation*}
   z = \frac{n}{n + K}, \quad K = \alpha + \beta.
 \end{equation*}
 
-
-    %%   &= \frac{n}{n + \lambda}\, \bar{S} +
-    %%   \frac{\lambda}{n + \lambda} \frac{\alpha}{\lambda} \\
-    %%   &= z \bar{S} + (1 - z) m
-    %% \end{align*}
-    %% avec
-    %% \begin{equation*}
-    %%   z = \frac{n}{n + \lambda}.
-    %% \end{equation*}
-
-
-Une prime de la forme
+Nous pouvons répéter le même exercice avec les résultats de
+l'\autoref{ex:bayesienne:poisson-gamma} pour la combinaison d'une loi
+de Poisson et d'une loi gamma. Dans ce cas,
 \begin{equation*}
-  \pi_{n + 1} = z \bar{S} + (1 - z) m
+  B_{n + 1} = \frac{\alpha + \sum_{t = 1}^n S_t}{\lambda + n},
 \end{equation*}
-est appelée \emph{prime de crédibilité} et $0 \leq z \leq 1$ est le
-\emph{facteur de crédibilité}.
+soit
+\begin{align*}
+  B_{n + 1}
+  %% &= \frac{n}{n + \lambda}\, \frac{\sum_{t = 1}^n S_t}{n} +
+  %%   \frac{\alpha}{n + \lambda} \\
+  &= \frac{n}{n + \lambda}\, \bar{S} +
+    \frac{\lambda}{n + \lambda} \frac{\alpha}{\lambda} \\
+  &= z \bar{S} + (1 - z) m,
+\end{align*}
+avec
+\begin{equation*}
+  z = \frac{n}{n + K}, \quad K = \lambda.
+\end{equation*}
 
-\cite{Whitney:1918} et \cite{Bailey:1950} furent les premiers à démontrer
-que la prime bayésienne est une prime de crédibilité pour certaines
-combinaisons de distributions.
+Ces résultats sont très séduisants sous plusieurs aspects.
+Premièrement, la prime bayésienne est linéaire, ce qui est à la fois
+simple à calculer et facile à interpréter (rappelez-vous le cas tout à
+fait contraire de l'~\autoref{ex:bayesienne:bernoulli-uniforme}).
+Ensuite, puisque $0 < z < 1$ pour $n > 0$, la prime bayésienne se
+trouve être une combinaison convexe de $\bar{S}$ et $m$. Elle se situe
+donc toujours entre l'expérience individuelle d'un contrat ($\bar{S}$)
+et la prime collective ($m$). D'un point de vue actuariel, il s'agit
+d'une propriété importante. Imaginez seulement, si ce n'était pas le
+cas, devoir expliquer à un client dont l'expérience est pire que la
+moyenne que vous devez non seulement lui charger plus que la prime
+collective, mais aussi plus que sa propre expérience!
 
+Les primes de forme
+\begin{equation*}
+  \pi_{n + 1} = z \bar{S} + (1 - z) m,
+\end{equation*}
+où $0 \leq z \leq 1$ jouent un rôle fondamental en théorie de la
+crédibilité. Nous les appelons \emph{primes de crédibilité} et $z$ est
+le \emph{facteur de crédibilité}.
+
+\cite{Whitney:1918} et \cite{Bailey:1950} furent les premiers à
+démontrer que la prime bayésienne est une prime de crédibilité pour
+certaines combinaisons de distributions. Nous en avons déjà identifié
+deux. Il y a en fait cinq combinaisons de distributions qui résultent
+en une prime bayésienne linéaire (en plus de leurs convolutions):
+\begin{enumerate}
+\item $S|\Theta = \theta \sim \text{Poisson}(\theta)$ et $\Theta \sim
+  \text{Gamma}(\alpha, \lambda)$;
+\item $S|\Theta = \theta \sim \text{Exponentielle}(\theta)$ et $\Theta \sim
+  \text{Gamma}(\alpha, \lambda)$;
+\item $S|\Theta = \theta \sim \text{Normale}(\theta, \sigma^2_2)$ et $\Theta \sim
+  \text{Normale}(\mu, \sigma^2_1)$;
+\item $S|\Theta = \theta \sim \text{Bernoulli}(\theta)$ et $\Theta \sim
+  \text{Bêta}(a, b)$;
+\item $S|\Theta = \theta \sim \text{Géométrique}(\theta)$ et $\Theta \sim
+  \text{Bêta}(a, b)$.
+\end{enumerate}
+
+Nous effectuons les calculs de prime pour les cas exponentielle/gamma
+et normale/normale dans les deux exemples suivants. Vous devez faire
+de même pour le cas géométrique/bêta à
+l'\autoref{exercice:bayesienne:geometrique-beta}.
 
 \begin{exemple}[Cas exponentielle/gamma]
   \label{ex:bayesienne:poisson-exponentielle}
@@ -1110,6 +1158,7 @@ combinaisons de distributions.
     S_t|\Theta = \theta &\sim \text{Exponentielle}(\theta) \\
                  \Theta &\sim \text{Gamma}(\alpha, \lambda).
   \end{align*}
+
   La prime de risque est
   \begin{equation*}
     \mu(\theta) = \frac{1}{\theta}
@@ -1141,7 +1190,7 @@ combinaisons de distributions.
   d'où $\Theta|S_1, \dots, S_n \sim \text{Gamma}(\tilde{\alpha} =
   \alpha + n, \tilde{\lambda} = \lambda + \sum_{t = 1}^n S_t)$.
 
-  Quant aux distributions marginale et prédictive, on a
+  Pour les distributions marginale et prédictive, nous avons
   \begin{align*}
     f(x)
     &= \frac{\lambda^\alpha}{\Gamma(\alpha)}  \int_0^\infty
@@ -1176,7 +1225,7 @@ combinaisons de distributions.
     z
     &= \frac{n}{n + \alpha - 1}.
   \end{align*}
-  La prime bayésienne est donc linéaire.
+  La prime bayésienne est donc linéaire. %
   \qed
 \end{exemple}
 
@@ -1188,7 +1237,9 @@ combinaisons de distributions.
     \Theta
     &\sim \text{Normale}(\mu, \sigma_1^2).
   \end{align*}
-  Alors,
+
+  La prime de risque, la variance conditionnelle et la prime
+  collective sont:
   \begin{align*}
     \mu(\Theta)
     &= \Theta \\
@@ -1196,7 +1247,7 @@ combinaisons de distributions.
     &= \sigma_2^2 \quad \text{(constante)} \\
     \intertext{et}
     m
-    &= \Esp{\Theta} = \mu.
+    &= \esp{\Theta} = \mu.
   \end{align*}
 
   Trouver la distribution à postériori n'est toutefois pas une
@@ -1207,7 +1258,7 @@ combinaisons de distributions.
     e^{- \sum_{t=1}^n (x_t - \theta)^2/2 \sigma_2^2}.
   \end{equation*}
   En développant l'exposant tout en laissant de côté tous les termes
-  non fonction de $\theta$, on obtient
+  non fonction de $\theta$, nous obtenons
   \begin{align*}
     \text{Exposant}
     &= - \frac{1}{2}
@@ -1259,10 +1310,12 @@ combinaisons de distributions.
       \text{cte}.
   \end{align*}
   Par conséquent,
-  \begin{align*}
+  \begin{equation*}
     \Theta|S_1 = x_1, \dots, S_n = x_n
-    &\sim \text{Normale}(\tilde{\mu}, \tilde{\sigma}_1^2) \\
-    \intertext{avec}
+    \sim \text{Normale}(\tilde{\mu}, \tilde{\sigma}_1^2) \\
+  \end{equation*}
+  avec
+  \begin{align*}
     \tilde{\sigma}_1^2
     &= \frac{1}{\phi} \\
     &= \frac{\sigma_1^2 \sigma_2^2}{\sigma_2^2 + n \sigma_1^2} \\
@@ -1290,14 +1343,15 @@ combinaisons de distributions.
     S \sim \text{Normale}(\mu, \sigma_1^2 + \sigma_2^2).
   \end{equation*}
   Puisque la distribution à postériori de $\Theta$ est du même type
-  que la distribution à priori, on peut immédiatement conclure que
+  que la distribution à priori, nous pouvons immédiatement conclure
+  que
   \begin{equation*}
     S_{n+1}|S_1, \dots, S_n \sim
     \text{Normale}(\tilde{\mu}, \tilde{\sigma}_1^2 + \tilde{\sigma}_2^2).
   \end{equation*}
 
   La prime bayésienne est donc, en utilisant indifféremment l'approche
-  de la distribution à postériori ou de la prédictive,
+  de la distribution à postériori ou celle de la prédictive,
   \begin{align*}
     B_{n+1}
     &= \tilde{\mu} \\
@@ -1311,23 +1365,13 @@ combinaisons de distributions.
   \qed
 \end{exemple}
 
-Il y a en fait cinq combinaisons de distributions qui résultent en une
-prime bayésienne linéaire (plus leurs convolutions):
-\begin{enumerate}
-\item Poisson/gamma
-\item Exponentielle/gamma
-\item Normale/normale
-\item Bernoulli/bêta
-\item Géométrique/bêta.
-\end{enumerate}
-
-Les formules de crédibilité exacte pour les combinaisons de
-distributions issues de la famille exponentielle sont rassemblées dans
-l'annexe A du recueil d'exercices. Les commentaires suivants se
+Les formules de crédibilité linéaire --- ou exacte --- pour les
+combinaisons de distributions issues de la famille exponentielle sont
+rassemblées à l'\autoref{chap:formules}. Les commentaires suivants se
 rapportent à ces résultats.
 
 \begin{enumerate}
-\item Dans le cas normale/normale, on a
+\item Dans le cas normale/normale, nous avons
   \begin{equation*}
     \tilde{\sigma}_1^2 =
       \frac{\sigma_1^2}{n \dfrac{\sigma_1^2}{\sigma_2^2} + 1}
@@ -1338,10 +1382,10 @@ rapportent à ces résultats.
   comme une baisse de l'incertitude quant au niveau de risque d'un
   contrat au fur et à mesure que l'expérience s'accumule.
 
-\item Le cas normale/normale est celui considéré par Whitney (1918),
-  mais aussi celui dont les formules sont les plus complexes. Cela
-  explique sans doute en partie qu'il ait éventuellement recommandé de
-  fixer $K$ au jugement.
+\item Le cas normale/normale est celui considéré par
+  \cite{Whitney:1918}, mais aussi celui dont les formules sont les
+  plus complexes. Cela explique sans doute en partie qu'il ait
+  éventuellement recommandé de fixer la constante $K$ au jugement.
 
 \item Dans tous les cas, $z \rightarrow 1$ lorsque $n \rightarrow
   \infty$.  Le poids accordé à la prime individuelle d'un contrat va
@@ -1352,28 +1396,26 @@ rapportent à ces résultats.
   Poisson/gamma, où $K = \lambda$, une petite valeur de $\lambda$
   correspond à une grande incertitude quant au niveau de risque
   $\theta$ (la courbe gamma sera très évasée, voir la
-  \autoref{fig:bayesienne:gamma}). On accorde donc peu de poids à la prime
-  collective, d'où un grand facteur de crédibilité.
+  \autoref{fig:bayesienne:gamma}). L'assureur accorde donc peu de
+  poids à la prime collective, d'où un grand facteur de crédibilité.
 
 \item Dans le cas normale/normale, $K$ est grand si $\sigma_2^2$ est
   également grand ou alors si $\sigma_1^2$ est petit. Respectivement,
   cela signifie que ou bien l'expérience est potentiellement si
   volatile que l'on ne peut s'y fier, ou bien que le niveau de risque
   $\theta$ est presque connu avec certitude. Dans un cas comme dans
-  l'autre, il convient de charger la prime collective. On peut répéter
-  une telle analyse pour chacun des autres cas.
+  l'autre, il convient de charger la prime collective. Nous pouvons
+  répéter une telle analyse pour chacun des autres cas.
 
 \item À un haut niveau de risque ne correspond pas nécessairement une
   grande valeur de $\theta$, comme en fait foi le cas
   exponentielle/gamma.
 \end{enumerate}
 
-\setkeys{Gin}{width=0.8\textwidth}
-
 \begin{figure}
   \centering
 <<echo=FALSE, fig=TRUE>>=
-curve(dgamma(x, 3, 3), from=0, to=10, xlab="", ylab="")
+curve(dgamma(x, 3, 3), from=0, to=10, xlab="x", ylab="f(x)")
 curve(dgamma(x, 3, 0.5), add=TRUE, lwd=2)
 legend(6, 0.8, c("Gamma(3, 3)", "Gamma(3, 1/2)"), lwd=c(1, 2))
 @
@@ -1387,12 +1429,14 @@ legend(6, 0.8, c("Gamma(3, 3)", "Gamma(3, 1/2)"), lwd=c(1, 2))
 \label{sec:bayesienne:jewell}
 
 Le modèle de crédibilité exacte de Jewell unifie les résultats des
-cinq cas spéciaux étudiés précédemment.
+cinq cas spéciaux étudiés précédemment. Nous n'en traçons que les
+grandes lignes ici.
+
 \begin{itemize}
 \item En analyse bayésienne, si $u(\theta|x_1, \dots, x_n)$ appartient
   à la même famille que $u(\theta)$, on dit de $u(\theta)$ et
   $f(x|\theta)$ qu'elles sont des \emph{conjuguées naturelles}.
-\item Les lois de Poisson, exponentielle, normale, Bernouilli et
+\item Les lois de Poisson, exponentielle, normale, Bernoulli et
   géométrique appartiennent toutes à la \emph{famille exponentielle
     univariée}, c'est-à-dire que leur fonction de densité (ou de
   probabilité) peut s'écrire sous la forme
@@ -1403,11 +1447,9 @@ cinq cas spéciaux étudiés précédemment.
   vraisemblance est combinée avec sa conjuguée naturelle, alors la
   prime bayésienne est toujours une prime de crédibilité exacte.
 \item \citet{Goel:conjecture:1982} conjecture que ceci n'arrive
-  qu'avec les membres de la famille exponentielle:
-  \begin{itemize}
-  \item il ne peut le prouver;
-  \item il ne peut non plus donner de contre-exemple.
-  \end{itemize}
+  qu'avec les membres de la famille exponentielle, c'est-à-dire qu'il
+  ne peut le prouver, mais qu'il ne peut non plus fournir de
+  contre-exemple.
 \end{itemize}
 
 
@@ -1424,7 +1466,7 @@ cinq cas spéciaux étudiés précédemment.
 \end{Filesave}
 
 %%%
-%%% bayésien pur
+%%% Bayésien pur
 %%%
 
 \begin{exercice}
@@ -2033,7 +2075,6 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
 \end{exercice}
 
 \begin{exercice}
-  \label{ex:bayesienne:YARD}
   La compagnie YARD assure un groupe de maisons contre les incendies.
   Son actuaire a divisé les maisons en trois classes de risque
   équiprobables: A, B et C. La probabilité qu'une maison prenne feu
@@ -2691,6 +2732,7 @@ pgamma(10, 6, 2)
 %%%
 
 \begin{exercice}
+  \label{exercice:bayesienne:geometrique-beta}
   Soit un modèle géométrique/bêta, c'est-à-dire
   \begin{gather*}
     \Pr[S = x|\Theta = \theta]
@@ -2852,7 +2894,7 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  \label{ex:bayesienne:gamma_gamma}
+  \label{exercice:bayesienne:gamma-gamma}
   Soit $S|\Theta \sim \text{Gamma}(\tau, \Theta)$ et $\Theta \sim
   \text{Gamma}(\alpha, \lambda)$.
   \begin{enumerate}
@@ -3325,7 +3367,7 @@ pgamma(10, 6, 2)
   \theta)$ et trouver les paramètres de la distribution à postériori
   de $\Theta$.
   \begin{sol}
-    Voir l'\autoref{ex:bayesienne:gamma_gamma}.
+    Voir l'\autoref{exercice:bayesienne:gamma-gamma}.
   \end{sol}
 \end{exercice}
 

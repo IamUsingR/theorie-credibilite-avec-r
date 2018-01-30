@@ -33,7 +33,8 @@ RNWFILES = $(wildcard *.Rnw)
 TEXFILES = \
 	couverture-avant.tex \
 	notices.tex \
-	introduction.tex \
+	introduction-historique.tex \
+	estimation-bayesienne.tex \
 	formules-credibilite-exacte.tex \
 	distributions.tex \
 	solutions.tex \

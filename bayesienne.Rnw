@@ -1518,8 +1518,9 @@ grandes lignes ici.
         (0,6\, e^{-0,6}) (0,25) \\
         &= 0,1795.
       \end{align*}
-    \item Ici, $\mu(\theta) = \esp{S|\Theta = \theta} = \theta$.  On a
-      donc, $\mu(0,1) = 0,1$, $\mu(0,2) = 0,2$ et $\mu(0,6) = 0,6$.
+    \item Ici, $\mu(\theta) = \esp{S|\Theta = \theta} = \theta$. Nous
+      avons donc $\mu(0,1) = 0,1$, $\mu(0,2) = 0,2$ et
+      $\mu(0,6) = 0,6$.
     \item $\esp{S} = \esp{\mu(\Theta)} = \esp{\Theta} = 0,35 (0,1) +
       0,40 (0,2) + 0,25(0,6) = 0,265$.
     \item La première étape consiste à calculer la fonction de masse
@@ -1531,7 +1532,7 @@ grandes lignes ici.
         = \prod_{j=1}^5 \Pr[S_j = x_j|\Theta = \theta]
         = \theta^3 e^{-5 \theta}.
       \end{equation*}
-      On obtient donc $\Pr[\mat{S} = \mat{x}|\Theta = 0,1] =
+      Nous obtenons donc $\Pr[\mat{S} = \mat{x}|\Theta = 0,1] =
       0,000607$, $\Pr[\mat{S} = \mat{x}|\Theta = 0,2] = 0,002943$,
       $\Pr[\mat{S} = \mat{x}|\Theta = 0,6] = 0,010754$ et, par la loi
       des probabilités totales, $\Pr[\mat{S} = \mat{x}] =
@@ -1580,10 +1581,11 @@ grandes lignes ici.
         + \left(\frac{2}{6}\right) \left(\frac{1}{2}\right) \\
         &= \frac{1}{4}.
       \end{align*}
-      Plus simplement, on a 3 faces numérotées 5 sur un total de 12,
-      d'où une probabilité de $\frac{1}{4}$.
-    \item On cherche la valeur de la fonction de masse de probabilité
-      de la distribution prédictive de $S_2$ au point $x = 5$:
+      Plus simplement, nous avons trois faces numérotées 5 sur un
+      total de douze, d'où une probabilité de $\frac{1}{4}$.
+    \item Nous cherchons la valeur de la fonction de masse de
+      probabilité de la distribution prédictive de $S_2$ au point
+      $x = 5$:
       \begin{align*}
         \Pr[S_2 = 5|S_1 = 5]
         &= \frac{1}{\Pr[S_1 = 5]}
@@ -1605,28 +1607,28 @@ grandes lignes ici.
 \begin{exercice}
   Deux urnes contiennent chacune une pièce de monnaie. La pièce dans
   l'urne A tombe sur face 40~\% des fois et celle dans l'urne B, 80~\%
-  des fois. On choisit une urne au hasard (la probabilité de choisir
-  l'urne A est la même que celle de choisir l'urne B) et on prend la
-  pièce qui s'y trouve. On lance la pièce en l'air cinq fois et elle
-  retombe sur pile quatre fois. Si l'on lance la pièce à cinq autres
+  des fois. Nous choisissons une urne au hasard (la probabilité de choisir
+  l'urne A est la même que celle de choisir l'urne B) et nous prenons la
+  pièce qui s'y trouve. Nous lançons la pièce en l'air cinq fois et elle
+  retombe sur pile quatre fois. Si nous lançons la pièce à cinq autres
   reprises, quel est le nombre espéré de fois que la pièce retombera
   sur pile?
   \begin{rep}
-    2,95
+    $2,95$
   \end{rep}
   \begin{sol}
     Soit $S$ le nombre de piles obtenus après $n$ lancers d'une pièce
-    de monnaie et $\Theta$ l'urne choisie. On identifie l'urne A par
-    $\theta = 0,6$ et l'urne B par $\theta = 0,2$. Ainsi, $S|\Theta =
-    \theta \sim \text{Binomiale}(n, \theta)$. On doit calculer
-    $\esp{S_2|S_1 = 4}$. On obtient la distribution à postériori de
-    $\Theta|S_1 = 4$ avec
+    de monnaie et $\Theta$ l'urne choisie. Nous identifions l'urne A
+    par $\theta = 0,6$ et l'urne B par $\theta = 0,2$. Ainsi,
+    $S|\Theta = \theta \sim \text{Binomiale}(n, \theta)$. Nous devons
+    calculer $\esp{S_2|S_1 = 4}$. La distribution à
+    postériori de $\Theta|S_1 = 4$ est
     \begin{equation*}
       \Pr[\Theta = \theta|S_1 = 4]
       = \frac{\Pr[S_1 = 4|\Theta = \theta] \Pr[\Theta = \theta]}{%
         \sum_\theta \Pr[S_1 = 4|\Theta = \theta] \Pr[\Theta = \theta]}.
     \end{equation*}
-    On trouve
+    Par conséquent,
     \begin{align*}
       \Pr[\Theta = 0,6|S_1 = 4]
       &= \frac{\binom{5}{4} (0,6)^4 (0,4) (0,5)}{%
@@ -1635,7 +1637,7 @@ grandes lignes ici.
       &= \frac{0,1296}{0,1328} \\
       &= 0,9759.
     \end{align*}
-    De la même façon, on trouve $\Pr[\Theta = 0,2|S_1 = 4] =
+    De la même façon, nous trouvons $\Pr[\Theta = 0,2|S_1 = 4] =
     0,0032/0,1328 = 0,02410$. Enfin,
     \begin{align*}
       \esp{S_2|S_1 = 4}
@@ -1684,14 +1686,14 @@ grandes lignes ici.
     \end{inparaenum}
   \end{rep}
   \begin{sol}
-    Soit $S$ une variable indiquant si un employeur a eu un sinistre dans
-    une année et $\Theta$ une variable identifiant le groupe auquel
-    cet employeur appartient. On identifie le groupe à fréquence
+    Soit $S$ une variable indiquant si un employeur a eu un sinistre
+    dans une année et $\Theta$ une variable identifiant le groupe
+    auquel cet employeur appartient. Identifions le groupe à fréquence
     faible par $\theta = 0,1$, le groupe à fréquence moyenne par
     $\theta = 0,2$ et le groupe à fréquence élevée par $\theta = 0,4$.
-    On a donc $S|\Theta = \theta \sim \text{Bernoulli}(\theta)$.
+    Nous avons donc $S|\Theta = \theta \sim \text{Bernoulli}(\theta)$.
     \begin{enumerate}
-    \item On a
+    \item Par la loi des probabilités totales,
       \begin{align*}
         \Pr[S = 1]
         &= \sum_\theta \Pr[S = 1|\Theta = \theta] \Pr[\Theta = \theta] \\
@@ -1711,7 +1713,7 @@ grandes lignes ici.
         &= \frac{81}{181} \\
         &= 0,4475.
       \end{align*}
-    \item De la même façon qu'en b), on trouve
+    \item De la même façon qu'en b), nous trouvons
       $\Pr[\Theta = 0,2|S_1 = 0, S_2 = 0] = 64/181 = 0,3536$ et
       $\Pr[\Theta = 0,4|S_1 = 0, S_2 = 0] = 36/181 = 0,1989$. Ainsi,
       \begin{align*}
@@ -1726,30 +1728,31 @@ grandes lignes ici.
 \end{exercice}
 
 \begin{exercice}
-  On souhaite tester si une pièce de monnaie est équilibrée ou non
-  (probabilité de $\frac{1}{2}$ de tomber sur pile ou face).
+  Nous souhaitons vérifier si une pièce de monnaie est équilibrée ou
+  non (probabilité de $\frac{1}{2}$ de tomber sur pile ou face).
   L'incertitude quant à la probabilité $\theta$ d'obtenir, disons,
   pile lors d'un lancer de la pièce est traduite en une variable
-  aléatoire $\Theta$.  Celle-ci est distribuée selon une loi Bêta de
-  paramètres $\alpha > 0$ et $\beta > 0$.
+  aléatoire $\Theta$. Celle-ci est distribuée selon une loi Bêta de
+  paramètres $a > 0$ et $b > 0$.
   \begin{enumerate}
   \item Trouver $\esp{\Theta}$.
   \item La pièce de monnaie est lancée $n$ fois. La variable aléatoire
     $S$ représente le nombre de fois que la pièce est tombée sur face.
     Trouver la distribution à postériori de $\Theta$.
   \item Une petite expérience pratique maintenant, aussi ludique
-    qu'enrichissante. Jouer à pile ou face une bonne dizaine de fois
-    avec une pièce quelconque. Enregistrer une valeur de 0 pour pile
-    et 1 pour face. Après chaque lancer, calculer la distribution à
-    postériori de $\Theta$ et en faire un graphique approximatif. On
-    peut aussi utiliser les fonctions \texttt{curve} et \texttt{dbeta}
-    de \textsf{R} pour faire les graphiques. Par exemple, pour tracer
-    la densité d'une bêta avec $\alpha = 4$ et $\beta = 2$ on fera
+    qu'enrichissante. Jouez à pile ou face une bonne dizaine de fois
+    avec une pièce quelconque. Enregistrer une valeur de $0$ pour pile
+    et de $1$ pour face. Après chaque lancer, calculez la distribution
+    à postériori de $\Theta$ et tracez-en un graphique approximatif.
+    Vous pouvez aussi utiliser les fonctions \code{curve} et
+    \code{dbeta} de R pour faire les graphiques. Par exemple, pour
+    tracer la densité d'une bêta avec paramètres $a = 4$ et $b = 2$
+    l'expression à utiliser est
 <<echo=TRUE, eval=FALSE>>=
 curve(dbeta(x, 4, 2), from = 0, to = 1)
 @
-    Observer les déplacements de la densité en fonction des résultats.
-    Commencer l'expérience avec $\alpha = \beta = 1$, soit $\Theta
+    Observez les déplacements de la densité en fonction des résultats.
+    Commencez l'expérience avec $a = b = 1$, soit $\Theta
     \sim U(0, 1)$.
   \item Quelle est votre estimation de la probabilité d'obtenir pile
     au onzième lancer de la pièce si vous ignorez les résultats des
@@ -1759,49 +1762,50 @@ curve(dbeta(x, 4, 2), from = 0, to = 1)
   \end{enumerate}
   \begin{rep}
     \begin{enumerate}
-    \item $\alpha/(\alpha + \beta)$
-    \item $\Theta|S = x \sim \text{Bêta}(\alpha + x, \beta + n - x)$
+    \item $a/(a + b)$
+    \item $\Theta|S = x \sim \text{Bêta}(a + x, b + n - x)$
       \stepcounter{enumi}
-    \item $\alpha/(\alpha + \beta)$
-    \item $(\alpha + x)/(\alpha + \beta + n)$
+    \item $a/(a + b)$
+    \item $(a + x)/(a + b + n)$
     \end{enumerate}
   \end{rep}
   \begin{sol}
     \begin{enumerate}
-    \item On a
+    \item Nous avons
       \begin{align*}
         \esp{\Theta}
-        &= \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
-        \int_0^1 \theta^{\alpha - 1} (1 - \theta)^{\beta - 1}\, d\theta \\
-        &= \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
-        \frac{\Gamma(\alpha+1) \Gamma(\beta)}{\Gamma(\alpha+\beta+1)} \\
-        &= \frac{\alpha}{\alpha + \beta}.
+        &= \frac{\Gamma(a + b)}{\Gamma(a) \Gamma(b)}
+        \int_0^1 \theta^{a - 1} (1 - \theta)^{b - 1}\, d\theta \\
+        &= \frac{\Gamma(a + b)}{\Gamma(a) \Gamma(b)}
+        \frac{\Gamma(a+1) \Gamma(b)}{\Gamma(a+b+1)} \\
+        &= \frac{a}{a + b}.
       \end{align*}
-    \item On a $S|\Theta = \theta \sim \text{Binomiale}(n, \theta)$,
+    \item Nous avons $S|\Theta = \theta \sim \text{Binomiale}(n, \theta)$,
       c'est-à-dire $\Pr[S = x|\Theta = \theta] = \binom{n}{x}\theta^x
-      (1 - \theta)^{n-x}$. Avec le théorème de Bayes, on trouve
+      (1 - \theta)^{n-x}$. Par la règle de Bayes,
       \begin{align*}
         u(\theta|x)
         &\propto \theta^x (1 - \theta)^{n-x}
-        \theta^{\alpha - 1} (1 - \theta)^{\beta - 1} \\
-        &= \theta^{\alpha + x - 1}(1 - \theta)^{\beta + n - x - 1},
+        \theta^{a - 1} (1 - \theta)^{b - 1} \\
+        &= \theta^{a + x - 1}(1 - \theta)^{b + n - x - 1},
       \end{align*}
-      que l'on sait être la densité d'une bêta avec de nouveaux
-      paramètres.  Donc, $\Theta|S = x \sim \text{Bêta}(\tilde{\alpha}
-      = \alpha + x, \tilde{\beta} = \beta + n - x)$.
-    \item Une pièce a été lancée 10 fois et les résultats suivants
+      que nous savons être la densité d'une bêta avec de nouveaux
+      paramètres.  Donc, $\Theta|S = x \sim \text{Bêta}(\tilde{a}
+      = a + x, \tilde{b} = b + n - x)$.
+    \item Une pièce a été lancée dix fois et les résultats suivants
       furent obtenus: P, F, F, P, F, P, F, F, P, P. En utilisant les
       résultats obtenus précédemment, la distribution à postériori de
-      $\Theta$ est une bêta et les paramètres $(\alpha, \beta)$ après
-      chaque lancer sont les suivants, dans l'ordre: $(1, 2)$, $(2,
-      2)$, $(3, 2)$, $(3, 3)$, $(4, 3)$, $(4, 4)$, $(5, 4)$, $(6, 4)$,
-      $(6, 5)$, $(6, 6)$.  Quelques distributions à postériori sont
-      présentées aux figures \ref{fig:bayesienne:beta0}--\ref{fig:bayesienne:beta5}. Une
+      $\Theta$ est une bêta et les paramètres $(a, b)$ après chaque
+      lancer sont les suivants, dans l'ordre: $(1, 2)$, $(2, 2)$,
+      $(3, 2)$, $(3, 3)$, $(4, 3)$, $(4, 4)$, $(5, 4)$, $(6, 4)$,
+      $(6, 5)$, $(6, 6)$. Quelques distributions à postériori sont
+      présentées aux figures
+      \ref{fig:bayesienne:beta0}--\ref{fig:bayesienne:beta5}. Une
       première observation est le déplacement vers la gauche ou vers
       la droite de la distribution selon le nombre de résultats piles
-      et de résultats faces obtenus.  Une deuxième observation est la
-      concentration graduelle de la distribution autour de $\theta =
-      \frac{1}{2}$, ce qui indique une pièce équilibrée.
+      et de résultats faces obtenus. Une deuxième observation est la
+      concentration graduelle de la distribution autour de
+      $\theta = \frac{1}{2}$, ce qui indique une pièce équilibrée.
       \begin{figure}
         \begin{minipage}[t]{0.45\textwidth}
 <<echo=FALSE, fig=TRUE, height=4, width=4.5>>=
@@ -1852,25 +1856,25 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         \end{minipage}
       \end{figure}
     \item Soit $Y$ le résultat du onzième lancer, où $Y = 1$
-      correspond à face. On a
+      correspond à face. Nous avons
       \begin{align*}
         \Pr[Y = 1]
         &= \int_0^1 \Pr[Y = 1|\Theta = \theta]
         \Pr[\Theta = \theta]\, d\theta \\
         &= \int_0^1 \theta \Pr[\Theta = \theta] \\
         &= \esp{\Theta} \\
-        &= \frac{\alpha}{\alpha + \beta}.
+        &= \frac{a}{a + b}.
       \end{align*}
-      Le résultat n'est pas nécessairement $\frac{1}{2}$ puisque l'on
-      ignore si la pièce est équilibrée ou non.
-    \item On a
+      Le résultat n'est pas nécessairement $\frac{1}{2}$ puisque nous
+      ignorons si la pièce est équilibrée ou non.
+    \item Nous avons
       \begin{align*}
         \Pr[Y = 1|S = x]
         &= \int_0^1 \Pr[Y = 1|\Theta = \theta]
         \Pr[\Theta = \theta|S = x]\, d\theta \\
         &= \int_0^1 \theta \Pr[\Theta = \theta|S = x] \\
         &= \esp{\Theta|S = x} \\
-        &= \frac{\alpha + x}{\alpha + \beta + n}.
+        &= \frac{a + x}{a + b + n}.
       \end{align*}
     \end{enumerate}
   \end{sol}
@@ -1879,18 +1883,19 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
 \begin{exercice}
   Votre opinion à priori quant à la distribution du montant des
   sinistres est une loi de Pareto de paramètres $\lambda = 10$ et
-  $\theta = 1, 2$ ou 3, ces valeurs de $\theta$ étant toutes
+  $\theta = 1, 2$ ou $3$, ces valeurs de $\theta$ étant toutes
   équiprobables. Pour un contrat choisi au hasard, vous observez par
-  la suite un sinistre d'un montant de 20. Déterminer la probabilité
+  la suite un sinistre d'un montant de $20$. Déterminer la probabilité
   que le montant du prochain sinistre de ce contrat soit supérieur à
-  30.
+  $30$.
   \begin{rep}
-    0,1484
+    $0,1484$
   \end{rep}
   \begin{sol}
-    On a le modèle suivant: $X|\Theta \sim \text{Pareto}(\Theta, 10)$
-    et $\Theta \sim U(1, 2, 3)$. On note que la fonction de
-    répartition de $X|\Theta = \theta$ est
+    Nous avons le modèle suivant:
+    $X|\Theta \sim \text{Pareto}(\Theta, 10)$ et
+    $\Theta \sim U(1, 2, 3)$. La fonction de répartition de
+    $X|\Theta = \theta$ est
     \begin{equation*}
       F(x|\theta) = 1 -
       \left(
@@ -1918,15 +1923,15 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
   On demande à Camille d'élaborer un modèle pour la fréquence des
   sinistres au sein d'un portefeuille composé de dix contrats.
   Incertaine quant à la probabilité d'avoir un accident, Camille
-  estime à 20~\% la possibilité que la probabilité soit de 0,04, 60~\%
-  qu'elle soit de 0,10 et 20~\% qu'elle soit de 0,16.
+  estime à 20~\% la possibilité que la probabilité soit de $0,04$,
+  60~\% qu'elle soit de $0,10$ et 20~\% qu'elle soit de $0,16$.
   \begin{enumerate}
   \item Quel est le modèle de Camille pour $N$, le nombre total
     d'accidents du portefeuille au cours d'une année?
-  \item Quelle est la probabilité qu'il y ait 0, 1 et 2 accidents au
-    cours d'une année?
+  \item Quelle est la probabilité qu'il y ait $0$, $1$ et $2$
+    accidents au cours d'une année?
   \item Comparer ces résultats avec la situation où Camille serait
-    certaine que la probabilité d'accident est de 0,10.
+    certaine que la probabilité d'accident est de $0,10$.
   \end{enumerate}
   \begin{rep}
     \begin{enumerate}
@@ -1949,22 +1954,22 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
           0,2, & \theta = 0,16.
         \end{cases}
       \end{equation*}
-    \item En général, on a
+    \item En général, nous avons
       \begin{align*}
         \Pr[N = n] &= \sum_\theta \Pr[N = n|\Theta = \theta]
         \Pr[\Theta = \theta] \\
         &= \sum_\theta \binom{10}{n} \theta^n (1 - \theta)^{10-n}
-        \Pr[\Theta = \theta].
+        \Pr[\Theta = \theta],
       \end{align*}
-      Ce qui donne, $\Pr[N = 0] = 0,377$, $\Pr[N = 1] = 0,354$ et
+      ce qui donne $\Pr[N = 0] = 0,377$, $\Pr[N = 1] = 0,354$ et
       $\Pr[N = 2] = 0,184$.
-    \item On réutilise la formule en b) avec $\Pr[\Theta = 0,10] =
-      1$. On trouve $\Pr[N = 0] = 0,349$, $\Pr[N = 1] = 0,387$ et
+    \item Nous réutilisons la formule en b) avec
+      $\Pr[\Theta = 0,10] = 1$. Les résultats sont:
+      $\Pr[N = 0] = 0,349$, $\Pr[N = 1] = 0,387$ et
       $\Pr[N = 2] = 0,194$.
     \end{enumerate}
   \end{sol}
 \end{exercice}
-
 
 %%%
 %%% Crédibilité bayésienne
@@ -2008,13 +2013,13 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
   \end{enumerate}
   \begin{rep}
     \begin{inparaenum}
-    \item 0,2257
-    \item 0,2453
-    \item 1,4987
+    \item $0,2257$
+    \item $0,2453$
+    \item $1,4987$
     \end{inparaenum}
   \end{rep}
   \begin{sol}
-    On a
+    Nous avons
     \begin{align*}
       \Pr[S = x|\Theta = \theta]
       &= \frac{\theta^x e^{-\theta}}{x!}, \quad x = 0, 1, \dots, \\
@@ -2032,7 +2037,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         &= \left(\frac{5}{8}\right) (e^{-1} - e^{-5}) \\
         &= 0,2257.
       \end{align*}
-    \item On trouve d'abord la densité à postériori de $\Theta$:
+    \item Déterminons d'abord la densité à postériori de $\Theta$.
+      Nous avons:
       \begin{align*}
         u(\theta|x_1=1, x_2=1)
         &= \frac{\Pr[S_1 = 1|\Theta = \theta]
@@ -2082,7 +2088,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
   distribution du montant à payer sachant qu'il y a eu incendie est
   donnée dans le tableau ci-dessous.  Quelle est la prime bayésienne
   pour la deuxième année pour un assuré qui a eu un sinistre de
-  \nombre{30000}~\$ l'année dernière?
+  $\nombre{30000}$~\$ l'année dernière?
   \begin{center}
     \begin{tabular}{cccc}
       \toprule
@@ -2090,27 +2096,27 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
       \cmidrule{2-4}
       Montant du sinistre & Classe A & Classe B & Classe C \\
       \midrule
-      \nombre{10000} & 3/5 & 0 & 1/5 \\
-      \nombre{20000} & 1/5 & 1/2 & 1/5 \\
-      \nombre{30000} & 1/5 & 1/2 & 3/5 \\
+      $\nombre{10000}$ & $3/5$ & $0$   & $1/5$ \\
+      $\nombre{20000}$ & $1/5$ & $1/2$ & $1/5$ \\
+      $\nombre{30000}$ & $1/5$ & $1/2$ & $3/5$ \\
       \bottomrule
     \end{tabular}
   \end{center}
   \begin{rep}
-    \nombre{5788}
+    $\nombre{5788}$
   \end{rep}
   \begin{sol}
     Dans ce problème, il faut réaliser qu'il y a une probabilité de
     $3/4$ de ne pas avoir de sinistre ou, de manière équivalente, un
-    sinistre de montant 0. On définit les variables aléatoires $S$
+    sinistre de montant $0$. Définissons les variables aléatoires $S$
     représentant le montant d'un sinistre dans une année et $\Theta$
-    identifiant la classe de risque. Par abus de notation, on
-    considère que les valeurs possibles de $\Theta$ sont $\theta = A$,
-    $B$ et $C$. À partir des données du tableau, on peut construire la
-    fonction de masse de probabilité de la variable aléatoire
-    conditionnelle $S|\Theta = \theta$:
+    identifiant la classe de risque. Par abus de notation, nous allons
+    considérer que les valeurs possibles de $\Theta$ sont
+    $\theta = A$, $B$ et $C$. À partir des données du tableau, nous
+    pouvons construire la fonction de masse de probabilité de la
+    variable aléatoire conditionnelle $S|\Theta = \theta$:
     \begin{align*}
-      \Pr[X = x|\Theta = A]
+      \Pr[S = x|\Theta = A]
       &=
       \begin{cases}
         \frac{3}{4}, & x = 0 \\
@@ -2118,7 +2124,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         (\frac{1}{4}) (\frac{1}{5}) = \frac{1}{20}, & x = \nombre{20000} \\
         (\frac{1}{4}) (\frac{1}{5}) = \frac{1}{20}, & x = \nombre{30000} \\
       \end{cases} \\
-      \Pr[X = x|\Theta = B]
+      \Pr[S = x|\Theta = B]
       &=
       \begin{cases}
         \frac{3}{4}, & x = 0 \\
@@ -2126,7 +2132,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         (\frac{1}{4}) (\frac{1}{2}) = \frac{1}{8}, & x = \nombre{20000} \\
         (\frac{1}{4}) (\frac{1}{2}) = \frac{1}{8}, & x = \nombre{30000} \\
       \end{cases} \\
-      \Pr[X = x|\Theta = A]
+      \Pr[S = x|\Theta = A]
       &=
       \begin{cases}
         \frac{3}{4}, & x = 0 \\
@@ -2135,11 +2141,11 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         (\frac{1}{4}) (\frac{3}{5}) = \frac{3}{20}, & x = \nombre{30000} \\
       \end{cases}
     \end{align*}
-    et $\Pr[\Theta = \theta] = 1/3$, $\theta = A, B, C$. Deux
-    solutions possibles.
+    et $\Pr[\Theta = \theta] = 1/3$, $\theta = A, B, C$. Pour la
+    suite, il y a deux solutions possibles.
     \begin{enumerate}[1.]
     \item Avec la distribution à postériori de $\Theta$. Tout d'abord,
-      on a
+      nous avons
       \begin{align*}
         \Pr[\Theta = \theta|X_1 = \nombre{30000}]
         &= \frac{\Pr[X_1 = \nombre{30000}|\Theta = \theta]\Pr[\Theta =
@@ -2173,7 +2179,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         + \nombre{6000} \left( \frac{6}{13} \right) \\
         &=\nombre{5788,46}.
       \end{align*}
-    \item Avec la distribution prédictive. On a
+    \item Avec la distribution prédictive. Nous avons
       \begin{multline*}
         \Pr[X_2 = x|X_1 = \nombre{30000}]
         = \frac{\Pr[X_2 = x, X_1 = \nombre{30000}]}{\Pr[X_1 =
@@ -2228,34 +2234,35 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
 \begin{exercice}
   Vous savez que le nombre de sinistres pour un assuré est distribué
   selon une loi de Poisson de paramètre aléatoire. Ce paramètre est
-  distribué selon une loi gamma avec moyenne 2 et variance 2. De plus,
-  tout sinistre est d'un montant de 1~\$.
+  distribué selon une loi gamma avec moyenne $2$ et variance $2$. De plus,
+  tout sinistre est d'un montant de $1$~\$.
   \begin{enumerate}
   \item Trouver la prime qui devrait être exigée d'un nouvel assuré.
   \item Trouver la prime bayésienne pour la quatrième année si cet
-    assuré a eu huit sinistres au cours de ses trois premières années.
+    assuré a eu huit sinistres au cours des trois premières années.
   \end{enumerate}
   \begin{rep}
     \begin{inparaenum}
-    \item 2
-    \item 2,5
+    \item $2$
+    \item $2,5$
     \end{inparaenum}
   \end{rep}
   \begin{sol}
-    La sévérité des sinistres ne joue aucun rôle dans ce problème. On
-    pose $S|\Theta = \theta \sim \text{Poisson}(\theta)$ et $\Theta
-    \sim \text{Gamma}(\alpha, \lambda)$. On sait que $\esp{\Theta} =
-    \alpha/\lambda = 2$ et $\var{\Theta} = \alpha/\lambda^2 = 2$, d'où
-    $\alpha = 2$ et $\lambda = 1$.
+    La sévérité des sinistres ne joue aucun rôle dans ce problème.
+    Posons $S|\Theta = \theta \sim \text{Poisson}(\theta)$ et
+    $\Theta \sim \text{Gamma}(\alpha, \lambda)$. Nous savons que
+    $\esp{\Theta} = \alpha/\lambda = 2$ et
+    $\var{\Theta} = \alpha/\lambda^2 = 2$, d'où $\alpha = 2$ et
+    $\lambda = 1$.
     \begin{enumerate}
-    \item On charge la prime  collective à un nouvel assuré. Or,
+    \item Nous chargeons la prime collective à un nouvel assuré. Or,
       \begin{align*}
         \esp{S}
         &= \esp{\esp{S|\Theta}} \\
         &= \esp{\Theta} \\
         &= 2.
       \end{align*}
-    \item On cherche $\esp{\mu(\Theta)|S_1 + S_2 + S_3 = 8}$. Or,
+    \item Nous cherchons $\esp{\mu(\Theta)|S_1 + S_2 + S_3 = 8}$. Or,
       \begin{align*}
         u(\theta|x_1, x_2, x_3)
         &\propto \prod_{t = 1}^3 f(x_t|\theta) u(\theta) \\
@@ -2263,12 +2270,13 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         \theta^{2 - 1} e^{-\theta} \\
         &= \theta^{\sum_{t = 1}^3 x_t + 2 - 1} e^{-4 \theta},
       \end{align*}
-      d'où $\Theta|S_1 = x_1, S_2 = x_2, S_3 = x_3 \sim
-      \text{Gamma}(\sum_{t = 1}^3 x_t + 2, 4)$. (On remarquera
-      donc que seul le nombre total de sinistres dans les trois
-      premières années est important, pas les fréquences annuelles.)
-      Enfin, $\esp{\mu(\Theta)|S_1 + S_2 + S_3 = 8} = \esp{\Theta|S_1
-        + S_2 + S_3 = 8} = 10/4 = 2,5$.
+      d'où
+      $\Theta|S_1 = x_1, S_2 = x_2, S_3 = x_3 \sim
+      \text{Gamma}(\sum_{t = 1}^3 x_t + 2, 4)$. (Vous remarquerez que
+      seul le nombre total de sinistres dans les trois premières
+      années est important, pas les fréquences annuelles.) Enfin,
+      $\esp{\mu(\Theta)|S_1 + S_2 + S_3 = 8} = \esp{\Theta|S_1 + S_2 +
+        S_3 = 8} = 10/4 = 2,5$.
     \end{enumerate}
   \end{sol}
 \end{exercice}
@@ -2293,7 +2301,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     $\Pr[\Theta = 1/8|N_1 = 0, N_2 = 2] = 0,1968$.
   \end{rep}
   \begin{sol}
-    On a $N|\Theta = \theta \sim \text{Binomiale}(2, \theta)$ et
+    Nous avons $N|\Theta = \theta \sim \text{Binomiale}(2, \theta)$ et
     \begin{equation*}
       \Pr[\Theta = \theta] =
       \begin{cases}
@@ -2303,7 +2311,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
       \end{cases}
     \end{equation*}
     \begin{enumerate}
-    \item On a
+    \item La fonction de masse de probabilités est:
       \begin{align*}
         \Pr[\Theta = \theta|N_1 = 0, N_2 = 2]
         &= \frac{\Pr[N_1 = 0, N_2 = 2|\Theta = \theta]
@@ -2325,9 +2333,9 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
           0,1968, & \theta = 1/8.
         \end{cases}
       \end{align*}
-    \item On doit calculer $\esp{N_3|N_1 = 0, N_2 = 2}$. On peut
-      procéder de deux façons. Tout d'abord, en trouvant d'abord la
-      distribution prédictive:
+    \item Nous devons calculer $\esp{N_3|N_1 = 0, N_2 = 2}$, ce qui
+      peut se faire de deux façons. Tout d'abord, en trouvant d'abord
+      la distribution prédictive:
       \begin{multline*}
         \Pr[N_3 = n|N_1 = 0, N_2 = 2] \\
         \begin{split}
@@ -2367,27 +2375,27 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
 
 \begin{exercice}
   On simule une expérience de sinistre comme suit: on lance un dé, et
-  on pose le résultat égal à $\theta $. Connaissant $\theta$, on
+  on pose le résultat égal à $\theta$. Connaissant $\theta$, on
   simule un nombre aléatoire d'une distribution uniforme sur $[0,\,
   100\theta]$.
   \begin{enumerate}
-  \item Trouver la prime bayésienne si des résultats de 80 et 340 ont
-    été obtenus lors des deux premiers essais.
+  \item Trouver la prime bayésienne si des résultats de $80$ et $340$
+    ont été obtenus lors des deux premiers essais.
   \item Est-il possible d'écrire la prime bayésienne sous forme d'une
     prime de crédibilité? Si oui, trouver le facteur de crédibilité.
   \end{enumerate}
   \begin{rep}
     \begin{inparaenum}
-    \item 236,67
+    \item $236,67$
     \item non
     \end{inparaenum}
   \end{rep}
   \begin{sol}
     Soit $S$ le résultat du tir aléatoire et $\Theta$ le résultat du
-    dé. On a $S|\Theta = \theta \sim U(0, 100\theta)$ et $\Pr[\Theta
-    = \theta] = 1/6$.
+    dé. Nous avons $S|\Theta = \theta \sim U(0, 100\theta)$ et
+    $\Pr[\Theta = \theta] = 1/6$.
     \begin{enumerate}
-    \item On trouve d'abord la densité à postériori de $\Theta$:
+    \item Déterminons d'abord la densité à postériori de $\Theta$:
       \begin{align*}
         \Pr[\Theta = \theta|S_1 = 80, S_2 = 340)
         &= \frac{
@@ -2450,9 +2458,9 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
 \end{exercice}
 
 \begin{exercice}
-  On suppose que $S_j|\Theta = \theta$ suit une loi Gamma$(2,
-  \theta)$. On fait l'hypothèse que la fonction de densité de
-  probabilité de $\Theta$ est la suivante:
+  Une actuaire suppose que $S_t|\Theta = \theta$ suit une loi
+  Gamma$(2, \theta)$ et elle fait l'hypothèse que la fonction de
+  densité de probabilité de $\Theta$ est la suivante:
   \begin{equation*}
     u(\theta) =
     \begin{cases}
@@ -2460,9 +2468,9 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
       0, & \text{ailleurs}.
     \end{cases}
   \end{equation*}
-  On simule deux valeurs de $S$ et on obtient $x_1 = 1$ et $x_2 = 1$.
-  Quelle est maintenant la distribution à postériori de $\Theta$ pour
-  ce simulateur?
+  Elle simule ensuite deux valeurs de $S$ et obtient $x_1 = 1$ et
+  $x_2 = 1$. Quelle est maintenant la distribution à postériori de
+  $\Theta$ pour ce simulateur?
   \begin{rep}
     $u(\theta|S_1 = 1, S_2 = 1) = \theta^{5} e^{-2\theta}/1,8737$,
     $0 < \theta < 10$
@@ -2486,8 +2494,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
       &= 1,875 G(10; 6, 2),
     \end{align*}
     où $G(x; \alpha, \lambda)$ est la fonction de répartition d'une
-    loi Gamma$(\alpha, \lambda)$. On peut trouver la valeur de $G(10;
-    6, 2)$ dans Excel ou dans \textsf{R} avec
+    loi Gamma$(\alpha, \lambda)$. On obtient avec R la valeur de
+    $G(10; 6, 2)$:
 <<echo=TRUE>>=
 pgamma(10, 6, 2)
 @
@@ -2521,7 +2529,7 @@ pgamma(10, 6, 2)
   \begin{rep}
     \begin{enumerate}
       \stepcounter{enumi}
-    \item 3,6484
+    \item $3,6484$
     \end{enumerate}
   \end{rep}
   \begin{sol}
@@ -2535,7 +2543,7 @@ pgamma(10, 6, 2)
           0,5, & \theta = 4.
         \end{cases}
       \end{equation*}
-    \item On doit d'abord trouver la distribution à postériori de
+    \item Vous devez d'abord trouver la distribution à postériori de
       $\Theta$ en utilisant
       \begin{align*}
         \Pr[N_1=4, N_2=4|\Theta = 2]
@@ -2569,22 +2577,22 @@ pgamma(10, 6, 2)
       \toprule
       Type de risque & $\alpha$ & $\lambda$ \\
       \midrule
-      Bon     & 4 & 2 \\
-      Moyen   & 4 & 1 \\
-      Mauvais & 10 & 2 \\
+      Bon     & $4 $ & $2$ \\
+      Moyen   & $4 $ & $1$ \\
+      Mauvais & $10$ & $2$ \\
       \bottomrule
     \end{tabular}
   \end{center}
-  Le dossier de sinistre d'un risque choisi au hasard est de 1 et 2 au
-  cours des deux premières années. Calculer la prime bayésienne de ce
-  risque pour la troisième année.
+  Le dossier de sinistre d'un risque choisi au hasard est de $1$ et
+  $2$ au cours des deux premières années. Calculer la prime bayésienne
+  de ce risque pour la troisième année.
   \begin{rep}
-    2,3107
+    $2,3107$
   \end{rep}
   \begin{sol}
     Soit $\theta_1$ représentant les bons risques, $\theta_2$ les
-    moyens risques et $\theta_3$ les mauvais risques. On a donc le
-    modèle suivant:
+    moyens risques et $\theta_3$ les mauvais risques. Nous avons donc
+    le modèle suivant:
     \begin{align*}
       S|\Theta = \theta_1
       &\sim \text{Gamma}(4, 2) \Leftrightarrow
@@ -2627,23 +2635,23 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  Considérer l'information suivante au sujet de deux groupes de
+  On vous fournit l'information suivante au sujet de deux groupes de
   contrats.
   \begin{enumerate}[i)]
   \item La fréquence des sinistres des contrats du groupe A a une
-    distribution de Poisson de moyenne 1 par année.
+    distribution de Poisson de moyenne $1$ par année.
   \item La fréquence des sinistres des contrats du groupe B a une
-    distribution de Poisson de moyenne 3 par année.
+    distribution de Poisson de moyenne $3$ par année.
   \item Les montants de sinistres des contrats du groupe A a une
-    distribution exponentielle de moyenne 1.
+    distribution exponentielle de moyenne $1$.
   \item Les montants de sinistres des contrats du groupe B a une
-    distribution exponentielle de moyenne 3.
+    distribution exponentielle de moyenne $3$.
   \item Les deux groupes sont composés d'un nombre égal de contrats.
   \item À l'intérieur de chaque groupe, la fréquence et la sévérité
     des sinistres sont indépendantes.
   \end{enumerate}
   Un contrat choisi au hasard a deux accidents au cours de la première
-  année. Le montant de ces sinistres est de 1 et 3.
+  année. Le montant de ces sinistres est de $1$ et $3$.
   \begin{enumerate}
   \item Énoncer le modèle pour la fréquence et la sévérité des
     sinistres dans ce portefeuille.
@@ -2656,7 +2664,7 @@ pgamma(10, 6, 2)
   \begin{rep}
     \begin{enumerate}
       \stepcounter{enumi}
-    \item 6,286
+    \item $6,286$
     \end{enumerate}
   \end{rep}
   \begin{sol}
@@ -2674,7 +2682,7 @@ pgamma(10, 6, 2)
         \end{cases}
       \end{equation*}
       Si $N$ est le nombre de sinistres pendant un an pour un contrat
-      et $X$ est le montant d'un sinistre pour ce même contrat, on a
+      et $X$ est le montant d'un sinistre pour ce même contrat, nous avons
       le modèle suivant:
       \begin{align*}
         N|\Theta
@@ -2684,16 +2692,16 @@ pgamma(10, 6, 2)
       En effet, il est précisé dans l'énoncé que l'espérance de la loi
       exponentielle dans chaque groupe est égale à celle de la loi de
       Poisson.
-    \item Pour simplifier la notation, on prend $A$ pour représenter
-      l'événement $\{N_1=2, X_1=1, X_2=3\}$. On veut
+    \item Pour simplifier la notation, $A$ représente l'événement
+      $\{N_1=2, X_1=1, X_2=3\}$. Nous voulons calculer
       \begin{equation*}
         \esp{S|A} =
-        \sum_{\theta=1,3} \esp{S|\Theta=\theta}
-        \Pr[\Theta=\theta|A].
+        \sum_{\theta=1,3} \esp{S|\Theta = \theta}
+        \Pr[\Theta = \theta|A].
       \end{equation*}
       Premièrement, comme la fréquence et la sévérité sont
       indépendantes sachant $\Theta$ à l'intérieur de chaque classe,
-      on a
+      nous avons
       \begin{equation*}
         \esp{S|\Theta} = \esp{N|\Theta} \esp{X|\Theta} = \Theta^2.
       \end{equation*}
@@ -2739,8 +2747,8 @@ pgamma(10, 6, 2)
     = \theta (1 - \theta)^x,   \quad x = 0, 1, \dots \\
     \intertext{et}
     u(\theta)
-    = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)}\,
-       \theta^{\alpha-1} (1 - \theta)^{\beta-1}, \quad 0 < \theta < 1.
+    = \frac{\Gamma(a + b)}{\Gamma(a) \Gamma(b)}\,
+       \theta^{a-1} (1 - \theta)^{b-1}, \quad 0 < \theta < 1.
   \end{gather*}
   \begin{enumerate}
   \item Calculer la prime de risque.
@@ -2758,8 +2766,8 @@ pgamma(10, 6, 2)
     Voir le tableau de l'\autoref{chap:formules}.
   \end{rep}
   \begin{sol}
-    On a $S|\Theta \sim \text{Géométrique}(\Theta)$ et $\Theta \sim
-    \text{Bêta}(\alpha, \beta)$.
+    Nous avons $S|\Theta \sim \text{Géométrique}(\Theta)$ et
+    $\Theta \sim \text{Bêta}(a, b)$.
     \begin{enumerate}
     \item $\mu(\Theta) = \esp{S|\Theta} = \sum_{x=0}^\infty x \theta
       (1 - \theta)^x = (1 - \theta)/\theta$. (Ce résultat est aisément
@@ -2768,13 +2776,13 @@ pgamma(10, 6, 2)
     \item La prime collective est
       \begin{align*}
         m = \esp{\mu(\Theta)}
-        &= \frac{\Gamma(\alpha +
-          \beta)}{\Gamma(\alpha) \Gamma(\beta)}
-        \int_0^1 \theta^{\alpha - 2} (1 - \theta)^\beta\, d\theta \\
-        &= \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
-        \frac{\Gamma(\alpha - 1) \Gamma(\beta + 1)}{\Gamma(\alpha +
-          \beta)} \\
-        &= \frac{\beta}{\alpha - 1}.
+        &= \frac{\Gamma(a +
+          b)}{\Gamma(a) \Gamma(b)}
+        \int_0^1 \theta^{a - 2} (1 - \theta)^b\, d\theta \\
+        &= \frac{\Gamma(a + b)}{\Gamma(a) \Gamma(b)}
+        \frac{\Gamma(a - 1) \Gamma(b + 1)}{\Gamma(a +
+          b)} \\
+        &= \frac{b}{a - 1}.
       \end{align*}
     \item Soit $\mat{S} = (S_1, \dots, S_n)$ et $\mat{x} = (x_1,
       \dots, x_n)$. Premièrement, $\Pr[\mat{S} = \mat{x}|\Theta =
@@ -2783,52 +2791,52 @@ pgamma(10, 6, 2)
       \begin{align*}
         u(\theta|\mat{x})
         &\propto \theta^n (1 - \theta)^{\sum x_t}
-        \theta^{\alpha - 1} (1 - \theta)^{\beta - 1} \\
-        &= \theta^{\alpha + n - 1}(1 - \theta)^{\beta + \sum x_t - 1},
+        \theta^{a - 1} (1 - \theta)^{b - 1} \\
+        &= \theta^{a + n - 1}(1 - \theta)^{b + \sum x_t - 1},
       \end{align*}
-      d'où $\Theta|\mat{S} = \mat{x} \sim \text{Bêta}(\tilde{\alpha} =
-      \alpha + n, \tilde{\beta} = \beta + \sum x_t)$.
+      d'où $\Theta|\mat{S} = \mat{x} \sim \text{Bêta}(\tilde{a} =
+      a + n, \tilde{b} = b + \sum x_t)$.
     \item Comme la densité à postériori de $\Theta$ est du même type
-      que sa densité à priori, on peut calculer en premier la densité
-      marginale de $S$. La distribution prédictive sera du même type,
-      mais avec des paramètres modifiés. Or,
+      que sa densité à priori, nous pouvons calculer en premier la
+      densité marginale de $S$. La distribution prédictive sera du
+      même type, mais avec des paramètres modifiés. Or,
       \begin{align*}
         \Pr[S = x]
         &= \int_0^1 \Pr[S = x|\Theta = \theta] u(\theta)\, d\theta \\
-        &= \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
-        \int_0^1 \theta^\alpha (1 - \theta)^{\beta + x - 1}\, d\theta
+        &= \frac{\Gamma(a + b)}{\Gamma(a) \Gamma(b)}
+        \int_0^1 \theta^a (1 - \theta)^{b + x - 1}\, d\theta
         \\
-        &= \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}
-        \frac{\Gamma(\alpha + 1) \Gamma(\beta + x)}{\Gamma(\alpha +
-          \beta +x + 1)}
+        &= \frac{\Gamma(a + b)}{\Gamma(a) \Gamma(b)}
+        \frac{\Gamma(a + 1) \Gamma(b + x)}{\Gamma(a +
+          b +x + 1)}
       \end{align*}
       et donc
       \begin{equation*}
         \Pr[S_{n+1}=x|\mat{S}=\mat{x}] =
-        \frac{\Gamma(\tilde{\alpha} + \tilde{\beta})}
-        {\Gamma(\tilde{\alpha}) \Gamma(\tilde{\beta})}
-        \frac{\Gamma(\tilde{\alpha} + 1) \Gamma(\tilde{\beta} + x)}
-        {\Gamma(\tilde{\alpha} + \tilde{\beta} +x + 1)},
+        \frac{\Gamma(\tilde{a} + \tilde{b})}
+        {\Gamma(\tilde{a}) \Gamma(\tilde{b})}
+        \frac{\Gamma(\tilde{a} + 1) \Gamma(\tilde{b} + x)}
+        {\Gamma(\tilde{a} + \tilde{b} +x + 1)},
       \end{equation*}
-      avec $\tilde{\alpha} = \alpha + n$ et $\tilde{\beta} = \beta +
+      avec $\tilde{a} = a + n$ et $\tilde{b} = b +
       \sum x_t$.
-    \item On utilise le résultat en c) car trouver l'espérance de la
+    \item Utilisons le résultat en c) car trouver l'espérance de la
       distribution prédictive trouvée en d) peut être quelque peu
       compliqué. Des résultats de b) et c),
       \begin{equation*}
         \esp{\mu(\Theta)|\mat{S}} =
-        \frac{\tilde{\beta}}{\tilde{\alpha} - 1} =
-        \frac{\beta + \sum_{t = 1}^n S_t}{\alpha + n - 1}.
+        \frac{\tilde{b}}{\tilde{a} - 1} =
+        \frac{b + \sum_{t = 1}^n S_t}{a + n - 1}.
       \end{equation*}
     \item $\esp{\mu(\Theta)|\mat{S}} = z \bar{S} + (1 - z) m$ avec $z
-      = n/(n + \alpha - 1)$.
+      = n/(n + a - 1)$.
     \end{enumerate}
   \end{sol}
 \end{exercice}
 
 \begin{exercice}
   Soit $S|\Theta \sim \text{Binomiale}(\nu, \Theta)$ et $\Theta \sim
-  \text{Bêta}(\alpha, \beta)$.
+  \text{Bêta}(a, b)$.
   \begin{enumerate}
   \item Déterminer la prime de risque.
   \item Déterminer la prime collective.
@@ -2841,54 +2849,54 @@ pgamma(10, 6, 2)
   \begin{rep}
     \begin{inparaenum}
     \item $\nu \Theta$
-    \item $\nu \alpha/(\alpha + \beta)$
-    \item Bêta$(\alpha + \sum_{t=1}^n S_t, \beta + n \nu -
+    \item $\nu a/(a + b)$
+    \item Bêta$(a + \sum_{t=1}^n S_t, b + n \nu -
       \sum_{t=1}^n S_t)$
-    \item $z = n/(n + (\alpha + \beta)/\nu)$
+    \item $z = n/(n + (a + b)/\nu)$
     \end{inparaenum}
   \end{rep}
   \begin{sol}
-    On a $S|\Theta \sim \text{Binomiale}(\nu, \Theta)$ et $\Theta \sim
-    \text{Bêta}(\alpha, \beta)$.
+    Nous avons $S|\Theta \sim \text{Binomiale}(\nu, \Theta)$ et
+    $\Theta \sim \text{Bêta}(a, b)$.
     \begin{enumerate}
     \item La prime de risque est $\mu(\Theta) = \esp{S|\Theta} = \nu
       \Theta$.
     \item La prime collective est $\esp{\mu(\Theta)} = \nu
-      \esp{\Theta} = \nu \alpha/(\alpha + \beta)$.
-    \item On a
+      \esp{\Theta} = \nu a/(a + b)$.
+    \item La distribution à postériori de $\Theta$ sachant
+      l'expérience $S_1 = x_1, \dots, S_n = x_n$ est
       \begin{align*}
         u(\theta|x_1, \dots, x_n)
         &\propto u(\theta) \prod_{t=1}^n \Pr[S = x_t|\Theta = \theta] \\
-        &\propto \theta^{\alpha-1} (1 - \theta)^{\beta-1}
+        &\propto \theta^{a-1} (1 - \theta)^{b-1}
         \prod_{t=1}^n \theta^{x_t} (1 - \theta)^{\nu - x_t} \\
-        &= \theta^{\alpha + \sum x_t - 1} (1 - \theta)^{\beta + n \nu
+        &= \theta^{a + \sum x_t - 1} (1 - \theta)^{b + n \nu
           + \sum x_t - 1}.
       \end{align*}
-      La distribution à postériori de $\Theta$ sachant l'expérience
-      $S_1, \dots, S_n$ est une bêta avec paramètres $\tilde{\alpha} =
-      \alpha + \sum_{t=1}^n S_t$ et $\tilde{\beta} = \beta + n \nu -
-      \sum_{t=1}^n S_t$.
+      Il s'agit d'une distribution bêta avec paramètres $\tilde{a} =
+      a + \sum_{t=1}^n x_t$ et $\tilde{b} = b + n \nu -
+      \sum_{t=1}^n x_t$.
     \item Comme la distribution à postériori est de même famille que
       la distribution à priori, la prime bayésienne est de la même
       forme que la prime collective, mais avec des paramètres
       modifiés:
       \begin{align*}
         \esp{\mu(\Theta)|S_1, \dots, S_n}
-        &= \frac{\nu \tilde{\alpha}}{\tilde{\alpha} + \tilde{\beta}} \\
-        &= \frac{\nu (\alpha + \sum_{t=1}^n S_t)}{n \nu + \alpha + \beta} \\
-        &= \left(\frac{n\nu}{n\nu + \alpha + \beta}\right)
+        &= \frac{\nu \tilde{a}}{\tilde{a} + \tilde{b}} \\
+        &= \frac{\nu (a + \sum_{t=1}^n S_t)}{n \nu + a + b} \\
+        &= \left(\frac{n\nu}{n\nu + a + b}\right)
         \left(\frac{\sum_{t=1}^n S_t}{n}\right) \\
         &\phantom{=}
-        + \left(\frac{\alpha + \beta}{n\nu + \alpha + \beta}\right)
-        \left(\frac{\nu\alpha}{\alpha + \beta}\right) \\
+        + \left(\frac{a + b}{n\nu + a + b}\right)
+        \left(\frac{\nua}{a + b}\right) \\
         &= z \bar{S} + (1 - z) \esp{\mu(\Theta)}
       \end{align*}
       où
       \begin{equation*}
-        z = \frac{n}{n + (\alpha + \beta)/\nu}.
+        z = \frac{n}{n + (a + b)/\nu}.
       \end{equation*}
-      Cette combinaison de distributions est une généralisation du cas
-      Bernoulli/Bêta.
+      Cette combinaison de distributions est la convolution du cas
+      Bernoulli/Bêta, la binomiale étant une somme de Bernoulli.
     \end{enumerate}
   \end{sol}
 \end{exercice}
@@ -2925,7 +2933,7 @@ pgamma(10, 6, 2)
     \end{inparaenum}
   \end{rep}
   \begin{sol}
-    On a $S|\Theta \sim \text{Gamma}(\tau, \Theta)$ et $\Theta
+    Nous avons $S|\Theta \sim \text{Gamma}(\tau, \Theta)$ et $\Theta
     \sim \text{Gamma}(\alpha, \lambda)$.
     \begin{enumerate}
     \item La densité marginale de $S$ est calculée comme suit:
@@ -2944,10 +2952,11 @@ pgamma(10, 6, 2)
       $\alpha$, $\lambda$ et $\tau$.
     \item La prime de risque est $\mu(\Theta) = \esp{S|\Theta} =
       \tau/\Theta$.
-    \item De la distribution marginale de $S$, on a $m = \esp{S} =
-      \tau \lambda/(\alpha - 1)$ (\autoref{distributions:paretogen}).
-      De la prime de risque, $m = \tau \esp{1/\Theta} = \tau
-      \lambda/(\alpha - 1)$. Les deux approches sont équivalentes.
+    \item De la distribution marginale de $S$, nous avons
+      $m = \esp{S} = \tau \lambda/(\alpha - 1)$
+      (\autoref{sec:distributions:paretogen}). De la prime de risque,
+      $m = \tau \esp{1/\Theta} = \tau \lambda/(\alpha - 1)$. Les deux
+      approches sont équivalentes.
     \item La densité de la distribution à postériori de $\Theta$ est
       \begin{align*}
         u(\theta|x_1, \dots, x_n)
@@ -2967,7 +2976,7 @@ pgamma(10, 6, 2)
     \item En utilisant la distribution à postériori ou la distribution
       prédictive, la prime bayésienne pour l'année $n + 1$ est
       simplement la prime collective avec les paramètres modifiés.
-      Donc,
+      Par conséquent,
       \begin{align*}
         \esp{\mu(\Theta)|S_1, \dots, S_n}
         &= \tau \left(\frac{\tilde{\lambda}}{\tilde{\alpha} - 1}\right) \\
@@ -3020,21 +3029,21 @@ pgamma(10, 6, 2)
 \begin{exercice}
   Vous utilisez un modèle Poisson/gamma pour la tarification d'un
   contrat d'assurance. Les paramètres du modèle sont tels qu'après
-  quatre années le facteur de crédibilité de ce contrat serait de 0,8.
-  Si vous changez les hypothèses de telle sorte que la variance de la
-  distribution de $\Theta$ est doublée, mais que l'espérance demeure
-  inchangée, combien d'années faudra-t-il au contrat pour atteindre un
-  niveau de crédibilité de 0,8?
+  quatre années le facteur de crédibilité de ce contrat serait de
+  $0,8$. Si vous changez les hypothèses de telle sorte que la variance
+  de la distribution de $\Theta$ est doublée, mais que l'espérance
+  demeure inchangée, combien d'années faudra-t-il au contrat pour
+  atteindre un niveau de crédibilité de $0,8$?
   \begin{rep}
-    2
+    $2$
   \end{rep}
   \begin{sol}
     Dans le modèle Poisson/gamma, $z = n/(n + \lambda)$. Si $z = 0,8$
     quand $n = 4$, alors $\lambda = 1$. Pour doubler la variance d'une
     distribution gamma sans changer son espérance, il faut diminuer de
-    moitié chacun des paramètres.  Le nouveau paramètre $\lambda$ est
-    donc $1/2$. On cherche la nouvelle valeur de $n$ telle que $n/(n +
-    1/2) = 0,8$, d'où $n = 2$.
+    moitié chacun des paramètres. Le nouveau paramètre $\lambda$ est
+    donc $1/2$. Nous cherchons la nouvelle valeur de $n$ telle que
+    $n/(n + 1/2) = 0,8$, d'où $n = 2$.
   \end{sol}
 \end{exercice}
 
@@ -3049,10 +3058,11 @@ pgamma(10, 6, 2)
     $4/7$
   \end{rep}
   \begin{sol}
-    Dans le modèle Poisson/gamma, on sait que la distribution
-    prédictive est une binomiale négative avec paramètres $r = \alpha
-    + \sum_{t=1}^n x_t$ et $\theta = (\lambda + n)/(\lambda + n + 1)$.
-    Ici, on peut identifier $r = 7$, $\theta = 0,9$ et on a $n = 2$ et
+    Dans le modèle Poisson/gamma, nous savons que la distribution
+    prédictive est une binomiale négative avec paramètres
+    $r = \alpha + \sum_{t=1}^n x_t$ et
+    $\theta = (\lambda + n)/(\lambda + n + 1)$. Ici, nous pouvons
+    identifier $r = 7$, $\theta = 0,9$ et nous avons $n = 2$ et
     $x_1 + x_2 = 3$. Par conséquent, $\alpha = 4$, $\lambda = 7$ et
     l'espérance de la distribution à priori --- une gamma --- est
     $4/7$.
@@ -3060,15 +3070,15 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  On suppose que la distribution de $S_t|\Theta = \theta$ est une
-  Exponentielle$(\theta)$ et que la distribution à priori de $\Theta$
-  est une Gamma$(2, 8)$. Calculer $\Pr[S_4 \leq 5|S_1 = 2, S_2 = 3, S_3
-  = 7]$.
+  La distribution de $S_t|\Theta = \theta$ est une exponentielle de
+  paramètre $(\theta)$ et la distribution à priori de $\Theta$ est une
+  gamma de paramètre de forme $2$ et de moyenne $1/4$. Calculer
+  $\Pr[S_4 \leq 5|S_1 = 2, S_2 = 3, S_3 = 7]$.
   \begin{rep}
-    0,67
+    $0,67$
   \end{rep}
   \begin{sol}
-    On a un modèle exponentielle/gamma. Selon le tableau de
+    Nous avons un modèle exponentielle/gamma. Selon le tableau de
     l'\autoref{chap:formules}, la distribution marginale de $S$ dans
     un tel cas est une Pareto$(\alpha, \lambda)$ et la distribution de
     $\Theta|S_1 = x_1, \dots, S_n = x_n$ une
@@ -3085,10 +3095,10 @@ pgamma(10, 6, 2)
 
 \begin{exercice}
   Un contrat d'assurance a encouru les sinistres suivants sur une
-  période de cinq années: 3, 1, 5, 4, 2. On utilise un modèle
-  Poisson/gamma. Calculer la prime de crédibilité de ce contrat pour
-  la sixième année pour chacune des combinaisons de paramètres de la
-  distribution gamma ci-dessous.  Interpréter les différences entre
+  période de cinq années: $3$, $1$, $5$, $4$, $2$. Vous utilisez un
+  modèle Poisson/gamma. Calculez la prime de crédibilité de ce contrat
+  pour la sixième année pour chacune des combinaisons de paramètres de
+  la distribution gamma ci-dessous. Interprétez les différences entre
   les primes de crédibilité.
   \begin{enumerate}
   \item $\alpha = 10$, $\lambda = 5$
@@ -3103,9 +3113,9 @@ pgamma(10, 6, 2)
     \end{inparaenum}
   \end{rep}
   \begin{sol}
-    On sait que dans le cas Poisson/gamma, $z = n/(n + \lambda)$. Ici,
-    $n = 5$, et $\bar{S} = (3 + 1 + 5 + 4 + 2)/5 = 3$. De plus, la
-    prime collective, $m$, est égale à 2 dans tous les cas
+    Nous savons que, dans le cas Poisson/gamma, $z = n/(n + \lambda)$.
+    Ici, $n = 5$, et $\bar{S} = (3 + 1 + 5 + 4 + 2)/5 = 3$. De plus,
+    la prime collective, $m$, est égale à 2 dans tous les cas
     ci-dessous.
     \begin{enumerate}
     \item Ici, $z = 0,5$ et donc $\pi_6 = 2,5$.
@@ -3113,8 +3123,8 @@ pgamma(10, 6, 2)
     \item Ici, $z = 0,9524$ et donc $\pi_6 = 2,9524$.
     \end{enumerate}
     Plus le paramètre $\lambda$ de la distribution gamma est petit,
-    moins certaine est la valeur du paramètre de risque $\theta$.
-    Par conséquent, on accorde plus d'importance à l'expérience
+    moins certaine est la valeur du paramètre de risque $\theta$. Par
+    conséquent, nous accordons plus d'importance à l'expérience
     individuelle en augmentant le facteur de crédibilité.
   \end{sol}
 \end{exercice}
@@ -3133,8 +3143,8 @@ pgamma(10, 6, 2)
   \end{rep}
   \begin{sol}
     La distribution marginale donnée est une Pareto$(1,5,\, 100)$. Or,
-    on sait que la Pareto est la distribution marginale dans le
-    mélange Exponentielle/gamma et que, dans ce cas, la distribution
+    nous savons que la Pareto est la distribution marginale dans le
+    mélange exponentielle/gamma et que, dans ce cas, la distribution
     prédictive sera une Pareto$(1,5 + n, 100 + \sum_{t=1}^n S_t)$. Par
     conséquent,
     \begin{equation*}
@@ -3159,7 +3169,7 @@ pgamma(10, 6, 2)
   \end{align*}
   Calculer la prime bayésienne de cinquième année.
   \begin{rep}
-    5,8
+    $5,8$
   \end{rep}
   \begin{sol}
     Il est utile de remarquer ici que $X|\Theta \sim \text{Binomiale
@@ -3188,7 +3198,7 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  Pour un certain modèle Poisson/gamma, on a
+  Pour un certain modèle Poisson/gamma, nous avons
   \begin{equation*}
     \Pr[S_3 = s_{3}|S_1 = 1, S_2 = 2] =
     \binom{6 + s_3}{s_3} (0,9)^7 (0,1)^{s_3}, \quad
@@ -3199,7 +3209,7 @@ pgamma(10, 6, 2)
     $4/49$
   \end{rep}
   \begin{sol}
-    On a le modèle suivant :
+    Nous avons le modèle suivant :
     \begin{align*}
       S|\Theta = \theta
       &\sim \text{Poisson}(\theta) \\
@@ -3215,21 +3225,22 @@ pgamma(10, 6, 2)
       &= \var{\Theta} \\
       &= \frac{\alpha}{\lambda^2}.
     \end{align*}
-    Or, on sait que dans le modèle Poisson/gamma, la distribution
-    prédictive est une binomiale négative de paramètres $r = \alpha +
-    \sum x_j$ et $p = (\lambda + n)/(\lambda + n + 1)$. On a donc $7 =
-    \alpha + 3$ d'où $\alpha = 4$ et $0,9 = (\lambda + 2)/(\lambda +
-    3)$ d'où $\lambda = 7$. Par conséquent, $\Cov{(S_1, S_2)} = \frac{4}{49}$.
+    Or, nous savons que dans le modèle Poisson/gamma, la distribution
+    prédictive est une binomiale négative de paramètres
+    $r = \alpha + \sum x_j$ et $p = (\lambda + n)/(\lambda + n + 1)$.
+    Nous avons donc $7 = \alpha + 3$ d'où $\alpha = 4$ et
+    $0,9 = (\lambda + 2)/(\lambda + 3)$ d'où $\lambda = 7$. Par
+    conséquent, $\Cov{(S_1, S_2)} = \frac{4}{49}$.
   \end{sol}
 \end{exercice}
 
 \begin{exercice}
-  On démontre dans cet exercice le résultat obtenu par
-  \cite{Jewell:exact:1974}, à savoir que la prime bayésienne issue d'un
-  mélange d'une distribution de la famille exponentielle avec sa
-  conjuguée naturelle est une prime de crédibilité.  Soit donc la
-  variable aléatoire $S|\Theta = \theta$ dont la distribution est
-  membre de la famille exponentielle univariée, c'est-à-dire
+  Cet exercice sert à démontrer le résultat obtenu par
+  \cite{Jewell:exact:1974}, à savoir que la prime bayésienne issue
+  d'un mélange d'une distribution de la famille exponentielle avec sa
+  conjuguée naturelle est une prime de crédibilité. Soit la variable
+  aléatoire $S|\Theta = \theta$ dont la distribution est membre de la
+  famille exponentielle univariée, c'est-à-dire que
   \begin{equation*}
     f(x|\theta) = \frac{p(x) e^{-\theta x}}{q(\theta)},
   \end{equation*}
@@ -3262,9 +3273,9 @@ pgamma(10, 6, 2)
   \end{enumerate}
   \begin{sol}
     \begin{enumerate}
-    \item On doit démontrer que la densité à postériori $u(\theta|x_1,
-      \dots, x_n)$ est de la même famille que la densité à priori
-      $u(\theta)$. De manière usuelle,
+    \item Nous devons démontrer que la densité à postériori
+      $u(\theta|x_1, \dots, x_n)$ est de la même famille que la
+      densité à priori $u(\theta)$. De manière usuelle,
       \begin{align*}
         u(\theta|x_1, \dots, x_n)
         &\propto u(\theta) \prod_{t=1}^n f(x_t|\theta) \\
@@ -3275,9 +3286,9 @@ pgamma(10, 6, 2)
       qui est, en effet, de la même famille que $u(\theta)$ avec
       paramètres modifiés $\tilde{t}_0 = t_0 + n$ et $\tilde{x}_0 =
       x_0 + \sum_{t=1}^n x_t$.
-    \item Premièrement, on note que $q(\theta) = \int_{-\infty}^\infty
-      p(x) e^{-\theta x}\, dx$ pour faire de $f(x|\theta)$ une
-      densité.  Ensuite,
+    \item Premièrement, remarquons que
+      $q(\theta) = \int_{-\infty}^\infty p(x) e^{-\theta x}\, dx$ pour
+      faire de $f(x|\theta)$ une densité. Ensuite,
       \begin{align*}
         \mu(\theta)
         &= \int_{-\infty}^\infty x f(x|\theta)\, dx \\
@@ -3290,7 +3301,7 @@ pgamma(10, 6, 2)
         &= - \frac{q^\prime(\theta)}{q(\theta)} = - \frac{d}{d\theta} \ln
         q(\theta).
       \end{align*}
-    \item On a
+    \item Nous avons
       \begin{align*}
         \frac{d}{d\theta} u(\theta) &= \frac{1}{d(x_0, t_0)}
         \frac{d}{d\theta} q(\theta)^{-t_0} e^{-\theta x_0} \\
@@ -3305,7 +3316,7 @@ pgamma(10, 6, 2)
       \end{align*}
     \item Supposons, sans perte de généralité, que le domaine de
       définition de la densité obtenue en c) est $(-\infty, \infty)$.
-      En supposant que $u(-\infty) = u(\infty) = 0$, on obtient
+      En supposant que $u(-\infty) = u(\infty) = 0$, nous obtenons
       \begin{equation*}
         \int_{-\infty}^\infty \frac{d}{d\theta} u(\theta)\, d\theta = 0.
       \end{equation*}
@@ -3317,8 +3328,9 @@ pgamma(10, 6, 2)
         &= t_0 \esp{\mu(\Theta)} - x_0,
       \end{align*}
       d'où $\esp{\mu(\Theta)} = x_0/t_0$.
-    \item On sait que la prime bayésienne est de la même forme que la
-      prime collective, mais avec des paramètres modifiés. On a donc
+    \item Nous savons que la prime bayésienne est de la même forme que
+      la prime collective, mais avec des paramètres modifiés. Nous avons
+      donc
       \begin{align*}
         \esp{\mu(\Theta)|X_1, \dots, X_n}
         &= \frac{\tilde{x}_0}{\tilde{t}_0} \\
@@ -3338,7 +3350,7 @@ pgamma(10, 6, 2)
   cas, la distribution gamma n'est pas la conjuguée naturelle de
   l'exponentielle.
   \begin{sol}
-    On a
+    Nous avons
     \begin{align*}
       f(x|\theta)
       &= \frac{1}{\theta}\, e^{-x/\theta}, \quad x > 0 \\
@@ -3404,7 +3416,7 @@ pgamma(10, 6, 2)
   \end{rep}
   \begin{sol}
     \begin{enumerate}
-    \item On a
+    \item Nous avons
       \begin{align*}
         f(x; \theta)
         &= \binom{n}{x} \theta^x (1-\theta)^{n-x} \\
@@ -3428,7 +3440,7 @@ pgamma(10, 6, 2)
         B(x) &= \ln \binom{n}{x} \\
         q(\theta) &= n \ln(1 - \theta).
       \end{align*}
-    \item On a
+    \item Nous avons
       \begin{align*}
         f(x; \theta)
         &= \frac{\Gamma(\theta + \beta)}{\Gamma(\theta) \Gamma(\beta)}\,
@@ -3455,7 +3467,7 @@ pgamma(10, 6, 2)
         q(\theta) &= \ln \Gamma(\theta + \beta) - \ln \Gamma(\theta) -
         \ln \Gamma(\beta).
       \end{align*}
-    \item On a
+    \item Nous avons
       \begin{align*}
         f(x; \theta)
         &= \frac{1}{\sigma \sqrt{2 \pi}}\,
@@ -3480,7 +3492,7 @@ pgamma(10, 6, 2)
         q(\theta) &= - \ln \sqrt{2\pi}\, \sigma -
           \frac{\theta^{2}}{2\sigma^{2}}.
       \end{align*}
-    \item On a
+    \item Nous avons
       \begin{align*}
         f(x; \theta) &=
         \frac{\lambda^\theta}{\Gamma(\theta)}\,
@@ -3494,7 +3506,7 @@ pgamma(10, 6, 2)
         B(x) &= -\lambda x \\
         q(\theta) &= \theta \ln \lambda - \ln \Gamma(\theta).
       \end{align*}
-    \item On a
+    \item Nous avons
       \begin{align*}
         f(x; \theta) & = \theta e^{-\theta x} \\
         &=e^{-\theta x + \ln \theta},
@@ -3519,17 +3531,17 @@ pgamma(10, 6, 2)
     $n_0 = \alpha - 1$
   \end{rep}
   \begin{sol}
-    Afin d'exprimer la fonction de vraisemblance sous la forme $a(x)
-    e^{\theta x_j}/c(\theta)$, on utilise la paramétrisation
+    Afin d'exprimer la fonction de vraisemblance sous la forme
+    $a(x) e^{\theta x_j}/c(\theta)$, nous utilisons la paramétrisation
     \begin{equation*}
       f(x|\theta) = (1 - e^{-\theta}) e^{\theta x},
     \end{equation*}
-    d'où $a(x) = 1$ et $c(\theta) = (1 - e^{-\theta})^{-1}$. On a donc que
+    d'où $a(x) = 1$ et $c(\theta) = (1 - e^{-\theta})^{-1}$. Nous avons donc que
     \begin{equation*}
       \Lambda = 1 - e^{-\Theta} \sim \text{Bêta}(\alpha, \beta).
     \end{equation*}
     Soit $u(\cdot)$ la fonction de densité de probabilité de $\Theta$
-    et $w(\cdot)$ celle de $\Lambda$. On a
+    et $w(\cdot)$ celle de $\Lambda$. Nous avons
     \begin{align*}
       u(\theta)
       &= w(1 - e^{-\theta}) \left|\frac{d}{d\theta} (1 - e^{-\theta}) \right| \\
@@ -3558,7 +3570,7 @@ pgamma(10, 6, 2)
     \sim \text{Normale}(-x_0/n_0, 1/n_0)$
   \end{rep}
   \begin{sol}
-    On a
+    Nous avons
     \begin{align*}
       f(x|\theta) = \frac{a(x) e^{-\theta x}}{c(\theta)}
     \end{align*}

@@ -1,0 +1,128 @@
+\chapter{Estimation bayésienne}
+\label{chap:estimation-bayesienne}
+
+L'estimation ponctuelle par l'approche bayésienne diffère passablement
+des approches classiques comme la méthode des moments ou la méthode du
+maximum de vraisemblance. Cette annexe propose un résumé de la
+philosophie et l'estimation bayésienne ainsi que les principaux
+résultats.
+
+\section{Cas continu}
+\label{sec:estimation-bayesienne:continu}
+
+Supposons que nous souhaitons estimer le paramètre inconnu $\theta$
+d'une distribution continue avec fonction de densité de probabilité
+$f(x;\theta)$ (une loi normale avec moyenne inconnue $\theta$ et
+variance connue $\sigma^2$, par exemple) à partir d'un échantillon
+aléatoire $X_1, \dots, X_n$.
+
+Les statisticiens classiques développeront des estimateurs à partir
+d'un critère objectif quelconque: absence de biais, maximum de
+vraisemblance, etc. Vous remarquerez que l'analyste ne pose aucune
+hypothèse à priori sur la valeur de $\theta$. On «laisse parler les
+données».
+
+Dans l'approche bayésienne, l'opinion à priori d'une personne sur la
+valeur du paramètre $\theta$ est prise en compte dans l'estimation de
+ce dernier. Le truc consiste à considérer le paramètre comme une
+réalisation d'une variable aléatoire $\Theta$ avec densité $u(\theta)$
+qui représente l'opinion de la l'analyste quant à la valeur du
+paramètre. Au fur et à mesure que les données de l'échantillon
+aléatoire (l'information) s'accumulent, l'analyste améliore son
+opinion et, par conséquent, révise la distribution de la variable
+aléatoire $\Theta$ en calculant sa densité à postériori
+$u(\theta|x_1, \dots, x_n)$ à l'aide de la régle de Bayes:
+\begin{align*}
+  u(\theta|x_1, \dots, x_n)
+  &= \frac{f(x_1, \dots, x_n, \theta)}{f(x_1, \dots, x_n)} \\
+  &= \frac{f(x_1, \dots, x_n|\theta) u(\theta)}{f(x_1, \dots, x_n)}.
+\end{align*}
+Par la loi des probabilités totales,
+\begin{equation*}
+  f(x_1, \dots, x_n) =
+  \int_{-\infty}^\infty f(x_1, \dots, x_n|\theta) u(\theta)\,d\theta,
+\end{equation*}
+et donc
+\begin{equation*}
+  u(\theta|x_1, \dots, x_n)
+  = \frac{f(x_1, \dots, x_n|\theta) u(\theta)}
+      {\int_{-\infty}^\infty f(x_1, \dots, x_n|\theta) u(\theta)\, d\theta}.
+\end{equation*}
+Le dénominateur du côté droit de l'expression ci-dessus n'est qu'une
+constante de normalisation qui est souvent omise dans les calculs.
+
+Pour obtenir un estimateur ponctuel
+$\hat{\theta} = g(X_1, \dots, X_n)$ du paramètre $\theta$, nous
+minimisons l'espérance à postériori d'une \emph{fonction de perte}. La
+fonction de perte la plus fréquemment employée est l'erreur
+quadratique
+\begin{equation*}
+  L(\hat{\theta}, \theta) = (\hat{\theta} - \theta)^2.
+\end{equation*}
+Or, l'estimateur bayésien qui minimise
+\begin{equation*}
+  \esp{L(\hat{\theta}, \theta)|X_1, \dots, X_n} =
+  \esp{(\hat{\theta} - \theta)^2|X_1, \dots, X_n}
+\end{equation*}
+est
+\begin{align*}
+  \hat{\theta}
+  &= \esp{\Theta|X_1, \dots, X_n} \\
+  &= \int_{-\infty}^\infty \theta\, u(\theta|x_1, \dots, x_n)\, d\theta,
+\end{align*}
+soit l'espérance de $\Theta$ calculée par rapport à la distribution à
+postériori.
+
+
+\section{Cas discret}
+\label{sec:estimation-bayesienne:discret}
+
+Les idées de la section précédente demeurent exactement les mêmes dans
+le cas discret; seule la notation change légèrement. Pour simplifier
+la notation, posons $\mat{X} = (X_1, \dots, X_n)$ et
+$\mat{x} = (x_1, \dots, x_n)$.
+
+Si la variable aléatoire $\Theta$ ne prend que des valeurs discrètes,
+la distribution à priori est exprimée sous forme d'une fonction de
+masse de probabilité $\Pr[\Theta = \theta]$. Nous pouvons toujours
+calculer la fonction de masse de probabilité conjointe de
+$X_1, \dots, X_n$ par la loi des probabilités totales:
+\begin{equation*}
+  \Pr[\mat{X} = \mat{x}]
+  = \sum_{\theta=-\infty}^\infty
+  \Pr[\mat{X} = \mat{x}|\Theta = \theta] \Pr[\Theta = \theta].
+\end{equation*}
+La règle de Bayes permet de calculer la distribution à postériori de
+$\Theta$:
+\begin{align*}
+  \Pr[\Theta = \theta|\mat{X} = \mat{x}]
+  &= \frac{\Pr[\mat{X} = \mat{x}|\Theta = \theta] \Pr[\Theta =
+    \theta]}{\Pr[\mat{X} = \mat{x}]} \\
+  &= \frac{\Pr[\mat{X} = \mat{x}|\Theta = \theta] \Pr[\Theta =
+    \theta]}{\sum_{\theta=-\infty}^\infty \Pr[\mat{X} =
+    \mat{x}|\Theta = \theta]
+    \Pr[\Theta = \theta]}.
+\end{align*}
+Enfin, l'estimateur bayésien minimisant l'erreur quadratique moyenne
+demeure inchangé:
+\begin{align*}
+  \hat{\theta}
+  &= \Esp{\Theta|X_1, \dots, X_n} \\
+  &= \sum_{\theta=-\infty}^\infty \theta\, \Pr[\Theta =
+    \theta|\mat{X} = \mat{x}].
+\end{align*}
+
+
+\section{Cas mixtes}
+\label{sec:estimation-bayesienne:mixte}
+
+Il est simple de dériver les formules des cas mixtes, les plus
+courants étant ceux où la distribution de $X|\Theta$ est discrète et
+celle de $\Theta$, continue.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: "theorie-credibilite-avec-r"
+%%% coding: utf-8
+%%% End:

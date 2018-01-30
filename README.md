@@ -94,7 +94,7 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 - Notation modifiée à l'exemple 2.3.
 
-### 2018.02-1 (2018-01-22)
+### 2018.02-2 (2018-01-22)
 
 Révision complète du texte et des exercices du chapitre 2.
 

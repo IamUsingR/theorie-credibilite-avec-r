@@ -1002,7 +1002,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \begin{sol}
     On peut résoudre ce problème de deux façons.
     \begin{enumerate}
-    \item De manière similaire à l'\autoref{ex:bayesienne:YARD}, on trouve la
+    \item De manière similaire à l'\autoref{exercice:bayesienne:YARD}, on trouve la
       distribution du montant total des sinistres $S$ en considérant
       la probabilité de ne pas avoir d'accident. En identifiant les
       femmes par $\theta = 0,2$ et les hommes par $\theta = 0,4$, on a

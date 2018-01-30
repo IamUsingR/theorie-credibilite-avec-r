@@ -2081,6 +2081,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
 \end{exercice}
 
 \begin{exercice}
+  \label{exercice:bayesienne:YARD}
   La compagnie YARD assure un groupe de maisons contre les incendies.
   Son actuaire a divisé les maisons en trois classes de risque
   équiprobables: A, B et C. La probabilité qu'une maison prenne feu
@@ -2888,7 +2889,7 @@ pgamma(10, 6, 2)
         \left(\frac{\sum_{t=1}^n S_t}{n}\right) \\
         &\phantom{=}
         + \left(\frac{a + b}{n\nu + a + b}\right)
-        \left(\frac{\nua}{a + b}\right) \\
+        \left(\frac{\nu a}{a + b}\right) \\
         &= z \bar{S} + (1 - z) \esp{\mu(\Theta)}
       \end{align*}
       où

@@ -82,17 +82,14 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ## Historique des versions
 
-### (en développement)
+### 2018.01-3a (2018-02-02)
 
-#### Nouveautés
-
-- Nouvel exercice 3.32 dérivé de Bühlmann et Gisler (2005, section 2.6). 
-
-#### Autres modifications
+Correctifs de la version précédente, notamment aux exercices du chapitre 3.
 
 - Il manquait un détail important dans le résultat de Jewell (1974) cité à la section 3.6: la fonction de vraisemblance doit provenir de la famille exponentielle.
 - Exemple 3.3 identifié en entête comme le cas Bernoulli/bêta.
 - Les exercices qui étaient numérotés 3.32, 3.33 et 3.34 dans la version précédente ont été supprimés du document.
+- Nouvel exercice 3.32 dérivé de Bühlmann et Gisler (2005, section 2.6). 
 
 ### 2018.01-3 (2018-01-30)
 

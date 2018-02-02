@@ -577,7 +577,7 @@ disponible.
   \qed
 \end{exemple}
 
-\begin{exemple}
+\begin{exemple}[Cas Bernoulli/bêta]
   \label{ex:bayesienne:bernoulli-beta}
   Examinons de nouveau le portefeuille simplifié de
   l'\autoref{ex:introduction-historique:simplifie}, cette fois dans le

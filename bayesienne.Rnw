@@ -3345,10 +3345,10 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  La variable aléatoire $S|\Theta = \theta$ a une distribution
-  exponentielle de moyenne $\theta$ et $\Theta$ une distribution gamma
-  de paramètres $\alpha$ et $\lambda$.  Démontrer que, dans un tel
-  cas, la distribution gamma n'est pas la conjuguée naturelle de
+  La distribution de la variable aléatoire $S|\Theta = \theta$ est
+  exponentielle de moyenne $\theta$ et celle de $\Theta$ est une gamma
+  de paramètres $\alpha$ et $\lambda$. Démontrer que, dans un tel cas,
+  la distribution gamma n'est pas la conjuguée naturelle de
   l'exponentielle.
   \begin{sol}
     Nous avons
@@ -3383,7 +3383,6 @@ pgamma(10, 6, 2)
     Voir l'\autoref{exercice:bayesienne:gamma-gamma}.
   \end{sol}
 \end{exercice}
-
 
 \begin{exercice}
   Cet exercice est dérivé de

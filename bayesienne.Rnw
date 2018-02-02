@@ -1444,8 +1444,9 @@ grandes lignes ici.
     f(x|\theta) = \frac{p(x) e^{-\theta x}}{q(\theta)}.
   \end{equation*}
 \item \citet{Jewell:exact:1974} démontre que lorsqu'une fonction de
-  vraisemblance est combinée avec sa conjuguée naturelle, alors la
-  prime bayésienne est toujours une prime de crédibilité exacte.
+  vraisemblance de la famille exponentielle est combinée avec sa
+  conjuguée naturelle, alors la prime bayésienne est toujours une
+  prime de crédibilité exacte.
 \item \citet{Goel:conjecture:1982} conjecture que ceci n'arrive
   qu'avec les membres de la famille exponentielle, c'est-à-dire qu'il
   ne peut le prouver, mais qu'il ne peut non plus fournir de

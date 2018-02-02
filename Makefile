@@ -51,7 +51,7 @@ VERSION = ${YEAR}.${MONTH}
 
 ## Outils de travail
 SWEAVE = R CMD SWEAVE --encoding="utf-8"
-TEXI2DVI = LATEX=xelatex TEXINDY=makeindex texi2dvi -b
+TEXI2DVI = LATEX=xelatex texi2dvi -b
 RBATCH = R CMD BATCH --no-timing
 RM = rm -rf
 

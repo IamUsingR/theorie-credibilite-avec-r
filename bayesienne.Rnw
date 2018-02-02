@@ -1425,7 +1425,7 @@ legend(6, 0.8, c("Gamma(3, 3)", "Gamma(3, 1/2)"), lwd=c(1, 2))
 \end{figure}
 
 
-\section{Le modèle de Jewell}
+\section{Modèle de Jewell}
 \label{sec:bayesienne:jewell}
 
 Le modèle de crédibilité exacte de Jewell unifie les résultats des
@@ -3232,6 +3232,125 @@ pgamma(10, 6, 2)
     Nous avons donc $7 = \alpha + 3$ d'où $\alpha = 4$ et
     $0,9 = (\lambda + 2)/(\lambda + 3)$ d'où $\lambda = 7$. Par
     conséquent, $\Cov{(S_1, S_2)} = \frac{4}{49}$.
+  \end{sol}
+\end{exercice}
+
+\begin{exercice}
+  Cet exercice est dérivé de
+  \citet[section~2.6]{Buhlmann:credibilitybook:2005}. La distribution
+  de Pareto translatée (ou «Pareto à un paramètre», dans la
+  terminologie de \citet{Klugman:lossmodels:4e:2012} aussi utilisée
+  dans \pkg{actuar}) est très utile en réassurance pour la
+  modélisation des montants extrêmes de sinistres au-delà d'un certain
+  seuil. La fonction de densité de probabilité de la Pareto translatée
+  de paramètre $\theta$ est
+  \begin{equation*}
+    f(x) = \frac{\theta x_0^\theta}{x^{\theta + 1}}, \quad x > x_0.
+  \end{equation*}
+  et son espérance est $x_0 \theta/(\theta - 1)$. Dans la suite, nous
+  nous intéresserons à l'estimation bayésienne non pas de la prime de
+  risque, mais bien seulement du paramètre $\theta$.
+  \begin{enumerate}
+  \item Démontrer que l'estimateur du maximum de vraisemblance du
+    paramètre $\theta$ de la loi de Pareto translatée à partir d'un
+    échantillon aléatoire $X_1, \dots, X_n$ est
+    \begin{equation*}
+      \hat{\theta}^{\text{EMV}} =
+      \frac{n}{\sum_{i = 1}^n \ln (X_i/x_0)}.
+    \end{equation*}
+  \item Démontrer que la loi gamma de paramètres $\alpha$ et $\lambda$
+    est la conjuguée naturelle de la loi de Pareto translatée pour le
+    paramètre $\theta$.
+  \item Démontrer que l'estimateur bayésien du paramètre $\theta$ peut
+    s'exprimer sous la forme
+    \begin{equation*}
+      \hat{\Theta} = \eta \hat{\theta}^{\text{EMV}} +
+      (1 - \eta) \frac{\alpha}{\lambda}.
+    \end{equation*}
+    C'est un estimateur linéaire, mais s'agit-il d'une prime de
+    crédibilité?
+  \end{enumerate}
+  \begin{sol}
+    \begin{enumerate}
+    \item La fonction de log-vraisemblance est
+      \begin{align*}
+        \ell(\theta)
+        &= \sum_{i = 1}^n \ln f(x_i; \theta) \\
+        &= \sum_{i = 1}^n (\ln \theta + \theta \ln x_0 - (\theta + 1) \ln x_i) \\
+        &= n \ln \theta + n \theta \ln x_0 -
+          (\theta + 1) \sum_{i = 1}^n \ln x_i, \\
+        \intertext{d'où}
+        \ell^\prime(\theta)
+        &= \frac{n}{\theta} - n \ln x_0 - \sum_{i = 1}^n \ln x_i \\
+        &= \frac{n}{\theta} - \sum_{i = 1}^n (\ln x_i - \ln x_0) \\
+        &= \frac{n}{\theta} - \sum_{i = 1}^n \ln \left(
+          \frac{x_i}{x_0} \right).
+      \end{align*}
+      En résolvant pour $\theta$ l'équation $\ell^\prime(\theta) = 0$,
+      nous obtenons aisément l'estimateur du maximum de vraisemblance
+      \begin{equation*}
+        \hat{\theta}^{\text{EMV}} =
+        \frac{n}{\sum_{i = 1}^n \ln (X_i/x_0)}.
+      \end{equation*}
+    \item Nous devons démontrer si $S|\Theta = \theta \sim
+      \text{Pareto translatée}(\theta)$ et que $\Theta \sim
+      \text{Gamma}(\alpha, \lambda)$, alors la distribution de
+      $\Theta|S_1 = x_1, \dots, S_n = x_n$ est aussi une gamma avec de
+      nouveaux paramètres. Il est plus simple, ici, de travailler avec
+      la densité de la Pareto translatée exprimée sous la forme
+      \begin{equation*}
+        f(x|\theta) =
+        \frac{\theta}{x_0} \left( \frac{x}{x_0} \right)^{-(\theta + 1)}.
+      \end{equation*}
+      Ensuite, nous avons, comme d'habitude,
+      \begin{align*}
+        u(\theta|x_1, \dots, x_n)
+        &\propto u(\theta) \prod_{i = 1}^n f(x_i|\theta) \\
+        &\propto \theta^{\alpha - 1} e^{-\lambda \theta}
+          \prod_{i = 1}^n \theta
+          \left( \frac{x_i}{x_0} \right)^{-\theta} \\
+        &= \theta^{\alpha + n - 1}  e^{-\lambda \theta}
+          \prod_{i = 1}^n
+          \left( \frac{x_i}{x_0} \right)^{-\theta} \\
+        &= \theta^{\alpha + n - 1}  e^{-\lambda \theta}
+          e^{-\theta \sum_{i = 1}^n \ln(x_i/x_0)} \\
+        &= \theta^{\alpha + n - 1}
+          \exp\left\{ -\theta \left( \lambda + \sum_{i = 1}^n \ln
+          \left( \frac{x_i}{x_0} \right) \right) \right\},
+      \end{align*}
+      d'où nous identifions que la distribution à postériori de
+      $\Theta$ est gamma de paramètres
+      \begin{align*}
+        \tilde{\alpha}
+        &= \alpha + n \\
+        \tilde{\lambda}
+        &= \lambda + \sum_{i = 1}^n \ln \left( \frac{x_i}{x_0} \right).
+      \end{align*}
+    \item L'estimateur à priori de $\theta$ (ou la «prime collective») est
+      \begin{equation*}
+        \esp{\Theta} = \frac{\alpha}{\lambda}.
+      \end{equation*}
+      Dans la mesure où la distribution à postériori est du même type
+      que la distribution à priori, nous avons directement que
+      l'estimateur bayésien de $\theta$ est
+      \begin{align*}
+        \hat{\Theta}
+        &= \frac{\tilde{\alpha}}{\tilde{\lambda}} \\
+        &= \frac{\alpha + n}{\lambda + \sum_{i = 1}^n \ln (x_i/x_0)} \\
+        &= \eta \hat{\theta}^{\text{EMV}} +
+          (1 - \eta) \frac{\alpha}{\lambda} \\
+        \intertext{avec}
+        \eta
+        &= \frac{\sum_{i = 1}^n \ln (x_i/x_0)}{\lambda + \sum_{i = 1}^n \ln (x_i/x_0)}.
+      \end{align*}
+      Contrairement aux cas de crédibilité bayésienne linéaire, le
+      facteur $\theta$ dépend des observations et il se trouve pas
+      confiné à l'intervalle $(0, 1)$. Il ne s'agit donc pas d'un
+      facteur de crédibilité. Par conséquent, $\hat{\Theta}$ ne
+      constitue pas une prime de crédibilité. Une seule des deux
+      conditions de \cite{Jewell:exact:1974} est vérifiée dans le cas
+      présent.
+    \end{enumerate}
   \end{sol}
 \end{exercice}
 

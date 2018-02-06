@@ -3497,7 +3497,7 @@ pgamma(10, 6, 2)
         &= \frac{\sum_{i = 1}^n \ln (x_i/x_0)}{\lambda + \sum_{i = 1}^n \ln (x_i/x_0)}.
       \end{align*}
       Contrairement aux cas de crédibilité bayésienne linéaire, le
-      facteur $\eta$ dépend des observations et il se trouve pas
+      facteur $\eta$ dépend des observations et il ne se trouve pas
       confiné à l'intervalle $(0, 1)$. Il ne s'agit donc pas d'un
       facteur de crédibilité. Par conséquent, $\hat{\Theta}$ ne
       constitue pas une prime de crédibilité. Une seule des deux

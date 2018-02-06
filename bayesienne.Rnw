@@ -1866,7 +1866,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         &= \frac{a}{a + b}.
       \end{align*}
       Le résultat n'est pas nécessairement $\frac{1}{2}$ puisque nous
-      ignorons si la pièce est équilibrée ou non.
+      ignorons si la pièce est équilibrée ou non. 
     \item Nous avons
       \begin{align*}
         \Pr[Y = 1|S = x]

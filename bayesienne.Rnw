@@ -1866,13 +1866,13 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         &= \frac{a}{a + b}.
       \end{align*}
       Le résultat n'est pas nécessairement $\frac{1}{2}$ puisque nous
-      ignorons si la pièce est équilibrée ou non. 
+      ignorons si la pièce est équilibrée ou non.
     \item Nous avons
       \begin{align*}
         \Pr[Y = 1|S = x]
         &= \int_0^1 \Pr[Y = 1|\Theta = \theta]
         \Pr[\Theta = \theta|S = x]\, d\theta \\
-        &= \int_0^1 \theta \Pr[\Theta = \theta|S = x] \\
+        &= \int_0^1 \theta \Pr[\Theta = \theta|S = x]\, d\theta \\
         &= \esp{\Theta|S = x} \\
         &= \frac{a + x}{a + b + n}.
       \end{align*}

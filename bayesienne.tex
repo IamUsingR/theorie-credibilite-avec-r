@@ -273,22 +273,11 @@ aléatoirement autour de leur moyenne.
 \begin{figure}
   \centering
   \begin{minipage}{0.48\linewidth}
-<<echo=FALSE, fig=TRUE, width=5, height=5>>=
-set.seed(1)
-theta <- 5
-x <- rpois(10, theta)
-plot(x, pch = 19, ylim = c(0, 10),
-     xlab = "t", ylab = expression(S[t]))
-abline(h = 2, col = "orange")
-@
+\includegraphics{bayesienne-001}
   \end{minipage}
   \hfill
   \begin{minipage}{0.48\linewidth}
-<<echo=FALSE, fig=TRUE, width=5, height=5>>=
-plot(x, pch = 19, ylim = c(0, 10),
-     xlab = "t", ylab = expression(S[t]))
-abline(h = theta, col = "orange")
-@
+\includegraphics{bayesienne-002}
   \end{minipage}
   \caption{Illustration du phénomène de contagion apparente. À gauche,
     la ligne horizontale représente la moyenne du groupe. À droite, la
@@ -577,7 +566,7 @@ disponible.
   \qed
 \end{exemple}
 
-\begin{exemple}[Cas Bernoulli/bêta]
+\begin{exemple}
   \label{ex:bayesienne:bernoulli-beta}
   Examinons de nouveau le portefeuille simplifié de
   l'\autoref{ex:introduction-historique:simplifie}, cette fois dans le
@@ -1019,39 +1008,27 @@ le portefeuille, mais avec des pondérations différentes.
     \setkeys{Gin}{width=\textwidth}
     \begin{minipage}[t]{0.45\textwidth}
       \centering
-<<echo=FALSE, fig=TRUE, width=5, height=5>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 3, 3), xlim = c(0, 4), main = "À priori")
-@
+\includegraphics{bayesienne-003}
       \subcaption{Gamma avec $\alpha = 3$ et $\lambda =
         3$. L'espérance est égale à $1$.}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.45\textwidth}
       \centering
-<<echo=FALSE, fig=TRUE, width=5, height=5>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 8, 4), xlim = c(0, 4), main = "Après 1 année")
-@
+\includegraphics{bayesienne-004}
       \subcaption{Gamma avec $\alpha = 8$ et $\lambda =
         4$. L'espérance est égale à $2$.}
     \end{minipage}
     \begin{minipage}[t]{0.45\textwidth}
       \centering
-<<echo=FALSE, fig=TRUE, width=5, height=5>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 13, 8), xlim = c(0, 4), main = "Après 5 années")
-@
+\includegraphics{bayesienne-005}
       \subcaption{Gamma avec $\alpha = 13$ et $\lambda =
         8$. L'espérance est égale à $1,625$.}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.45\textwidth}
       \centering
-<<echo=FALSE, fig=TRUE, width=5, height=5>>=
-par(mar = c(3, 2, 3, 2))
-curve(dgamma(x, 19, 13), xlim = c(0, 4), main = "Après 10 années")
-@
+\includegraphics{bayesienne-006}
       \subcaption{Gamma avec $\alpha = 19$ et $\lambda =
         13$. L'espérance est égale à $1,46$.}
     \end{minipage}
@@ -1414,18 +1391,14 @@ rapportent à ces résultats.
 
 \begin{figure}
   \centering
-<<echo=FALSE, fig=TRUE>>=
-curve(dgamma(x, 3, 3), from=0, to=10, xlab="x", ylab="f(x)")
-curve(dgamma(x, 3, 0.5), add=TRUE, lwd=2)
-legend(6, 0.8, c("Gamma(3, 3)", "Gamma(3, 1/2)"), lwd=c(1, 2))
-@
+\includegraphics{bayesienne-007}
    \caption{Distributions gamma avec différents paramètres d'échelle
      $\lambda$.}
    \label{fig:bayesienne:gamma}
 \end{figure}
 
 
-\section{Modèle de Jewell}
+\section{Le modèle de Jewell}
 \label{sec:bayesienne:jewell}
 
 Le modèle de crédibilité exacte de Jewell unifie les résultats des
@@ -1444,9 +1417,8 @@ grandes lignes ici.
     f(x|\theta) = \frac{p(x) e^{-\theta x}}{q(\theta)}.
   \end{equation*}
 \item \citet{Jewell:exact:1974} démontre que lorsqu'une fonction de
-  vraisemblance de la famille exponentielle est combinée avec sa
-  conjuguée naturelle, alors la prime bayésienne est toujours une
-  prime de crédibilité exacte.
+  vraisemblance est combinée avec sa conjuguée naturelle, alors la
+  prime bayésienne est toujours une prime de crédibilité exacte.
 \item \citet{Goel:conjecture:1982} conjecture que ceci n'arrive
   qu'avec les membres de la famille exponentielle, c'est-à-dire qu'il
   ne peut le prouver, mais qu'il ne peut non plus fournir de
@@ -1749,9 +1721,11 @@ grandes lignes ici.
     \code{dbeta} de R pour faire les graphiques. Par exemple, pour
     tracer la densité d'une bêta avec paramètres $a = 4$ et $b = 2$
     l'expression à utiliser est
-<<echo=TRUE, eval=FALSE>>=
-curve(dbeta(x, 4, 2), from = 0, to = 1)
-@
+\begin{Schunk}
+\begin{Sinput}
+> curve(dbeta(x, 4, 2), from = 0, to = 1)
+\end{Sinput}
+\end{Schunk}
     Observez les déplacements de la densité en fonction des résultats.
     Commencez l'expérience avec $a = b = 1$, soit $\Theta
     \sim U(0, 1)$.
@@ -1809,49 +1783,31 @@ curve(dbeta(x, 4, 2), from = 0, to = 1)
       $\theta = \frac{1}{2}$, ce qui indique une pièce équilibrée.
       \begin{figure}
         \begin{minipage}[t]{0.45\textwidth}
-<<echo=FALSE, fig=TRUE, height=4, width=4.5>>=
-par(mar = c(2, 4, 2, 0))
-curve(dbeta(x, 1, 1), xlim = c(0, 1))
-@
+\includegraphics{bayesienne-009}
           \caption{Distribution à priori (uniforme)}
           \label{fig:bayesienne:beta0}
         \end{minipage}
         \hfill
         \begin{minipage}[t]{0.45\textwidth}
-<<echo=FALSE, fig=TRUE, height=4, width=4.5>>=
-par(mar = c(2, 4, 2, 0))
-curve(dbeta(x, 1, 2), xlim = c(0, 1))
-@
+\includegraphics{bayesienne-010}
           \caption{Distribution après un lancer (P)}
         \end{minipage}
         \begin{minipage}[t]{0.45\textwidth}
-<<echo=FALSE, fig=TRUE, height=4, width=4.5>>=
-par(mar = c(2, 4, 2, 0))
-curve(dbeta(x, 2, 2), xlim = c(0, 1))
-@
+\includegraphics{bayesienne-011}
           \caption{Distribution après deux lancers (P, F)}
         \end{minipage}
         \hfill
         \begin{minipage}[t]{0.45\textwidth}
-<<echo=FALSE, fig=TRUE, height=4, width=4.5>>=
-par(mar = c(2, 4, 2, 0))
-curve(dbeta(x, 3, 2), xlim = c(0, 1))
-@
+\includegraphics{bayesienne-012}
           \caption{Distribution après trois lancers (P, F, F)}
         \end{minipage}
         \begin{minipage}[t]{0.45\textwidth}
-<<echo=FALSE, fig=TRUE, height=4, width=4.5>>=
-par(mar = c(2, 4, 2, 0))
-curve(dbeta(x, 3, 3), xlim = c(0, 1))
-@
+\includegraphics{bayesienne-013}
           \caption{Distribution après quatre lancers (P, F, F, P)}
         \end{minipage}
         \hfill
         \begin{minipage}[t]{0.45\textwidth}
-<<echo=FALSE, fig=TRUE, height=4, width=4.5>>=
-par(mar = c(2, 4, 2, 0))
-curve(dbeta(x, 4, 3), xlim = c(0, 1))
-@
+\includegraphics{bayesienne-014}
           \caption{Distribution après cinq lancers (P, F, F, P, F)}
           \label{fig:bayesienne:beta5}
         \end{minipage}
@@ -1873,7 +1829,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         \Pr[Y = 1|S = x]
         &= \int_0^1 \Pr[Y = 1|\Theta = \theta]
         \Pr[\Theta = \theta|S = x]\, d\theta \\
-        &= \int_0^1 \theta \Pr[\Theta = \theta|S = x]\, d\theta \\
+        &= \int_0^1 \theta \Pr[\Theta = \theta|S = x] \\
         &= \esp{\Theta|S = x} \\
         &= \frac{a + x}{a + b + n}.
       \end{align*}
@@ -2498,9 +2454,14 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     où $G(x; \alpha, \lambda)$ est la fonction de répartition d'une
     loi Gamma$(\alpha, \lambda)$. On obtient avec R la valeur de
     $G(10; 6, 2)$:
-<<echo=TRUE>>=
-pgamma(10, 6, 2)
-@
+\begin{Schunk}
+\begin{Sinput}
+> pgamma(10, 6, 2)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.9999281
+\end{Soutput}
+\end{Schunk}
     Par conséquent, la distribution à postériori de $\Theta$ est
     \begin{equation*}
       u(\theta|S_1 = 1, S_2 = 1) =
@@ -3346,10 +3307,10 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  La distribution de la variable aléatoire $S|\Theta = \theta$ est
-  exponentielle de moyenne $\theta$ et celle de $\Theta$ est une gamma
-  de paramètres $\alpha$ et $\lambda$. Démontrer que, dans un tel cas,
-  la distribution gamma n'est pas la conjuguée naturelle de
+  La variable aléatoire $S|\Theta = \theta$ a une distribution
+  exponentielle de moyenne $\theta$ et $\Theta$ une distribution gamma
+  de paramètres $\alpha$ et $\lambda$.  Démontrer que, dans un tel
+  cas, la distribution gamma n'est pas la conjuguée naturelle de
   l'exponentielle.
   \begin{sol}
     Nous avons
@@ -3386,121 +3347,228 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  Cet exercice est dérivé de
-  \citet[section~2.6]{Buhlmann:credibilitybook:2005}. La distribution
-  de Pareto translatée (ou «Pareto à un paramètre», dans la
-  terminologie de \citet{Klugman:lossmodels:4e:2012} aussi utilisée
-  dans \pkg{actuar}) est très utile en réassurance pour la
-  modélisation des montants extrêmes de sinistres au-delà d'un certain
-  seuil. La fonction de densité de probabilité de la Pareto translatée
-  de paramètre $\theta$ est
-  \begin{equation*}
-    f(x) = \frac{\theta x_0^\theta}{x^{\theta + 1}}, \quad x > x_0.
-  \end{equation*}
-  et son espérance est $x_0 \theta/(\theta - 1)$. Dans la suite, nous
-  nous intéresserons à l'estimation bayésienne non pas de la prime de
-  risque, mais bien seulement du paramètre $\theta$.
+  Démontrer que les densités suivantes sont membres de la famille
+  exponentielle en trouvant $A(x)$, $B(x)$ et $q(\theta)$ pour chacune
+  d'elles.
   \begin{enumerate}
-  \item Démontrer que l'estimateur du maximum de vraisemblance du
-    paramètre $\theta$ de la loi de Pareto translatée à partir d'un
-    échantillon aléatoire $X_1, \dots, X_n$ est
-    \begin{equation*}
-      \hat{\theta}^{\text{EMV}} =
-      \frac{n}{\sum_{i = 1}^n \ln (X_i/x_0)}.
-    \end{equation*}
-  \item Démontrer que la loi gamma de paramètres $\alpha$ et $\lambda$
-    est la conjuguée naturelle de la loi de Pareto translatée pour le
-    paramètre $\theta$.
-  \item Démontrer que l'estimateur bayésien du paramètre $\theta$ peut
-    s'exprimer sous la forme
-    \begin{equation*}
-      \hat{\Theta} = \eta \hat{\theta}^{\text{EMV}} +
-      (1 - \eta) \frac{\alpha}{\lambda}.
-    \end{equation*}
-    C'est un estimateur linéaire, mais s'agit-il d'une prime de
-    crédibilité?
+  \item Binomiale$(n, \theta)$, où $n$ est connu.
+  \item Bêta$(\theta, \beta)$, où $\beta$ est connu.
+  \item Normale$(\theta, \sigma^{2})$, où $\sigma^2$ est connu.
+  \item Gamma$(\theta, \lambda)$, où $\lambda$ est connu.
+  \item Exponentielle$(\theta)$.
   \end{enumerate}
+  \begin{rep}
+    \begin{enumerate}
+    \item $A(x) = x$,
+      $B(x) = \ln \binom{n}{x}$,
+      $q(\theta)= n \ln (1 - \theta)$
+    \item $A(x) = \ln x$,
+      $B(x) = (\beta - 1)\ln(1 - x)$,
+      $q(\theta) = \ln \Gamma(\theta + \beta) - \ln \Gamma(\theta) -
+      \ln \Gamma(\beta)$
+    \item $A(x) = x$,
+      $B(x) = -x^2/(2\sigma^2)$,
+      $q(\theta) = -\ln \sqrt{2\pi}\, \sigma - \theta^2/(2\sigma^2))$
+    \item $A(x) = \ln x$,
+      $B(x) = -\lambda x$,
+      $q(\theta) = \theta \ln \lambda - \ln \Gamma(\theta)$
+    \item $A(x) = x$,
+      $B(x) = 0$,
+      $q(\theta) = \ln \theta$
+    \end{enumerate}
+  \end{rep}
   \begin{sol}
     \begin{enumerate}
-    \item La fonction de log-vraisemblance est
+    \item Nous avons
       \begin{align*}
-        \ell(\theta)
-        &= \sum_{i = 1}^n \ln f(x_i; \theta) \\
-        &= \sum_{i = 1}^n (\ln \theta + \theta \ln x_0 - (\theta + 1) \ln x_i) \\
-        &= n \ln \theta + n \theta \ln x_0 -
-          (\theta + 1) \sum_{i = 1}^n \ln x_i, \\
-        \intertext{d'où}
-        \ell^\prime(\theta)
-        &= \frac{n}{\theta} - n \ln x_0 - \sum_{i = 1}^n \ln x_i \\
-        &= \frac{n}{\theta} - \sum_{i = 1}^n (\ln x_i - \ln x_0) \\
-        &= \frac{n}{\theta} - \sum_{i = 1}^n \ln \left(
-          \frac{x_i}{x_0} \right).
+        f(x; \theta)
+        &= \binom{n}{x} \theta^x (1-\theta)^{n-x} \\
+        &= \exp
+        \left\{
+          \ln \left( \binom{n}{x} \theta^x (1 - \theta)^{n - x} \right)
+        \right\} \\
+        &= \exp
+        \left\{
+          x \ln(\theta) + (n - x) \ln(1 - \theta) + \ln \binom{n}{x}
+        \right\} \\
+        &= \exp
+        \left\{
+          x(\ln(\theta) - \ln(1 - \theta)) + \ln \binom{n}{x} +
+          n \ln(1 - \theta)
+        \right\},
       \end{align*}
-      En résolvant pour $\theta$ l'équation $\ell^\prime(\theta) = 0$,
-      nous obtenons aisément l'estimateur du maximum de vraisemblance
-      \begin{equation*}
-        \hat{\theta}^{\text{EMV}} =
-        \frac{n}{\sum_{i = 1}^n \ln (X_i/x_0)}.
-      \end{equation*}
-    \item Nous devons démontrer si $S|\Theta = \theta \sim
-      \text{Pareto translatée}(\theta)$ et que $\Theta \sim
-      \text{Gamma}(\alpha, \lambda)$, alors la distribution de
-      $\Theta|S_1 = x_1, \dots, S_n = x_n$ est aussi une gamma avec de
-      nouveaux paramètres. Il est plus simple, ici, de travailler avec
-      la densité de la Pareto translatée exprimée sous la forme
-      \begin{equation*}
-        f(x|\theta) =
-        \frac{\theta}{x_0} \left( \frac{x}{x_0} \right)^{-(\theta + 1)}.
-      \end{equation*}
-      Ensuite, nous avons, comme d'habitude,
+      d'où
       \begin{align*}
-        u(\theta|x_1, \dots, x_n)
-        &\propto u(\theta) \prod_{i = 1}^n f(x_i|\theta) \\
-        &\propto \theta^{\alpha - 1} e^{-\lambda \theta}
-          \prod_{i = 1}^n \theta
-          \left( \frac{x_i}{x_0} \right)^{-\theta} \\
-        &= \theta^{\alpha + n - 1}  e^{-\lambda \theta}
-          \prod_{i = 1}^n
-          \left( \frac{x_i}{x_0} \right)^{-\theta} \\
-        &= \theta^{\alpha + n - 1}  e^{-\lambda \theta}
-          e^{-\theta \sum_{i = 1}^n \ln(x_i/x_0)} \\
-        &= \theta^{\alpha + n - 1}
-          \exp\left\{ -\theta \left( \lambda + \sum_{i = 1}^n \ln
-          \left( \frac{x_i}{x_0} \right) \right) \right\},
+        A(x) &= x \\
+        B(x) &= \ln \binom{n}{x} \\
+        q(\theta) &= n \ln(1 - \theta).
       \end{align*}
-      d'où nous identifions que la distribution à postériori de
-      $\Theta$ est gamma de paramètres
+    \item Nous avons
       \begin{align*}
-        \tilde{\alpha}
-        &= \alpha + n \\
-        \tilde{\lambda}
-        &= \lambda + \sum_{i = 1}^n \ln \left( \frac{x_i}{x_0} \right).
+        f(x; \theta)
+        &= \frac{\Gamma(\theta + \beta)}{\Gamma(\theta) \Gamma(\beta)}\,
+        x^{\theta-1} (1 - x)^{(\beta - 1)} \\
+        &= \exp
+        \left\{
+          \ln \left(
+            \frac{\Gamma(\theta+\beta)}{\Gamma(\theta)\Gamma(\beta)}\,
+            x^{\theta-1} (1 - x)^{\beta - 1}
+            \right)
+          \right\} \\
+        &= \exp
+        \left\{
+          (\theta - 1) \ln(x) + (\beta - 1) \ln(1 - x) +
+          \ln \left(
+            \frac{\Gamma(\theta+\beta)}{\Gamma(\theta)\Gamma(\beta)}
+          \right)
+        \right\},
       \end{align*}
-    \item L'estimateur à priori de $\theta$ (ou la «prime collective») est
-      \begin{equation*}
-        \esp{\Theta} = \frac{\alpha}{\lambda}.
-      \end{equation*}
-      Dans la mesure où la distribution à postériori est du même type
-      que la distribution à priori, nous avons directement que
-      l'estimateur bayésien de $\theta$ est
+      d'où
       \begin{align*}
-        \hat{\Theta}
-        &= \frac{\tilde{\alpha}}{\tilde{\lambda}} \\
-        &= \frac{\alpha + n}{\lambda + \sum_{i = 1}^n \ln (x_i/x_0)} \\
-        &= \eta \hat{\theta}^{\text{EMV}} +
-          (1 - \eta) \frac{\alpha}{\lambda} \\
-        \intertext{avec}
-        \eta
-        &= \frac{\sum_{i = 1}^n \ln (x_i/x_0)}{\lambda + \sum_{i = 1}^n \ln (x_i/x_0)}.
+        A(x) &= \ln (x) \\
+        B(x) &= (\beta - 1) \ln(1 - x) \\
+        q(\theta) &= \ln \Gamma(\theta + \beta) - \ln \Gamma(\theta) -
+        \ln \Gamma(\beta).
       \end{align*}
-      Contrairement aux cas de crédibilité bayésienne linéaire, le
-      facteur $\theta$ dépend des observations et il se trouve pas
-      confiné à l'intervalle $(0, 1)$. Il ne s'agit donc pas d'un
-      facteur de crédibilité. Par conséquent, $\hat{\Theta}$ ne
-      constitue pas une prime de crédibilité. Une seule des deux
-      conditions de \cite{Jewell:exact:1974} est vérifiée dans le cas
-      présent.
+    \item Nous avons
+      \begin{align*}
+        f(x; \theta)
+        &= \frac{1}{\sigma \sqrt{2 \pi}}\,
+        e^{-\frac{1}{2}\left(\frac{x-\theta}{\sigma}\right)^2} \\
+        &= \exp
+        \left\{
+          \ln \left( \frac{1}{\sigma \sqrt{2 \pi}} \right) +
+          -\frac{1}{2} \left(\frac{x-\theta}{\sigma}\right)^2
+        \right\} \\
+        &= \exp
+        \left\{
+          \frac{x\theta}{\sigma^2} - \frac{x^2}{2\sigma^2} -
+          \left(
+            \ln (\sigma \sqrt{2\pi}) + \frac{\theta^2}{2\sigma^2}
+          \right)
+        \right\},
+      \end{align*}
+      d'où
+      \begin{align*}
+        A(x) &= x \\
+        B(x) &= -\frac{x^2}{2\sigma^{2}} \\
+        q(\theta) &= - \ln \sqrt{2\pi}\, \sigma -
+          \frac{\theta^{2}}{2\sigma^{2}}.
+      \end{align*}
+    \item Nous avons
+      \begin{align*}
+        f(x; \theta) &=
+        \frac{\lambda^\theta}{\Gamma(\theta)}\,
+        x^{\theta-1}e^{-\lambda x} \\
+        &= e^{(\theta-1)\ln x - \lambda x + \theta \ln \lambda -
+          \ln \Gamma(\theta)},
+      \end{align*}
+      d'où,
+      \begin{align*}
+        A(x) &= \ln(x) \\
+        B(x) &= -\lambda x \\
+        q(\theta) &= \theta \ln \lambda - \ln \Gamma(\theta).
+      \end{align*}
+    \item Nous avons
+      \begin{align*}
+        f(x; \theta) & = \theta e^{-\theta x} \\
+        &=e^{-\theta x + \ln \theta},
+      \end{align*}
+      d'où
+      \begin{align*}
+        A(x) &= x \\
+        B(x) &= 0 \\
+        q(\theta) &= \ln \theta.
+      \end{align*}
     \end{enumerate}
+  \end{sol}
+\end{exercice}
+
+\begin{exercice}
+  Pour le modèle géométrique/bêta, trouver $a(x)$, $c(\theta)$,
+  $x_0$ et $n_0$ dans le modèle de Jewell.
+  \begin{rep}
+    $a(x) = 1$,
+    $c(\theta) = (1 - e^{-\theta})^{-1}$,
+    $x_0 = \beta$,
+    $n_0 = \alpha - 1$
+  \end{rep}
+  \begin{sol}
+    Afin d'exprimer la fonction de vraisemblance sous la forme
+    $a(x) e^{\theta x_j}/c(\theta)$, nous utilisons la paramétrisation
+    \begin{equation*}
+      f(x|\theta) = (1 - e^{-\theta}) e^{\theta x},
+    \end{equation*}
+    d'où $a(x) = 1$ et $c(\theta) = (1 - e^{-\theta})^{-1}$. Nous avons donc que
+    \begin{equation*}
+      \Lambda = 1 - e^{-\Theta} \sim \text{Bêta}(\alpha, \beta).
+    \end{equation*}
+    Soit $u(\cdot)$ la fonction de densité de probabilité de $\Theta$
+    et $w(\cdot)$ celle de $\Lambda$. Nous avons
+    \begin{align*}
+      u(\theta)
+      &= w(1 - e^{-\theta}) \left|\frac{d}{d\theta} (1 - e^{-\theta}) \right| \\
+      &=\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)}\,
+      (1 - e^{-\theta})^{\alpha-1}(e^{-\theta})^\beta \\
+      &=\frac{c(\theta)^{-n_0} e^{-\theta x_0}}{d(n_0, x_0)},
+    \end{align*}
+    avec
+    \begin{align*}
+      n_0 &= \alpha - 1 \\
+      x_0 &= \beta.
+    \end{align*}
+  \end{sol}
+\end{exercice}
+
+\begin{exercice}
+  Par le modèle de Jewell, démontrer que
+  \begin{equation*}
+    a(x) = \frac{1}{\sqrt{2 \pi}}\, e^{-x^2/2}, \quad
+    -\infty < x < \infty
+  \end{equation*}
+  correspond au cas normale/normale et trouver les paramètres des
+  deux distributions.
+  \begin{rep}
+    $S|\Theta = \theta \sim \text{Normale}(-\theta, 1)$ et $\Theta
+    \sim \text{Normale}(-x_0/n_0, 1/n_0)$
+  \end{rep}
+  \begin{sol}
+    Nous avons
+    \begin{align*}
+      f(x|\theta) = \frac{a(x) e^{-\theta x}}{c(\theta)}
+    \end{align*}
+    avec
+    \begin{equation*}
+      a(x) = \frac{1}{\sqrt{2\pi}}\, e^{\frac{-x^2}{2}}
+    \end{equation*}
+    et
+    \begin{align*}
+      c(\theta)
+      &= \int_{-\infty}^{\infty} a(x) e^{-\theta x}\, dx \\
+      &= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}\,
+      e^{-(x^2 + 2\theta x)/2}\, dx \\
+      &= e^{\theta^2/2} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}\,
+      e^{-(x^2 + 2\theta x + \theta^2)/2}\, dx \\
+      &= e^{\theta^2/2} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}\,
+      e^{-(x + \theta)^2/2}\, dx \\
+      &= e^{\theta^2/2}.
+    \end{align*}
+    Par conséquent,
+    \begin{align*}
+      f(x|\theta) = \frac{1}{\sqrt{2\pi}}\,
+      e^{-(x + \theta)^2/2},
+    \end{align*}
+    d'où $S|\Theta = \theta \sim \text{Normale}(-\theta, 1)$. De plus,
+    \begin{align*}
+      u(\theta)
+      &\propto c(\theta)^{-n_0} e^{-\theta x_0} \\
+      &\propto e^{-(\theta^2 n_0 + 2 \theta x_0)/2} \\
+      &\propto \exp
+      \left\{
+        - \frac{1}{2} \frac{(\theta + \frac{x_0}{n_0})^2}{\frac{1}{n_0}}
+      \right\},
+    \end{align*}
+    donc, $\Theta \sim \text{Normale}(-x_0/n_0, 1/n_0)$.
   \end{sol}
 \end{exercice}
 

@@ -1109,22 +1109,23 @@ avec
 
 Ces résultats sont très séduisants sous plusieurs aspects.
 Premièrement, la prime bayésienne est linéaire, ce qui est à la fois
-simple à calculer et facile à interpréter (rappelez-vous le cas tout à
-fait contraire de l'~\autoref{ex:bayesienne:bernoulli-uniforme}).
-Ensuite, puisque $0 < z < 1$ pour $n > 0$, la prime bayésienne se
-trouve être une combinaison convexe de $\bar{S}$ et $m$. Elle se situe
-donc toujours entre l'expérience individuelle d'un contrat ($\bar{S}$)
-et la prime collective ($m$). D'un point de vue actuariel, il s'agit
-d'une propriété importante. Imaginez seulement, si ce n'était pas le
-cas, devoir expliquer à un client dont l'expérience est pire que la
-moyenne que vous devez non seulement lui charger plus que la prime
-collective, mais aussi plus que sa propre expérience!
+simple à calculer et facile à interpréter --- rappelez-vous à cet
+effet le cas tout à fait contraire de
+l'\autoref{ex:bayesienne:bernoulli-uniforme}. Ensuite, puisque
+$0 < z < 1$ pour $n > 0$, la prime bayésienne se trouve être une
+combinaison convexe de $\bar{S}$ et $m$. Elle se situe donc toujours
+entre l'expérience individuelle d'un contrat ($\bar{S}$) et la prime
+collective ($m$). D'un point de vue actuariel, il s'agit d'une
+propriété importante. Imaginez seulement, si ce n'était pas le cas,
+devoir expliquer à un client dont l'expérience est pire que la moyenne
+que vous devez non seulement lui charger plus que la prime collective,
+mais aussi plus que sa propre expérience!
 
 Les primes de forme
 \begin{equation*}
   \pi_{n + 1} = z \bar{S} + (1 - z) m,
 \end{equation*}
-où $0 \leq z \leq 1$ jouent un rôle fondamental en théorie de la
+où $0 \leq z \leq 1$, jouent un rôle fondamental en théorie de la
 crédibilité. Nous les appelons \emph{primes de crédibilité} et $z$ est
 le \emph{facteur de crédibilité}.
 
@@ -1425,6 +1426,54 @@ legend(6, 0.8, c("Gamma(3, 3)", "Gamma(3, 1/2)"), lwd=c(1, 2))
 \end{figure}
 
 
+\section{Évaluation numérique avec R}
+\label{sec:bayesienne:actuar}
+
+Nous abordons ici l'évaluation numérique de primes de crédibilité avec
+R, un sujet qui reviendra périodiquement dans les chapitres
+subséquents.
+
+Nous effectuerons les calculs de crédibilité avec la fonction
+\code{cm} du paquetage \pkg{actuar} \citep{actuar}. Disponible dans
+\link{https://cran.r-project.org/}{Comprehensive R Archive Network}
+(CRAN) depuis 2005 et toujours en développement, \pkg{actuar} ajoute
+au système R de base des fonctionnalités spécifiques pour les
+applications actuarielles: modélisation des distributions de
+sinistres; théorie du risque et de la ruine; simulation de mélanges et
+de modèles composés hiérarchiques; théorie de la crédibilité. Le
+paquetage fournit également des fonctions pour le traitement de 19
+lois de probabilité continues à valeurs extrêmes et les versions zéro
+tronquée et zéro modifiée des lois discrètes usuelles. Nous vous
+encourageons vivement à consulter l'exhaustive documentation du
+paquetage sous forme de \emph{vignettes}. La commande ci-dessous
+permet d'afficher la liste des vignettes disponibles.
+<<echo=TRUE, eval=FALSE>>=
+vignette(package = "actuar")
+@
+
+La fonction \code{cm} de \pkg{actuar} sert d'interface unique pour la
+l'ajustement de plusieurs modèles de crédibilité: les modèles
+bayésiens linéaires de la section précédente, les modèles de
+\citet{Buhlmann:credibility:1969} et de \citet{BuhlmannStraub:1970},
+le modèle hiérarchique de \citet{Jewell:hierarchical:1975} et le
+modèle de régression de \citet{Hachemeister:1975}. L'interface de la
+fonction est fortement inspirée de \code{lm}, la fonction d'ajustement
+de modèles linéaires de R.
+
+Pour la tarification bayésienne pure telle qu'étudiée dans le présent
+chapitre, la fonction \code{cm} prend en charge toutes les
+combinaisons de distributions mentionnées à la
+\autoref{sec:bayesienne:lineaire}, les convolutions binomiale/bêta
+(\autoref{exercice:bayesienne:binomiale-beta}), gamma/gamma
+(\autoref{exercice:bayesienne:gamma-gamma}) et binomiale
+négative/bêta, ainsi que le cas quelque peu périphérique Pareto
+translatée/gamma (\autoref{exercice:bayesienne:pareto-gamma}).
+
+Nous décrivons l'utilisation de la fonction pour le calcul de primes
+bayésiennes linéaires à même le code informatique de la
+\autoref{sec:bayesienne:code}.
+
+
 \section{Modèle de Jewell}
 \label{sec:bayesienne:jewell}
 
@@ -1452,6 +1501,15 @@ grandes lignes ici.
   ne peut le prouver, mais qu'il ne peut non plus fournir de
   contre-exemple.
 \end{itemize}
+
+
+\section{Code informatique}
+\label{sec:bayesienne:code}
+
+\def\scriptfilename{bayesienne.R}
+
+\scriptfile{\scriptfilename}
+%\lstinputlisting[firstline=14]{\scriptfilename}
 
 
 \section{Exercices}
@@ -2837,6 +2895,7 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
+  \label{exercice:bayesienne:binomiale-beta}
   Soit $S|\Theta \sim \text{Binomiale}(\nu, \Theta)$ et $\Theta \sim
   \text{Bêta}(a, b)$.
   \begin{enumerate}
@@ -3029,13 +3088,13 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  Vous utilisez un modèle Poisson/gamma pour la tarification d'un
-  contrat d'assurance. Les paramètres du modèle sont tels qu'après
-  quatre années le facteur de crédibilité de ce contrat serait de
-  $0,8$. Si vous changez les hypothèses de telle sorte que la variance
-  de la distribution de $\Theta$ est doublée, mais que l'espérance
-  demeure inchangée, combien d'années faudra-t-il au contrat pour
-  atteindre un niveau de crédibilité de $0,8$?
+  Vous utilisez un modèle Poisson/gamma pour la tarification
+  bayésienne d'un contrat d'assurance. Les paramètres du modèle sont
+  tels qu'après quatre années le facteur de crédibilité de ce contrat
+  serait de $0,8$. Si vous changez les hypothèses de telle sorte que
+  la variance de la distribution de $\Theta$ est doublée, mais que
+  l'espérance demeure inchangée, combien d'années faudra-t-il au
+  contrat pour atteindre un niveau de crédibilité de $0,8$?
   \begin{rep}
     $2$
   \end{rep}
@@ -3098,10 +3157,10 @@ pgamma(10, 6, 2)
 \begin{exercice}
   Un contrat d'assurance a encouru les sinistres suivants sur une
   période de cinq années: $3$, $1$, $5$, $4$, $2$. Vous utilisez un
-  modèle Poisson/gamma. Calculez la prime de crédibilité de ce contrat
-  pour la sixième année pour chacune des combinaisons de paramètres de
-  la distribution gamma ci-dessous. Interprétez les différences entre
-  les primes de crédibilité.
+  modèle de tarification bayésienne Poisson/gamma. Calculez la prime
+  de crédibilité de ce contrat pour la sixième année pour chacune des
+  combinaisons de paramètres de la distribution gamma ci-dessous.
+  Interprétez les différences entre les primes de crédibilité.
   \begin{enumerate}
   \item $\alpha = 10$, $\lambda = 5$
   \item $\alpha = 50$, $\lambda = 25$
@@ -3386,6 +3445,7 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
+  \label{exercice:bayesienne:pareto-gamma}
   Cet exercice est dérivé de
   \citet[section~2.6]{Buhlmann:credibilitybook:2005}. La distribution
   de Pareto translatée (ou «Pareto à un paramètre», dans la

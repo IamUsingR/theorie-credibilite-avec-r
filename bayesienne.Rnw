@@ -12,6 +12,11 @@
 \chapter{Tarification bayésienne}
 \label{chap:bayesienne}
 
+<<echo=FALSE>>=
+library(actuar)
+options(width = 52)
+@
+
 Ce chapitre constitue notre porte d'entrée vers la crédibilité de
 précision. Il est très important pour la suite puisque nous y poserons
 les bases sur lesquelles nous construirons les modèles de crédibilité,
@@ -1431,10 +1436,10 @@ legend(6, 0.8, c("Gamma(3, 3)", "Gamma(3, 1/2)"), lwd=c(1, 2))
 
 Nous abordons ici l'évaluation numérique de primes de crédibilité avec
 R, un sujet qui reviendra périodiquement dans les chapitres
-subséquents.
+subséquents. Nous effectuerons les calculs de crédibilité avec la
+fonction \code{cm} du paquetage \pkg{actuar} \citep{actuar}.
 
-Nous effectuerons les calculs de crédibilité avec la fonction
-\code{cm} du paquetage \pkg{actuar} \citep{actuar}. Disponible dans
+Disponible dans le site
 \link{https://cran.r-project.org/}{Comprehensive R Archive Network}
 (CRAN) depuis 2005 et toujours en développement, \pkg{actuar} ajoute
 au système R de base des fonctionnalités spécifiques pour les
@@ -1451,9 +1456,9 @@ permet d'afficher la liste des vignettes disponibles.
 vignette(package = "actuar")
 @
 
-La fonction \code{cm} de \pkg{actuar} sert d'interface unique pour la
-l'ajustement de plusieurs modèles de crédibilité: les modèles
-bayésiens linéaires de la section précédente, les modèles de
+La fonction \code{cm} de \pkg{actuar} sert d'interface unique pour
+l'ajustement de plusieurs modèles de crédibilité de précision: les
+modèles bayésiens linéaires de la section précédente, les modèles de
 \citet{Buhlmann:credibility:1969} et de \citet{BuhlmannStraub:1970},
 le modèle hiérarchique de \citet{Jewell:hierarchical:1975} et le
 modèle de régression de \citet{Hachemeister:1975}. L'interface de la
@@ -1509,7 +1514,7 @@ grandes lignes ici.
 \def\scriptfilename{bayesienne.R}
 
 \scriptfile{\scriptfilename}
-%\lstinputlisting[firstline=14]{\scriptfilename}
+\lstinputlisting[firstline=14]{\scriptfilename}
 
 
 \section{Exercices}
@@ -3176,12 +3181,27 @@ pgamma(10, 6, 2)
   \begin{sol}
     Nous savons que, dans le cas Poisson/gamma, $z = n/(n + \lambda)$.
     Ici, $n = 5$, et $\bar{S} = (3 + 1 + 5 + 4 + 2)/5 = 3$. De plus,
-    la prime collective, $m$, est égale à 2 dans tous les cas
-    ci-dessous.
+    la prime collective, $m$, est égale à $2$ dans tous les cas
+    ci-dessous. Nous effectuons les calculs de primes bayésiennes avec
+    ces résultats ainsi qu'avec la fonction \code{cm} du paquetage
+    \pkg{actuar}.
     \begin{enumerate}
     \item Ici, $z = 0,5$ et donc $\pi_6 = 2,5$.
+<<echo=TRUE>>=
+x <- c(3, 1, 5, 4, 2)
+predict(cm("bayes", x, likelihood = "poisson",
+           shape = 10, rate = 5))
+@
     \item Ici, $z = 1/6$ et donc $\pi_6 = 2,17$.
+<<echo=TRUE>>=
+predict(cm("bayes", x, likelihood = "poisson",
+           shape = 50, rate = 25))
+@
     \item Ici, $z = 0,9524$ et donc $\pi_6 = 2,9524$.
+<<echo=TRUE>>=
+predict(cm("bayes", x, likelihood = "poisson",
+           shape = 0.5, rate = 0.25))
+@
     \end{enumerate}
     Plus le paramètre $\lambda$ de la distribution gamma est petit,
     moins certaine est la valeur du paramètre de risque $\theta$. Par

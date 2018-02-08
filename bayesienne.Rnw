@@ -830,8 +830,11 @@ le portefeuille, mais avec des pondérations différentes.
     d'où la distribution à postériori de $\Theta$ est aussi une
     distribution gamma, mais avec de nouveaux paramètres:
     \begin{equation*}
-      \Theta|S_1, \dots, S_n \sim \text{Gamma}(\tilde{\alpha} = \alpha
-      + \sum_{t = 1}^n S_t, \tilde{\lambda} = \lambda + n).
+      \Theta|S_1, \dots, S_n \sim \text{Gamma}
+      \left(
+        \tilde{\alpha} = \alpha + \sum_{t = 1}^n S_t,
+        \tilde{\lambda} = \lambda + n
+      \right).
     \end{equation*}
     Par conséquent, la prime bayésienne est
     \begin{align*}
@@ -3574,7 +3577,7 @@ predict(cm("bayes", x, likelihood = "poisson",
         &= \frac{\sum_{i = 1}^n \ln (x_i/x_0)}{\lambda + \sum_{i = 1}^n \ln (x_i/x_0)}.
       \end{align*}
       Contrairement aux cas de crédibilité bayésienne linéaire, le
-      facteur $\theta$ dépend des observations et il se trouve pas
+      facteur $\eta$ dépend des observations et il ne se trouve pas
       confiné à l'intervalle $(0, 1)$. Il ne s'agit donc pas d'un
       facteur de crédibilité. Par conséquent, $\hat{\Theta}$ ne
       constitue pas une prime de crédibilité. Une seule des deux

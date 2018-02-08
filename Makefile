@@ -40,7 +40,9 @@ TEXFILES = \
 	solutions.tex \
 	colophon.tex \
 	couverture-arriere.tex
-SCRIPTS = 
+SCRIPTS = \
+	bayesienne.R \
+	buhlmann.R
 
 ## Numéro de version extrait du fichier maître
 YEAR = $(shell grep "newcommand{\\\\year" ${MASTER:.pdf=.tex} \

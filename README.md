@@ -86,13 +86,17 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 #### Nouveautés
 
-- Nouvel exercice 3.32 dérivé de Bühlmann et Gisler (2005, section 2.6). 
+- Section 3.6 d'introduction à l'évaluation numériques de modèles de crédibilité avec R. (L'ancienne section 3.6 sur le modèle de Jewell est maintenant la section 3.7.)
+- Section 3.8 contenant du code informatique démontrant l'utilisation de la fonction `cm` du paquetage **actuar** pour le calcul de primes bayésiennes linéaires. Le fichier de script correspondant, `bayesienne.R`, est livré dans l'archive.
+- Calculs de primes avec `cm` dans la solution de l'exercice 3.25.
+- Exercice 3.32 dérivé de Bühlmann et Gisler (2005, section 2.6). 
 
 #### Autres modifications
 
 - Il manquait un détail important dans le résultat de Jewell (1974) cité à la section 3.6: la fonction de vraisemblance doit provenir de la famille exponentielle.
 - Exemple 3.3 identifié en entête comme le cas Bernoulli/bêta.
 - Les exercices qui étaient numérotés 3.32, 3.33 et 3.34 dans la version précédente ont été supprimés du document.
+- Le fichier de script `buhlmann.R` a été ajouté dans l'archive.
 
 ### 2018.01-3 (2018-01-30)
 

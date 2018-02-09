@@ -2420,8 +2420,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \Closesolutionfile{reponses}
 
 %%% Local Variables:
-%%% mode: latex
-%%% TeX-engine: xetex
 %%% TeX-master: "theorie-credibilite-avec-r"
+%%% TeX-engine: xetex
 %%% coding: utf-8
 %%% End:

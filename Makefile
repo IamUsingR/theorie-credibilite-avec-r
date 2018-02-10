@@ -25,6 +25,7 @@
 MASTER = theorie-credibilite-avec-r.pdf
 ARCHIVE = ${MASTER:.pdf=.zip}
 README = README.md
+COLLABORATEURS = COLLABORATEURS
 OTHER = LICENSE
 
 ## Le document maître dépend de tous les fichiers .Rnw et des fichiers
@@ -44,7 +45,11 @@ SCRIPTS = \
 	bayesienne.R \
 	buhlmann.R
 
-## Numéro de version extrait du fichier maître
+## Informations de publication extraites du fichier maître
+TITLE = $(shell grep "\\\\title" ${MASTER:.pdf=.tex} \
+	| cut -d { -f 2 | tr -d })
+URL = $(shell grep "newcommand{\\\\ghurl" ${MASTER:.pdf=.tex} \
+	| cut -d } -f 2 | tr -d {)
 YEAR = $(shell grep "newcommand{\\\\year" ${MASTER:.pdf=.tex} \
 	| cut -d } -f 2 | tr -d {)
 MONTH = $(shell grep "newcommand{\\\\month" ${MASTER:.pdf=.tex} \
@@ -69,13 +74,17 @@ all: pdf
 
 .PHONY: tex pdf zip release create-release upload publish clean
 
+FORCE: ;
+
 pdf: $(MASTER)
 
 tex: $(RNWFILES:.Rnw=.tex)
 
 Rout: $(SCRIPTS:.R=.Rout)
 
-release: zip create-release upload publish
+contrib: ${COLLABORATEURS}
+
+release: contrib zip create-release upload publish
 
 %.tex: %.Rnw
 	$(SWEAVE) '$<'
@@ -88,14 +97,21 @@ release: zip create-release upload publish
 $(MASTER): $(MASTER:.pdf=.tex) $(RNWFILES:.Rnw=.tex) $(TEXFILES) $(SCRIPTS)
 	$(TEXI2DVI) $(MASTER:.pdf=.tex)
 
-zip: ${MASTER} ${README} ${SCRIPTS} ${SCRIPTS:.R=.Rout} ${OTHER}
+${COLLABORATEURS}: FORCE
+	git log --pretty="%an%n" | sort | uniq | \
+	  grep -v -E "Vincent Goulet|Inconnu|unknown" | \
+	  awk 'BEGIN { print "Les personnes dont le nom [1] apparait ci-dessous ont contribué à\nl'\''amélioration de «${TITLE}»." } \
+	       { print $$0 } \
+	       END { print "\n[1] Noms tels qu'\''ils figurent dans le journal du dépôt Git\n    ${URL}" }' > ${COLLABORATEURS}
+
+zip: ${MASTER} ${README} ${SCRIPTS} ${SCRIPTS:.R=.Rout} ${OTHER} ${COLLABORATEURS}
 	if [ -d ${TMPDIR} ]; then ${RM} ${TMPDIR}; fi
 	mkdir -p ${TMPDIR}
 	touch ${TMPDIR}/${README} && \
 	  awk 'state==0 && /^# / { state=1 }; \
 	       /^## Auteur/ { printf("## Édition\n\n%s\n\n", "${VERSION}") } \
 	       state' ${README} >> ${TMPDIR}/${README}
-	cp ${MASTER} ${SCRIPTS} ${SCRIPTS:.R=.Rout} ${OTHER} ${TMPDIR}
+	cp ${MASTER} ${SCRIPTS} ${SCRIPTS:.R=.Rout} ${OTHER} ${COLLABORATEURS} ${TMPDIR}
 	cd ${TMPDIR} && zip --filesync -r ../${ARCHIVE} *
 	${RM} ${TMPDIR}
 

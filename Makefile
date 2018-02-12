@@ -60,6 +60,9 @@ MONTH = $(shell grep "newcommand{\\\\month" ${MASTER:.pdf=.tex} \
 	| cut -d } -f 2 | tr -d {)
 VERSION = ${YEAR}.${MONTH}
 
+## Auteurs à exclure du fichier COLLABORATEURS (regex)
+OMITAUTHORS = Vincent Goulet|Inconnu|unknown
+
 ## Outils de travail
 SWEAVE = R CMD SWEAVE --encoding="utf-8"
 TEXI2DVI = LATEX=xelatex texi2dvi -b
@@ -88,7 +91,7 @@ Rout: $(SCRIPTS:.R=.Rout)
 
 contrib: ${COLLABORATEURS}
 
-release: contrib zip create-release upload publish
+release: zip create-release upload publish
 
 %.tex: %.Rnw
 	$(SWEAVE) '$<'
@@ -103,7 +106,7 @@ $(MASTER): $(MASTER:.pdf=.tex) $(RNWFILES:.Rnw=.tex) $(TEXFILES) $(SCRIPTS)
 
 ${COLLABORATEURS}: FORCE
 	git log --pretty="%an%n" | sort | uniq | \
-	  grep -v -E "Vincent Goulet|Inconnu|unknown" | \
+	  grep -v -E "${OMITAUTHORS}" | \
 	  awk 'BEGIN { print "Les personnes dont le nom [1] apparait ci-dessous ont contribué à\nl'\''amélioration de «${TITLE}»." } \
 	       { print $$0 } \
 	       END { print "\n[1] Noms tels qu'\''ils figurent dans le journal du dépôt Git\n    ${URL}" }' > ${COLLABORATEURS}

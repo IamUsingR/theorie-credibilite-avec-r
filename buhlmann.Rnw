@@ -2487,18 +2487,6 @@ summary(fit)
   \end{sol}
 \end{exercice}
 
-
-\section*{Exercices proposés dans \emph{Loss Models}}
-
-\begin{trivlist}
-% \item 1{\iere} édition: 47~k, l), 48~k, l), 58, 59~a), 5.60, 5.62, 5.63,
-%   5.66, 5.76, 5.78, 5.83, 5.84, 5.88, 5.89.
-\item 2{\ieme} édition: 16.22~k, l), 16.23~k, l), 16.34, 16.35~a),
-  16.36, 16.38, 16.39, 16.42, 16.52, 16.54, 16.64, 16.65.
-\item 3{\ieme} édition: 20.24~k, l), 20.25~k, l), 20.36, 20.37~a),
-  20.38, 20.40, 20.41, 20.44, 20.54, 20.56, 20.72, 20.73.
-\end{trivlist}
-
 \Closesolutionfile{solutions}
 \Closesolutionfile{reponses}
 

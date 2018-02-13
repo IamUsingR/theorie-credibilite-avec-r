@@ -12,6 +12,11 @@
 \chapter{Modèle de crédibilité de Bühlmann}
 \label{chap:buhlmann}
 
+<<echo=FALSE>>=
+library(actuar)
+options(width = 52)
+@
+
 L'approche purement bayésienne que nous avons étudiée au chapitre
 précédent s'avère élégante, certes, mais elle recèle également deux
 inconvénients qui la rendent peu applicable en pratique. Tout d'abord,
@@ -576,6 +581,7 @@ de la prime bayésienne.
 \end{exemple}
 
 \begin{exemple}[Poisson/gamma]
+  \label{ex:buhlmann:poisson-gamma}
   Soit $S_t|\Theta = \theta \sim \text{Poisson}(\theta)$ et
   $\Theta \sim \text{Gamma}(\alpha, \lambda)$. Nous savons déjà que
   $\mu(\theta) = \sigma^2(\theta) = \theta$. Par conséquent,
@@ -599,6 +605,7 @@ de la prime bayésienne.
 \end{exemple}
 
 \begin{exemple}[Exponentielle/gamma]
+  \label{ex:buhlmann:exponentielle-gamma}
   Soit $S_t|\Theta = \theta \sim \text{Exponentielle}(\theta)$ et
   $\Theta \sim \text{Gamma}(\alpha, \lambda)$. Le calcul de la prime
   de Bühlmann représente un défi plus grand pour cette combinaison de
@@ -662,49 +669,77 @@ de la prime bayésienne.
   \qed
 \end{exemple}
 
+Petit secret de fabrication: lorsque la fonction \code{cm} du
+paquetage \pkg{actuar} calcule des primes bayésiennes linéaires, elle
+effectue les calculs à partir des formules des paramètres $m$, $s^2$
+et $a$ pour chacune des combinaisons de distributions. Ce sont
+d'ailleurs ces valeurs qui sont affichées à l'écran avec l'objet du
+modèle. Comparez les résultats ci-dessous aux formules des exemples
+\ref{ex:buhlmann:poisson-gamma} et
+\ref{ex:buhlmann:exponentielle-gamma}.
+<<echo=TRUE>>=
+cm("bayes", likelihood = "poisson",
+   shape = 3, rate = 2)
+cm("bayes", likelihood = "exponential",
+   shape = 3, rate = 2)
+@
+
+\tipbox{Vous pouvez afficher le code source de la fonction effectuant
+  les calculs de primes bayésiennes en demandant la valeur de l'objet
+  \code{actuar:::bayes}.}
+
 
 \section{Approche non paramétrique}
 \label{sec:buhlmann:nonparametrique}
 
-En pratique, l'approche paramétrique est d'un intérêt limité
-puisqu'elle nécessite toujours de déterminer les distributions de
-$S_{it}|\Theta_i$ et $\Theta_i$.
+En pratique, l'approche paramétrique s'avère d'un intérêt limité
+puisqu'elle nécessite toujours de déterminer les distributions des
+variables aléatoires $S_{it}|\Theta_i$ et $\Theta_i$. Avec l'approche
+non paramétrique, nous délaissons l'approche bayésienne pure pour
+approche \emph{bayésienne empirique}. Cela nécessite quelques
+ajustements à notre vocabulaire et à l'interprétation que nous faisons
+des différentes composantes de notre modèle d'hétérogénéité.
 
-Avec l'approche non paramétrique, nous délaissons l'approche bayésienne
-pure pour l'approche bayésienne \emph{empirique}.
+Le portefeuille de contrats joue --- finalement --- un rôle central.
+D'abord, chaque contrat, par son niveau de risque, représente une
+réalisation de la variable aléatoire $\Theta$. La fonction de
+répartition $U(\theta)$ de $\Theta$ est la \emph{fonction de
+  structure} du portefeuille. Au \autoref{chap:bayesienne}, nous la
+voyions comme l'opinion à priori de l'assureur sur le niveau de risque
+d'un contrat. Dans l'approche empirique, la fonction de structure
+représente la proportion de contrats dans le portefeuille avec un
+niveau de risque inférieur ou égal à $\theta$ ou, de manière
+équivalente, la distribution des niveaux de risque entre les contrats.
 
-\begin{itemize}
-\item Nous avons plusieurs réalisations de la variable aléatoire $\Theta$.
-\item $U(\theta)$ est la \emph{fonction de structure} du portefeuille:
-  \begin{itemize}
-  \item avant: opinion à priori de l'assureur sur le niveau de risque
-    d'un contrat;
-  \item maintenant: proportion de contrats avec un niveau de risque
-    inférieur ou égal à $\theta$, distribution des niveaux de risque
-    entre les contrats.
-  \end{itemize}
-\item Homogénéité du portefeuille: à quel point les moyennes des
-  contrats sont semblables.
-\item Nous devons estimer les \emph{paramètres de structure} du portefeuille:
-  \begin{enumerate}
-  \item $m = \esp{\mu(\Theta)}$, moyenne du portefeuille;
-  \item $s^2 = \esp{\sigma^2(\Theta)}$, variabilité moyenne du
-    portefeuille, homogénéité temporelle;
-  \item $a = \var{\mu(\Theta)}$, variance entre les moyennes des
-    contrats, homogénéité du portefeuille.
-  \end{enumerate}
-\item Nous développons des estimateurs sans biais des paramètres.
-\end{itemize}
+Auparavant, les concepts d'homogénéité ou d'hétérogénéité étaient liés
+au niveau de certitude de l'assureur quant au niveau de risque d'un
+contrat. Ce n'était pas très intuitif. Dorénavant, nous parlerons d'un
+portefeuille homogène ou hétérogène selon que les moyennes des
+contrats s'avèrent semblables ou non.
+
+Pour calculer les primes de crédibilité des contrats, nous nous devrons
+estimer les \emph{paramètres de structure} du portefeuille, soit:
+\begin{enumerate}
+\item $m = \esp{\mu(\Theta)}$, la moyenne collective du portefeuille;
+\item $s^2 = \esp{\sigma^2(\Theta)}$, la variance intra
+  (\emph{within}) représentant la variabilité moyenne du portefeuille,
+  ou l'homogénéité temporelle;
+\item $a = \var{\mu(\Theta)}$, la variance inter (\emph{between})
+  représentant la variabilité entre les moyennes des contrats, ou
+  l'homogénéité du portefeuille.
+\end{enumerate}
+Pour effectuer l'estimation, nous allons développer des estimateurs
+sans biais des paramètres.
 
 \subsection{Estimation de la prime collective}
 \label{sec:buhlmann:nonparametrique:m}
 
-Intuitivement,
+Intuitivement, un estimateur de la prime collective est la moyenne
+empirique des moyennes individuelles:
 \begin{displaymath}
   \hat{m} = \bar{S} = \frac{1}{I n} \sum_{i = 1}^I \sum_{t = 1}^n S_{it}.
 \end{displaymath}
-
-L'estimateur est effectivement sans biais:
+Cet estimateur est bel et bien sans biais:
 \begin{align*}
   \esp{\hat{m}}
   &= \frac{1}{I n} \sum_{i = 1}^I \sum_{t = 1}^n \esp{S_{it}} \\
@@ -715,20 +750,20 @@ L'estimateur est effectivement sans biais:
 \subsection{Estimation de la variance intra}
 \label{sec:buhlmann:nonparametrique:s2}
 
-Un estimateur sans biais de la variance du contrat $i = 1, \dots, n$
-est
+Un estimateur sans biais de la variance du contrat $i$,
+$i = 1, \dots, n$, est
 \begin{displaymath}
   \frac{1}{n - 1} \sum_{t = 1}^n (S_{it} - \bar{S}_i)^2, \quad
   n \geq 2.
 \end{displaymath}
-Pour obtenir un estimateur sans biais de $s^2$, on prend la moyenne de
-tous ces estimateurs:
+Pour obtenir un estimateur sans biais de la variance moyenne $s^2$, il
+suffit ensuite de calculer la moyenne de tous ces estimateurs:
 \begin{displaymath}
   \hat{s}^2 = \frac{1}{I(n - 1)} \sum_{i = 1}^I \sum_{t = 1}^n
   (S_{it} - \bar{S}_i)^2.
 \end{displaymath}
 
-Pour démontrer l'absence de biais, on note d'abord que
+Pour démontrer l'absence de biais, remarquons d'abord que
 \begin{align*}
   \esp{(S_{it} - \bar{S}_i)^2|\Theta_i}
   &= \var{S_{it} - \bar{S}_i|\Theta_i} \\
@@ -758,11 +793,12 @@ et
 \subsection{Estimation de la variance inter}
 \label{sec:buhlmann:nonparametrique:a}
 
-Un estimateur intuitif de $a = \var{\mu(\Theta)}$ est
-\begin{displaymath}
+Un estimateur intuitif de la variance entre les moyennes des contrats
+$a = \var{\mu(\Theta)}$ serait
+\begin{equation*}
   \frac{1}{I - 1} \sum_{i = 1}^I (\bar{S}_i - \bar{S})^2.
-\end{displaymath}
-Or, cet estimateur est biaisé. En effet, on a
+\end{equation*}
+Or, cet estimateur est biaisé. En effet,
 \begin{align*}
   \esp{(\bar{S}_i - \bar{S})^2}
   &= \var{\bar{S}_i - \bar{S}} \\
@@ -770,24 +806,21 @@ Or, cet estimateur est biaisé. En effet, on a
   + \var{\bar{S}}
   - 2 \Cov(\bar{S}_i, \bar{S}).
 \end{align*}
-Par indépendance entre les contrats, on a
+Par indépendance entre les contrats, nous avons
 \begin{align*}
   \Cov(\bar{S}_i, \bar{S})
   &= \frac{1}{I} \sum_{j = 1}^I \Cov(\bar{S}_i, \bar{S}_j) \\
-  &= \frac{1}{I}\, \var{\bar{S}_i} \\
-  \intertext{et}
-  \var{\bar{S}}
-  &= \frac{\var{\bar{S}_i}}{I},
+  &= \frac{1}{I}\, \var{\bar{S}_i}
 \end{align*}
-d'où
-\begin{displaymath}
-  \esp{(\bar{S}_i - \bar{S})^2} = \frac{I - 1}{I}\, \var{\bar{S}_i}.
-\end{displaymath}
+et $\var{\bar{S}} = I^{-1} \var{\bar{S}_i}$, d'où
+\begin{equation*}
+  \esp{(\bar{S}_i - \bar{S})^2} = \frac{I - 1}{I}\, \var{\bar{S}_i}
+\end{equation*}
 et
-\begin{displaymath}
+\begin{equation*}
   \Esp{\frac{1}{I - 1} \sum_{i = 1}^I (\bar{S}_i - \bar{S})^2}
   = \var{\bar{S}_i}.
-\end{displaymath}
+\end{equation*}
 Or,
 \begin{align*}
   \var{\bar{S}_i}
@@ -795,23 +828,27 @@ Or,
   &= \var{\mu(\Theta_i)} + \Esp{\frac{\sigma^2(\Theta_i)}{n}} \\
   &= a + \frac{s^2}{n}.
 \end{align*}
-Un estimateur sans biais de $a$ est donc
-\begin{displaymath}
+
+Le biais de l'estimateur est donc $s^2/n$. Pour obtenir un estimateur
+sans biais, nous allons simplement retrancher cette valeur de la somme
+des écarts au carré. Un estimateur sans biais de $a$ est donc
+\begin{equation*}
   \hat{a} = \frac{1}{I - 1} \sum_{i = 1}^I (\bar{S}_i - \bar{S})^2 -
   \frac{1}{n}\, \hat{s}^2.
-\end{displaymath}
+\end{equation*}
 
-Problème: l'estimateur $\hat{a}$ peut être négatif. En pratique, on posera
-\begin{displaymath}
-  \hat{a}^\prime = \max(\hat{a}, 0),
-\end{displaymath}
-qui est un estimateur biaisé.
+\importantbox{L'estimateur $\hat{a}$ peut être négatif. En pratique,
+  nous devons utiliser $\hat{a}^\prime = \max(\hat{a}, 0)$, qui est un
+  estimateur biaisé du paramètre $a$. C'est là un problème récurrent
+  --- et déroutant! --- en statistique que pour que l'estimateur d'une
+  variance soit sans biais, il doit pouvoir être négatif.}
 
 \subsection{Prime de crédibilité}
 \label{sec:buhlmann:nonparametrique:prime}
 
-On estime la prime de crédibilité en remplaçant chaque paramètre
-inconnu par son estimateur:
+Nous ne pouvons estimer directement sans biais la prime de
+crédibilité. Nous remplaçons simplement chaque paramètre de structure
+par son estimateur:
 \begin{align*}
   \hat{\pi}_{i, n + 1}^{\text{B}}
   &= \hat{z} \bar{S}_i + (1 - \hat{z}) \hat{m} \\
@@ -819,38 +856,38 @@ inconnu par son estimateur:
   &= \frac{n}{n + \hat{s}^2/\hat{a}}.
 \end{align*}
 
-Bien que tous les estimateurs soient sans biais, on ne peut conclure
-que $\esp{\hat{K}} = K$ et donc que $\esp{\hat{z}} = z$. Par
+Bien que tous les estimateurs sont sans biais, nous ne pouvons
+conclure que $\esp{\hat{K}} = K$ et donc que $\esp{\hat{z}} = z$. Par
 conséquent, l'estimateur de la prime de crédibilité est fort
 probablement biaisé.
 
 \begin{exemple}
-  Soit le portefeuille de $I = 3$ contrats suivant après $n = 6$
-  années d'expérience.
-  \begin{center}
-    \begin{tabular}{*{7}{c}}
+  \label{ex:buhlmann:nparam}
+  Nous avons $n = 6$ années d'expérience d'un portefeuille de $I = 3$
+  contrats. Les données du portefeuille se trouvent au
+  \autoref{tab:buhlmann:nparam}. Calculons la prime de crédibilité
+  pour la septième année pour chacun des contrats.
+
+  \begin{table}
+    \centering
+    \caption{Données du portefeuille de l'\autoref{ex:buhlmann:nparam}}
+    \label{tab:buhlmann:nparam}
+    \begin{tabular}{*{7}{>{$}c<{$}}}
       \toprule
       & \multicolumn{6}{c}{Années} \\
       \cmidrule{2-7}
-      Contrat & 1 & 2 & 3 & 4 & 5 & 6 \\
+      \multicolumn{1}{c}{Contrat} & 1 & 2 & 3 & 4 & 5 & 6 \\
       \midrule
             1 & 0 & 1 & 2 & 1 & 2 & 0 \\
             2 & 3 & 4 & 2 & 1 & 4 & 4 \\
             3 & 3 & 3 & 2 & 1 & 2 & 1 \\
       \bottomrule
     \end{tabular}
-  \end{center}
-  Calculer la prime de crédibilité pour la septième année pour chacun
-  des contrats.
+  \end{table}
 
-  Tout d'abord, on a
-  \begin{align*}
-    \bar{S}_1 &= 1 &
-    \bar{S}_2 &= 3 &
-    \bar{S}_3 &= 2
-  \end{align*}
-  et $\bar{S} = 2$. On doit par la suite calculer les estimateurs des
-  paramètres de structure:
+  Tout d'abord, nous avons $\bar{S}_1 = 1$, $\bar{S}_2 = 3$,
+  $\bar{S}_3 = 2$ et $\bar{S} = 2$. Ainsi, les estimateurs des
+  paramètres de structure sont:
   \begin{align*}
     \hat{m}
     &= \bar{S} = 2 \\
@@ -858,9 +895,9 @@ probablement biaisé.
     &= \frac{1}{I} \sum_{i = 1}^I \frac{1}{n - 1} \sum_{t = 1}^n
     (S_{it} - \bar{S}_i)^2 \\
     &= \frac{1}{3}
-    \left[
+    \left(
       \frac{4}{5} + \frac{8}{5} + \frac{4}{5}
-    \right]
+    \right)
      = \frac{16}{15} \\
     \hat{a}
     &= \frac{1}{I - 1} \sum_{i = 1}^I (\bar{S}_i - \bar{S})^2
@@ -881,11 +918,10 @@ probablement biaisé.
     \hat{\pi}_{3, 7}^{\text{B}}
     &= 2.
   \end{align*}
-  On peut obtenir les mêmes résultats avec la fonction \code{cm} de
-  \pkg{actuar} \citep{actuar}.
 
-  \gotorbox{Compléter cet exemple en exécutant le code informatique de
-    la \autoref{sec:buhlmann:code}.} %
+  \gotorbox{Nous obtenons les mêmes résultats avec la fonction
+    \code{cm}. Compléter cet exemple en exécutant le code informatique
+    correspondant de la \autoref{sec:buhlmann:code}.} %
   \qed
 \end{exemple}
 
@@ -893,7 +929,7 @@ probablement biaisé.
 \section{Interprétation des résultats}
 \label{sec:buhlmann:interpretation}
 
-On s'attarde principalement au facteur de crédibilité
+Nous nous attardons principalement au facteur de crédibilité
 \begin{displaymath}
   z = \frac{n}{n + K}, \quad K = \frac{s^2}{a} =
   \frac{\esp{\sigma^2(\Theta)}}{\var{\mu(\Theta)}}.
@@ -925,43 +961,42 @@ les points 2 et 3 ci-dessus. Chaque courbe représente l'expérience
 d'un contrat. Dans les deux cas, le facteur de crédibilité est plus
 grand dans le graphique de droite.
 
-\begin{rems}
-  \begin{enumerate}
-  \item Si $s^2$ et $a$ varient en des directions opposées, il devient
-    difficile d'interpréter les résultats.
-  \item Si $\bar{S}_1 = \dots = \bar{S}_I = \bar{S}$, alors $a = 0$ et
-    la prime de crédibilité est $\pi_{i, n + 1}^{\text{B}} = \bar{S} =
-    \bar{S}_i$ pour chaque contrat. Pourquoi alors ne pas charger tout
-    simplement $\bar{S}_i$? Parce que dans une telle situation, il
-    n'est pas nécessaire de faire de la tarification basée sur
-    l'expérience.
-  \end{enumerate}
-\end{rems}
+Si $s^2$ et $a$ varient en des directions opposées, il devient
+difficile d'interpréter les résultats.
 
-\begin{figure}
-  \begin{center}
+Lorsque toutes les moyennes individuelles sont identiques,
+$\bar{S}_1 = \dots = \bar{S}_I = \bar{S}$, alors $a = 0$ et la prime
+de crédibilité est $\pi_{i, n + 1}^{\text{B}} = \bar{S} = \bar{S}_i$
+pour chaque contrat. Autrement dit, les primes individuelles et la
+prime collective sont identiques. Il serait donc numériquement
+équivalent d'octroyer une crédibilité de $1$ à l'expérience
+individuelle. Comment alors justifier la crédibilité de $0$? Tout
+simplement par le fait que, dans une telle situation, il n'est pas
+nécessaire de faire de la tarification basée sur l'expérience.
+
+\begin{figure}[t]
+  \centering
 <<echo=FALSE, fig=TRUE, width=8, height=4>>=
 par(mfrow = c(1, 2), mar = c(3, 2, 2, 2))
 plot(NA, xlim = c(0, 20), ylim = c(0, 0.2), ylab = "", xlab = "", yaxt = "n")
-curve(dnorm(x, mean = 7.5, sd = 2), xlim = c(1.5, 13.5), lwd = 1, add = TRUE)
-curve(dnorm(x, mean = 10, sd = 2), xlim = c(4, 16), lwd = 2, add = TRUE)
+curve(dnorm(x, mean = 7.5,  sd = 2), xlim = c(1.5, 13.5), lwd = 1, add = TRUE)
+curve(dnorm(x, mean = 10,   sd = 2), xlim = c(4, 16), lwd = 2, add = TRUE)
 curve(dnorm(x, mean = 12.5, sd = 2), xlim = c(6.5, 18.5), lwd = 3, add = TRUE)
 plot(NA, xlim = c(0, 20), ylim = c(0, 0.8), ylab = "", xlab = "", yaxt = "n")
-curve(dnorm(x, mean = 7.5, sd = 0.5), xlim = c(6, 9), lwd = 1, add = TRUE)
-curve(dnorm(x, mean = 10, sd = 0.5), xlim = c(8.5, 11.5), lwd = 2, add = TRUE)
+curve(dnorm(x, mean = 7.5,  sd = 0.5), xlim = c(6, 9), lwd = 1, add = TRUE)
+curve(dnorm(x, mean = 10,   sd = 0.5), xlim = c(8.5, 11.5), lwd = 2, add = TRUE)
 curve(dnorm(x, mean = 12.5, sd = 0.5), xlim = c(11, 14), lwd = 3, add = TRUE)
 @
-    \caption{Effet de $s^2 = \esp{\sigma^2(\Theta)}$ sur le facteur
-      de crédibilité. Gauche: grand $s^2$, l'expérience est trop
-      volatile pour être fiable. Droite: petit $s^2$, les moyennes
-      individuelles sont fiables. Les moyennes sont identiques dans
-      les deux graphiques.}
-    \label{fig:buhlmann:s2}
-  \end{center}
+  \caption{Effet de $s^2 = \esp{\sigma^2(\Theta)}$ sur le facteur
+    de crédibilité. Gauche: grand $s^2$, l'expérience est trop
+    volatile pour être fiable. Droite: petit $s^2$, les moyennes
+    individuelles sont fiables. Les moyennes sont identiques dans
+    les deux graphiques.}
+  \label{fig:buhlmann:s2}
 \end{figure}
 
-\begin{figure}
-  \begin{center}
+\begin{figure}[t]
+  \centering
 <<echo=FALSE, fig=TRUE, width=8, height=4>>=
 par(mfrow = c(1, 2), mar = c(3, 2, 2, 2))
 plot(NA, xlim = c(0, 20), ylim = c(0, 0.4), ylab = "", xlab = "", yaxt = "n")
@@ -973,13 +1008,12 @@ curve(dnorm(x, mean = 5, sd = 1), xlim = c(2, 8), lwd = 1, add = TRUE)
 curve(dnorm(x, mean = 10, sd = 1), xlim = c(7, 13), lwd = 2, add = TRUE)
 curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 @
-    \caption{Effet de $a = \var{\mu(\Theta)}$ sur le facteur de
-      crédibilité. Gauche: petit $a$, le portefeuille est
-      homogène. Droite: grand $a$, le portefeuille est
-      hétérogène. Les variances sont identiques dans les deux
-      graphiques.}
-    \label{fig:buhlmann:a}
-  \end{center}
+  \caption{Effet de $a = \var{\mu(\Theta)}$ sur le facteur de
+    crédibilité. Gauche: petit $a$, le portefeuille est
+    homogène. Droite: grand $a$, le portefeuille est
+    hétérogène. Les variances sont identiques dans les deux
+    graphiques.}
+  \label{fig:buhlmann:a}
 \end{figure}
 
 \section{Code informatique}

@@ -84,6 +84,12 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ### (en développement)
 
+#### Nouveautés
+
+- Chapitre 4 entièrement révisé.
+- Fichier de code informatique `buhlmann.R` bonifié.
+- Un fichier COLLABORATEURS est maintenant livré avec le document. Il contient la liste des personnes ayant contribué à l'amélioration du document via le dépôt Git.
+
 #### Autres modifications
 
 - Utilisation plus constante de l'indice *i* dans la notation à la section 3.3 jusqu'à  l'exemple 3.2.

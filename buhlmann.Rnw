@@ -37,9 +37,9 @@ l'enjeu de linéarité de la prime bayésienne,
 \citet{Buhlmann:credibility:1967} a proposé de restreindre
 l'approximation de la prime de risque aux fonctions linéaires des
 observations, c'est-à-dire de la forme
-\begin{displaymath}
+\begin{equation*}
   c_0 + \sum_{t = 1}^n c_t S_{it}.
-\end{displaymath}
+\end{equation*}
 Nous verrons que la meilleure approximation se trouve être une prime
 de crédibilité.
 
@@ -179,9 +179,9 @@ variables aléatoires en conditionnant sur une troisième.
 \begin{corrolaire}
   En posant $X \equiv Y$ dans le
   \autoref{thm:buhlmann:covariance_iteree}, on obtient
-  \begin{displaymath}
+  \begin{equation*}
     \var{X} = \esp{\var{X|\Theta}} + \var{\esp{X|\Theta}}.
-  \end{displaymath}
+  \end{equation*}
 \end{corrolaire}
 
 Un dernier résultat pour cette section: le théorème suivant établit
@@ -210,13 +210,13 @@ contexte analogue à notre modèle d'hétérogénéité.
     &= a,
   \end{align*}
   où $\delta_{tu}$ est le delta de Kronecker:
-  \begin{displaymath}
+  \begin{equation*}
     \delta_{tu} =
     \begin{cases}
       1, & t = u \\
       0, & t \neq u.
     \end{cases}
-  \end{displaymath}
+  \end{equation*}
 \end{thm}
 
 \begin{proof}
@@ -379,13 +379,13 @@ se trouve dans le théorème suivant.
   \end{align*}
   Par symétrie de cette égalité pour $u = 1, \dots, n$, nous pouvons
   conclure que
-  \begin{displaymath}
+  \begin{equation*}
     c_1 = c_2 = \dots = c_n = c = \frac{a}{an + s^2}.
-  \end{displaymath}
+  \end{equation*}
   De l'équation \eqref{eq:buhlmann:c0},
-  \begin{displaymath}
+  \begin{equation*}
     c_0 = (1 - n c) m
-  \end{displaymath}
+  \end{equation*}
   et donc
   \begin{align*}
     \pi_{i, n + 1}^{\text{B}}
@@ -460,21 +460,21 @@ trouver la meilleure approximation linéaire de la prime bayésienne
 \begin{thm}
   Si $\pi_{i, n + 1}^{\text{B}}$ est la combinaison linéaire des
   observations minimisant
-  \begin{displaymath}
+  \begin{equation*}
     E \bigg[
       \Big(
         \mu(\Theta_i) - c_0 - \sum_{t = 1}^n c_t S_{it}
       \Big)^2
     \bigg],
-  \end{displaymath}
+  \end{equation*}
   alors $\pi_{i, n + 1}^{\text{B}}$  minimise également
-  \begin{displaymath}
+  \begin{equation*}
     E \bigg[
       \Big(
         B_{i, n + 1} - c_0 - \sum_{t = 1}^n c_t S_{it}
       \Big)^2
     \bigg],
-  \end{displaymath}
+  \end{equation*}
   où $B_{i, n + 1} = \esp{\mu(\Theta_i)|\mat{S}_i}$.
 \end{thm}
 
@@ -522,11 +522,11 @@ trouver la meilleure approximation linéaire de la prime bayésienne
 
 \begin{corrolaire}
   Nous avons
-  \begin{displaymath}
+  \begin{equation*}
     \esp{(\mu(\Theta_i) - \pi_{i, n + 1}^{\text{B}})^2}
     \geq
     \esp{(\mu(\Theta_i) - B_{i, n + 1})^2},
-  \end{displaymath}
+  \end{equation*}
   l'égalité survenant lorsque la prime bayésienne est une prime de
   crédibilité.
 \end{corrolaire}
@@ -736,9 +736,9 @@ sans biais des paramètres.
 
 Intuitivement, un estimateur de la prime collective est la moyenne
 empirique des moyennes individuelles:
-\begin{displaymath}
+\begin{equation*}
   \hat{m} = \bar{S} = \frac{1}{I n} \sum_{i = 1}^I \sum_{t = 1}^n S_{it}.
-\end{displaymath}
+\end{equation*}
 Cet estimateur est bel et bien sans biais:
 \begin{align*}
   \esp{\hat{m}}
@@ -752,16 +752,16 @@ Cet estimateur est bel et bien sans biais:
 
 Un estimateur sans biais de la variance du contrat $i$,
 $i = 1, \dots, n$, est
-\begin{displaymath}
+\begin{equation*}
   \frac{1}{n - 1} \sum_{t = 1}^n (S_{it} - \bar{S}_i)^2, \quad
   n \geq 2.
-\end{displaymath}
+\end{equation*}
 Pour obtenir un estimateur sans biais de la variance moyenne $s^2$, il
 suffit ensuite de calculer la moyenne de tous ces estimateurs:
-\begin{displaymath}
+\begin{equation*}
   \hat{s}^2 = \frac{1}{I(n - 1)} \sum_{i = 1}^I \sum_{t = 1}^n
   (S_{it} - \bar{S}_i)^2.
-\end{displaymath}
+\end{equation*}
 
 Pour démontrer l'absence de biais, remarquons d'abord que
 \begin{align*}
@@ -906,9 +906,9 @@ probablement biaisé.
      = \frac{37}{45}.
   \end{align*}
   Par conséquent, $\hat{K} = 48/37 \approx 1,30$ et
-  \begin{displaymath}
+  \begin{equation*}
     \hat{z} = \frac{6}{6 + 1,30} = 0,82,
-  \end{displaymath}
+  \end{equation*}
   d'où
   \begin{align*}
     \hat{\pi}_{1, 7}^{\text{B}}
@@ -930,10 +930,10 @@ probablement biaisé.
 \label{sec:buhlmann:interpretation}
 
 Nous nous attardons principalement au facteur de crédibilité
-\begin{displaymath}
+\begin{equation*}
   z = \frac{n}{n + K}, \quad K = \frac{s^2}{a} =
   \frac{\esp{\sigma^2(\Theta)}}{\var{\mu(\Theta)}}.
-\end{displaymath}
+\end{equation*}
 Le facteur de crédibilité augmente --- un plus grand poids est donné à
 l'expérience individuelle --- dans les situations suivantes:
 \begin{enumerate}
@@ -1047,14 +1047,14 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   d'accident de 20~\% par année alors que les hommes ont une
   probabilité d'accident de 40~\% par année. La distribution de la
   sévérité des sinistres est la suivante:
-  \begin{displaymath}
+  \begin{equation*}
     \Pr[X = x] =
     \begin{cases}
       0,8, & x = 100 \\
       0,1, & x = 200 \\
       0,1, & x = 400.
     \end{cases}
-  \end{displaymath}
+  \end{equation*}
   On suppose qu'une personne ne peut avoir qu'un seul accident par
   année. Calculer le facteur de crédibilité pour un assuré selon le
   modèle de Bühlmann.
@@ -1062,12 +1062,13 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     $n/(n + 32,86)$
   \end{rep}
   \begin{sol}
-    On peut résoudre ce problème de deux façons.
+    Nous pouvons résoudre ce problème de deux façons.
     \begin{enumerate}
-    \item De manière similaire à l'\autoref{exercice:bayesienne:YARD}, on trouve la
-      distribution du montant total des sinistres $S$ en considérant
-      la probabilité de ne pas avoir d'accident. En identifiant les
-      femmes par $\theta = 0,2$ et les hommes par $\theta = 0,4$, on a
+    \item De manière similaire à l'\autoref{exercice:bayesienne:YARD},
+      nous trouvons la distribution du montant total des sinistres $S$
+      en considérant la probabilité de ne pas avoir d'accident. En
+      identifiant les femmes par $\theta = 0,2$ et les hommes par
+      $\theta = 0,4$, nous avons
       \begin{align*}
         \Pr[S = x|\Theta = 0,2]
         &= \begin{cases}
@@ -1111,25 +1112,25 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \end{align*}
       d'où le facteur de crédibilité est $z = n/(n + s^2/a) = n/(n +
       32,86)$.
-    \item On pose $S = X_1 + \dots + X_N$ avec $N|\Theta = \theta \sim
-      \text{Bernoulli}(\theta)$,
-      \begin{displaymath}
+    \item Nous posons $S = X_1 + \dots + X_N$ avec
+      $N|\Theta = \theta \sim \text{Bernoulli}(\theta)$,
+      \begin{equation*}
         \Pr[\Theta = \theta] =
         \begin{cases}
           0,5, & \theta = 0,2 \\
           0,5, & \theta = 0,4.
         \end{cases}
-      \end{displaymath}
+      \end{equation*}
       et
-      \begin{displaymath}
+      \begin{equation*}
         \Pr[X = x] =
         \begin{cases}
           0,8, & x = 100 \\
           0,1, & x = 200 \\
           0,1, & x = 400.
         \end{cases}
-      \end{displaymath}
-      On a alors
+      \end{equation*}
+      Nous avons alors
       \begin{align*}
         \mu(\Theta)
         &= \esp{S|\Theta} \\
@@ -1163,10 +1164,11 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  Vous roulez un dé régulier. Si vous obtenez 1, vous pigez dans
-  l'urne A, si vous obtenez 2, 3 ou 4, vous pigez dans l'urne B et si
-  vous obtenez 5 ou 6, vous pigez dans l'urne C. Chaque urne contient
-  des balles rouges et blanches dans les proportions ci-dessous.
+  Vous roulez un dé régulier. Si vous obtenez $1$, vous pigez dans
+  l'urne A, si vous obtenez $2$, $3$ ou $4$, vous pigez dans l'urne B
+  et si vous obtenez $5$ ou $6$, vous pigez dans l'urne C. Chaque urne
+  contient des balles rouges et blanches dans les proportions
+  ci-dessous.
   \begin{center}
     \begin{tabular}{lcc}
       \toprule
@@ -1184,25 +1186,25 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   balles, toujours avec remise. Si vous ne vous souvenez plus ni du
   nombre indiqué par le dé, ni de quelle urne les balles ont été
   tirées, mais que vous avez toujours en note que vous avez pigé trois
-  balles rouges, quel est l'estimation du nombre de balles rouges que
-  pigera votre ami selon le modèle de crédibilité de Bühlmann?
+  balles rouges, quelle est l'estimation du nombre de balles rouges
+  que pigera votre ami selon le modèle de crédibilité de Bühlmann?
   \begin{rep}
     $2,5770$
   \end{rep}
   \begin{sol}
     Soit $S$ le nombre de balles rouges tirées et $\Theta$ la
-    probabilité de tirer une balle rouge. On identifie par $\theta =
-    0,75$ l'urne A, $\theta = 0,50$ l'urne B et $\theta = 0,25$ l'urne
-    C. On a le modèle $S|\Theta = \theta \sim \text{Binomiale}(5,
-    \theta)$ et
-    \begin{displaymath}
+    probabilité de tirer une balle rouge. On identifie par
+    $\theta = 0,75$ l'urne A, $\theta = 0,50$ l'urne B et
+    $\theta = 0,25$ l'urne C. Nous avons le modèle
+    $S|\Theta = \theta \sim \text{Binomiale}(5, \theta)$ et
+    \begin{equation*}
       \Pr[\Theta = \theta] =
       \begin{cases}
         \frac{1}{6}, & \theta = 0,75 \\
         \frac{3}{6}, & \theta = 0,50 \\
         \frac{2}{6}, & \theta = 0,25.
       \end{cases}
-    \end{displaymath}
+    \end{equation*}
     Ainsi, $\mu(\Theta) = \esp{S|\Theta} = 5 \Theta$ et
     $\sigma^2(\Theta) = \var{S|\Theta} = 5 \Theta (1 - \Theta)$, d'où
     \begin{align*}
@@ -1220,10 +1222,11 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
        = 25 \var{\Theta}
        = 0,7378.
     \end{align*}
-    Après une expérience lors de laquelle on a obtenu $\bar{S} = S_1 =
-    3$, le facteur de crédibilité est $z = 1/(1 + 1,0938/0,7378) =
-    0,4028$. L'estimateur de Bühlmann du nombre de boules rouges lors
-    du prochain tir dans la même urne est donc
+    Après une expérience lors de laquelle nous avons obtenu
+    $\bar{S} = S_1 = 3$, le facteur de crédibilité est
+    $z = 1/(1 + 1,0938/0,7378) = 0,4028$. L'estimateur de Bühlmann du
+    nombre de balles rouges lors du prochain tir dans la même urne est
+    donc
     \begin{align*}
       \pi_2
       &= 0,4028 (3) + (1 - 0,4028)(2,2917) \\
@@ -1242,7 +1245,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \item Pour chaque risque, la probabilité d'avoir exactement un
     sinistre au cours d'une année est de 20~\%, alors que la
     probabilité de n'avoir aucun sinistre est de 80~\%.
-  \item Le montant des sinistres des risques de type A est 2.
+  \item Le montant des sinistres des risques de type A est $2$.
   \item Le montant des sinistres des risques de type B est $c$, une
     constante inconnue.
   \end{enumerate}
@@ -1285,7 +1288,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
         \frac{1}{2}, & \theta = \theta_B.
       \end{cases}
     \end{align*}
-  \item Avec l'information de a), on a
+  \item Avec l'information de a), nous avons
     \begin{align*}
       \esp{S|\Theta = \theta_A} &= 0,4 &
       \var{S|\Theta = \theta_A} &= 0,64 \\
@@ -1316,22 +1319,23 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \toprule
       Type de risque & $\alpha$ & $\lambda$ \\
       \midrule
-      Bon     & 4 & 2 \\
-      Moyen   & 4 & 1 \\
-      Mauvais & 10 & 2 \\
+      Bon     & $4 $ & $2$ \\
+      Moyen   & $4 $ & $1$ \\
+      Mauvais & $10$ & $2$ \\
       \bottomrule
     \end{tabular}
   \end{center}
-  Le dossier de sinistre d'un risque choisi au hasard est de 1 et 2 au
-  cours des deux premières années. Calculer la prime de crédibilité de
-  ce risque pour la troisième année selon le modèle de Bühlmann.
+  Le dossier de sinistre d'un risque choisi au hasard est de $1$ et
+  $2$ au cours des deux premières années. Calculer la prime de
+  crédibilité de ce risque pour la troisième année selon le modèle de
+  Bühlmann.
   \begin{rep}
     $2,78$
   \end{rep}
   \begin{sol}
-    On prend $\theta_1$ pour représenter les bons risques, $\theta_2$
-    les risques moyens et $\theta_3$ les mauvais risques. On a le
-    modèle suivant:
+    Nous utiliserons $\theta_1$ pour représenter les bons risques,
+    $\theta_2$ les risques moyens et $\theta_3$ les mauvais risques.
+    Nous avons le modèle suivant:
     \begin{align*}
       X|\Theta = \theta_1 &\sim \text{Gamma}(4, 2) \\
       X|\Theta = \theta_2 &\sim \text{Gamma}(4, 1) \\
@@ -1363,9 +1367,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       &= 0,25 (2^2) + 0,60 (4^2) + 0,15 (5^2) - m^2 = 1,0275.
     \end{align*}
     Le facteur de crédibilité après deux années est
-    \begin{displaymath}
+    \begin{equation*}
       z = \frac{2}{2 + 3,025/1,0275} = 0,4045
-    \end{displaymath}
+    \end{equation*}
     et, enfin, la prime de Bühlmann pour la troisième année après une
     expérience individuelle moyenne de $(1 + 2)/2 = 1,5$ est
     \begin{align*}
@@ -1387,50 +1391,53 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \cmidrule{3-4}
       Classe & Nombre d'assurés & Moyenne & Variance \\
       \midrule
-      A & \nombre{1000} & 50 & \nombre{100000} \\
-      B & \nombre{2000} & 200 & \nombre{500000} \\
-      C & \nombre{1000} & 500 & \nombre{500000} \\
-      D & \nombre{1000} & \nombre{1000} & \nombre{500000} \\
+      A & $\nombre{1000}$ & $50$ &  $\nombre{100000}$ \\
+      B & $\nombre{2000}$ & $200$ & $\nombre{500000}$ \\
+      C & $\nombre{1000}$ & $500$ & $\nombre{500000}$ \\
+      D & $\nombre{1000}$ & $\nombre{1000}$ & $\nombre{500000}$ \\
       \bottomrule
     \end{tabular}
   \end{center}
   Calculer la prime de crédibilité chargée à un assuré ayant subi pour
-  800~\$ de sinistres en quatre ans.
+  $800$~\$ de sinistres en quatre ans.
   \begin{rep}
     $290,93$%
   \end{rep}
   \begin{sol}
-    On a
+    Les valeurs des paramètres de structures sont:
     \begin{align*}
       m
       &= \esp{\mu(\Theta)} \\
       &= \frac{\nombre{1000}}{\nombre{5000}} (50)
-      + \frac{\nombre{2000}}{\nombre{5000}} (200)
+      + \frac{\nombre{2000}}{\nombre{5000}} (200) \\
+      &\phantom{=}
       + \frac{\nombre{1000}}{\nombre{5000}} (500)
       + \frac{\nombre{1000}}{\nombre{5000}} (\nombre{1000}) \\
-      &= 390 \\
+      &= 390, \displaybreak[0] \\
       s^2
       &= \esp{\sigma^2(\Theta)} \\
       &= \frac{\nombre{1000}}{\nombre{5000}} (\nombre{100000})
-      + \frac{\nombre{2000}}{\nombre{5000}} (\nombre{500000})
+      + \frac{\nombre{2000}}{\nombre{5000}} (\nombre{500000}) \\
+      &\phantom{=}
       + \frac{\nombre{1000}}{\nombre{5000}} (\nombre{500000})
       + \frac{\nombre{1000}}{\nombre{5000}} (\nombre{500000}) \\
-      &= \nombre{420000}
-    \end{align*}
-    et
-    \begin{align*}
+      &= \nombre{420000} \displaybreak[0] \\
+      \intertext{et}
       a
       &= \var{\mu(\Theta)} \\
       &= \esp{\mu(\Theta)^2} - m^2 \\
       &= \nombre{114400}.
     \end{align*}
-    Le facteur de crédibilité après quatre ans est donc $z = 4/(4 +
-    \nombre{420000}/\nombre{114400}) = 0,5214$ et la prime de
-    crédibilité est
-    \begin{displaymath}
+    Le facteur de crédibilité après quatre ans est donc
+    \begin{equation*}
+      z = \frac{4}{4 + \nombre{420000}/\nombre{114400}}
+      = 0,5214
+    \end{equation*}
+    et la prime de crédibilité est
+    \begin{equation*}
       \pi_5 = (0,5214) \left( \frac{800}{4} \right)
       + (0,4786)(390) = 290,93.
-    \end{displaymath}
+    \end{equation*}
   \end{sol}
 \end{exercice}
 
@@ -1456,13 +1463,13 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     $0,2640$
   \end{rep}
   \begin{sol}
-    On prend $\theta_1$ pour représenter les bons risques, $\theta_2$
-    les risques moyens et $\theta_3$ les mauvais risques. On a donc le
-    modèle suivant:
+    Le paramètre $\theta_1$ représente les bons risques, $\theta_2$
+    les risques moyens et $\theta_3$ les mauvais risques. Nous avons
+    donc le modèle suivant:
     \begin{align*}
-      X|\Theta = \theta_1 &\sim {\text{Pareto}}(4, 1200) \\
-      X|\Theta = \theta_2 &\sim {\text{Gamma}}(1000, 2) \\
-      X|\Theta = \theta_3 &\sim {\text{Exponentielle}}(0,00125) \\
+      X|\Theta = \theta_1 &\sim \text{Pareto}(4, 1200) \\
+      X|\Theta = \theta_2 &\sim \text{Gamma}(1000, 2) \\
+      X|\Theta = \theta_3 &\sim \text{Exponentielle}(0,00125) \\
       \intertext{et}
       \Pr[\Theta = \theta_i] &=
       \begin{cases}
@@ -1491,9 +1498,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     \end{align*}
     Le facteur de crédibilité après quatre années d'expérience est
     donc
-    \begin{displaymath}
+    \begin{equation*}
       z = \frac{4}{4 + \nombre{224125}/\nombre{20100}} = 0,2640.
-    \end{displaymath}
+    \end{equation*}
   \end{sol}
 \end{exercice}
 
@@ -1501,19 +1508,19 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   La sévérité des sinistres pour un certain type d'assurance obéit à
   une loi gamma de paramètre de forme $\alpha = 5$ et de paramètre
   d'échelle $\theta$ variable par assuré. Les bons assurés ont une
-  prime de risque de \nombre{2500}~\$, les assurés moyens, une prime de
-  risque de \nombre{4000}~\$, et les mauvais assurés une prime de
-  risque de \nombre{5000}~\$. L'actuaire responsable de la
+  prime de risque de $\nombre{2500}$~\$, les assurés moyens, une prime de
+  risque de $\nombre{4000}$~\$, et les mauvais assurés une prime de
+  risque de $\nombre{5000}$~\$. L'actuaire responsable de la
   tarification pour ce type d'assurance estime que le portefeuille est
   composé de 30~\% de bons assurés, de 50~\% de moyens et de 20~\% de
   mauvais.  Calculer à l'aide du modèle de Bühlmann la prime de
-  crédibilité d'un assuré ayant encouru un total de \nombre{20000}~\$
+  crédibilité d'un assuré ayant encouru un total de $\nombre{20000}$~\$
   de sinistres au cours des quatre années précédentes.
   \begin{rep}
     $\nombre{4402,61}$
   \end{rep}
   \begin{sol}
-    On a $S|\Theta = \theta \sim \text{Gamma}(5, \theta)$, d'où
+    Nous avons $S|\Theta = \theta \sim \text{Gamma}(5, \theta)$, d'où
     $\mu(\theta) = 5/\theta$ et $\sigma^2(\theta) = 5/\theta^2 =
     \mu(\theta)^2/5$. On nous donne la fonction de masse de
     probabilité de la prime de risque:
@@ -1572,9 +1579,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \begin{exercice}
   Soit $N_t|\Theta = \theta \sim \text{Géométrique}(\theta)$, où la
   fonction de densité de probabilité de $\Theta$ est
-  \begin{displaymath}
+  \begin{equation*}
     u(\theta) = 30(\theta^2 - 2\theta^3 + \theta^4), \quad 0 < \theta < 1.
-  \end{displaymath}
+  \end{equation*}
   \begin{enumerate}
   \item Calculer $\esp{N_t}$.
   \item Sachant que $N_1 = 0$, estimer $N_2$ par l'approche bayésienne
@@ -1589,9 +1596,10 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     \end{inparaenum}
   \end{rep}
   \begin{sol}
-    Cas géométrique/bêta avec $\alpha = \beta = 3$. Voir les formules
-    de l'\autoref{chap:formules}. La prime bayésienne et la prime
-    de Bühlmann sont égales dans un tel cas.
+    Nous sommes en présence d'une combinaison géométrique/bêta avec
+    $a = b = 3$. Voir les formules de l'\autoref{chap:formules}. La
+    prime bayésienne et la prime de Bühlmann sont égales dans un tel
+    cas.
   \end{sol}
 \end{exercice}
 
@@ -1600,17 +1608,17 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   les hypothèses suivantes:
   \begin{enumerate}
   \item $S|\Theta \sim \text{Bernoulli}(\Theta)$,
-    $\Theta \sim \text{Bêta}(\alpha, \beta)$.
+    $\Theta \sim \text{Bêta}(a, b)$.
   \item $S|\Theta \sim \text{Géométrique}(\Theta)$,
-    $\Theta \sim \text{Bêta}(\alpha, \beta)$.
+    $\Theta \sim \text{Bêta}(a, b)$.
   \item $S|\Theta \sim \text{Gamma}(\tau, \Theta)$, $\Theta \sim
     \text{Gamma}(\alpha, \lambda)$.
-  \item $S|\Theta \sim \text{Binomiale négative}(r, \Theta)$, $\Theta \sim$
-    Bêta$(\alpha, \beta)$.
+  \item $S|\Theta \sim \text{Binomiale négative}(r, \Theta)$, $\Theta \sim
+    \text{Bêta}(a, b)$.
   \item $S|\Theta \sim \text{Normale}(5\Theta, \sigma^2)$,
     $\Theta \sim U(a, b)$.
   \item $S|\Theta \sim \text{Exponentielle}(\Theta)$,
-    $\Theta^{-1} \sim$ Bêta$(\alpha, \beta)$.
+    $\Theta^{-1} \sim \text{Bêta}(a, b)$.
   \end{enumerate}
   \begin{rep}
     On ne donne que la valeur de la constante $K$ dans le facteur de
@@ -1630,48 +1638,49 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     \var{\mu(\Theta)}$ et la prime de crédibilité est $z \bar{S} + (1
     - z) m$.
     \begin{enumerate}
-    \item On a $S|\Theta \sim \text{Bernoulli}(\Theta)$, $\Theta \sim
-      \text{Bêta}(\alpha, \beta)$, d'où $\mu(\Theta) = \Theta$ et
+    \item Nous avons $S|\Theta \sim \text{Bernoulli}(\Theta)$, $\Theta \sim
+      \text{Bêta}(a, b)$, d'où $\mu(\Theta) = \Theta$ et
       $\sigma^2(\Theta) = \Theta(1 - \Theta) = \Theta -
       \Theta^2$. Alors,
       \begin{align*}
         m
-        &= \frac{\alpha}{\alpha + \beta} \\
+        &= \frac{a}{a + b} \\
         s^2
-        &= \frac{\alpha}{\alpha + \beta} -
-        \frac{\alpha(\alpha+1)}{(\alpha+\beta)(\alpha+\beta+1)} =
-        \frac{\alpha \beta}{(\alpha+\beta)(\alpha+\beta+1)} \\
+        &= \frac{a}{a + b} -
+        \frac{a(a+1)}{(a+b)(a+b+1)} =
+        \frac{a b}{(a+b)(a+b+1)} \\
         a
-        &= \frac{\alpha(\alpha+1)}{(\alpha+\beta)(\alpha+\beta+1)} -
-        \frac{\alpha^2}{(\alpha + \beta)^2} =
-        \frac{\alpha \beta}{(\alpha+\beta)^2(\alpha+\beta+1)},
+        &= \frac{a(a+1)}{(a+b)(a+b+1)} -
+        \frac{a^2}{(a + b)^2} =
+        \frac{a b}{(a+b)^2(a+b+1)},
       \end{align*}
-      et $K = \alpha + \beta$.
-    \item On a $S|\Theta \sim \text{Géométrique}(\Theta)$, $\Theta
-      \sim \text{Bêta}(\alpha, \beta)$, d'où $\mu(\Theta) = (1 -
+      et $K = a + b$.
+    \item Nous avons $S|\Theta \sim \text{Géométrique}(\Theta)$, $\Theta
+      \sim \text{Bêta}(a, b)$, d'où $\mu(\Theta) = (1 -
       \Theta)/\Theta$, $\sigma^2(\Theta) = (1 - \Theta)/\Theta^2$. Or,
       il est facile de démontrer que si $\Theta$ a une distribution
       bêta, alors
-      \begin{displaymath}
+      \begin{equation*}
         \Esp{\frac{(1 - \Theta)^j}{\Theta^k}} =
-        \frac{\Gamma(\alpha+\beta) \Gamma(\alpha-k) \Gamma(\beta+j)}
-        {\Gamma(\alpha) \Gamma(\beta) \Gamma(\alpha+\beta+j-k)}.
-      \end{displaymath}
+        \frac{\Gamma(a + b) \Gamma(a - k) \Gamma(b + j)}
+        {\Gamma(a) \Gamma(b) \Gamma(a + b + j - k)}.
+      \end{equation*}
       Par conséquent,
       \begin{align*}
         m
-        &= \frac{\beta}{\alpha - 1} \\
+        &= \frac{b}{a - 1} \\
         s^2
-        &= \frac{\beta(\alpha + \beta - 1)}{(\alpha - 1)(\alpha - 2)} \\
+        &= \frac{b(a + b - 1)}{(a - 1)(a - 2)} \\
         a
-        &= \frac{\beta(\alpha + \beta - 1)}{(\alpha - 1)^2 (\alpha - 2)},
+        &= \frac{b(a + b - 1)}{(a - 1)^2 (a - 2)},
       \end{align*}
-      et $K = \alpha - 1$.
-    \item On a $S|\Theta \sim \text{Gamma}(\tau, \Theta)$, $\Theta
-      \sim \text{Gamma}(\alpha, \lambda)$, d'où $\mu(\Theta) =
-      \tau/\Theta$ et $\sigma^2(\Theta) = \tau/\Theta^2$. On peut
+      et $K = a - 1$.
+    \item Nous avons $S|\Theta \sim \text{Gamma}(\tau, \Theta)$,
+      $\Theta \sim \text{Gamma}(\alpha, \lambda)$, d'où
+      $\mu(\Theta) = \tau/\Theta$ et
+      $\sigma^2(\Theta) = \tau/\Theta^2$. Il n'est pas difficile de
       démontrer que
-      \begin{displaymath}
+      \begin{equation*}
         \esp{\Theta^k}
         =
         \begin{cases}
@@ -1684,7 +1693,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
             (\alpha - 1)(\alpha - 2) \dots (\alpha - |k|)},
             & k \leq -1, |k| < \alpha.
         \end{cases}
-      \end{displaymath}
+      \end{equation*}
       Par conséquent,
       \begin{align*}
         m
@@ -1694,24 +1703,25 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
         a
         &= \frac{\tau^2 \lambda^2}{(\alpha - 1)^2 (\alpha - 2)},
       \end{align*}
-      et $K = (\alpha - 1)/\tau$.  On remarque qu'il s'agit d'une
+      et $K = (\alpha - 1)/\tau$. Vous remarquerez qu'il s'agit d'une
       généralisation du cas exponentielle/gamma.
-    \item On a $S|\Theta \sim \text{Binomiale négative}(r, \Theta)$,
-      $\Theta \sim$ Bêta$(\alpha, \beta)$, d'où $\mu(\Theta) = r(1 -
-      \Theta)/\Theta$ et $\sigma^2(\Theta) = r(1 -
-      \Theta)/\Theta^2$. En utilisant le résultat trouvé en b), on
-      obtient
+    \item Nous avons
+      $S|\Theta \sim \text{Binomiale négative}(r, \Theta)$,
+      $\Theta \sim \text{Bêta}(a, b)$, d'où
+      $\mu(\Theta) = r(1 - \Theta)/\Theta$ et
+      $\sigma^2(\Theta) = r(1 - \Theta)/\Theta^2$. En utilisant le
+      résultat trouvé en b), nous obtenons
       \begin{align*}
         m
-        &= \frac{r \beta}{\alpha - 1} \\
+        &= \frac{r b}{a - 1} \\
         s^2
-        &= \frac{r \beta(\alpha + \beta - 1)}{(\alpha - 1)(\alpha - 2)} \\
+        &= \frac{r b(a + b - 1)}{(a - 1)(a - 2)} \\
         a
-        &= \frac{r^2 \beta(\alpha + \beta - 1)}{(\alpha - 1)^2 (\alpha - 2)},
+        &= \frac{r^2 b(a + b - 1)}{(a - 1)^2 (a - 2)},
       \end{align*}
-      et $K = (\alpha - 1)/r$. On remarque qu'il s'agit de la
-      généralisation du cas géométrique/bêta.
-    \item On a $S|\Theta \sim \text{Normale}(5\Theta, \sigma^2)$,
+      et $K = (a - 1)/r$. Il s'agit là de la généralisation du cas
+      géométrique/bêta.
+    \item Nous avons $S|\Theta \sim \text{Normale}(5\Theta, \sigma^2)$,
       $\Theta \sim U(a, b)$, d'où $\mu(\Theta) =
       5\Theta$ et $\sigma^2(\Theta) = \sigma^2$.  Alors
       \begin{align*}
@@ -1725,19 +1735,19 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
         K
         &= \frac{12\sigma^2}{25(b - a)^2}.
       \end{align*}
-    \item On a $S|\Theta \sim \text{Exponentielle}(\Theta)$,
-      $\Theta^{-1} \sim$ Bêta$(\alpha, \beta)$, d'où $\mu(\Theta) =
+    \item Nous avons $S|\Theta \sim \text{Exponentielle}(\Theta)$,
+      $\Theta^{-1} \sim \text{Bêta}(a, b)$, d'où $\mu(\Theta) =
       \Theta^{-1}$ et $\sigma^2(\Theta) = \Theta^{-2}$. Alors
       \begin{align*}
         m
-        &= \frac{\alpha}{\alpha + \beta} \\
+        &= \frac{a}{a + b} \\
         s^2
-        &= \frac{\alpha (\alpha + 1)}{(\alpha+\beta)(\alpha+\beta+1)} \\
+        &= \frac{a (a + 1)}{(a + b)(a + b + 1)} \\
         a
-        &= \frac{\alpha \beta}{(\alpha+\beta)^2 (\alpha+\beta+1)} \\
+        &= \frac{a b}{(a + b)^2 (a + b + 1)} \\
         \intertext{et}
         K
-        &= \frac{(\alpha+\beta) (\alpha+1)}{\beta}.
+        &= \frac{(a + b) (a + 1)}{b}.
       \end{align*}
     \end{enumerate}
   \end{sol}
@@ -1748,11 +1758,11 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \item Soit $X_1, \dots, X_n$ un échantillon aléatoire et $Y$ une
     variable aléatoire dont le second moment existe. Trouver les
     constantes $\alpha$ et $\beta$ qui minimisent
-    \begin{displaymath}
+    \begin{equation*}
       \esp{(Y - \alpha - \beta \bar{X})^2},
-    \end{displaymath}
-    où $\bar{X} = n^{-1} \sum_{i=1}^n X_i$. C'est un problème analogue
-    à celui des moindres carrés ordinaires.
+    \end{equation*}
+    où $\bar{X} = n^{-1} \sum_{i=1}^n X_i$. Ce problème est analogue à
+    celui des moindres carrés ordinaires.
   \item Considérer maintenant le modèle en théorie de la crédibilité
     de précision, soit où $X_1, \dots, X_n$ sont des variables
     aléatoires conditionnellement indépendantes sachant $\Theta$.
@@ -1761,9 +1771,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \item Toujours dans le même contexte qu'en b), utiliser le résultat
     en a) pour trouver les constantes $\alpha$ et $\beta$ qui
     minimisent
-    \begin{displaymath}
+    \begin{equation*}
       \esp{(\mu(\Theta) - \alpha - \beta \bar{X})^2}.
-    \end{displaymath}
+    \end{equation*}
   \end{enumerate}
   \begin{rep}
     \begin{inparaenum}
@@ -1790,7 +1800,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
         \hat{\beta}
         &= \frac{\Cov(Y, \bar{X})}{\var{\bar{X}}}.
       \end{align*}
-    \item Premièrement, on a que $\Cov(\mu(\Theta), X_t) = a$. Il en
+    \item Premièrement, nous avons que $\Cov(\mu(\Theta), X_t) = a$. Il en
       découle directement que $\Cov(\mu(\Theta), \bar{X}) = a$.
       Deuxièmement,
       \begin{align*}
@@ -1799,13 +1809,11 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
         &= \var{\mu(\Theta)} + \Esp{\frac{\sigma^2(\Theta)}{n}} \\
         &= a + \frac{s^2}{n}.
       \end{align*}
-    \item Dans un contexte de crédibilité, on a que $\esp{\mu(\Theta)}
+    \item Dans un contexte de crédibilité, nous avons que $\esp{\mu(\Theta)}
       = \esp{\bar{X}} = m$, d'où
-      \begin{align*}
-        \beta
-        &= \frac{a\, n}{a\, n + s^2} \\
-        &= z
-      \end{align*}
+      \begin{equation*}
+        \beta = \frac{a\, n}{a\, n + s^2} = z
+      \end{equation*}
       et $\alpha = (1 - z) m$. Cet exercice illustre deux choses:
       d'abord que la prime de Bühlmann minimise l'espérance en c), où
       l'on suppose déjà un poids égal donné à chaque contrat; ensuite
@@ -1834,9 +1842,10 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     $0,0741$
   \end{rep}
   \begin{sol}
-    On a (en laissant tomber les indices $i$): $X|\Theta \sim
-    \text{Binomiale négative}(\Theta, 0,4)$ et $\mu(\Theta) \sim
-    \text{Exponentielle}(5)$. Par conséquent,
+    Nous avons (en laissant tomber les indices $i$ qui ne jouent aucun
+    rôle ici):
+    $X|\Theta = \theta \sim \text{Binomiale négative}(\theta, 0,4)$ et
+    $\mu(\Theta) \sim \text{Exponentielle}(5)$. Par conséquent,
     \begin{align*}
       \mu(\Theta)
       &= \Theta \left( \frac{1 - 0,4}{0,4} \right) \\
@@ -1847,13 +1856,13 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       &= 3,75\,\Theta \\
       &= 2,5 \mu(\Theta).
     \end{align*}
-    On remarque qu'il est simple, ici, de trouver la distribution de
-    $\Theta$. En effet, $\mu(\Theta) = 1,5 \Theta \sim
-    \text{Exponentielle}(5)$, d'où $\Theta \sim
-    \text{Exponentielle}(7,5)$. Cela dit, sans même cette information,
-    on trouve $s^2 = \esp{\sigma^2(\Theta)} = 2,5 \esp{\mu(\Theta)} =
-    0,5$ et $a = \var{\mu(\Theta)} = 0,04$, d'où $K = 25/2$ et $z =
-    1/(1 + 25/2) = 0,0741$.
+    Il est simple de trouver la distribution de $\Theta$. En effet,
+    $\mu(\Theta) = 1,5 \Theta \sim \text{Exponentielle}(5)$, d'où
+    $\Theta \sim \text{Exponentielle}(7,5)$. Cela dit, sans même cette
+    information, nous obtenons
+    $s^2 = \esp{\sigma^2(\Theta)} = 2,5 \esp{\mu(\Theta)} = 0,5$ et
+    $a = \var{\mu(\Theta)} = 0,04$, d'où $K = 25/2$ et
+    $z = 1/(1 + 25/2) = 0,0741$.
   \end{sol}
 \end{exercice}
 
@@ -1869,9 +1878,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     $0,23$
   \end{rep}
   \begin{sol}
-    Soit $N$ le nombre de sinistres. On a $N|\Theta = \theta \sim
-    \text{Poisson}(\Theta)$, $\esp{N|\Theta} = \Theta \sim U(0,1,\,
-    0,3)$ et donc
+    Soit $N$ le nombre de sinistres. Nous avons
+    $N|\Theta = \theta \sim \text{Poisson}(\Theta)$,
+    $\esp{N|\Theta} = \Theta \sim U(0,1,\, 0,3)$ et donc
     \begin{align*}
       m &=
       \esp{\mu(\Theta)} = \esp{\Theta} = 0,2 \\
@@ -1881,12 +1890,12 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \var{\mu(\Theta)} = \var{\Theta} = \frac{1}{300}.
     \end{align*}
     Par conséquent, $K = s^2/a = 60$ et
-    \begin{displaymath}
+    \begin{equation*}
       \pi_6
       = \left( \frac{5}{5 + 60} \right) \left( \frac{3}{5} \right)
       + \left( \frac{60}{5 + 60} \right) (0,2)
       = 0,2308.
-    \end{displaymath}
+    \end{equation*}
   \end{sol}
 \end{exercice}
 
@@ -1901,18 +1910,18 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     $4,6$
   \end{rep}
   \begin{sol}
-    On a $X|\Theta \sim N(\Theta, 4\Theta^2)$ avec $\mu(\Theta) =
+    Nous avons $X|\Theta \sim N(\Theta, 4\Theta^2)$ avec $\mu(\Theta) =
     \Theta$ et $\sigma^2(\Theta) = 4\Theta^2$, d'où
     $\sigma^2(\Theta)/\mu(\Theta) = 4\Theta \sim U(0, 40)$ et donc
     $\Theta \sim U(0, 10)$.  Ainsi, $m = \esp{\Theta} = 5$, $s^2 =
     \esp{4\Theta^2} = 4(\var{\Theta} + \esp{\Theta}^2) = 1,600/12$ et
     $a = \var{\Theta} = 100/12$, d'où $K = s^2/a = 16$ et, finalement,
-    \begin{displaymath}
+    \begin{equation*}
       \pi_5
       = \left(\frac{4}{4 + 16}\right) \left(\frac{12}{4}\right)
       + \left( 1 - \frac{4}{4 + 16} \right) (5)
       = 4,6.
-    \end{displaymath}
+    \end{equation*}
   \end{sol}
 \end{exercice}
 
@@ -1920,7 +1929,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   En utilisant le modèle de Bühlmann et les hypothèses de
   distributions ci-dessous, trouver la prime de crédibilité pour la
   sixième année sachant qu'un assuré a eu au cours des cinq premières
-  années les montants de sinistre suivants: 3, 1, 5, 4, 2.
+  années les montants de sinistre suivants: $3$, $1$, $5$, $4$, $2$.
   \begin{enumerate}
   \item $S|\Theta \sim \text{Poisson}(\theta)$ et
     \begin{enumerate}
@@ -1953,7 +1962,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \end{rep}
   \begin{sol}
     \begin{enumerate}
-    \item $S|\Theta = \theta \sim \text{Poisson}(\theta)$. On a donc
+    \item $S|\Theta = \theta \sim \text{Poisson}(\theta)$. Nous avons donc
       $\mu(\Theta) = \Theta$, $\sigma^2(\Theta) = \Theta$,
       \begin{align*}
         m
@@ -1969,8 +1978,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
          = \var{\Theta}
          = \frac{\alpha}{\lambda^2}
       \end{align*}
-      et donc $z = n/(n + \lambda)$. Dans tous les cas ci-dessous, $m
-      = 2$ et $\bar{S} = (3 + 1 + 5 + 4 + 2)/5 = 3$.
+      et $z = n/(n + \lambda)$. Dans tous les cas ci-dessous, $m = 2$
+      et $\bar{S} = (3 + 1 + 5 + 4 + 2)/5 = 3$.
       \begin{enumerate}[i)]
       \item Si $\Theta \sim \text{Gamma}(10, 5)$, alors $z = 1/2$ et
         $\pi_6 = 2,5$.
@@ -1979,7 +1988,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \item Si $\Theta \sim \text{Gamma}(\frac{1}{2}, \frac{1}{4})$,
         alors $z = 20/21$ et $\pi_6 = 2,95$.
       \end{enumerate}
-    \item $S|\Theta = \theta \sim U(0, 2\theta)$.  On a donc
+    \item $S|\Theta = \theta \sim U(0, 2\theta)$. Nous avons donc
       $\mu(\Theta) = \Theta$, $\sigma^2(\Theta) = \Theta^2/3$,
       \begin{align*}
         m
@@ -1995,8 +2004,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
          = \var{\Theta}
          = \frac{\alpha}{\lambda^2}
       \end{align*}
-      et donc $z = (3n)/(3n + \alpha + 1)$. Dans tous les cas
-      ci-dessous, $m = 2$ et $\bar{S} = (3 + 1 + 5 + 4 + 2)/5 = 3$.
+      et $z = (3n)/(3n + \alpha + 1)$. Dans tous les cas ci-dessous,
+      $m = 2$ et $\bar{S} = (3 + 1 + 5 + 4 + 2)/5 = 3$.
       \begin{enumerate}[i)]
       \item Si $\Theta \sim \text{Gamma}(10, 5)$, alors $z = 15/26$ et
         $\pi_6 = 2,58$.
@@ -2018,7 +2027,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     132
   \end{rep}
   \begin{sol}
-    On a
+    Nous avons
     \begin{align*}
       s^2
       &= \esp{\sigma^2(\Theta)} \\
@@ -2037,26 +2046,26 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  On a deux portefeuilles d'assurance pour lesquels on voudrait
-  calculer la crédibilité de l'expérience de chaque police en
-  utilisant le modèle de Bühlmann.  Pour le portefeuille A, la
-  variance de la prime de risque représente 25~\% de la variance du
-  montant des sinistres. Pour le portefeuille B, le montant des
-  sinistres pour un assuré quelconque suit une loi normale de moyenne
-  $\mu$ et de variance 25. La prime de risque est elle-même distribuée
-  dans la population selon une loi normale de moyenne $\alpha$ et
-  variance 16. Indiquer quel portefeuille mérite la plus grande
-  crédibilité.
+  Une actuaire souhaite calculer la crédibilité de l'expérience de
+  chaque police de deux portefeuilles d'assurance en utilisant le
+  modèle de Bühlmann. Pour le portefeuille A, la variance de la prime
+  de risque représente 25~\% de la variance du montant des sinistres.
+  Pour le portefeuille B, le montant des sinistres pour un assuré
+  quelconque suit une loi normale de moyenne $\mu$ et de variance $25$q.
+  La prime de risque est elle-même distribuée dans la population selon
+  une loi normale de moyenne $\alpha$ et variance 16. Quel
+  portefeuille mérite la plus grande crédibilité?
   \begin{rep}
     Portefeuille B
   \end{rep}
   \begin{sol}
-    On a $\var{S} = \var{\mu(\Theta)} + \esp{\sigma^2(\Theta)} = a +
-    s^2$. Pour le portefeuille A, $a = 0,25\, \var{S}$, d'où $s^2 =
-    0,75\, \var{S}$ et
-    \begin{displaymath}
+    Nous avons
+    $\var{S} = \var{\mu(\Theta)} + \esp{\sigma^2(\Theta)} = a + s^2$.
+    Pour le portefeuille A, $a = 0,25 \var{S}$, d'où
+    $s^2 = 0,75 \var{S}$ et
+    \begin{equation*}
       K_A = \frac{0,75}{0,25} = 3.
-    \end{displaymath}
+    \end{equation*}
     Pour le portefeuille B, $S \sim N(\mu, 25)$ et $\mu(\Theta) \sim
     N(\alpha, 16)$. Par conséquent,
     \begin{align*}
@@ -2075,14 +2084,14 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \item Soit $S|\Theta \sim \text{Poisson}(\Theta)$ avec $\Theta \sim
     \text{Exponentielle}(\lambda)$. Calculer la cons\-tante $K$ du
     modèle de Bühlmann sachant que la probabilité que la prime de
-    risque soit supérieure à 5 est $e^{-10}$.
+    risque soit supérieure à $5$ est $e^{-10}$.
   \item Soit maintenant $S_1|\Theta_1 \sim \text{Poisson}(\Theta_1)$
     avec $\Theta_1 \sim \text{Exponentielle}(\alpha)$, et
     $S_2|\Theta_2 \sim \text{Poisson}(\Theta_2)$ avec $\Theta_2 \sim
     \text{Exponentielle}(\lambda)$. On suppose de plus que
     \begin{enumerate}[i)]
-    \item $S_1$ est indépendante de $S_2$ et $\Theta_2$;
-    \item $S_2$ est indépendante de $S_1$ et $\Theta_1$;
+    \item $S_1$ est indépendante de $S_2$ et de $\Theta_2$;
+    \item $S_2$ est indépendante de $S_1$ et de $\Theta_1$;
     \item $\Theta_1$ et $\Theta_2$ sont indépendantes.
     \end{enumerate}
     Trouver la constante de crédibilité $K$ pour $S = S_1 + S_2$.
@@ -2095,17 +2104,19 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \end{rep}
   \begin{sol}
     \begin{enumerate}
-    \item On a $\mu(\Theta) = \Theta$ et $\sigma^2(\Theta) =
-      \Theta$. Par conséquent,
-      \begin{displaymath}
+    \item Nous avons $\mu(\Theta) = \Theta$ et
+      $\sigma^2(\Theta) = \Theta$. Par conséquent,
+      \begin{equation*}
         \Pr[\mu(\Theta) > 5]
         = \Pr[\Theta > 5]
         = e^{-5 \lambda}
         = e^{-10},
-      \end{displaymath}
-      d'où $\lambda = 2$. On sait que dans le modèle Poisson/gamma, la
-      constante de crédibilité est $K = \lambda = 2$.
-    \item On a $\mu(\Theta_1, \Theta_2) = \esp{S_1|\Theta_1} +
+      \end{equation*}
+      d'où $\lambda = 2$. Nous savons (voir l'\autoref{chap:formules})
+      que dans le modèle Poisson/gamma, la constante de crédibilité
+      est $K = \lambda = 2$.
+    \item Nous avons $\mu(\Theta_1, \Theta_2) = \esp{S_1 +
+        S_2|\Theta_1, \Theta_2} = \esp{S_1|\Theta_1} +
       \esp{S_2|\Theta_2} = \Theta_1 + \Theta_2$ et $\sigma^2(\Theta_1,
       \Theta_2) = \var{S_1|\Theta_1} + \var{S_2|\Theta_2} = \Theta_1 +
       \Theta_2$. Par conséquent,
@@ -2133,19 +2144,19 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   vol, un actuaire sait que 25~\% de la variance totale du montant des
   sinistres est expliquée par la variance de la prime de risque.
   Après $n$ années d'observation, un membre du groupe a eu des vols
-  annuels de 125~\$ en moyenne, et il a payé une prime de crédibilité
-  de 110~\$. Après $n + 1$ années, sa moyenne est passée à 150~\$ et
-  il a payé une prime de crédibilité de 125~\$.  À partir de ces
+  annuels de $125$~\$ en moyenne, et il a payé une prime de crédibilité
+  de $110$~\$. Après $n + 1$ années, sa moyenne est passée à $150$~\$ et
+  il a payé une prime de crédibilité de $125$~\$.  À partir de ces
   données, quelle prime de crédibilité l'actuaire devra-t-il charger à
   un autre membre du groupe pour l'année $n + 1$ si celui-ci a eu des
-  vols totalisant 500~\$ après $n$ années?
+  vols totalisant $500$~\$ après $n$ années?
   \begin{rep}
     160
   \end{rep}
   \begin{sol}
     On nous donne les informations suivantes: $\pi_{n + 1} = 110$,
     $\pi_{n + 2} = 125$, $\bar{S}_n = 125$, $\bar{S}_{n + 1} = 150$ et
-    $\var{\mu(\Theta)} = 0,25\, \var{S}$. Tout d'abord, on a
+    $\var{\mu(\Theta)} = 0,25\, \var{S}$. Tout d'abord, nous avons
     $\esp{\sigma^2(\Theta)} = 0,75\, \var{S}$, d'où la constante de
     crédibilité est $K = 3$. Ainsi,
     \begin{align*}
@@ -2161,7 +2172,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     \end{align*}
     En résolvant le système d'équations on trouve $n = 2$ et $m =
     100$. Par conséquent, la prime de crédibilité d'un assuré ayant
-    encouru 500~\$ de sinistres en $n = 2$ années est
+    encouru $500$~\$ de sinistres en $n = 2$ années est
     \begin{align*}
       \pi_3
       &= \frac{2}{5} \left( \frac{500}{2} \right)
@@ -2174,8 +2185,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \begin{exercice}
   La distribution conditionnelle de $S|\Theta$ n'est pas connue mais
   on sait que $\mu(\Theta)$ suit une loi Gamma$(6, 4)$. De plus,
-  $\sigma^2(\Theta) = \mu(\Theta)^2$.  En appliquant le modèle de
-  Bühlmann, on obtiendrait les primes du tableau ci-dessous.
+  $\sigma^2(\Theta) = \mu(\Theta)^2$. Le tableau ci-dessous contient
+  les primes de crédibilité selon le modèle de Bühlmann.
   \begin{center}
     \begin{tabular}{*{8}{c}}
       \toprule
@@ -2203,8 +2214,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     I et III
   \end{rep}
   \begin{sol}
-    On a $\mu(\Theta) \sim \text{Gamma}(6, 4)$ et $\sigma^2(\Theta) =
-    \mu(\Theta)^2$, d'où
+    Nous avons $\mu(\Theta) \sim \text{Gamma}(6, 4)$ et
+    $\sigma^2(\Theta) = \mu(\Theta)^2$, d'où
     \begin{align*}
       m &= \esp{\mu(\Theta)} = 1,5 \\
       s^2 &= \esp{\sigma^2(\Theta)} \\
@@ -2232,15 +2243,14 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \end{sol}
 \end{exercice}
 
-\newpage
-
 \begin{exercice}
   On vous donne les informations suivantes:
-  \begin{enumerate}[i)]
-  \item $\Pr[S = x|\Theta = \theta] = e^{-\theta} \theta^x/x!$,
-    $x = 0, 1, \dots$;
-  \item $u(\theta) = c \theta^2 e^{-4 \theta}$, $\theta > 0$.
-  \end{enumerate}
+  \begin{align*}
+    \Pr[S = x|\Theta = \theta]
+    &= e^{-\theta} \theta^x/x!, \quad x = 0, 1, \dots \\
+    u(\theta)
+    &= c \theta^2 e^{-4 \theta}, \quad \theta > 0.
+  \end{align*}
   \begin{enumerate}
   \item Calculer la prime collective.
   \item Sachant que $S_1 = 4$, $S_2 = 1$ et $S_3 = 3$, calculer les
@@ -2249,19 +2259,18 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \end{enumerate}
   \begin{rep}
     \begin{inparaenum}
-    \item 0,75
+    \item $0,75$
     \item $1,4$, $1,33$ et $1,57$
     \end{inparaenum}
   \end{rep}
   \begin{sol}
     On reconnait dans $u(\theta)$ la fonction de densité de
-    probabilité d'une loi gamma de paramètres $\alpha = 3$ et $\lambda
-    = 4$ (d'où $c = 4^3/\Gamma(3) = 32$). On a donc un modèle
-    Poisson/gamma pour lequel on retrouve toutes les formules
-    pertinentes à l'\autoref{chap:formules}.
+    probabilité d'une loi gamma de paramètres $\alpha = 3$ et
+    $\lambda = 4$ (d'où $c = 4^3/\Gamma(3) = 32$). nous avons donc un
+    modèle Poisson/gamma pour lequel toutes les formules pertinentes
+    se trouvent à l'\autoref{chap:formules}.
     \begin{enumerate}
-    \item On a $m = \alpha/\lambda
-      = 0,75$.
+    \item Nous avons $m = \alpha/\lambda = 0,75$.
     \item La prime de crédibilité est égale à la prime bayésienne,
       soit
       \begin{align*}
@@ -2269,26 +2278,27 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
         &= \frac{\alpha + \sum_{t = 1}^n S_t}{n + \lambda} \\
         &= \frac{3 + \sum_{t = 1}^n S_t}{n + 4}.
       \end{align*}
-      Avec $S_1 = 4$, $S_2 = 1$ et $S_3 = 3$, on a donc $\pi_{2} =
+      Avec $S_1 = 4$, $S_2 = 1$ et $S_3 = 3$, nous avons donc $\pi_{2} =
       7/5 = 1,4$, $\pi_3 = 8/6 = 1,33$ et $\pi_4 = 11/7 = 1,57$.
     \end{enumerate}
   \end{sol}
 \end{exercice}
 
 \begin{exercice}
-  Le montant total des sinistres a une distribution exponentielle de
-  paramètre de risque inconnu et la moyenne de cette distribution suit
-  une loi gamma de moyenne 4 et de variance 8. Trouver la prime de crédibilité
-  de troisième année dans le modèle de Bühlmann si les sinistres
-  totaux au cours des deux premières années furent respectivement de 1
-  et 3.
+  La distribution du montant total des sinistres est une exponentielle
+  de paramètre de risque inconnu. La moyenne de cette distribution
+  suit une loi gamma de moyenne $4$ et de variance $8$. Trouver la
+  prime de crédibilité de troisième année dans le modèle de Bühlmann
+  si les sinistres totaux au cours des deux premières années furent
+  respectivement $1$ et $3$.
   \begin{rep}
     $3,2$
   \end{rep}
   \begin{sol}
-    On a $S|\Theta \sim \text{Exponentielle}(\Theta)$ et
-    $\mu(\Theta) = \Theta^{-1} \sim \text{Gamma}(\alpha, \lambda)$ tel
-    que $\alpha/\lambda = 4$ et $\alpha/\lambda^2 = 8$. Or,
+    Nous avons $S|\Theta \sim \text{Exponentielle}(\Theta)$ et
+    $\mu(\Theta) = \Theta^{-1} \sim \text{Gamma}(\alpha, \lambda)$, de
+    telle sorte que $\alpha/\lambda = 4$ et $\alpha/\lambda^2 = 8$.
+    Or,
     \begin{align*}
       m
       &= \esp{\Theta^{-1}} = \frac{\alpha}{\lambda} = 4 \\
@@ -2312,18 +2322,18 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   Démontrer que la prime de crédibilité dans le modèle de Bühlmann est
   de type «mise à jour» \citep{Gerber:updating:1975}, c'est-à-dire qu'elle
   peut s'écrire sous la forme
-  \begin{displaymath}
+  \begin{equation*}
     \pi_{n+1} = \zeta_n \pi_n + (1 - \zeta_n) S_n,
-  \end{displaymath}
+  \end{equation*}
   où $0 \leq \zeta_n \leq 1$ est une fonction de $n$, le nombre
   d'années d'expérience disponible, et $\pi_n$ est la prime de
   crédibilité de l'année précédente.
   \begin{sol}
     Premièrement,
-    \begin{displaymath}
+    \begin{equation*}
       \pi_n = \frac{1}{n - 1 + K} \sum_{t=1}^{n-1} S_t +
       \frac{K}{n - 1 + K} m.
-    \end{displaymath}
+    \end{equation*}
     Alors,
     \begin{align*}
       \pi_{n+1}
@@ -2342,34 +2352,33 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \end{sol}
 \end{exercice}
 
-
-
 %%%
 %%% Bühlmann classique
 %%%
 
 \begin{exercice}
-  Démontrer que l'estimateur $\hat{s}^2$ du modèle classique de
-  Bühlmann est sans biais en calculant $\esp{(S_{it} - \bar{S}_i)^2}$
-  sans d'abord conditionner sur $\Theta_i$.
+  Démontrer que l'estimateur $\hat{s}^2$ du modèle de Bühlmann est
+  sans biais en calculant $\esp{(S_{it} - \bar{S}_i)^2}$ sans d'abord
+  conditionner sur $\Theta_i$.
   \begin{sol}
     Soit
-    \begin{displaymath}
+    \begin{equation*}
       \hat{s}^2 = \frac{1}{I (n - 1)} \sum_{i = 1}^I \sum_{t = 1}^n
       (S_{it} - \bar{S}_i)^2.
-    \end{displaymath}
-    On veut démontrer que $\esp{\hat{s}^2} = s^2$ sans conditionner
-    sur $\Theta_i$. Le problème se réduit au calcul de $\esp{(S_{it} -
-      \bar{S}_i)^2}$. Puisque $\esp{S_{it}} = \esp{\bar{S}_i}$, on a
-    \begin{displaymath}
+    \end{equation*}
+    Nous voulons démontrer que $\esp{\hat{s}^2} = s^2$ sans
+    conditionner sur $\Theta_i$. Le problème se réduit au calcul de
+    $\esp{(S_{it} - \bar{S}_i)^2}$. Puisque
+    $\esp{S_{it}} = \esp{\bar{S}_i}$, nous avons
+    \begin{equation*}
       \esp{(S_{it} - \bar{S}_i)^2} = \var{S_{it}} + \var{\bar{S}_i} -
       2\, \Cov(S_{it}, \bar{S}_i).
-    \end{displaymath}
-    Or, on sait que, par hypothèse dans le modèle de Bühlmann,
-    \begin{displaymath}
+    \end{equation*}
+    Or, nous savons que, par hypothèse dans le modèle de Bühlmann,
+    \begin{equation*}
       \Cov(S_{it}, S_{iu}) = a + \delta_{tu} s^2.
-    \end{displaymath}
-    Par conséquent, on a
+    \end{equation*}
+    Par conséquent, nous avons
     \begin{align*}
       \Cov(S_{it}, \bar{S}_i)
       &= \frac{1}{n} \sum_{u = 1}^n \Cov(S_{it}, S_{iu}) \\
@@ -2384,9 +2393,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       &= a + s^2.
     \end{align*}
     Ainsi
-    \begin{displaymath}
+    \begin{equation*}
       \esp{(S_{it} - \bar{S}_i)^2} = \frac{n - 1}{n}\, s^2,
-    \end{displaymath}
+    \end{equation*}
     d'où $\esp{\hat{s}^2} = s^2$.
   \end{sol}
 \end{exercice}
@@ -2394,7 +2403,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \begin{exercice}
   \label{ex:buhlmann:simulation}
   Proposer un modèle pouvant servir pour la simulation de données dans
-  une application du modèle de Bühlmann. Le modèle devrait
+  une application du modèle de Bühlmann. Le modèle devrait:
   \begin{enumerate}[i)]
   \item respecter les deux principales hypothèses du modèle de
     Bühlmann, à savoir $\esp{S_{it}|\Theta_i} = \mu(\Theta_i)$ et
@@ -2403,21 +2412,22 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     non pas seulement le montant total).
   \end{enumerate}
   \begin{sol}
-    On se contente, ici, de donner des pistes de solutions.
-    Afin de respecter la seconde exigence, on pose
-    \begin{displaymath}
-      S_{it} = Y_{it1} + \dots + Y_{it N_{it}},
-    \end{displaymath}
-    où $Y_{itu}$ est le montant individuel du sinistre $u$ de la
+    Voici des pistes de solutions. Afin de respecter la seconde
+    exigence, nous pourrions poser
+    \begin{equation*}
+      S_{it} = C_{it1} + \dots + C_{it N_{it}},
+    \end{equation*}
+    où $C_{itu}$ est le montant individuel du sinistre $u$ de la
     période $t$ du contrat $i$ et $N_{it}$ est le nombre total de
     sinistres du contrat $i$ dans la période $t$. Il s'agit, par la
-    suite, de déterminer des modèles de simulation pour $Y_{itu}$ et
-    $N_{it}$ tel que $\esp{S_{it}|\Theta_i} = \mu(\Theta_i)$ et
+    suite, de déterminer des modèles de simulation pour $C_{itu}$ et
+    $N_{it}$ de telle sorte que
+    $\esp{S_{it}|\Theta_i} = \mu(\Theta_i)$ et
     $\var{S_{it}|\Theta_i} = \sigma^2(\Theta_i)$. Comme il est
     raisonnable de supposer que les contrats se distinguent davantage
     par leur fréquence de sinistres que par la sévérité de ceux-ci, le
     modèle pour la simulation de $N_{it}$ dépendra de la variable
-    aléatoire $\Theta_i$. Autrement dit, on aura un modèle de
+    aléatoire $\Theta_i$. Autrement dit, nous aurons un modèle de
     simulation pour $N_{it}|\Theta_i = \theta_i$ et un autre pour
     $\Theta_i$.
   \end{sol}
@@ -2425,13 +2435,14 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 
 \begin{exercice}
   À partir des données de sinistres ci-dessous, calculer les primes de
-  crédibilité de Bühlmann de l'année 7 pour chacun des trois contrats.
+  crédibilité de Bühlmann de l'année $7$ pour chacun des trois
+  contrats.
   \begin{center}
-    \begin{tabular}{*{7}{c}}
+    \begin{tabular}{*{7}{>{$}c<{$}}}
       \toprule
       & \multicolumn{6}{c}{Années} \\
       \cmidrule{2-7}
-      Contrat & 1 & 2 & 3 & 4 & 5 & 6 \\
+      \multicolumn{1}{c}{Contrat} & 1 & 2 & 3 & 4 & 5 & 6 \\
       \midrule
       1 & 0 & 1 & 2 & 1 & 2 & 0 \\
       2 & 3 & 4 & 2 & 1 & 4 & 4 \\
@@ -2443,19 +2454,19 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     $1,18$, $2,82$ et $2$
   \end{rep}
   \begin{sol}
-    On a
+    Nous avons
     \begin{align*}
       \hat{s}^2
       &= \frac{1}{I(n - 1)} \sum_{i = 1}^I \sum_{j=1}^n
       (S_{ij} - \bar{S}_i)^2 \\
       &= \frac{1}{(3)(5)}[(1 + 1 + 1 + 1) + (1 + 1 + 4 + 1 + 1) + (1 +
       1 + 1 + 1)] \\
-      &= \frac{16}{15} \\
+      &= \frac{16}{15} = 1,0667 \\
       \hat{a}
       &= \frac{1}{I - 1} \sum_{i=1}^I (\bar{S}_i - \bar{S})^2 -
       \frac{\bar{s}^2}{n} \\
       &= \frac{1}{2}[1 + 1] - \frac{16/15}{6} \\
-      &= \frac{74}{90},
+      &= \frac{74}{90} = 0,8222,
     \end{align*}
     d'où $K = 48/37$ et $\hat{z} = 0,8222$. Par conséquent,
     \begin{align*}
@@ -2463,6 +2474,16 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \pi_{(2,7)} &= (0,8222)(3) + (0,1778)(2) = 2,8222 \\
       \pi_{(3,7)} &= 2.
     \end{align*}
+    Nous pouvons obtenir les mêmes résultats avec la fonction \code{cm}.
+<<echo=TRUE>>=
+x <- data.frame(contract = 1:3,
+                matrix(c(0, 1, 2, 1, 2, 0,
+                         3, 4, 2, 1, 4, 4,
+                         3, 3, 2, 1, 2, 1),
+                       nrow = 3, byrow = TRUE))
+fit <- cm(~ contract, x)
+summary(fit)
+@
   \end{sol}
 \end{exercice}
 

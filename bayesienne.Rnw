@@ -1395,9 +1395,9 @@ rapportent à ces résultats.
 
 \item La combinaison normale/normale est celle considérée par
   \citet{Whitney:1918}, mais aussi celle pour laquelle les formules
-  sont les plus compliquées. Cela explique sans doute en partie que
-  \citeauthor{Whitney:1918} ait éventuellement recommandé de fixer la
-  constante $K$ au jugement.
+  sont les plus compliquées. Cela explique sans doute en partie
+  pourquoi l'auteur a recommandé de fixer la constante $K$ au
+  jugement.
 
 \item Dans tous les cas, $z \rightarrow 1$ lorsque $n \rightarrow
   \infty$.  Le poids accordé à la prime individuelle d'un contrat va

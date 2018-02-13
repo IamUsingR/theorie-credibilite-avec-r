@@ -584,7 +584,7 @@ disponible.
   \qed
 \end{exemple}
 
-\begin{exemple}[Cas Bernoulli/bêta]
+\begin{exemple}[Bernoulli/bêta]
   \label{ex:bayesienne:bernoulli-beta}
   Examinons de nouveau le portefeuille simplifié de
   l'\autoref{ex:introduction-historique:simplifie}, cette fois dans le
@@ -781,7 +781,7 @@ Avec cette approche, la prime collective et la prime bayésienne
 s'interprètent toutes deux comme le montant moyen des sinistres dans
 le portefeuille, mais avec des pondérations différentes.
 
-\begin{exemple}[Cas Poisson/gamma]
+\begin{exemple}[Poisson/gamma]
   \label{ex:bayesienne:poisson-gamma}
   Le présent exemple joue un rôle important dans la suite. Soit
   \begin{align*}
@@ -1162,7 +1162,7 @@ et normale/normale dans les deux exemples suivants. Vous devez faire
 de même pour le cas géométrique/bêta à
 l'\autoref{exercice:bayesienne:geometrique-beta}.
 
-\begin{exemple}[Cas exponentielle/gamma]
+\begin{exemple}[Exponentielle/gamma]
   \label{ex:bayesienne:poisson-exponentielle}
   Soit
   \begin{align*}
@@ -1240,7 +1240,7 @@ l'\autoref{exercice:bayesienne:geometrique-beta}.
   \qed
 \end{exemple}
 
-\begin{exemple}[Cas normale/normale]
+\begin{exemple}[Normale/normale]
   Soit
   \begin{align*}
     S_t|\Theta
@@ -1382,7 +1382,7 @@ rassemblées à l'\autoref{chap:formules}. Les commentaires suivants se
 rapportent à ces résultats.
 
 \begin{enumerate}
-\item Dans le cas normale/normale, nous avons
+\item Dans la combinaison normale/normale, nous avons
   \begin{equation*}
     \tilde{\sigma}_1^2 =
       \frac{\sigma_1^2}{n \dfrac{\sigma_1^2}{\sigma_2^2} + 1}
@@ -1393,33 +1393,35 @@ rapportent à ces résultats.
   comme une baisse de l'incertitude quant au niveau de risque d'un
   contrat au fur et à mesure que l'expérience s'accumule.
 
-\item Le cas normale/normale est celui considéré par
-  \cite{Whitney:1918}, mais aussi celui dont les formules sont les
-  plus complexes. Cela explique sans doute en partie qu'il ait
-  éventuellement recommandé de fixer la constante $K$ au jugement.
+\item La combinaison normale/normale est celle considérée par
+  \cite{Whitney:1918}, mais aussi celle pour laquelle les formules
+  sont les plus compliquées. Cela explique sans doute en partie que
+  \citeauthor{Whitney:1918} ait éventuellement recommandé de fixer la
+  constante $K$ au jugement.
 
 \item Dans tous les cas, $z \rightarrow 1$ lorsque $n \rightarrow
   \infty$.  Le poids accordé à la prime individuelle d'un contrat va
   donc croissant avec le nombre d'années d'expérience disponible.
 
 \item De plus, $z = n/(n + K) \rightarrow 1$ lorsque $K \rightarrow 0$
-  et $z \rightarrow 0$ lorsque $K \rightarrow \infty$. Dans le cas
-  Poisson/gamma, où $K = \lambda$, une petite valeur de $\lambda$
-  correspond à une grande incertitude quant au niveau de risque
-  $\theta$ (la courbe gamma sera très évasée, voir la
+  et $z \rightarrow 0$ lorsque $K \rightarrow \infty$. Dans la
+  combinaison Poisson/gamma, où $K = \lambda$, une petite valeur de
+  $\lambda$ correspond à une grande incertitude quant au niveau de
+  risque $\theta$ (la courbe gamma sera très évasée, voir la
   \autoref{fig:bayesienne:gamma}). L'assureur accorde donc peu de
   poids à la prime collective, d'où un grand facteur de crédibilité.
 
-\item Dans le cas normale/normale, $K$ est grand si $\sigma_2^2$ est
-  également grand ou alors si $\sigma_1^2$ est petit. Respectivement,
-  cela signifie que ou bien l'expérience est potentiellement si
-  volatile que l'on ne peut s'y fier, ou bien que le niveau de risque
-  $\theta$ est presque connu avec certitude. Dans un cas comme dans
-  l'autre, il convient de charger la prime collective. Nous pouvons
-  répéter une telle analyse pour chacun des autres cas.
+\item Dans la combinaison normale/normale, $K$ est grand si
+  $\sigma_2^2$ est également grand ou alors si $\sigma_1^2$ est petit.
+  Respectivement, cela signifie que ou bien l'expérience est
+  potentiellement si volatile que l'on ne peut s'y fier, ou bien que
+  le niveau de risque $\theta$ est presque connu avec certitude. Dans
+  un cas comme dans l'autre, il convient de charger la prime
+  collective. Nous pouvons répéter une telle analyse pour chacune des
+  autres combinaisons de distributions.
 
 \item À un haut niveau de risque ne correspond pas nécessairement une
-  grande valeur de $\theta$, comme en fait foi le cas
+  grande valeur de $\theta$, comme en fait foi la combinaison
   exponentielle/gamma.
 \end{enumerate}
 
@@ -1476,7 +1478,7 @@ combinaisons de distributions mentionnées à la
 \autoref{sec:bayesienne:lineaire}, les convolutions binomiale/bêta
 (\autoref{exercice:bayesienne:binomiale-beta}), gamma/gamma
 (\autoref{exercice:bayesienne:gamma-gamma}) et binomiale
-négative/bêta, ainsi que le cas quelque peu périphérique Pareto
+négative/bêta, ainsi que la combinaison quelque peu périphérique Pareto
 translatée/gamma (\autoref{exercice:bayesienne:pareto-gamma}).
 
 Nous décrivons l'utilisation de la fonction pour le calcul de primes

@@ -12,147 +12,163 @@
 \chapter{Modèle de crédibilité de Bühlmann}
 \label{chap:buhlmann}
 
-On a deux problèmes pratiques en crédibilité bayésienne:
-\begin{enumerate}
-\item la prime bayésienne est une prime de crédibilité dans certains
-  cas seulement;
-\item la prime repose sur des hypothèses très subjectives pour les
-  distributions de $\Theta_i$ et $S_{it}|\Theta_i$.
-\end{enumerate}
+L'approche purement bayésienne que nous avons étudiée au chapitre
+précédent s'avère élégante, certes, mais elle recèle également deux
+inconvénients qui la rendent peu applicable en pratique. Tout d'abord,
+la prime bayésienne n'est une prime de crédibilité --- facile à
+calculer et à interpréter --- que pour certaines combinaisons de
+distributions seulement. Ensuite, tout le calcul de la prime repose
+sur des hypothèses très subjectives pour les distributions de $\Theta$
+et $S_t|\Theta$. L'effet du choix de distributions s'estompe avec le
+volume d'expérience, mais cela peut nécessiter plusieurs années.
 
-Pour pallier au premier problème, \cite{Buhlmann:credibility:1967}
-restreint l'approximation de la prime de risque aux fonctions
-linéaires des observations, c'est-à-dire de la forme
+Nous avons déjà vu à la \autoref{sec:bayesienne:modele} que l'une des
+contributions importantes du père de la théorie du risque moderne,
+Hans Bühlmann, à la théorie de la crédibilité de précision est le
+modèle d'hétérogénéité. Dans ce chapitre, nous étudions deux autres de
+ses contributions importantes qui visent à pallier aux inconvénients
+de l'approche bayésienne mentionnés ci-dessus. Pour résoudre le
+l'enjeu de linéarité de la prime bayésienne,
+\citet{Buhlmann:credibility:1967} a proposé de restreindre
+l'approximation de la prime de risque aux fonctions linéaires des
+observations, c'est-à-dire de la forme
 \begin{displaymath}
   c_0 + \sum_{t = 1}^n c_t S_{it}.
 \end{displaymath}
-On verra que la meilleure approximation est une prime de crédibilité.
+Nous verrons que la meilleure approximation se trouve être une prime
+de crédibilité.
 
-Quant au second problème, il sera contourné en utilisant une approche
-non paramétrique pour calculer la prime de crédibilité, tel que
-proposé par \cite{Buhlmann:credibility:1969}.
+\citet{Buhlmann:credibility:1969} a ensuite montré la voie pour
+contourner le problème du choix des distributions: il s'agit
+d'utiliser une approche non paramétrique dans laquelle le calcul de la
+prime de crédibilité repose sur l'estimation de paramètres à partir
+des données accumulées.
 
 
 \section{Notation et relations de covariance}
 \label{sec:buhlmann:covariances}
 
-On définit la notation suivante:
+Avant d'aller plus loin, nous allons définir quelques éléments de
+notation essentiels pour la suite, en plus d'établir des relations de
+covariance nécessaires pour calculer la meilleure approximation
+linéaire de la prime de risque.
+
+Nous avons déjà défini au \autoref{chap:bayesienne} la prime
+collective $m = \esp{\mu(\Theta)}$. Ajoutons maintenant les deux
+variances suivantes:
 \begin{align*}
   s^2
   &= \esp{\var{S_{it}|\Theta_i}} \\
-  &= \esp{\sigma^2(\Theta_i)} \\
-  &= \text{EPV de la CAS} \displaybreak[4] \\
+  &= \esp{\sigma^2(\Theta_i)} \displaybreak[0] \\
   a
   &= \var{\esp{S_{it}|\Theta_i}} \\
-  &= \var{\mu(\Theta_i)} \\
-  &= \text{VHM de la CAS}.
+  &= \var{\mu(\Theta_i)}.
 \end{align*}
+
+\tipbox{Dans les textes de la Casualty Actuarial Society, les
+  variances $s^2$ et $a$ sont
+  souvent appelées, respectivement, \emph{expected process variance} (EPV)
+  et \emph{variance of the hypothetical means} (VHM).}
+
+Le théorème suivant permet de calculer la covariance entre deux
+variables aléatoires en conditionnant sur une troisième.
 
 \begin{thm}
   \label{thm:buhlmann:covariance_iteree}
   Soit $X$, $Y$ et $\Theta$ des variables aléatoires dont la densité
   conjointe existe. Alors
-  \begin{displaymath}
+  \begin{equation*}
     \Cov(X, Y) = \Cov(\esp{X|\Theta}, \esp{Y|\Theta})
     + \esp{\Cov(X, Y|\Theta)}.
-  \end{displaymath}
+  \end{equation*}
 \end{thm}
 
 \begin{proof}
-  En premier lieu, noter qu'une espérance conditionnelle est une
-  variable aléatoire. Nous utiliserons également ces deux propriétés:
-  pour toute variable aléatoire $Y$,
-  \begin{gather*}
-    \esp{Y} = \esp{\esp{Y|\Theta}} \\
-    \intertext{et}
+  Pour la présente démonstration, vous devez toujours garder en tête
+  qu'une espérance conditionnelle est une variable aléatoire. De plus,
+  nous utiliserons à répétition le fait que, pour toute variable
+  aléatoire $Y$, $\esp{Y} = \esp{\esp{Y|\Theta}}$ et le premier moment
+  centré de $Y$ est nul, c'est-à-dire que
+  \begin{equation*}
     \esp{Y - \esp{Y}} = 0.
-  \end{gather*}
-  Or,
+  \end{equation*}
+
+  Par définition de la covariance, puis en ajoutant et en retranchant
+  des espérances conditionnelles, nous avons:
   \begin{align*}
     \Cov(X, Y)
     &= \esp{%
-      \color{darkred}
       (X - \esp{X})
-      \color{darkgreen}
-      (Y - \esp{Y}) \normalcolor} \\
+      (Y - \esp{Y})} \\
     &= E[%
-    \color{darkred}
     (X - \esp{X|\Theta} + \esp{X|\Theta} - \esp{X}) \cdot \\
     &\phantom{=} \quad\;
-    \color{darkgreen}
-    (Y - \esp{Y|\Theta} + \esp{Y|\Theta} - \esp{Y})
-    \normalcolor] \\
-    &= \esp{%
-      \color{darkblue}
-      \esp{%
-        \color{darkred}
-        (X - \esp{X|\Theta})
-        \color{darkgreen}
-        (Y - \esp{Y|\Theta})
-        \color{darkblue} |\Theta} \normalcolor} \\
-    &\phantom{=}\; +
-    \esp{%
-      \color{darkblue}
-      \esp{%
-        \color{darkred}
-        (X - \esp{X|\Theta})
-        \color{darkgreen}
-        (\esp{Y|\Theta} - \esp{Y})
-        \color{darkblue} |\Theta} \normalcolor} \\
-    &\phantom{=}\; +
-    \esp{%
-      \color{darkblue}
-      \esp{%
-        \color{darkred}
-        (\esp{X|\Theta} - \esp{X})
-        \color{darkgreen}
-        (Y - \esp{Y|\Theta})
-        \color{darkblue} |\Theta} \normalcolor} \\
-    &\phantom{=}\; +
-    \esp{%
-      \color{darkred}
-      (\esp{X|\Theta} - \esp{X})
-      \color{darkgreen}
-      (\esp{Y|\Theta} - \esp{Y})
-      \normalcolor} \\
-    &= \esp{%
-      \color{darkblue}
-      \esp{%
-        \color{darkred}
-        (X - \esp{X|\Theta})
-        \color{darkgreen}
-        (Y - \esp{Y|\Theta})
-        \color{darkblue}|\Theta} \normalcolor} \\
-    &\phantom{=}\; +
-    \esp{%
-      \color{darkgreen}
-      (\esp{Y|\Theta} - \esp{Y})
-      \color{darkblue}
-      \esp{%
-        \color{darkred}
-        X - \esp{X|\Theta}
-        \color{darkblue} |\Theta} \normalcolor} \\
-    &\phantom{=}\; +
-    \esp{%
-      \color{darkred}
-      (\esp{X|\Theta} - \esp{X})
-      \color{darkblue}
-      \esp{%
-        \color{darkgreen}
-        Y - \esp{Y|\Theta}
-        \color{darkblue} |\Theta} \normalcolor} \\
-    &\phantom{=}\; +
-    \esp{%
-      \color{darkred}
-      (\esp{X|\Theta} - \esp{X})
-      \color{darkgreen}
-      (\esp{Y|\Theta} - \esp{Y})
-      \normalcolor} \\
-    &= \esp{\Cov(X, Y|\Theta)}
-    + 0
-    + 0
-    + \Cov(\esp{X|\Theta}, \esp{Y|\Theta}).
+    (Y - \esp{Y|\Theta} + \esp{Y|\Theta} - \esp{Y})].
   \end{align*}
+  Nous pouvons ensuite décomposer l'espérance en quatre termes, puis
+  conditionner sur $\Theta$:
+  \begin{align*}
+    \Cov(X, Y)
+    &= \esp{%
+      \esp{%
+        (X - \esp{X|\Theta})
+        (Y - \esp{Y|\Theta})|\Theta}} \\
+    &\phantom{=} +
+    \esp{%
+      \esp{%
+        (X - \esp{X|\Theta})
+        (\esp{Y|\Theta} - \esp{Y})|\Theta}} \\
+    &\phantom{=} +
+    \esp{%
+      \esp{%
+        (\esp{X|\Theta} - \esp{X})
+        (Y - \esp{Y|\Theta})|\Theta}} \\
+    &\phantom{=} +
+    \esp{%
+      (\esp{X|\Theta} - \esp{X})
+      (\esp{Y|\Theta} - \esp{Y})} \\
+  \end{align*}
+  À ce stade, il faut réaliser qu'à l'intérieur des espérances
+  conditionnelles, les termes $(\esp{X|\Theta} - \esp{X})$ et
+  $(\esp{Y|\Theta} - \esp{Y})$ sont des constantes. Nous pouvons donc
+  les sortir des espérances conditionnelles pour obtenir:
+  \begin{align*}
+    \Cov(X, Y)
+    &= \esp{%
+      \esp{%
+        (X - \esp{X|\Theta})
+        (Y - \esp{Y|\Theta})|\Theta}} \\
+    &\phantom{=} +
+    \esp{%
+      (\esp{Y|\Theta} - \esp{Y})
+      \esp{X - \esp{X|\Theta}|\Theta}} \\
+    &\phantom{=} +
+    \esp{%
+      (\esp{X|\Theta} - \esp{X})
+      \esp{Y - \esp{Y|\Theta}|\Theta}} \\
+    &\phantom{=} +
+    \esp{%
+      (\esp{X|\Theta} - \esp{X})
+      (\esp{Y|\Theta} - \esp{Y})}
+  \end{align*}
+  Dans le second terme, $\esp{X - \esp{X|\Theta}|\Theta} = 0$
+  puisqu'il s'agit du premier moment centré de la variable aléatoire
+  $X|\Theta$. De même, $\esp{Y - \esp{Y|\Theta}|\Theta} = 0$. Par
+  conséquent, les second et troisième termes ci-dessus sont nuls. Ne
+  reste donc que
+  \begin{align*}
+    \Cov(X, Y)
+    &= \esp{%
+      \esp{%
+        (X - \esp{X|\Theta})
+        (Y - \esp{Y|\Theta})|\Theta}} \\
+    &\phantom{=} +
+    \esp{%
+      (\esp{X|\Theta} - \esp{X})
+      (\esp{Y|\Theta} - \esp{Y})} \\
+    &= \esp{\Cov(X, Y|\Theta)} + \Cov(\esp{X|\Theta}, \esp{Y|\Theta}),
+  \end{align*}
+  ce qui complète la démonstration.
 \end{proof}
 
 \begin{corrolaire}
@@ -163,10 +179,15 @@ On définit la notation suivante:
   \end{displaymath}
 \end{corrolaire}
 
+Un dernier résultat pour cette section: le théorème suivant établit
+les relations de variance entre des variables aléatoires dans un
+contexte analogue à notre modèle d'hétérogénéité.
+
 \begin{thm}
   \label{thm:buhlmann:covariances}
   Soit $S_1, \dots, S_n$ des variables aléatoires conditionnellement
-  indépendantes sachant la variable aléatoire $\Theta$ et
+  indépendantes sachant la variable aléatoire $\Theta$, de même
+  espérance et de même variance, c'est-à-dire que
   \begin{align*}
     \esp{S_t|\Theta} &= \mu(\Theta), \quad t = 1, \dots, n \\
     \var{S_t|\Theta} &= \sigma^2(\Theta), \quad t = 1, \dots, n.
@@ -194,7 +215,8 @@ On définit la notation suivante:
 \end{thm}
 
 \begin{proof}
-  Pour le premier résultat, on a
+  Pour le premier résultat, nous avons, en utilisant le
+  \autoref{thm:buhlmann:covariance_iteree},
   \begin{align*}
     \Cov(S_t, S_u)
     &= \Cov(\esp{S_t|\Theta}, \esp{S_u|\Theta})
@@ -204,49 +226,57 @@ On définit la notation suivante:
     &= \var{\mu(\Theta)} + \delta_{tu} \esp{\sigma^2(\Theta)} \\
     &= a + \delta_{tu} s^2.
   \end{align*}
-  De plus,
+  Pour le second résultat, toujours en conditionnant sur la variable
+  aléatoire $\Theta$,
   \begin{align*}
     \Cov(\mu(\Theta), S_t)
     &= \Cov(\mu(\Theta), \esp{S_t|\Theta})
     + \esp{\Cov(\mu(\Theta), S_t|\Theta)} \\
     &= \var{\mu(\Theta)} + \esp{0} \\
-    &= a.
+    &= a,
   \end{align*}
+  ce qui complète la démonstration.
 \end{proof}
 
 
 \section{Modèle et prévision}
 \label{sec:buhlmann:modele}
 
-Le modèle pour portefeuille hétérogène est similaire à celui utilisé
-en crédibilité bayésienne, mais on relâche légèrement les hypothèses.
+Le modèle d'hétérogénéité utilisé dans le modèle de crédibilité de
+Bühlmann est très similaire à celui du \autoref{chap:bayesienne}, sauf
+que nous relâchons légèrement certaines hypothèses.
 
-Schématiquement, on a
-\begin{center}
+Le contexte est toujours celui d'un portefeuille de $I$ contrats
+d'assurance, chacun caractérisé par un niveau de risque $\theta_i$,
+$i = 1, \dots, I$ réalisation d'une variable aléatoire non observable
+$\Theta_i$. Nous disposons pour fins de tarification de $n$ périodes
+d'expérience $(S_{i1}, \dots, S_{in}) \equiv \mat{S}_i$ pour chaque
+contrat. Vous trouverez au \autoref{tab:buhlmann:schema} une
+représentation schématique de l'ensemble de variables aléatoires dans
+le modèle de Bühlmann.
+
+\begin{table}
+  \centering
+  \caption{Représentation schématique des variables aléatoires dans le
+    modèle de Bühlmann}
+  \label{tab:buhlmann:schema}
   \begin{tabular}{cccccc}
     \toprule
     Variables non &
     \multicolumn{5}{c}{Observations} \\
-    observables   & $1$ & \dots & $t$ & \dots & $n$ \\
+    observables   & $1$ & $\cdots$ & $t$ & $\cdots$ & $n$ \\
     \midrule
-    $\Theta_1$ & $S_{11}$ & \dots & $S_{1t}$ & \dots & $S_{1n}$ \\
-    \vdots & \vdots & & & & \vdots \\
-    $\Theta_i$ & $S_{i1}$ & \dots & $S_{it}$ & \dots & $S_{in}$ \\
-    \vdots & \vdots & & & & \vdots \\
-    $\Theta_I$ & $S_{I1}$ & \dots & $S_{It}$ & \dots & $S_{In}$ \\
+    $\Theta_1$ & $S_{11}$ & $\cdots$ & $S_{1t}$ & $\cdots$ & $S_{1n}$ \\
+    $\vdots$ & $\vdots$ & & & & $\vdots$ \\
+    $\Theta_i$ & $S_{i1}$ & $\cdots$ & $S_{it}$ & $\cdots$ & $S_{in}$ \\
+    $\vdots$ & $\vdots$ & & & & $\vdots$ \\
+    $\Theta_I$ & $S_{I1}$ & $\cdots$ & $S_{It}$ & $\cdots$ & $S_{In}$ \\
     \bottomrule
   \end{tabular}
-\end{center}
+\end{table}
 
-Chaque contrat est donc caractérisé par
-\begin{enumerate}
-\item un niveau de risque $\theta_i$ réalisation d'une variable
-  aléatoire $\Theta_i$;
-\item des observations $(S_{i1}, \dots, S_{in}) \equiv \mat{S}_i$.
-\end{enumerate}
-
-Les hypothèses du modèle de Bühlmann sont les suivantes (version la
-moins restrictive).
+Dans leur version la moins restrictives, les hypothèses du modèle de
+Bühlmann sont les suivantes.
 \begin{enumerate}[({B}1)]
 \item Les contrats $(\Theta_i, \mat{S}_i)$, $i = 1, \dots, I$ sont
   indépendants, les variables aléatoires $\Theta_1, \dots, \Theta_I$
@@ -261,29 +291,35 @@ moins restrictive).
   \end{align*}
 \end{enumerate}
 
-\begin{rems}
-  \begin{enumerate}
-  \item L'hypothèse d'indépendance entre les contrats peut ne pas être
-    réaliste, mais elle simplifie les calculs et c'est une bonne
-    approximation dans plusieurs cas.
-  \item Hypothèse (B1): indépendance inter contrats (\emph{between}).
-  \item Hypothèse (B2): homogénéité temporelle et «indépendance» intra
-    contrats (\emph{within}), c'est-à-dire:
-    \begin{itemize}
-    \item $\mu(\Theta_i)$ constante dans le temps;
-    \item observations conditionnellement non corrélées.
-    \end{itemize}
-  \end{enumerate}
-\end{rems}
+L'hypothèse d'indépendance entre les contrats peut ne pas être
+réaliste, mais elle simplifie les calculs et il s'agit d'une bonne
+approximation dans plusieurs cas.
+
+L'hypothèse (B1) établit l'indépendance inter contrats
+(\emph{between}). L'hypothèse (B2), quant à elle, stipule
+l'homogénéité temporelle des contrats --- leur prime de risque est
+constante dans le temps --- ains que l'«indépendance» intra contrats
+(\emph{within}) --- les observations d'un contrat sont
+conditionnellement non corrélées.
+
+Avec le modèle et les hypothèses en main, nous pouvons maintenant
+procéder au calcul de la prévision de la prime de risque à partir des
+observations. Au \autoref{chap:bayesienne}, nous n'avons posé aucune
+restriction sur la forme cette prévision, avec pour conséquence
+qu'elle peut s'avérer difficile à calculer. Le trait de génie de
+\citet{Buhlmann:credibility:1967}, c'aura été de contraindre la
+prévision a être une fonction linéaire des observations. Le résultat
+se trouve dans le théorème suivant.
 
 \begin{thm}
   \label{thm:buhlmann:prime}
-  Pour un portefeuille tel qu'illustré précédemment et sous les
+  Pour un portefeuille tel qu'illustré ci-dessus et sous les
   hypothèses (B1) et (B2), la meilleure approximation linéaire non
   homogène de la prime de risque $\mu(\Theta_i)$ est
-  \begin{displaymath}
-    \pi_{i, n + 1}^{\text{B}} = z \bar{S}_i + (1 - z) m
-  \end{displaymath}
+  \begin{equation}
+    \label{eq:buhlmann:prime}
+    \pi_{i, n + 1}^{\text{B}} = z \bar{S}_i + (1 - z) m,
+  \end{equation}
   où
   \begin{align*}
     \bar{S}_i
@@ -295,30 +331,32 @@ moins restrictive).
 \end{thm}
 
 \begin{proof}
-  On se restreint aux approximations de la prime de risque de la forme
-  $c_0^i + \sum_{j=1}^I \sum_{t=1}^n c_{jt}^i S_{jt}$. Il faut donc
-  trouver les constantes $c_0^i, c_{11}^i, \dots, c_{kn}^i$ minimisant
-  \begin{displaymath}
+  Nous recherchons la meilleure approximation --- au sens des moindres
+  carrés --- de la prime de risque du contrat $i$, $i = 1, \dots, I$,
+  de la forme $c_0^i + \sum_{j=1}^I \sum_{t=1}^n c_{jt}^i S_{jt}$.
+  Nous devons donc trouver les constantes
+  $c_0^i, c_{11}^i, \dots, c_{kn}^i$ qui minimisent
+  \begin{equation*}
     E \bigg[
       \Big(
         \mu(\Theta_i) - c_0^i -
         \sum_{j=1}^I \sum_{t=1}^n c_{jt}^i S_{jt}
       \Big)^2 \bigg].
-  \end{displaymath}
+  \end{equation*}
 
-  Par indépendance entre les contrats, on sait déjà que la prime de
-  crédibilité du contrat $i$ sera une fonction de ses observations
-  seulement. On peut donc réduire le problème à trouver les constantes
-  $c_0, c_1, \dots, c_n$ minimisant
-  \begin{displaymath}
+  Par indépendance entre les contrats, nous savons déjà que la prime
+  de crédibilité du contrat $i$ sera une fonction de ses observations
+  seulement. Nous pouvons donc immédiatement réduire le problème à la
+  recherche des constantes $c_0, c_1, \dots, c_n$ qui minimisent
+  \begin{equation*}
     E \bigg[
       \Big(
         \mu(\Theta_i) - c_0 - \sum_{t=1}^n c_t S_{it}
       \Big)^2 \bigg].
-  \end{displaymath}
+  \end{equation*}
 
   En calculant les dérivées partielles, d'abord par rapport à $c_0$,
-  puis par rapport à $c_u$, $u = 1, \dots, n$, on obtient
+  puis par rapport à $c_u$, $u = 1, \dots, n$, nous obtenons:
   \begin{align}
     c_0
     &= \esp{\mu(\Theta_i)} -
@@ -327,17 +365,19 @@ moins restrictive).
     &= \sum_{t=1}^n c_t\, \Cov(S_{it}, S_{iu}).
     \label{eq:buhlmann:cu}
   \end{align}
-  Or, l'équation \eqref{eq:buhlmann:cu} peut se réécrire
+  Or, à l'aide des résultats du \autoref{thm:buhlmann:covariances},
+  nous pouvons réécrire l'équation \eqref{eq:buhlmann:cu} ainsi:
   \begin{align*}
     a
     &= \sum_{t=1}^n c_t (a + \delta_{tu} s^2) \\
     &= a \sum_{t=1}^n c_t + c_u s^2.
   \end{align*}
-  Par symétrie, on peut conclure que
+  Par symétrie de cette égalité pour $u = 1, \dots, n$, nous pouvons
+  conclure que
   \begin{displaymath}
     c_1 = c_2 = \dots = c_n = c = \frac{a}{an + s^2}.
   \end{displaymath}
-  De l'équation \eqref{eq:buhlmann:c0}, on obtient
+  De l'équation \eqref{eq:buhlmann:c0},
   \begin{displaymath}
     c_0 = (1 - n c) m
   \end{displaymath}
@@ -354,63 +394,63 @@ moins restrictive).
   avec $z = n/(n + s^2/a)$.
 \end{proof}
 
-\begin{rems}
-  \begin{enumerate}
-  \item Remplacer $\mu(\Theta_i)$ dans le théorème par $S_{i, n + 1}$
-    ne change rien puisque
-    \begin{gather*}
-      \esp{\mu(\Theta_i)} = \esp{S_{i, n + 1}} = m \\
-      \intertext{et}
-      \Cov(\mu(\Theta_i), S_{it}) = \Cov(S_{i, n + 1}, S_{it}) = a
-    \end{gather*}
-    pour $t = 1, \dots, n$.
-  \item La prime de crédibilité a deux belles propriétés:
-    \begin{enumerate}
-    \item elle est sans biais, c'est-à-dire que
-      \begin{displaymath}
-        \esp{\pi_{i,n + 1}^{\text{B}}} = z \esp{\bar{S}_i} + (1 - z) m = m.
-      \end{displaymath}
-      En moyenne, l'assureur perçoit donc suffisamment de primes pour
-      payer les sinistres;
-    \item puisque
-      $\bar{S}_i
-      \stackrel{n \rightarrow \infty}{\longrightarrow}
-      \mu(\Theta_i)$
-      et
-      $z
-      \stackrel{n \rightarrow \infty}{\longrightarrow} 1$
-      alors
-      $\pi_{i, n + 1}^{\text{B}}
-      \stackrel{n \rightarrow \infty}{\longrightarrow}
-      \mu(\Theta_i)$.
-    \end{enumerate}
-  \item Puisque $\pi_{i, n + 1}^{\text{B}}$ est sans biais, une
-    mauvaise estimation du facteur de crédibilité n'a pas d'impact
-    négatif sur le montant des primes perçu par l'assureur.
-  \item À cause de l'indépendance des contrats, les \emph{données
-      collatérales}, les données des autres contrats, n'entrent pour
-    le moment pas dans l'estimation de $\mu(\Theta_i)$ ($c_{jt}^i = 0$
-    pour $j \neq i$).
-  \item Une approximation linéaire homogène de $\mu(\Theta_i)$ est de
-    la forme
-    \begin{displaymath}
-      \sum_{j=1}^I \sum_{t=1}^n c_{jt}^i S_{jt}.
-    \end{displaymath}
-    Il est facile de démontrer que l'approximation est alors
-    \begin{displaymath}
-      z \bar{X}_i + (1 - z) \bar{S}, \quad
-      \bar{S} = \frac{1}{I} \sum_{i=1}^I \bar{S}_i.
-    \end{displaymath}
-  \item La prime de crédibilité peut aussi s'écrire sous la forme
-    \begin{displaymath}
-      \pi_{i, n + 1}^{\text{B}} = m + z (\bar{S}_i - m).
-    \end{displaymath}
-  \end{enumerate}
-\end{rems}
+\tipbox{Calculer la meilleure approximation de la prime de risque ou
+  la meilleure prévision du montant des sinistres de la prochaine
+  période sont des problèmes en tous points équivalents. En effet,
+  remplacer $\mu(\Theta_i)$ dans le \autoref{thm:buhlmann:prime} par
+  $S_{i, n + 1}$ ne change rien puisquen
+  $\esp{\mu(\Theta_i)} = \esp{S_{i, n + 1}} = m$ et
+  $\Cov(\mu(\Theta_i), S_{it}) = \Cov(S_{i, n + 1}, S_{it}) = a$ pour
+  $t = 1, \dots, n$.}
 
-Il est intéressant de constater que la meilleure approximation
-linéaire de la prime de risque est également la meilleure
-approximation linéaire de la prime bayésienne.
+La prime de crédibilité \eqref{eq:buhlmann:prime} possède deux belles
+propriétés. En premier lieu, elle est sans biais, c'est-à-dire que
+\begin{equation*}
+  \esp{\pi_{i,n + 1}^{\text{B}}} = z \esp{\bar{S}_i} + (1 - z) m = m.
+\end{equation*}
+En moyenne, l'assureur perçoit donc suffisamment de primes pour payer
+les sinistres. L'absence de biais fait également en sorte qu'une
+mauvaise estimation du facteur de crédibilité n'a pas d'impact négatif
+sur le montant des primes perçu par l'assureur.
+
+En second lieu, par la Loi des grands nombres,
+$\bar{S}_i \rightarrow \mu(\Theta_i)$ quand $n \rightarrow \infty$ et
+$z \rightarrow 1$ dans les mêmes circonstances. Par conséquent,
+$\pi_{i, n + 1}^{\text{B}} \rightarrow \mu(\Theta_i)$ quand
+$n \rightarrow \infty$.
+
+L'énoncé du \autoref{thm:buhlmann:prime} fait référence à une
+approximation \emph{non homogène} de la prime de risque. Le
+qualificatif tient au terme constant $c_0$ dans l'approximation. Une
+approximation linéaire \emph{homogène} de $\mu(\Theta_i)$ serait donc
+de la forme
+\begin{equation*}
+  \sum_{j=1}^I \sum_{t=1}^n c_{jt}^i S_{jt}.
+\end{equation*}
+Il est facile de démontrer que la meilleure approximation dans ce cas
+est
+\begin{equation*}
+  z \bar{X}_i + (1 - z) \bar{S}, \quad
+  \bar{S} = \frac{1}{I} \sum_{i=1}^I \bar{S}_i.
+\end{equation*}
+
+\tipbox{La prime de crédibilité peut aussi s'écrire
+  \begin{equation*}
+    \pi_{i, n + 1}^{\text{B}} = m + z (\bar{S}_i - m).
+  \end{equation*}
+  Sous cette forme, la prime d'un contrat apparait comme la prime
+  collective à laquelle on ajoute ou soustrait un ajustement, pondéré
+  par un facteur de crédibilité, selon que l'expérience du contrat est
+  pire ou meilleure que celle du groupe.}
+
+Le théorème suivant établit un résultat intéressant: la meilleure
+approximation linéaire de la prime de risque est également la
+meilleure approximation linéaire de la prime bayésienne. En d'autres
+termes, nous pouvons interpréter le calcul de la prime de crédibilité
+comme une minimisation en deux étapes: d'abord trouver la meilleure
+approximation de la prime de risque (la prime bayésienne), puis
+trouver la meilleure approximation linéaire de la prime bayésienne
+(la prime de crédibilité).
 
 \begin{thm}
   Si $\pi_{i, n + 1}^{\text{B}}$ est la combinaison linéaire des
@@ -434,20 +474,21 @@ approximation linéaire de la prime bayésienne.
 \end{thm}
 
 \begin{proof}
-  On a
-  \begin{align*}
+  En ajoutant et soustrayant $B_{i, n + 1}$ dans la première espérance
+  du théorème, en développant le carré, puis en conditionnant sur
+  $\Theta$ dans le terme mixte, nous obtenons:
+  \begin{multline*}
     E \bigg[
       \Big(
-        \mu(\Theta_i) - c_0 &- \sum_{t = 1}^n c_t S_{it}
+        \mu(\Theta_i) - c_0 - \sum_{t = 1}^n c_t S_{it}
       \Big)^2
-    \bigg] \\
-    &=
+    \bigg]
+    =
     E \bigg[
       \Big(
         \mu(\Theta_i) - B_{i, n + 1}
       \Big)^2
     \bigg] \\
-    &\phantom{=}\;
     + 2
     E \bigg[
       E \Big[
@@ -459,23 +500,23 @@ approximation linéaire de la prime bayésienne.
         \Big) \Big| \mat{S}_i
       \Big]
     \bigg] \\
-    &\phantom{=}\;
     +
     E \bigg[
       \Big(
         B_{i, n + 1} - c_0 - \sum_{t = 1}^n c_t S_{it}
       \Big)^2
-    \bigg] \\
-    &= E \bigg[
-      \Big(
-        B_{i, n + 1} - c_0 - \sum_{t = 1}^n c_t S_{it}
-      \Big)^2
-    \bigg] + 0 + \text{constante}.
-  \end{align*}
+    \bigg]
+  \end{multline*}
+  Or, le premier terme du côté droit de l'équation ne dépend pas du
+  choix des constantes $c_0, c_1, \dots, c_n$ et le second terme est
+  nul du fait que, par définition,
+  $\esp{(\mu(\Theta_i) - B_{i, n + 1})|\mat{S}_i} = 0$. Les constantes
+  qui minimisent l'espérance du côté gauche minimisent donc aussi le
+  troisième terme du côté droit.
 \end{proof}
 
 \begin{corrolaire}
-  On a
+  Nous avons
   \begin{displaymath}
     \esp{(\mu(\Theta_i) - \pi_{i, n + 1}^{\text{B}})^2}
     \geq
@@ -485,37 +526,28 @@ approximation linéaire de la prime bayésienne.
   crédibilité.
 \end{corrolaire}
 
-Ce résultat s'interprète comme une minimisation en deux étapes:
-\begin{enumerate}
-\item trouver la meilleure approximation de la prime de risque (prime
-  bayésienne);
-\item trouver la meilleure approximation linéaire de la prime
-  bayésienne (prime de crédibilité).
-\end{enumerate}
-
 
 \section{Approche paramétrique}
 \label{sec:buhlmann:parametrique}
 
-Dans un premier temps, on peut considérer que les distributions de
-$S_{it}|\Theta_i$ et de $\Theta_i$ sont connues, comme en crédibilité
-bayésienne.
+Afin de comparer l'approche du modèle de crédibilité de Bühlmann à
+celle de la tarification purement bayésienne, nous allons pour un
+moment supposer que les distributions de $S_{it}|\Theta_i$ et de
+$\Theta_i$ sont connues. La notion de portefeuille n'est toujours pas
+nécessaire puisque nous déterminons les distributions pour chaque
+contrat. Nous omettons donc l'indice $i$ dans les formules.
 
-La notion de portefeuille n'est alors pas nécessaire puisque l'on
-détermine les distributions pour chaque contrat. On peut laisser
-tomber l'indice $i$ dans les formules.
-
-Il est maintenant très simple de calculer la prime de crédibilité de
-Bühlmann pour n'importe quelle combinaison de distributions.
+Le \autoref{thm:buhlmann:prime} nous permet de calculer directement le
+facteur de crédibilité pour les combinaisons de distributions menant à
+une prime bayésienne linéaire ou, autrement, l'approximation linéraire
+de la prime bayésienne.
 
 \begin{exemple}[Bernoulli/uniforme]
-  On a vu à l'\autoref{ex:bayesienne:bernoulli-uniforme} que si
-  \begin{align*}
-    S_t|\Theta = \theta &\sim \text{Bernoulli}(\theta) \\
-    \Theta &\sim U(a, b),
-  \end{align*}
-  alors la prime bayésienne est très compliquée. Ici, $\mu(\theta)
-  = \theta$ et $\sigma^2(\theta) = \theta (1 - \theta)$, d'où
+  Nous avons vu à l'\autoref{ex:bayesienne:bernoulli-uniforme} que si
+  $S_t|\Theta = \theta \sim \text{Bernoulli}(\theta)$ et
+  $\Theta \sim U(a, b)$, alors la prime bayésienne est très
+  compliquée. Or, $\mu(\theta) = \theta$ et
+  $\sigma^2(\theta) = \theta (1 - \theta)$, d'où
   \begin{align*}
     m
     &= \esp{\mu(\Theta)} \\
@@ -533,22 +565,20 @@ Bühlmann pour n'importe quelle combinaison de distributions.
     K
     &= \frac{s^2}{a} \\
     &= \frac{6(a + b) - 4(a^2 + ab + s^2)}{(b - a)^2} \\
-    \intertext{et}
+    \intertext{et la meilleure approximation linéaire de la prime
+    bayésienne est}
     \pi_{n + 1}^{\text{B}}
     &= \frac{n}{n + K} \bar{S} + \left( 1 - \frac{n}{n + K} \right)
     \frac{a + b}{2}.
   \end{align*}
+  Cette prime est facile à calculer.
   \qed
 \end{exemple}
 
 \begin{exemple}[Poisson/gamma]
-  On a
-  \begin{align*}
-    S_t|\Theta = \theta &\sim \text{Poisson}(\theta) \\
-    \Theta &\sim \text{Gamma}(\alpha, \lambda).
-  \end{align*}
-  On sait déjà que $\mu(\theta) = \sigma^2(\theta) = \theta$. Par
-  conséquent,
+  Soit $S_t|\Theta = \theta \sim \text{Poisson}(\theta)$ et
+  $\Theta \sim \text{Gamma}(\alpha, \lambda)$. Nous savons déjà que
+  $\mu(\theta) = \sigma^2(\theta) = \theta$. Par conséquent,
   \begin{align*}
     m
     &= \esp{\Theta} = \frac{\alpha}{\lambda} \\
@@ -564,18 +594,16 @@ Bühlmann pour n'importe quelle combinaison de distributions.
     &= \frac{n}{n + \lambda} \bar{S} + \frac{\lambda}{n + \lambda}
     \frac{\alpha}{\lambda}.
   \end{align*}
+  C'est le même résultat qu'à l'\autoref{ex:bayesienne:poisson-gamma}. %
   \qed
 \end{exemple}
 
-\begin{exemple}
-  Soit
-  \begin{align*}
-    S_t|\Theta = \theta
-    &\sim \text{Exponentielle}(\theta) \\
-    \Theta
-    &\sim \text{Gamma}(\alpha, \lambda).
-  \end{align*}
-  Alors,
+\begin{exemple}[Exponentielle/gamma]
+  Soit $S_t|\Theta = \theta \sim \text{Exponentielle}(\theta)$ et
+  $\Theta \sim \text{Gamma}(\alpha, \lambda)$. Le calcul de la prime
+  de Bühlmann représente un défi plus grand pour cette combinaison de
+  distributions puisque nous devons calculer des moments de l'inverse
+  de la variable aléatoire $\Theta$. En effet,
   \begin{align*}
     \mu(\Theta)
     &= \frac{1}{\Theta}, \\
@@ -607,13 +635,13 @@ Bühlmann pour n'importe quelle combinaison de distributions.
           (\alpha-|k|)}, & k \le -1, |k| < \alpha.
       \end{cases}
   \end{align*}
-  On a donc
+  Nous avons donc
   \begin{align*}
     \esp{\Theta^{-1}}
     &= \frac{\lambda}{\alpha - 1} \\
     \esp{\Theta^{-2}}
     &= \frac{\lambda^2}{(\alpha-1)(\alpha-2)} \\
-    \intertext{et ainsi}
+    \intertext{et, ainsi,}
     s^2
     &= \frac{\lambda^2}{(\alpha-1)(\alpha-2)} \\
     a
@@ -626,7 +654,7 @@ Bühlmann pour n'importe quelle combinaison de distributions.
     K
     &= \frac{s^2}{a} = \alpha - 1 \\
     \intertext{et le facteur de crédibilité dans la prime de Bühlmann
-    est donc}
+    est}
     z
     &= \frac{n}{n + \alpha - 1},
   \end{align*}

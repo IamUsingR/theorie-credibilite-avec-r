@@ -82,6 +82,12 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ## Historique des versions
 
+### (en développement)
+
+#### Autres modifications
+
+- Utilisation plus constante de l'indice *i* dans la notation à la section 3.3 jusqu'à  l'exemple 3.2.
+
 ### 2018.02-1 (2018-02-08)
 
 #### Nouveautés

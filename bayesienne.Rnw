@@ -248,7 +248,7 @@ appelée la \emph{fonction de structure} du portefeuille --- est
 $U(\theta)$ et $u(\theta)$ est la fonction de densité (ou de masse) de
 probabilité de correspondante.
 
-Nous faisons les hypothèses suivantes pour compléter notre modèle
+Nous posons les hypothèses suivantes pour compléter notre modèle
 d'hétérogénéité.
 \begin{enumerate}
 \item Les observations du contrat $i$ sont \emph{conditionnellement}
@@ -395,14 +395,15 @@ prévision de ses sinistres futurs est l'espérance
 \begin{equation}
   \label{eq:bayesienne:prime_risque}
   \mu(\theta_i)
-  = \esp{S_{it}|\Theta = \theta_i}
+  = \esp{S_{it}|\Theta_i = \theta_i}
   = \int_0^\infty x f(x|\theta_i)\, dx.
 \end{equation}
 Cette fonction est appelée la \emph{prime de risque}.
 
 La prime de risque serait la prime idéale à charger. Cependant, le
 niveau de risque $\theta_i$ et, donc, la prime de risque sont
-inconnus. Dès lors, prévoir $S_{i, n + 1}$ et prévoir $\mu(\theta_i)$
+inconnus. Dès lors, prévoir le niveau des sinistres de la prochaine
+période, $S_{i, n + 1}$, et prévoir la prime de risque $\mu(\theta_i)$
 deviennent des problèmes équivalents.
 
 \subsection{Prime collective}
@@ -414,7 +415,7 @@ toutes les primes de risque:
 \begin{equation}
   \label{eq:bayesienne:prime_collective}
   m
-  = \esp{\mu(\Theta)}
+  = \esp{\mu(\Theta_i)}
   = \int_{-\infty}^\infty \mu(\theta) u(\theta)\, d\theta.
 \end{equation}
 Cette approximation sera la même pour tous les contrats; c'est la
@@ -422,9 +423,9 @@ Cette approximation sera la même pour tous les contrats; c'est la
 
 Vous remarquerez que
 \begin{equation*}
-  m = \esp{\mu(\Theta)} = \esp{\esp{S_{it}|\Theta}} = \esp{S_{it}}.
+  m = \esp{\mu(\Theta_i)} = \esp{\esp{S_{it}|\Theta_i}} = \esp{S_{it}}.
 \end{equation*}
-La prime collective est donc également égale au montant espéré des
+La prime collective est donc aussi égale au montant espéré des
 sinistres dans le portefeuille.
 
 \subsection{Prime bayésienne}
@@ -439,47 +440,47 @@ existe une meilleure approximation des primes de risque dans ces
 circonstances.
 
 La meilleure approximation (ou estimation, ou prévision) de la prime
-de risque $\mu(\theta_i)$ est la fonction $g^*(x_1, \dots, x_n)$ des
-observations $x_1, \dots, x_n$ qui minimise l'erreur quadratique
-moyenne
+de risque $\mu(\theta_i)$ est la fonction $g^*(x_{i1}, \dots, x_{in})$
+des observations $x_{i1}, \dots, x_{in}$ du contrat $i$ qui minimise
+l'erreur quadratique moyenne
 \begin{equation*}
-  \esp{(\mu(\Theta) - g(x_1, \dots, x_n))^2},
+  \esp{(\mu(\Theta_i) - g(x_{i1}, \dots, x_{in}))^2},
 \end{equation*}
 où $g()$ est une fonction quelconque.
 
 Vous trouverez dans tout livre de statistique mathématique la
 démonstration à l'effet que
 \begin{equation*}
-  g^*(x_1, \dots, x_n) = \esp{\mu(\Theta)|x_1, \dots, x_n}.
+  g^*(x_{i1}, \dots, x_{in}) = \esp{\mu(\Theta_i)|x_{i1}, \dots, x_{in}}.
 \end{equation*}
 Nous nommerons cette espérance la \emph{prime bayésienne}:
 \begin{equation}
   \label{eq:bayesienne:prime_bayesienne}
   B_{i, n + 1}
-  = \esp{\mu(\Theta)|S_{i1} = x_1, \dots, S_{in} = x_n}
+  = \esp{\mu(\Theta_i)|S_{i1} = x_{i1}, \dots, S_{in} = x_{in}}
   = \int_{-\infty}^\infty \mu(\theta)
-  u(\theta|x_1, \dots, x_n)\, d\theta.
+  u(\theta|x_{i1}, \dots, x_{in})\, d\theta.
 \end{equation}
 
 \importantbox{La prime bayésienne est la meilleure prévision de
   $S_{i, n + 1}$ que l'on puisse calculer.}
 
-Ci-dessus, $u(\theta|x_1, \dots, x_n)$ est la distribution à
+Ci-dessus, $u(\theta|x_{i1}, \dots, x_{in})$ est la distribution à
 postériori des niveaux de risque. En d'autres termes,
-$U(\theta|x_1, \dots, x_n)$ est la fonction de structure révisée après
-l'observation de l'expérience $S_{i1} = x_1, \dots, S_{in} = x_n$. Or,
-par la règle de Bayes et étant donné l'indépendance conditionnelle des
-observations,
+$U(\theta|x_{i1}, \dots, x_{in})$ est la fonction de structure révisée
+après l'observation de l'expérience
+$S_{i1} = x_{i1}, \dots, S_{in} = x_{in}$. Or, par la règle de Bayes
+et étant donné l'indépendance conditionnelle des observations,
 \begin{align*}
-  u(\theta_i|x_1, \dots, x_n)
-  &= \frac{f(x_1, \dots, x_n|\theta_i) u(\theta_i)}{%
+  u(\theta_i|x_{i1}, \dots, x_{in})
+  &= \frac{f(x_{i1}, \dots, x_{in}|\theta_i) u(\theta_i)}{%
     \int_{-\infty}^\infty
-    f(x_1, \dots, x_n|\theta) u(\theta)}\, d\theta \\
-  &= \frac{\prod_{t = 1}^n f(x_t|\theta_i) u(\theta_i)}{%
+    f(x_{i1}, \dots, x_{in}|\theta) u(\theta)}\, d\theta \\
+  &= \frac{\prod_{t = 1}^n f(x_{it}|\theta_i) u(\theta_i)}{%
     \int_{-\infty}^\infty \prod_{t = 1}^n
-    f(x_t|\theta) u(\theta)\, d\theta} \\
+    f(x_{it}|\theta) u(\theta)\, d\theta} \\
   &\propto\;
-  u(\theta_i) \prod_{t = 1}^n f(x_t|\theta_i).
+  u(\theta_i) \prod_{t = 1}^n f(x_{it}|\theta_i).
 \end{align*}
 
 Comme la prime collective, la prime bayésienne est une moyenne
@@ -489,7 +490,7 @@ priori. En effet, comparez les deux équations ci-dessous:
 \begin{align*}
   m &= \int_{-\infty}^\infty \mu(\theta) u(\theta)\, d\theta \\
   B_{i, n + 1} &= \int_{-\infty}^\infty \mu(\theta)
-                 u(\theta|x_1, \dots, x_n)\, d\theta.
+                 u(\theta|x_{i1}, \dots, x_{in})\, d\theta.
 \end{align*}
 
 À l'inverse, nous pouvons interpréter la prime collective comme la
@@ -499,14 +500,15 @@ disponible.
 \tipbox{Puisque les montants de sinistres apparaissent seulement sous
   forme de produit dans la fonction de vraisemblance
   \begin{equation*}
-    f(x_1, \dots, x_n|\theta_i) = \prod_{t = 1}^n f(x_t|\theta_i),
+    f(x_{i1}, \dots, x_{in}|\theta_i) = \prod_{t = 1}^n f(x_{it}|\theta_i),
   \end{equation*}
   leur ordre ne joue aucun rôle dans les calculs.}
 
-\warningbox{Dans la suite, nous n'allons considérer qu'un seul contrat
-  et laisser tomber l'indice $i$ dans la notation. En effet, dans
-  l'approche entièrement paramétrique adoptée dans ce chapitre, le
-  portefeuille de contrats ne joue aucun rôle concret.}
+\importantbox{Dans la suite, nous n'allons considérer qu'un seul
+  contrat et, par conséquent, nous laisserons tomber l'indice $i$ dans
+  la notation. En effet, dans l'approche entièrement paramétrique
+  adoptée dans ce chapitre, le portefeuille de contrats ne joue aucun
+  rôle concret.}
 
 \begin{exemple}
   \label{ex:bayesienne:poisson-discrete}

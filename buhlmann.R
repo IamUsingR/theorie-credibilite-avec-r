@@ -24,10 +24,20 @@ library(actuar)
 ##
 ## Tel que mentionné dans le texte du chapitre, 'cm' effectue
 ## le calcul des premières à partir des formules des secondes.
-## Vous pouvez le constater en consultant le code source de la
-## fonction 'bayes'. Celle-ci étant interne au paquetage, vous
-## devez pour y accéder ajouter le préfixe 'actuar:::' devant
-## le nom de l'objet pour l'afficher.
+## Comparez les résultats ci-dessous aux formules des
+## combinaisons de distribution Poisson/gamma et
+## exponentielle/gamma.
+cm("bayes", likelihood = "poisson",
+   shape = 3, rate = 2)
+cm("bayes", likelihood = "exponential",
+   shape = 3, rate = 2)
+
+## Un coup d'oeil au code source de la fonction 'bayes' révèle
+## le secret de fabrication. Comme cette fonction est interne
+## au paquetage (autrement dit, vous ne pouvez l'appeler
+## directement), vous devez pour y accéder ajouter le préfixe
+## 'actuar:::' devant le nom de l'objet pour afficher son
+## contenu.
 actuar:::bayes
 
 ###

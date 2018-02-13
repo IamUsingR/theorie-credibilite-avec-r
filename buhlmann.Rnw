@@ -582,7 +582,8 @@ de la prime bayésienne.
 
 \begin{exemple}[Poisson/gamma]
   \label{ex:buhlmann:poisson-gamma}
-  Soit $S_t|\Theta = \theta \sim \text{Poisson}(\theta)$ et
+  Examinons de nouveau la combinaison de distributions
+  $S_t|\Theta = \theta \sim \text{Poisson}(\theta)$ et
   $\Theta \sim \text{Gamma}(\alpha, \lambda)$. Nous savons déjà que
   $\mu(\theta) = \sigma^2(\theta) = \theta$. Par conséquent,
   \begin{align*}
@@ -674,19 +675,12 @@ paquetage \pkg{actuar} calcule des primes bayésiennes linéaires, elle
 effectue les calculs à partir des formules des paramètres $m$, $s^2$
 et $a$ pour chacune des combinaisons de distributions. Ce sont
 d'ailleurs ces valeurs qui sont affichées à l'écran avec l'objet du
-modèle. Comparez les résultats ci-dessous aux formules des exemples
-\ref{ex:buhlmann:poisson-gamma} et
-\ref{ex:buhlmann:exponentielle-gamma}.
-<<echo=TRUE>>=
-cm("bayes", likelihood = "poisson",
-   shape = 3, rate = 2)
-cm("bayes", likelihood = "exponential",
-   shape = 3, rate = 2)
-@
+modèle.
 
-\tipbox{Vous pouvez afficher le code source de la fonction effectuant
-  les calculs de primes bayésiennes en demandant la valeur de l'objet
-  \code{actuar:::bayes}.}
+\gotorbox{Comparez les résultats des appels à \code{cm} dans le code
+  informatique de la \autoref{sec:buhlmann:code} aux formules des
+  exemples \ref{ex:buhlmann:poisson-gamma} et
+  \ref{ex:buhlmann:exponentielle-gamma}.}
 
 
 \section{Approche non paramétrique}
@@ -722,10 +716,10 @@ estimer les \emph{paramètres de structure} du portefeuille, soit:
 \begin{enumerate}
 \item $m = \esp{\mu(\Theta)}$, la moyenne collective du portefeuille;
 \item $s^2 = \esp{\sigma^2(\Theta)}$, la variance intra
-  (\emph{within}) représentant la variabilité moyenne du portefeuille,
-  ou l'homogénéité temporelle;
-\item $a = \var{\mu(\Theta)}$, la variance inter (\emph{between})
-  représentant la variabilité entre les moyennes des contrats, ou
+  (\emph{within}) ou la variabilité moyenne du portefeuille, qui
+  représente l'homogénéité temporelle;
+\item $a = \var{\mu(\Theta)}$, la variance inter (\emph{between}) ou
+  la variabilité entre les moyennes des contrats, qui représente
   l'homogénéité du portefeuille.
 \end{enumerate}
 Pour effectuer l'estimation, nous allons développer des estimateurs

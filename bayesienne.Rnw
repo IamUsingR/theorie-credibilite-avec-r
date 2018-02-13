@@ -220,7 +220,7 @@ peut subir qu'un accident dans une année.
 
 Cette section introduit le modèle que nous utiliserons dorénavant en
 crédibilité de précision. Établi par
-\cite{Buhlmann:credibility:1967,Buhlmann:credibility:1969}, ce modèle
+\citet{Buhlmann:credibility:1967,Buhlmann:credibility:1969}, ce modèle
 permet de décrire remarquablement bien la situation à laquelle nous
 sommes confrontés, à savoir que nous avons regroupé des contrats
 d'assurance aux caractéristiques semblables, mais que subsiste dans le
@@ -659,7 +659,7 @@ disponible.
   l'intervalle $(a, b)$.
 
   Soit $n \bar{S} = \sum_{t = 1}^n S_t$ le montant total des sinistres
-  d'un contrat après $n$ années. \cite{Norberg:credibility:1979}
+  d'un contrat après $n$ années. \citet{Norberg:credibility:1979}
   démontre que la prime bayésienne avec ce modèle est
   \begin{equation*}
     B_{n + 1} =
@@ -1139,7 +1139,7 @@ où $0 \leq z \leq 1$, jouent un rôle fondamental en théorie de la
 crédibilité. Nous les appelons \emph{primes de crédibilité} et $z$ est
 le \emph{facteur de crédibilité}.
 
-\cite{Whitney:1918} et \cite{Bailey:1950} furent les premiers à
+\citet{Whitney:1918} et \citet{Bailey:1950} furent les premiers à
 démontrer que la prime bayésienne est une prime de crédibilité pour
 certaines combinaisons de distributions. Nous en avons déjà identifié
 deux. Il y a en fait cinq combinaisons de distributions qui résultent
@@ -1394,7 +1394,7 @@ rapportent à ces résultats.
   contrat au fur et à mesure que l'expérience s'accumule.
 
 \item La combinaison normale/normale est celle considérée par
-  \cite{Whitney:1918}, mais aussi celle pour laquelle les formules
+  \citet{Whitney:1918}, mais aussi celle pour laquelle les formules
   sont les plus compliquées. Cela explique sans doute en partie que
   \citeauthor{Whitney:1918} ait éventuellement recommandé de fixer la
   constante $K$ au jugement.

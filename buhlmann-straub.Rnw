@@ -16,14 +16,21 @@
 options(width = 52)
 @
 
-Le modèle de Bühlmann--Straub est une généralisation du modèle de
-Bühlmann tenant compte de l'exposition au risque des contrats. Ceci
-est particulièrement important dans les situations où la taille des
-contrats varie beaucoup.
+Le modèle de Bühlmann--Straub citep{BuhlmannStraub:1970} est une
+généralisation du modèle de Bühlmann tenant compte de l'exposition au
+risque des contrats. Ceci est particulièrement important dans les
+situations où la taille des contrats varie beaucoup.
 
-Par exemple, en accidents de travail, l'exposition au risque d'un
-employeur avec \nombre{1000} employés est beaucoup plus grande que
-celle d'un employeur avec seulement 10 employés.
+Par exemple, en accidents de travail, l'exposition au risque d'une
+entreprise de \nombre{1000} employés est beaucoup plus grande que
+celle d'une autre ne comptant que 10 employés. Toutes autres choses
+étant égales par ailleurs, l'expérience de la plus grande entreprise
+devrait se montrer plus stable dans le temps et, par conséquent,
+se mériter une plus grande crédibilité dans un système de tarification
+basée sur l'expérience. Or, avec le modèle de Bühlmann qui octroie la
+crédibilité uniquement sur la base du nombre d'années d'expérience,
+opn attribue la même crédibilité aux deux entreprises, même si leur
+taille diffère grandement.
 
 
 \section{Modèle et prévision}
@@ -31,38 +38,42 @@ celle d'un employeur avec seulement 10 employés.
 
 Dans la forme la plus générale du modèle de Bühlmann--Straub, on
 associe un poids $w_{it}$ à chaque donnée, qui sera maintenant notée
-$X_{it}$.
+$X_{it}$. La représentation schématique du portefeuille de données se
+trouve au \autoref{tab:buhlmann-straub:schema}.
 
-Schématiquement, on a maintenant
-\begin{center}
+\begin{table}
+  \centering
+  \caption{Représentation schématique des variables aléatoires dans le
+    modèle de Bühlmann-Straub}
+  \label{tab:buhlmann-straub:schema}
   \begin{tabular}{*{11}{c}}
     \toprule
     Variables non &
     \multicolumn{5}{c}{Observations} &
     \multicolumn{5}{c}{Poids} \\
-    observables   & $1$ & \dots & $t$ & \dots & $n$
-                  & $1$ & \dots & $t$ & \dots & $n$ \\
+    observables   & $1$ & $\dots$ & $t$ & $\dots$ & $n$
+                  & $1$ & $\dots$ & $t$ & $\dots$ & $n$ \\
     \midrule
-    $\Theta_1$ & $X_{11}$ & \dots & $X_{1t}$ & \dots & $X_{1n}$
-               & $w_{11}$ & \dots & $w_{1t}$ & \dots & $w_{1n}$ \\
-    \vdots & \vdots & & & & \vdots
-           & \vdots & & & & \vdots \\
-    $\Theta_i$ & $X_{i1}$ & \dots & $X_{it}$ & \dots & $X_{in}$
-               & $w_{i1}$ & \dots & $w_{it}$ & \dots & $w_{in}$ \\
-    \vdots & \vdots & & & & \vdots
-           & \vdots & & & & \vdots \\
-    $\Theta_I$ & $X_{I1}$ & \dots & $X_{It}$ & \dots & $X_{In}$
-               & $w_{I1}$ & \dots & $w_{It}$ & \dots & $w_{In}$ \\
+    $\Theta_1$ & $X_{11}$ & $\dots$ & $X_{1t}$ & $\dots$ & $X_{1n}$
+               & $w_{11}$ & $\dots$ & $w_{1t}$ & $\dots$ & $w_{1n}$ \\
+    $\vdots$ & $\vdots$ & & & & $\vdots$
+           & $\vdots$ & & & & $\vdots$ \\
+    $\Theta_i$ & $X_{i1}$ & $\dots$ & $X_{it}$ & $\dots$ & $X_{in}$
+               & $w_{i1}$ & $\dots$ & $w_{it}$ & $\dots$ & $w_{in}$ \\
+    $\vdots$ & $\vdots$ & & & & $\vdots$
+           & $\vdots$ & & & & $\vdots$ \\
+    $\Theta_I$ & $X_{I1}$ & $\dots$ & $X_{It}$ & $\dots$ & $X_{In}$
+               & $w_{I1}$ & $\dots$ & $w_{It}$ & $\dots$ & $w_{In}$ \\
     \bottomrule
   \end{tabular}
-\end{center}
+\end{table}
 
-Intuitivement, on s'attend à ce que l'expérience d'un «gros» contrat
-soit plus stable dans le temps que celle d'un «petit» contrat. Pour
-que le modèle réflète cela, l'hypothèse de variances conditionnelles
-identiques du modèle de Bühlmann est modifiée.
-
-Les hypothèses du modèle de Bühlmann--Straub sont les suivantes.
+Afin de réfléter le fait que l'expérience d'un contrat avec une grande
+exposition au risque sera plus stable dans le temps que celle dont
+l'exposition au risque est plus réduite, nous devons modifier
+l'hypothèse de variances conditionnelles identiques du modèle de
+Bühlmann. Les hypothèses du modèle de Bühlmann--Straub sont les
+suivantes.
 \begin{enumerate}[({BS}1)]
 \item Les contrats $(\Theta_i, \mat{X}_i)$, $i = 1, \dots, I$ sont
   indépendants, les variables aléatoires $\Theta_1, \dots, \Theta_I$
@@ -79,17 +90,20 @@ Les hypothèses du modèle de Bühlmann--Straub sont les suivantes.
   \end{align*}
 \end{enumerate}
 
-On a donc
-\begin{displaymath}
-  \var{X_{it}|\Theta_i} = \frac{\sigma^2(\Theta_i)}{w_{it}}.
-\end{displaymath}
-Pour que cette relation soit vraie, les variables aléatoires $X_{it}$
-doivent être des \emph{ratios}. La définition la plus usuelle de
-$X_{it}$ est
-\begin{displaymath}
+\importantbox{Nous postulons à l'hypothèse (BS2) que la variance de
+  l'observation $X_{it}$ est inversement proportionnelle au poids qui
+  lui est rattaché:
+  \begin{equation*}
+    \var{X_{it}|\Theta_i} = \frac{\sigma^2(\Theta_i)}{w_{it}}.
+  \end{equation*}
+  Cette relation implique que les variables aléatoires $X_{it}$ dans
+  le modèle de Bühlmann--Straub sont des \emph{ratios}.}
+
+La définition la plus usuelle des ratios $X_{it}$ est
+\begin{equation*}
   X_{it} = \frac{S_{it}}{w_{it}}
-\end{displaymath}
-où, par exemple
+\end{equation*}
+où, par exemple:
 \begin{itemize}
 \item $S_{it}$ est le montant total des sinistres et $w_{it}$ est la
   prime totale payée (\emph{loss ratio});
@@ -104,23 +118,31 @@ où, par exemple
 \subsection{Notation et relations de covariance}
 \label{sec:buhlmann-straub:modele:notation}
 
-On définit la notation suivante:
+Avec l'introduction des poids dans notre modèle de crédibilité, nous
+devrons dorénavant calculer des moyennes pondérées plutôt que des
+moyennes arithmétiques. Nous aurons recours à la notation suivante:
 \begin{align*}
+  X_{iw}
+  &= \sum_{t = 1}^n \frac{w_{it}}{w_{i\pt}}\, X_{it} &
   w_{i\pt}
   &= \sum_{t = 1}^n w_{it} \\
+  X_{ww}
+  &= \sum_{i = 1}^I \frac{w_{i\pt}}{w_{\pt\pt}}\, X_{iw}
+   = \sum_{i = 1}^I \sum_{t = 1}^n \frac{w_{it}}{w_{\pt\pt}}\, X_{it} &
   w_{\pt\pt}
   &= \sum_{i = 1}^I w_{i\pt}
    = \sum_{i = 1}^I \sum_{t = 1}^n w_{it} \\
-  z_\pt
-  &= \sum_{i = 1}^I z_i \\
-  X_{iw}
-  &= \sum_{t = 1}^n \frac{w_{it}}{w_{i\pt}}\, X_{it} \\
-  X_{ww}
-  &= \sum_{i = 1}^I \frac{w_{i\pt}}{w_{\pt\pt}}\, X_{iw}
-   = \sum_{i = 1}^I \sum_{t = 1}^n \frac{w_{it}}{w_{\pt\pt}}\, X_{it} \\
   X_{zw}
-  &= \sum_{i = 1}^I \frac{z_i}{z_\pt}\, X_{iw}.
+  &= \sum_{i = 1}^I \frac{z_i}{z_\pt}\, X_{iw} &
+  z_\pt
+  &= \sum_{i = 1}^I z_i.
 \end{align*}
+
+Le théorème suivant établit des relations de covariance analogues à
+celles du \autoref{thm:buhlmann:covariances} pour le modèle de
+Bühlmann--Straub. Ces relations sont nécessaires pour calculer la
+meilleure prévision de la prime de risque ainsi que l'espérance des
+estimateurs des paramètres de structure.
 
 \begin{thm}
   Soit $X_{it}$, $i = 1, \dots I$, $t = 1, \dots, n$ des variables
@@ -138,17 +160,15 @@ On définit la notation suivante:
 
 \begin{proof}
   Tout d'abord, toutes les covariance sont nulles lorsque $i \neq k$
-  par indépendance entre les contrats.
-
-  Les deux premiers résultats sont équivalents à ceux du
-  \autoref{thm:buhlmann:covariances} à la seule différence que
+  par indépendance entre les contrats. Les deux premiers résultats
+  sont équivalents à ceux du \autoref{thm:buhlmann:covariances} à la
+  seule différence que
   \begin{align*}
     \esp{\var{X_{it}|\Theta_i}}
     &= \Esp{\frac{\sigma^2(\Theta_i)}{w_{it}}} \\
     &= \frac{s^2}{w_{it}}.
   \end{align*}
-
-  Pour le troisième résultat, on a
+  Pour le troisième résultat, nous avons
   \begin{align*}
     \Cov(X_{it}, X_{iw})
     &= \sum_{u = 1}^n \frac{w_{it}}{w_{i\pt}}\,
@@ -163,7 +183,7 @@ On définit la notation suivante:
 
 \subsection{Meilleure prévision linéaire}
 
-Tout comme dans le modèle de Bühlmann, on recherche la meilleure
+Tout comme dans le modèle de Bühlmann, nous recherchons la meilleure
 approximation linéaire de la prime de risque d'un contrat.
 
 \begin{thm}
@@ -171,30 +191,33 @@ approximation linéaire de la prime de risque d'un contrat.
   hypothèses (BS1) et (BS2), la meilleure approximation linéaire non
   homogène de la prime de risque $\mu(\Theta_i)$ --- ou de $X_{i, n +
     1}$ --- est
-  \begin{displaymath}
+  \begin{equation}
+    \label{eq:buhlmann-straub:prime}
     \pi_{i, n + 1}^{\text{BS}} = z_i X_{iw} + (1 - z_i) m
-  \end{displaymath}
+  \end{equation}
   où
-  \begin{align*}
+  \begin{align}
     z_i
     &= \frac{w_{i\pt}}{w_{i\pt} + K}, \quad
     K = \frac{s^2}{a}.
-  \end{align*}
+  \end{align}
 \end{thm}
 
 \begin{proof}
-  La démonstration est similaire à celle du
-  \autoref{thm:buhlmann:prime}. Comme précédemment, on peut se restreindre
-  à trouver les constantes $c_0, c_1, \dots, c_n$ minimisant
-  \begin{displaymath}
+  La démonstration est en tous points similaire à celle du
+  \autoref{thm:buhlmann:prime}. Comme précédemment, nous pouvons nous
+  restreindre à trouver les constantes $c_0, c_1, \dots, c_n$
+  qui minimisent l'erreur quadratique moyenne
+  \begin{equation*}
     E \bigg[
       \Big(
         \mu(\Theta_i) - c_0 - \sum_{t = 1}^n c_t X_{it}
       \Big)^2 \bigg].
-  \end{displaymath}
+  \end{equation*}
 
   En calculant les dérivées partielles, d'abord par rapport à $c_0$,
-  puis par rapport à $c_u$, $u = 1, \dots, n$, on obtient
+  puis par rapport à $c_u$, $u = 1, \dots, n$, nous obtenons les
+  équations normales
   \begin{align}
     c_0
     &= \esp{\mu(\Theta_i)} -
@@ -211,31 +234,32 @@ approximation linéaire de la prime de risque d'un contrat.
     \left( a + \delta_{tu} \frac{s^2}{w_{iu}} \right) \\
     &= a c_\pt + c_u \frac{s^2}{w_{iu}}.
   \end{align*}
-  Par symétrie, on a que
-  \begin{displaymath}
+  Par symétrie, les ratios $c_u/w_{iu}$, $u = 1, \dots, n$, sont tous
+  égaux et, par conséquent, ils sont aussi égaux à
+  $\sum_{u = 1}^n c_u/\sum_{u = 1}^n w_{iu}$:
+  \begin{equation*}
     \frac{c_1}{w_{i1}} = \frac{c_2}{w_{i2}} = \dots =
     \frac{c_n}{w_{in}} = \frac{c_\pt}{w_{i\pt}} = R_i.
-  \end{displaymath}
-  Par conséquent,
+  \end{equation*}
+  Nous avons donc
   \begin{align*}
     a
-    &= a w_{i\pt} R_i + R_i s^2 \\
+    &= a w_{i\pt} R_i + R_i s^2, \\
     \intertext{d'où}
     R_i
     &= \frac{a}{a w_{i\pt} + s^2} = \frac{c_t}{w_{it}} \\
-    \intertext{et donc}
+    \intertext{et}
     c_t
     &= \frac{w_{it}}{w_{i\pt}} \frac{a w_{i\pt}}{a w_{i\pt} + s^2} \\
     &= \frac{w_{it}}{w_{i\pt}}\, z_i.
   \end{align*}
-
-  De l'équation \eqref{eq:buhlmann:c0}, on obtient
+  Enfin, de l'équation \eqref{eq:buhlmann:c0},
   \begin{align*}
     c_0
     &= m - \sum_{t = 1}^n \frac{w_{it}}{w_{i\pt}}\, z_i m \\
     &= (1 - z_i) m
   \end{align*}
-  et donc
+  et, donc,
   \begin{align*}
     \pi_{i, n + 1}^{\text{BS}}
     &= c_0 + \sum_{t = 1}^n c_t X_{it} \\
@@ -246,51 +270,56 @@ approximation linéaire de la prime de risque d'un contrat.
 \end{proof}
 
 
-
-
 \section{Estimation des paramètres de structure}
 \label{sec:buhlmann-straub:estimation}
 
-Les paramètres de structure à estimer à partir des données sont les
-mêmes que précédemment, soit $m$, $s^2$ et $a$.
+Nous nous intéressons uniquement à l'approche non paramétrique avec le
+modèle de Bühlmann--Straub. Le calcul des primes de crédibilité
+requiert donc d'estimer les même paramètres de structurequ'aupravant,
+soit la prime collective $m$, la variance intra $s^2$ et la variance
+inter $a$.
 
 \subsection{Estimation de la prime collective}
 \label{sec:buhlmann-straub:estimation:m}
 
-Un estimateur intuitif de $m$ est
-\begin{displaymath}
+Un estimateur intuitif de la prime collective $m$ est
+\begin{equation*}
   X_{ww} = \sum_{i = 1}^I \frac{w_{i\pt}}{w_{\pt\pt}}\, X_{iw}.
-\end{displaymath}
-Or, on peut démontrer qu'en théorie de la crédibilité l'estimateur
+\end{equation*}
+Or, on peut démontrer qu'en théorie de la crédibilité, l'estimateur
 linéaire à variance minimale est plutôt
-\begin{displaymath}
+\begin{equation}
+  \label{eq:buhlmann-straub:mhat}
   \hat{m} = X_{zw} = \sum_{i = 1}^I \frac{z_i}{z_\pt}\, X_{iw}.
-\end{displaymath}
+\end{equation}
 
-\begin{rem}
-  Formellement, $X_{zw}$ n'est pas un estimateur puisqu'il dépend des
-  paramètres inconnus $s^2$ et $a$. On appellera de tels estimateurs
-  des \emph{pseudo-estimateurs} \citep{DeVylder:estimation:1981}.
-\end{rem}
+\warningbox{Formellement, $X_{zw}$ n'est pas un estimateur puisqu'il
+  dépend des paramètres inconnus $s^2$ et $a$. Nous appellerons de
+  tels estimateurs des \emph{pseudo-estimateurs}
+  \citep{DeVylder:estimation:1981}.}
 
 \subsection{Estimation de la variance intra}
 \label{sec:buhlmann-straub:estimation:s2}
 
-En généralisant simplement l'estimateur obtenu dans le modèle de
-Bühlmann, on obtient l'estimateur sans biais
-\begin{displaymath}
+Par une généralisation directe de l'estimateur obtenu dans le modèle
+de Bühlmann, nous obtenons un estimateur sans biais de la variance
+intra $s^2$:
+\begin{equation}
+  \label{eq:buhlmann-straub:s2hat}
   \hat{s}^2 = \frac{1}{I(n - 1)} \sum_{i = 1}^I \sum_{t = 1}^n
   w_{it} (X_{it} - X_{iw})^2.
-\end{displaymath}
+\end{equation}
 
 \subsection{Estimation de la variance inter}
 \label{sec:buhlmann-straub:estimation:ac}
 
-Du \autoref{chap:buhlmann}, on soupçonne que l'estimateur intuitif
-\begin{displaymath}
+Après la discussion sur l'estimation de la variance inter au
+\autoref{chap:buhlmann}, nous pouvons soupçonner que l'estimateur
+intuitif
+\begin{equation*}
   \sum_{i = 1}^I w_{i\pt} (X_{iw} - X_{ww})^2
-\end{displaymath}
-est biaisé. En effet, on démontre sans grande difficulté que
+\end{equation*}
+est biaisé. En effet, il n'est pas très difficile de démontrer que
 \begin{align*}
   \esp{(X_{iw} - X_{ww})^2}
   &= \var{X_{iw}} + \var{X_{ww}} - 2\, \Cov(X_{iw}, X_{ww}) \\
@@ -307,55 +336,61 @@ est biaisé. En effet, on démontre sans grande difficulté que
   \right),
 \end{align*}
 d'où
-\begin{displaymath}
+\begin{equation*}
   \Esp{\sum_{i=1}^I w_{i\pt} (X_{iw} - X_{ww})^2}
   = a
   \left(
     \frac{w_{\pt\pt}^2 - \sum_{i=1}^I w_{i\pt}^2}{w_{\pt\pt}}
   \right) + (I - 1) s^2.
-\end{displaymath}
-Un estimateur sans biais du paramètre $a$ est donc
-\begin{displaymath}
+\end{equation*}
+
+Un estimateur sans biais de la variance inter $a$ est donc
+\begin{equation}
+  \label{eq:buhlmann-straub:ahat}
   \hat{a} = \frac{w_{\pt\pt}}{w_{\pt\pt}^2 - \sum_{i=1}^I
     w_{i\pt}^2}
   \left(
     \sum_{i=1}^I w_{i\pt} (X_{iw} - X_{ww})^2 - (I - 1) \hat{s}^2
   \right).
-\end{displaymath}
-
-Cet estimateur peut être négatif. Si l'on utilise plutôt
-\begin{displaymath}
+\end{equation}
+Cet estimateur peut être négatif. La version tronquée à $0$
+\begin{equation*}
   \hat{a}^\prime = \max(\hat{a}, 0),
-\end{displaymath}
-on a un estimateur biaisé.
+\end{equation*}
+est biaisée.
 
 \subsection{Pseudo-estimateur de la variance inter}
 \label{sec:buhlmann-straub:estimation:at}
 
 L'estimateur de Bichsel--Straub du paramètre $a$ est sans biais et
 toujours positif:
-\begin{displaymath}
+\begin{equation}
+  \label{eq:buhlmann-straub:atilde}
   \tilde{a} = \frac{1}{I - 1} \sum_{i = 1}^I z_i (X_{iw} - X_{zw})^2.
-\end{displaymath}
+\end{equation}
 
-\begin{rems}
-  \begin{enumerate}
-  \item Il n'y a rien de gratuit:
-    \begin{itemize}
-    \item $\tilde{a}$ est un pseudo-estimateur;
-    \item $\tilde{a}$ est sans biais seulement si les facteurs de
-      crédibilité sont connus. Sinon, l'espérance est impossible à
-      calculer.
-    \end{itemize}
-  \item On a en fait $\tilde{a} = f(\tilde{a})$. L'estimation est donc
-    calculée par la méthode du point fixe.
-  \item On peut démontrer que si $\hat{a} < 0$, alors $\tilde{a}$
-    converge vers $0$.
-  \end{enumerate}
-\end{rems}
+Il n'y a toutefois rien de gratuit. D'abord, $\tilde{a}$ est un
+pseudo-estimateur puisqu'il dépend, via le facteur de crédibilité
+$z_i$, du paramètre $a$ que nous cherchons justement à estimer.
+Ensuite, $\tilde{a}$ s'avère sans biais seulement lorsque nous
+considérons connus les facteurs de crédibilité. Autrement, l'espérance
+de l'estimateur est impossible à calculer.
+
+Vous remarquerez qu'en pratique, l'estimateur est une fonction de
+lui-même: $\tilde{a} = f(\tilde{a})$. Nous devons donc effectuer le
+calcul de l'estimateur par la méthode du point fixe.
+
+\tipbox{On peut démontrer que si $\hat{a} < 0$, alors $\tilde{a}$
+  converge vers $0$.}
 
 \subsection{Sommaire des calculs}
 \label{sec:buhlmann-straub:estimation:sommaire}
+
+Vous trouverez ci-dessous sous forme d'algorithme les étapes de calcul
+des primes de crédibilité dans le modèle de Bühlmann--Straub en
+supposant que c'est l'estimateur de Bichsel--Straub
+\eqref{eq:buhlmann-straub:atilde} qui est utilisé pour estimer la
+variance inter.
 
 \begin{enumerate}
 \item Calculer $w_{i\pt}$, $i = 1, \dots, I$ et $w_{\pt\pt}$.
@@ -363,41 +398,39 @@ toujours positif:
 \item Calculer $\hat{s}^2$.
 \item Calculer $\hat{a}$.
 \item Si $\hat{a} > 0$:
-  \begin{enumerate}[{\theenumi}.1]
+  \begin{enumerate}[i)]
   \item calculer $\tilde{a}$ et poser $\hat{a} = \tilde{a}$;
   \item calculer
-    \begin{displaymath}
+    \begin{equation*}
       \hat{z} = \frac{w_{i\pt}}{w_{i\pt} + \hat{s}^2/\hat{a}};
-    \end{displaymath}
+    \end{equation*}
   \item calculer
-    \begin{displaymath}
+    \begin{equation*}
       \hat{m} = \sum_{i = 1}^I \frac{\hat{z}_i}{\hat{z}_\pt}\, X_{iw}.
-    \end{displaymath}
+    \end{equation*}
   \end{enumerate}
-\item Sinon
-  \begin{enumerate}[{\theenumi}.1]
+  Sinon:
+  \begin{enumerate}[i)]
   \item poser $\hat{a} = 0$;
   \item poser $\hat{z}_i = 0$, $i = 1, \dots, I$;
   \item poser $\hat{m} = X_{ww}$.
   \end{enumerate}
 \item Calculer les primes de crédibilité
-  \begin{displaymath}
+  \begin{equation*}
     \hat{\pi}_{i, n + 1}^{\text{BS}} = \hat{z}_i X_{iw}
     + (1 - \hat{z}_i) \hat{m}, \quad i = 1, \dots, I.
-  \end{displaymath}
+  \end{equation*}
 \end{enumerate}
 
 
 \section{Données manquantes}
 \label{sec:buhlmann-straub:NA}
 
-Dans l'application du modèle de Bühlmann--Straub, il arrive
-fréquemment que le nombre d'observations ne soit pas le même pour tous
-les contrats.
-
-Les données et les poids sont alors disponibles pour $i = 1, \dots, I$
-et $t = 1, \dots, n_i$ (en supposant les données contiguës). On aura
-donc, par exemple,
+Dans l'application du modèle de Bühlmann--Straub en pratique, il
+arrive fréquemment que le nombre d'observations ne soit pas le même
+pour tous les contrats. Les données et les poids sont alors
+disponibles pour $i = 1, \dots, I$ et $t = 1, \dots, n_i$ (en
+supposant les données contiguës). On aura donc, par exemple,
 \begin{align*}
   w_{i\pt}
   &= \sum_{t = 1}^{n_i} w_{it} \\
@@ -406,11 +439,14 @@ donc, par exemple,
   &= \sum_{t = 1}^{n_i} \frac{w_{it}}{w_{i\pt}}\, X_{it}.
 \end{align*}
 
-La seule formule affectée par ce changement est celle de $\hat{s}^2$:
-\begin{displaymath}
+La seule formule affectée par ce changement est celle de l'estimateur
+de la variance inter, $\hat{s}^2$: \eqref{eq:buhlmann-straub:s2hat}
+devient
+\begin{equation}
+  \label{eq:buhlmann-straub:s2hat-na}
   \hat{s}^2 = \frac{1}{\sum_{i = 1}^I (n_i - 1)}
   \sum_{i = 1}^I \sum_{t = 1}^n w_{it} (X_{it} - X_{iw})^2.
-\end{displaymath}
+\end{equation}
 
 
 \section{Exemple numérique}
@@ -421,16 +457,19 @@ Les résultats de cette section sont tirés de
 \cite{Hachemeister:1975}. Ces données sont composées de montants de
 sinistres moyens au chapitre de la responsabilité civile en assurance
 automobile entre juillet 1970 et juin 1973 dans cinq états américains.
-On a donc $I = 5$ contrats et $n = 12$ périodes d'expérience. Les
-montants de sinistres moyens $X_{it}$ sont présentés au
-\autoref{tab:buhlmann-straub:ratios} (à noter que le tableau est transposé par rapport à
-la notation usuelle).
+Nous disposons donc des données de $I = 5$ contrats pendant $n = 12$
+périodes d'expérience. Les montants de sinistres moyens $X_{it}$ sont
+présentés au \autoref{tab:buhlmann-straub:ratios} (à noter que le
+tableau est transposé par rapport à la notation usuelle).
 
-\begin{table}[p]
+\begin{table}[t]
   \centering
-  \begin{tabular}{lrrrrr}
+  \caption{Montants de sinistres moyens (ratios $X_{it}$) dans le portefeuille
+    de Hachemeister}
+  \label{tab:buhlmann-straub:ratios}
+  \begin{tabular}{l*{5}{>{$}r<{$}}}
     \toprule
-    & $i = 1$ & $i = 2$ & $i = 3$ & $i = 4$ & $i = 5$ \\
+    & i = 1 & i = 2 & i = 3 & i = 4 & i = 5 \\
     \midrule
     $t = 1$ & 1738 & 1364 & 1759 & 1223 & 1456 \\
     $t = 2$ & 1642 & 1408 & 1685 & 1146 & 1499 \\
@@ -446,23 +485,16 @@ la notation usuelle).
     $t = 12$ & 2517 & 1471 & 2059 & 1306 & 1690 \\
     \bottomrule
   \end{tabular}
-  \caption{Montants de sinistres moyens (ratios $X_{it}$) dans le portefeuille
-    de Hachemeister}
-  \label{tab:buhlmann-straub:ratios}
 \end{table}
 
-Au \autoref{tab:buhlmann-straub:poids}, on trouvera les poids $w_{it}$ associés
-aux données précédentes. Il s'agit ici du nombre total de sinistres
-dans chaque période pour chaque état, soit le dénominateur des ratios
-$X_{it}$. On remarquera que le nombre de sinistres est beaucoup plus
-élevé dans l'État 1 et, quoique dans une moindre mesure, dans l'État
-5.
-
-\begin{table}[p]
+\begin{table}
   \centering
-  \begin{tabular}{lrrrrr}
+  \caption{Nombres totaux de sinistres (poids $w_{it}$) dans le portefeuille
+    de Hachemeister}
+  \label{tab:buhlmann-straub:poids}
+  \begin{tabular}{l*{5}{>{$}r<{$}}}
     \toprule
-    & $i = 1$ & $i = 2$ & $i = 3$ & $i = 4$ & $i = 5$ \\
+    & i = 1 & i = 2 & i = 3 & i = 4 & i = 5 \\
     \midrule
     $t = 1$ & 7861 & 1622 & 1147 & 407 & 2902 \\
     $t = 2$ & 9251 & 1742 & 1357 & 396 & 3172 \\
@@ -478,34 +510,42 @@ $X_{it}$. On remarquera que le nombre de sinistres est beaucoup plus
     $t = 12$ & 9077 & 1861 & 1121 & 342 & 3425 \\
     \bottomrule
   \end{tabular}
-  \caption{Nombres totaux de sinistres (poids $w_{it}$) dans le portefeuille
-    de Hachemeister}
-  \label{tab:buhlmann-straub:poids}
 \end{table}
+
+Le \autoref{tab:buhlmann-straub:poids} contient les poids $w_{it}$
+associés aux données. Il s'agit ici du nombre total de sinistres dans
+chaque période pour chaque état, soit le dénominateur des ratios
+$X_{it}$. Vous remarquerez que le nombre de sinistres est beaucoup
+plus élevé dans l'État~1, surtout, ainsi que dans l'État~5.
 
 \subsection{Résultats avec le modèle de Bühlmann}
 
-On illustre d'abord le modèle de Bühlmann en ignorant les poids
-rattachés aux données. Les estimateurs des paramètres de structure
-sont les suivants:
+Pour fins de comparaison, calculons d'abord les primes de crédibilité
+avec le modèle de Bühlmann en ignorant simplement les poids rattachés
+aux données. Les estimateurs des paramètres de structure sont les
+suivants:
 \begin{align*}
   \hat{m}   &= \nombre{1671} \\
   \hat{s}^2 &= \nombre{46040} \\
   \hat{a}   &= \nombre{72310},
 \end{align*}
-ce qui mène aux résultats du \autoref{tab:buhlmann-straub:buhl}. Le facteur de
-crédibilité est plutôt élevé. Une analyse rapide des données suffit
-pour constater que l'expérience des états est relativement stable dans
-le temps. Il en résulte une valeur de $\hat{s}^2$ petite par rapport à
-celle de $\hat{a}$ et, donc, un grand facteur de crédibilité.
+ce qui mène aux résultats du \autoref{tab:buhlmann-straub:buhlman}. Le
+facteur de crédibilité est plutôt élevé. Une analyse rapide des
+données suffit pour constater que l'expérience des états est
+relativement stable dans le temps. Il en résulte une valeur de
+$\hat{s}^2$ petite par rapport à celle de $\hat{a}$ et, donc, un grand
+facteur de crédibilité.
 
-Pour l'État 1, dont l'expérience est la pire du portefeuille, un grand
+Pour l'État~1, dont l'expérience est la pire du portefeuille, un grand
 facteur de crédibilité a pour effet de ne réduire la prime de
-crédibilité (\nombre{2044}) que de 1\% par rapport à la prime
-individuelle (\nombre{2064}).
+crédibilité ($\nombre{2044}$) que de 1~\% par rapport à la prime
+individuelle ($\nombre{2064}$).
 
 \begin{table}[tbp]
   \centering
+  \caption{Résultats avec le modèle de Bühlmann pour le portefeuille
+    de Hachemeister}
+  \label{tab:buhlmann-straub:buhlmann}
   \begin{tabular}{lrrrrr}
     \toprule
     & $i = 1$ & $i = 2$ & $i = 3$ & $i = 4$ & $i = 5$ \\
@@ -520,20 +560,17 @@ individuelle (\nombre{2064}).
     0,95 & 0,95 & 0,95 & 0,95 & 0,95 \\
     \bottomrule
   \end{tabular}
-  \caption{Résultats avec le modèle de Bühlmann pour le portefeuille
-    de Hachemeister}
-  \label{tab:buhlmann-straub:buhl}
 \end{table}
 
 \subsection{Résultats avec le modèle de Bühlmann--Straub}
 
-Le \autoref{tab:buhlmann-straub:poids} montre que le poids relatif de chacun des
-cinq états (poids mesuré en nombre de sinistres) est très différent:
-l'État 1 compte pour 57,5\% des sinistres du portefeuille, alors qu'à
-l'opposé l'État 4 ne compte que pour 2,4\%. Dans une telle situation,
-il convient d'utiliser le modèle de Bühlmann--Straub dans la
-tarification afin de tenir compte des volumes très différents d'un
-contrat à un autre.
+Le \autoref{tab:buhlmann-straub:poids} montre que le poids relatif de
+chacun des cinq états (poids mesuré en nombre de sinistres) est très
+différent: l'État~1 compte pour 57,5~\% des sinistres du portefeuille,
+alors qu'à l'autre bout du spectre, l'État~4 ne compte que pour
+2,4~\%. Dans une telle situation, il convient d'utiliser le modèle de
+Bühlmann--Straub dans la tarification afin de tenir compte des volumes
+très différents d'un contrat à un autre.
 
 Les estimateurs des paramètres de structure sont les suivants:
 \begin{align*}
@@ -542,12 +579,17 @@ Les estimateurs des paramètres de structure sont les suivants:
   \hat{a}   &= \nombre{89639} \\
   \tilde{a} &= \nombre{64367}.
 \end{align*}
-On notera que l'estimateur $X_{zw}$ de la moyenne collective ainsi que
-les primes de crédibilité du \autoref{tab:buhlmann-straub:bs} ont été calculés
-avec l'estimateur $\tilde{a}$ de la variance entre les moyennes.
+Ces résultats sont conformes aux étapes de calcul de la
+\autoref{sec:buhlmann-straub:estimation:sommaire}, c'est-à-dire que
+l'estimateur $X_{zw}$ de la moyenne collective ainsi que les primes de
+crédibilité du \autoref{tab:buhlmann-straub:bs} ont été calculés avec
+l'estimateur de Bichsel--Straub $\tilde{a}$ de la variance intra.
 
 \begin{table}[tbp]
   \centering
+  \caption{Résultats avec le modèle de Bühlmann-Straub pour le portefeuille
+    de Hachemeister}
+  \label{tab:buhlmann-straub:bs}
   \begin{tabular}{lrrrrr}
     \toprule
     & $i = 1$ & $i = 2$ & $i = 3$ & $i = 4$ & $i = 5$ \\
@@ -562,35 +604,46 @@ avec l'estimateur $\tilde{a}$ de la variance entre les moyennes.
     0,98 & 0,90 & 0,86 & 0,66 & 0,94 \\
     \bottomrule
   \end{tabular}
-  \caption{Résultats avec le modèle de Bühlmann-Straub pour le portefeuille
-    de Hachemeister}
-  \label{tab:buhlmann-straub:bs}
 \end{table}
 
-C'est pour l'État 4 que les différences entre les résultats des
-tableaux \ref{tab:buhlmann-straub:buhl} et
-\ref{tab:buhlmann-straub:bs} sont les plus marquées. La prime de
-crédibilité de cet état augmente en effet de \nombre{1376} à
-\nombre{1468}. Ceci est en partie dû à l'augmentation de l'estimateur
-de la prime collective, mais surtout à la forte baisse de son facteur
-de crédibilité. Le modèle de Bühlmann--Straub permet donc de
-reconnaître le rôle minime joué par cet état dans les résultats du
-portefeuille. C'est pourquoi on y accorde peu de poids lors de la
-répartition des primes.
+C'est pour l'État~4 que les différences entre les résultats des
+tableaux \ref{tab:buhlmann-straub:buhlmann} et
+\ref{tab:buhlmann-straub:bs} s'avèrent les plus marquées. La prime de
+crédibilité de cet état augmente en effet de $\nombre{1376}$ à
+$\nombre{1468}$. Ceci est en partie dû à l'augmentation de
+l'estimateur de la prime collective, mais, surtout, à la forte baisse
+de son facteur de crédibilité. Le modèle de Bühlmann--Straub permet
+donc de reconnaître le rôle minime joué par cet état dans les
+résultats du portefeuille. C'est pourquoi le modèle y accorde peu de
+poids lors de la répartition des primes.
+
+\gotorbox{La \autoref{sec:buhlmann-straub:code} contient le code
+  informatique pour obtenir les résultats des tableaux
+  \ref{tab:buhlmann-straub:buhlmann} et \ref{tab:buhlmann-straub:bs}
+  avec la fonction \code{cm} du paquetage \pkg{actuar}.}
 
 \subsection{Limitations des modèles précédents}
 
-L'examen des données de l'État 1 montre que le montant moyen des
+L'examen des données de l'État~1 montre que le montant moyen des
 sinistres va en augmentant d'une période à l'autre. Or la prime de
-crédibilité calculée avec le modèle de Bühlmann--Straub se trouve
-environ au niveau de la période 8. Il semble donc évident que la prime
-de crédibilité s'avèrera trop peu élevée.
+crédibilité du modèle de Bühlmann--Straub se trouve environ au niveau
+de la période $t = 8$. Il semble donc évident que la prime de
+crédibilité sera trop peu élevée.
 
 C'est afin de pouvoir traiter de tels cas que
 \citet{Hachemeister:1975} a proposé son modèle de crédibilité avec
 régression. L'utilisation d'un tel modèle est particulièrement
 indiquée dans des situations de forte inflation ou d'augmentation ou
-diminution structurelle des coûts.
+de diminution structurelle des coûts.
+
+
+\section{Code informatique}
+\label{sec:buhlmann-straub:code}
+
+\def\scriptfilename{buhlmann-straub.R}
+
+\scriptfile{\scriptfilename}
+\lstinputlisting[firstline=14]{\scriptfilename}
 
 
 \section{Exercices}
@@ -733,13 +786,13 @@ diminution structurelle des coûts.
       \right) + (I - 1) s^2.
     \end{align*}
     Puisque $\esp{\hat{s}^2} = s^2$, on a donc que
-    \begin{displaymath}
+    \begin{equation*}
       \hat{a} = \frac{w_{\pt\pt}}{w_{\pt\pt}^2 - \sum_{i=1}^I
         w_{i\pt}^2}
       \left(
         \sum_{i=1}^I w_{i\pt} (X_{iw} - X_{ww})^2 - (I - 1) \hat{s}^2
       \right)
-    \end{displaymath}
+    \end{equation*}
     est un estimateur sans biais du paramètre $a$.
   \end{sol}
 \end{exercice}
@@ -791,9 +844,9 @@ diminution structurelle des coûts.
   Démontrer que lorsque tous les facteurs de crédibilité sont nuls
   (situation qui survient principalement lorsque $a = 0$), alors
   $X_{zw} = X_{ww}$. Autrement dit, démontrer que
-  \begin{displaymath}
+  \begin{equation*}
     \lim_{a \rightarrow 0} X_{zw} = X_{ww}
-  \end{displaymath}
+  \end{equation*}
   \begin{sol}
     Puisque $\lim_{a \rightarrow 0} z_i = 0$, on a
     \begin{align*}
@@ -836,9 +889,9 @@ diminution structurelle des coûts.
   \begin{sol}
     La façon la plus simple de simuler des ratios consiste à simuler
     des montants totaux de sinistres $S_{it}$ et à poser
-    \begin{displaymath}
+    \begin{equation*}
       X_{it} = \frac{S_{it}}{w_{it}}.
-    \end{displaymath}
+    \end{equation*}
     Pour la simulation des variables $S_{it}$, se reporter à la
     solution de l'\autoref{ex:buhlmann:simulation}. Il faut
     toutefois ajouter les poids au modèle de simulation. Puisque la
@@ -1085,16 +1138,16 @@ db
       Pour vérifier les réponses de la partie a), on fera
 <<echo=TRUE>>=
 library("actuar")
-res <- cm(~contrat, db, ratios = r.1:r.5, weights = w.1:w.5,
+fit <- cm(~contrat, db, ratios = r.1:r.5, weights = w.1:w.5,
           method = "Buhlmann-Gisler")
-summary(res)
+summary(fit)
 @
       Pour utiliser plutôt l'estimateur $\tilde{a}$ du paramètre $a$,
       on fait:
 <<echo=TRUE>>=
-res <- cm(~contrat, db, ratios = r.1:r.5,
+fit <- cm(~contrat, db, ratios = r.1:r.5,
           weights = w.1:w.5, method = "iterative")
-summary(res)
+summary(fit)
 @
        Évidemment, les réponses sont alors différentes de celles
        obtenues en a).

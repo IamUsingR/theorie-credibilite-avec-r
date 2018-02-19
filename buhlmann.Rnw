@@ -25,29 +25,26 @@ calculer et à interpréter --- que pour certaines combinaisons de
 distributions seulement. Ensuite, tout le calcul de la prime repose
 sur des hypothèses très subjectives pour les distributions de $\Theta$
 et $S_t|\Theta$. L'effet du choix de distributions s'estompe avec le
-volume d'expérience, mais cela peut nécessiter plusieurs années.
+volume d'expérience, nécessite un nombre années d'expérience bien plus
+grand que ce dont nous disposons habituellement en pratique
 
 Nous avons déjà vu à la \autoref{sec:bayesienne:modele} que l'une des
 contributions importantes du père de la théorie du risque moderne,
 Hans Bühlmann, à la théorie de la crédibilité de précision est le
 modèle d'hétérogénéité. Dans ce chapitre, nous étudions deux autres de
-ses contributions importantes qui visent à pallier aux inconvénients
-de l'approche bayésienne mentionnés ci-dessus. Pour résoudre le
-l'enjeu de linéarité de la prime bayésienne,
-\citet{Buhlmann:credibility:1967} a proposé de restreindre
-l'approximation de la prime de risque aux fonctions linéaires des
-observations, c'est-à-dire de la forme
-\begin{equation*}
-  c_0 + \sum_{t = 1}^n c_t S_{it}.
-\end{equation*}
-Nous verrons que la meilleure approximation se trouve être une prime
-de crédibilité.
+ses contributions qui visent à pallier aux inconvénients de l'approche
+bayésienne mentionnés ci-dessus. Pour résoudre l'enjeu de linéarité de
+la prime bayésienne, \citet{Buhlmann:credibility:1967} a proposé de
+restreindre l'approximation de la prime de risque aux fonctions
+linéaires des observations, c'est-à-dire de la forme
+$c_0 + \sum_{t = 1}^n c_t S_{it}$. Nous verrons que la meilleure
+approximation se trouve être une prime de crédibilité.
 
-\citet{Buhlmann:credibility:1969} a ensuite montré la voie pour
-contourner le problème du choix des distributions: il s'agit
-d'utiliser une approche non paramétrique dans laquelle le calcul de la
-prime de crédibilité repose sur l'estimation de paramètres à partir
-des données accumulées.
+\citet{Buhlmann:credibility:1969} a ensuite proposé d'avoir recours à
+la statistique bayésienne empirique pour contourner le problème du
+choix des distributions. Dans cette approche non paramétrique, le
+calcul de la prime de crédibilité repose sur l'estimation de
+paramètres à partir des données accumulées.
 
 
 \section{Notation et relations de covariance}

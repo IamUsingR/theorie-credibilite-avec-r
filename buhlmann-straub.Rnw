@@ -13,6 +13,7 @@
 \label{chap:buhlmann-straub}
 
 <<echo=FALSE>>=
+library(actuar)
 options(width = 52)
 @
 
@@ -145,6 +146,7 @@ meilleure prévision de la prime de risque ainsi que l'espérance des
 estimateurs des paramètres de structure.
 
 \begin{thm}
+  \label{thm:buhlmann-straub:covariances}
   Soit $X_{it}$, $i = 1, \dots I$, $t = 1, \dots, n$ des variables
   aléatoires satisfaisant les hypothèses (BS1) et (BS2) ci-dessus.
   Alors,
@@ -669,8 +671,8 @@ de diminution structurelle des coûts.
   \item $\Var{X_{zw}} = \dfrac{a}{z_\pt}$
   \end{enumerate}
   \begin{sol}
-    Premièrement, on sait que $\Cov(X_{it}, X_{iw}) = a +
-    s^2/w_{i\pt}$ et
+    Du \autoref{thm:buhlmann-straub:covariances}, nous savons que
+    $\Cov(X_{it}, X_{iw}) = a + s^2/w_{i\pt}$. Ensuite,
     \begin{align*}
       \Cov(X_{iw}, X_{iw})
       &= \sum_{t=1}^n \frac{w_{it}}{w_{i\pt}}\, \Cov(X_{it}, X_{iw}) \\
@@ -678,8 +680,8 @@ de diminution structurelle des coûts.
         \frac{s^2}{w_{i\pt}} \right) = a + \frac{s^2}{w_{i\pt}} =
       \frac{a}{z_i}.
     \end{align*}
-    On a, par indépendance des contrats, que $\Cov(X_{iw}, X_{kw}) =
-    0$, $k \neq i$.
+    Par indépendance des contrats, $\Cov(X_{iw}, X_{kw}) = 0$,
+    $k \neq i$.
     \begin{enumerate}
     \item Ici,
       \begin{align*}
@@ -688,7 +690,7 @@ de diminution structurelle des coûts.
         &= \frac{w_{i\pt}}{w_{\pt\pt}}\, \Cov(X_{iw}, X_{iw}) = a
         \frac{w_{i\pt}}{w_{\pt\pt}} + \frac{s^2}{w_{\pt\pt}}.
       \end{align*}
-    \item En utilisant le résultat obtenu en (a),
+    \item En utilisant le résultat obtenu en a),
       \begin{align*}
         \var{X_{ww}}
         &= \Cov(X_{ww}, X_{ww}) \\
@@ -720,7 +722,7 @@ de diminution structurelle des coûts.
 \begin{exercice}
   Démontrer que l'estimateur $\hat{s}^2$ est sans biais.
   \begin{sol}
-    On calcule d'abord l'espérance de la variable aléatoire
+    Calculons d'abord l'espérance de la variable aléatoire
     $(X_{it} - X_{iw})^2$. En utilisant les résultats de
     l'\autoref{prob:buhlmann-straub:covariances}, on a que
     \begin{align*}
@@ -744,7 +746,7 @@ de diminution structurelle des coûts.
 \begin{exercice}
   Démontrer que l'estimateur $\hat{a}$ est sans biais.
   \begin{sol}
-    En premier lieu, on a que
+    En premier lieu,
     \begin{align*}
       \esp{(X_{iw} - X_{ww})^2}
       &= \var{X_{iw}} + \var{X_{ww}} - 2\, \Cov(X_{iw}, X_{ww}) \\
@@ -785,7 +787,7 @@ de diminution structurelle des coûts.
         \frac{w_{\pt\pt}^2 - \sum_{i=1}^I w_{i\pt}^2}{w_{\pt\pt}}
       \right) + (I - 1) s^2.
     \end{align*}
-    Puisque $\esp{\hat{s}^2} = s^2$, on a donc que
+    Puisque $\esp{\hat{s}^2} = s^2$,
     \begin{equation*}
       \hat{a} = \frac{w_{\pt\pt}}{w_{\pt\pt}^2 - \sum_{i=1}^I
         w_{i\pt}^2}
@@ -830,25 +832,31 @@ de diminution structurelle des coûts.
       a
       &= \frac{1}{I - 1} \sum_{i=1}^I \frac{an}{an + s^2}
       (\bar{X}_i - \bar{X})^2 \\
+      \intertext{ou}
       an + s^2
       &= \frac{n}{I - 1} \sum_{i=1}^I (\bar{X}_i - \bar{X})^2 \\
+      \intertext{ou encore}
       a
       &= \frac{1}{I - 1} \sum_{i=1}^I (\bar{X}_i - \bar{X})^2 -
-      \frac{s^2}{n},
+      \frac{s^2}{n}.
     \end{align*}
-    soit $\tilde{a} = \hat{a}$.
+    Ceci démontre que $\tilde{a} = \hat{a}$ dans le modèle de
+    Bühlmann.
   \end{sol}
 \end{exercice}
 
 \begin{exercice}
-  Démontrer que lorsque tous les facteurs de crédibilité sont nuls
-  (situation qui survient principalement lorsque $a = 0$), alors
-  $X_{zw} = X_{ww}$. Autrement dit, démontrer que
+  À la \autoref{sec:buhlmann-straub:estimation:sommaire}, il est
+  préciser d'utiliser $X_{ww}$ comme estimateur de la prime collective
+  lorsque l'estimateur de la variance inter est nul. Justifier ce
+  choix en démontrant que lorsque tous les facteurs de crédibilité
+  sont nuls (situation qui survient principalement lorsque $a = 0$),
+  alors $X_{zw} = X_{ww}$. Autrement dit, démontrer que
   \begin{equation*}
     \lim_{a \rightarrow 0} X_{zw} = X_{ww}
   \end{equation*}
   \begin{sol}
-    Puisque $\lim_{a \rightarrow 0} z_i = 0$, on a
+    Puisque $\lim_{a \rightarrow 0} z_i = 0$, nous avons
     \begin{align*}
       \lim_{a \rightarrow 0} X_{zw}
       &= \lim_{a \rightarrow 0}
@@ -863,8 +871,7 @@ de diminution structurelle des coûts.
       &= \frac{w_{i\pt} (a w_{i\pt} + s^2) - a w_{i\pt}^2}{%
         (a w_{i\pt} + s^2)^2},
     \end{align*}
-    alors, par une simple application de la règle de l'Hôpital, on
-    trouve que
+    alors, par une simple application de la règle de l'Hôpital,
     \begin{align*}
       \lim_{a \rightarrow 0} X_{zw}
       &= \sum_{i = 1}^I \frac{s^2 w_{i\pt}}{\sum_{i = 1}^I s^2
@@ -901,21 +908,19 @@ de diminution structurelle des coûts.
   \end{sol}
 \end{exercice}
 
-\newpage
-
 \begin{exercice}
   Considérer le tableau suivant où $S_{it}$ est le montant total des
   sinistres et $w_{it}$ la masse salariale pour l'employeur $i$ dans
   l'année $t$.
   \begin{center}
-    \begin{minipage}[t]{5.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
       \centering
       $S_{it}$ \\[3pt]
-      \begin{tabular}{crrrr}
+      \begin{tabular}{>{$}c<{$}*{4}{>{$}r<{$}}}
         \toprule
         & \multicolumn{4}{c}{Année} \\
         \cmidrule{2-5}
-        Employeur & 1 & 2 & 3 & 4 \\
+        \multicolumn{1}{c}{Employeur} & 1 & 2 & 3 & 4 \\
         \midrule
         1        & 14 & 21 & 12 & 18  \\
         2        & 4 & 0 & 4 & 6 \\
@@ -923,14 +928,14 @@ de diminution structurelle des coûts.
         \bottomrule
       \end{tabular}
     \end{minipage}
-    \begin{minipage}[t]{5.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
       \centering
       $w_{it}$ \\[3pt]
-      \begin{tabular}{ccccc}
+      \begin{tabular}{*{5}{>{$}c<{$}}}
         \toprule
         & \multicolumn{4}{c}{Année} \\
         \cmidrule{2-5}
-        Employeur & 1 & 2 & 3 & 4  \\
+        \multicolumn{1}{c}{Employeur} & 1 & 2 & 3 & 4  \\
         \midrule
         1        & 2 & 3 & 4 & 3 \\
         2        & 4 & 2 & 1 & 2 \\
@@ -940,24 +945,26 @@ de diminution structurelle des coûts.
     \end{minipage}
   \end{center}
   Calculer la prime de crédibilité (totale) de l'employeur 1 pour la
-  cinquième année pour trois unités de masse salariale.
+  cinquième année pour trois unités de masse salariale. Utiliser
+  $\hat{a}$ comme estimateur de la variance inter.
   \begin{rep}
     $15,52$
   \end{rep}
   \begin{sol}
-    On nous donne des montants totaux de sinistres. Il faut convertir
-    ces données en ratios pour pouvoir utiliser le modèle de
-    Bühlmann--Straub. En définissant $X_{it} = S_{it}/w_{it}$, on
-    obtient les nouvelles données suivantes:
+    Il y a un piège dans cette question: on vous donne des montants
+    totaux de sinistres, aussi faut-il faut convertir ces données en
+    ratios pour pouvoir utiliser le modèle de Bühlmann--Straub. Les
+    tableaux ci-dessous contiennent les données du portefeuille avec
+    les ratios $X_{it} = S_{it}/w_{it}$.
     \begin{center}
-      \begin{minipage}[t]{5.5cm}
+      \begin{minipage}[t]{0.45\linewidth}
         \centering
         $X_{it}$ \\[3pt]
-        \begin{tabular}{crrrr}
+        \begin{tabular}{*{5}{>{$}c<{$}}}
           \toprule
           & \multicolumn{4}{c}{Année} \\
           \cmidrule{2-5}
-          Employeur & 1 & 2 & 3 & 4 \\
+          \multicolumn{1}{c}{Employeur} & 1 & 2 & 3 & 4 \\
           \midrule
           1        & 7 & 7 & 3 & 6  \\
           2        & 1 & 0 & 4 & 3 \\
@@ -965,14 +972,14 @@ de diminution structurelle des coûts.
           \bottomrule
         \end{tabular}
       \end{minipage}
-      \begin{minipage}[t]{5.5cm}
+      \begin{minipage}[t]{0.45\linewidth}
         \centering
         $w_{it}$ \\[3pt]
-        \begin{tabular}{ccccc}
+        \begin{tabular}{*{5}{>{$}c<{$}}}
           \toprule
           & \multicolumn{4}{c}{Année} \\
           \cmidrule{2-5}
-          Employeur & 1 & 2 & 3 & 4  \\
+          \multicolumn{1}{c}{Employeur} & 1 & 2 & 3 & 4 \\
           \midrule
           1        & 2 & 3 & 4 & 3 \\
           2        & 4 & 2 & 1 & 2 \\
@@ -981,14 +988,14 @@ de diminution structurelle des coûts.
         \end{tabular}
       \end{minipage}
     \end{center}
-    On a alors:
+    Les moyennes pondérées sont:
     \begin{align*}
       w_{1\pt} &= 12 &
       X_{1w} &= 5,4167 \\
       w_{2\pt} &= 9 &
       X_{2w} &= 1,5556 \\
-      w_{3\pt} &= 10 \\
-      X_{3w} &= 1 &
+      w_{3\pt} &= 10 &
+      X_{3w} &= 1 \\
       \intertext{et}
       w_{\pt\pt} &= 31 &
       X_{ww} &= 2,8710.
@@ -1016,6 +1023,28 @@ de diminution structurelle des coûts.
     \end{align*}
     et pour trois unités de masse salariale, la prime totale payée par
     l'employeur est $15,52$.
+
+    Nous pouvons obtenir les résultats ci-dessus (à l'exception de la
+    prime totale) avec la fonction \code{cm} du paquetage \pkg{actuar}.
+<<echo=TRUE>>=
+X <- cbind(employeur = 1:3,
+  matrix(c(7, 7, 3, 6,
+           1, 0, 4, 3,
+           1, 0, 1, 2),
+         nrow = 3, byrow = TRUE, dimnames =
+           list(NULL,
+                paste("ratio", 1:4, sep = "."))),
+  matrix(c(2, 3, 4, 3,
+           4, 2, 1, 2,
+           3, 3, 1, 3),
+         nrow = 3, byrow = TRUE, dimnames =
+           list(NULL,
+                paste("poids", 1:4, sep = "."))))
+summary(cm(~ employeur, X,
+           ratios = ratio.1:ratio.4,
+           weights = poids.1:poids.4,
+           method = "Buhlmann-Gisler"))
+@
   \end{sol}
 \end{exercice}
 
@@ -1023,33 +1052,33 @@ de diminution structurelle des coûts.
   Calculer la prime de crédibilité pour chacun des trois contrats
   du portefeuille ci-dessous.
   \begin{center}
-    \begin{minipage}[t]{5.5cm}
+    \begin{minipage}[t]{0.45\linewidth}
       \centering
       Ratios $X_{it}$ \\[3pt]
-      \begin{tabular}{cccccc}
+      \begin{tabular}{*{6}{>{$}c<{$}}}
         \toprule
         & \multicolumn{5}{c}{Année} \\
         \cmidrule{2-6}
-        Contrat & 1 & 2 & 3 & 4 & 5 \\
+        \multicolumn{1}{c}{Contrat} & 1 & 2 & 3 & 4 & 5 \\
         \midrule
-        1        & 3 & 5 & -- & --  & 4 \\
+        1        & 3 & 5 & $--$ & $--$  & 4 \\
         2        & 6 & 8 & 8 & 14 & 4 \\
-        3        & -- & 2 & 0 & 3  & 6 \\
+        3        & $--$ & 2 & 0 & 3  & 6 \\
         \bottomrule
       \end{tabular}
     \end{minipage}
     \begin{minipage}[t]{5.5cm}
       \centering
       Poids $w_{it}$ \\[3pt]
-      \begin{tabular}{cccccc}
+      \begin{tabular}{*{6}{>{$}c<{$}}}
         \toprule
         & \multicolumn{5}{c}{Année} \\
         \cmidrule{2-6}
-        Contrat & 1 & 2 & 3 & 4 & 5 \\
+        \multicolumn{1}{c}{Contrat} & 1 & 2 & 3 & 4 & 5 \\
         \midrule
-        1        & 1 & 1 & -- & -- & 1 \\
+        1        & 1 & 1 & $--$ & $--$ & 1 \\
         2        & 2 & 2 & 2 & 2 & 2 \\
-        3        & -- & 3 & 3 & 3 & 3 \\
+        3        & $--$ & 3 & 3 & 3 & 3 \\
         \bottomrule
       \end{tabular}
     \end{minipage}
@@ -1057,11 +1086,9 @@ de diminution structurelle des coûts.
   \begin{enumerate}
   \item Faire les calculs «à la main». Utiliser $\hat{a}$ comme
     estimateur du paramètre $a$.
-  \item Faire les calculs en \textsf{R} à l'aide de la fonction
-    \texttt{cm} de la version 0.9-4 ou ultérieure du package
-    \texttt{actuar} \citep{actuar}.  Utiliser $\tilde{a}$ comme
-    estimateur du paramètre $a$. Comparer les réponses avec celles
-    obtenues en a).
+  \item Faire les calculs avec la fonction \code{cm} de \pkg{actuar}.
+    Utiliser $\tilde{a}$ comme estimateur du paramètre $a$. Comparer
+    les réponses avec celles obtenues en a).
   \end{enumerate}
   \begin{rep}
     \begin{enumerate}
@@ -1076,7 +1103,7 @@ de diminution structurelle des coûts.
   \begin{sol}
     \begin{enumerate}
     \item Il faut utiliser la formule de $\hat{s}^2$ pour données
-      manquantes. Tout d'abord, on a
+      manquantes. Tout d'abord, nous avons
       \begin{align*}
         w_{1\pt} &= 3  & X_{1w} &= 4 \\
         w_{2\pt} &= 10 & X_{2w} &= 8 \\
@@ -1088,12 +1115,13 @@ de diminution structurelle des coûts.
       \begin{align*}
         \hat{s}^2
         &= \frac{1}{12 - 3}
-        \left[
-          (1) (1 + 1) +
-          (2) (4 + 36 + 16) +
+        \bigg[
+          (1) (1 + 1 + 0) +
+          (2) (4 + 36 + 16) \\
+        &\phantom{=} +
           (3) \left( \frac{9}{16} + \frac{121}{16} + \frac{1}{16} +
             \frac{169}{16} \right)
-        \right] \\
+        \bigg] \\
         &= 18,9167, \\
         \hat{a}
         &= \frac{25}{625 - 253}
@@ -1111,43 +1139,43 @@ de diminution structurelle des coûts.
       et $X_{zw} = 4,9954$. Enfin,
       \begin{align*}
         \hat{\pi}_{1, 6}
-        &= \hat{z}_1 X_{1w} + (1 - \hat{z}_1) X_{zw} \\
-        &= 4,4453 \\
+        &= \hat{z}_1 X_{1w} + (1 - \hat{z}_1) X_{zw} = 4,4453 \\
         \hat{\pi}_{2, 6}
-        &= \hat{z}_2 X_{2w} + (1 - \hat{z}_2) X_{zw} \\
-        &= 7,4129 \\
+        &= \hat{z}_2 X_{2w} + (1 - \hat{z}_2) X_{zw} = 7,4129 \\
         \hat{\pi}_{3, 6}
-        &= \hat{z}_3 X_{3w} + (1 - \hat{z}_3) X_{zw} \\
-        &= 3,1279.
+        &= \hat{z}_3 X_{3w} + (1 - \hat{z}_3) X_{zw} = 3,1279.
       \end{align*}
-    \item La fonction \texttt{cm} permet de choisir entre l'estimateur
-      sans biais $\hat{a}$ et l'estimateur itératif $\tilde{a}$. Pour
-      utiliser \texttt{cm}, il faut d'abord placer les données dans
-      une matrice ou un \emph{data frame} avec une colonne
-      d'étiquettes pour les contrats:
+    \item La fonction \code{cm} permet de choisir entre l'estimateur
+      sans biais $\hat{a}$ et l'estimateur itératif $\tilde{a}$. Il
+      faut d'abord placer les données dans une matrice ou un
+      \emph{data frame} avec une colonne d'étiquettes pour les
+      contrats:
 <<echo=TRUE>>=
 db <- cbind(contrat = 1:3,
-            matrix(c(3, 6, NA, 5, 8, 2, NA, 8, 0, NA, 14, 3, 4, 4, 6),
-                   nrow = 3, dimnames = list(NULL, paste("r", 1:5,
-                   sep = "."))),
-            matrix(c(1, 2, NA, 1:3, NA, 2, 3, NA, 2, 3, 1:3),
-                   nrow = 3, dimnames = list(NULL, paste("w",
-                   1:5, sep = "."))))
+            matrix(c(3, 6, NA,  5, 8, 2, NA, 8, 0,
+                     NA, 14, 3, 4, 4, 6),
+                   nrow = 3, dimnames = list(NULL,
+                     paste("r", 1:5, sep = "."))),
+            matrix(c(1, 2, NA, 1:3, NA, 2, 3,
+                     NA, 2, 3, 1:3),
+                   nrow = 3, dimnames = list(NULL,
+                     paste("w", 1:5, sep = "."))))
 db
 @
-      Pour vérifier les réponses de la partie a), on fera
+      Tout d'abord, vérifions les réponses de la partie a).
 <<echo=TRUE>>=
-library("actuar")
-fit <- cm(~contrat, db, ratios = r.1:r.5, weights = w.1:w.5,
-          method = "Buhlmann-Gisler")
-summary(fit)
+summary(cm(~contrat, db,
+           ratios = r.1:r.5,
+           weights = w.1:w.5,
+           method = "Buhlmann-Gisler"))
 @
       Pour utiliser plutôt l'estimateur $\tilde{a}$ du paramètre $a$,
-      on fait:
+      l'argument \code{method} doit être \code{"iterative"}.
 <<echo=TRUE>>=
-fit <- cm(~contrat, db, ratios = r.1:r.5,
-          weights = w.1:w.5, method = "iterative")
-summary(fit)
+summary(cm(~contrat, db,
+           ratios = r.1:r.5,
+           weights = w.1:w.5,
+           method = "iterative"))
 @
        Évidemment, les réponses sont alors différentes de celles
        obtenues en a).
@@ -1178,7 +1206,7 @@ summary(fit)
         \frac{8}{23} + \frac{6}{21} + \frac{9}{24} + z_3} \\
       &= 0,8.
     \end{align*}
-    On trouve donc $z_3 = 0,0539$.
+    Par conséquent, $z_3 = 0,0539$.
   \end{sol}
 \end{exercice}
 

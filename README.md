@@ -82,6 +82,19 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ## Historique des versions
 
+### (en développement)
+
+#### Nouveautés
+
+- Chapitre 5 entièrement révisé.
+- Fichier de code informatique `buhlmann-straub.R` reprenant les calculs de l'exemple numérique de la section 5.4.
+- Références pour le modèle de Hachemeister à la section 5.4.3.
+- Calculs avec `cm` ajoutés à la solution de l'exercice 5.8.
+
+#### Autres modifications
+
+- Texte de l'introduction du chapitre 4 légèrement retravaillé.
+
 ### 2018.02-2 (2018-02-13)
 
 #### Nouveautés

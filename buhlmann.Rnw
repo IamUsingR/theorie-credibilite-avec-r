@@ -400,7 +400,7 @@ se trouve dans le théorème suivant.
   la meilleure prévision du montant des sinistres de la prochaine
   période sont des problèmes en tous points équivalents. En effet,
   remplacer $\mu(\Theta_i)$ dans le \autoref{thm:buhlmann:prime} par
-  $S_{i, n + 1}$ ne change rien puisquen
+  $S_{i, n + 1}$ ne change rien puisque
   $\esp{\mu(\Theta_i)} = \esp{S_{i, n + 1}} = m$ et
   $\Cov(\mu(\Theta_i), S_{it}) = \Cov(S_{i, n + 1}, S_{it}) = a$ pour
   $t = 1, \dots, n$.}

@@ -2622,7 +2622,7 @@ pgamma(10, 6, 2)
       \begin{equation*}
         \Pr[\Theta=\theta|N_1=4, N_2=4] =
         \begin{cases}
-          \frac{0,008140(0,5)}{0,023154} = 0,175779, & \theta=2 \\
+          \frac{0,008140(0,5)}{0,023154} = 0,175779, & \theta=2 \\[6pt]
           \frac{0,038168(0,5)}{0,023154} = 0,824221, & \theta=4.
         \end{cases}
       \end{equation*}
@@ -3268,7 +3268,7 @@ predict(cm("bayes", x, likelihood = "poisson",
     d'où $\Theta|X_1 = 7, X_2 = 13, X_3 = 1, X_4 = 4 \sim
     \text{Bêta}(26, 29)$. Ainsi,
     \begin{align*}
-      \esp{\mu(\Theta)|X_1=7, X_2=13, X_3=1, X_4=4}
+      \esp{\mu(\Theta)|X_1 = 7, X_2 = 13&, X_3 = 1, X_4 = 4} \\
       &= 5\, \frac{\Gamma(55)}{\Gamma(26) \Gamma(29)}
       \int_0^1 \theta^{24} (1 - \theta)^{29}\, d\theta \\
       &= 5\, \left(\frac{\Gamma(55)}{\Gamma(26) \Gamma(29)}\right)

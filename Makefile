@@ -72,7 +72,7 @@ RBATCH = R CMD BATCH --no-timing
 RM = rm -rf
 
 ## Dossier temporaire pour construire l'archive
-TMPDIR = tmpdir
+BUILDDIR = tmpdir
 
 ## Dépôt GitHub et authentification
 REPOSURL = https://api.github.com/repos/vigou3/theorie-credibilite-avec-r
@@ -114,15 +114,15 @@ ${COLLABORATEURS}: FORCE
 	       END { print "\n[1] Noms tels qu'\''ils figurent dans le journal du dépôt Git\n    ${URL}" }' > ${COLLABORATEURS}
 
 zip: ${MASTER} ${README} ${SCRIPTS} ${SCRIPTS:.R=.Rout} ${OTHER} ${COLLABORATEURS}
-	if [ -d ${TMPDIR} ]; then ${RM} ${TMPDIR}; fi
-	mkdir -p ${TMPDIR}
-	touch ${TMPDIR}/${README} && \
+	if [ -d ${BUILDDIR} ]; then ${RM} ${BUILDDIR}; fi
+	mkdir -p ${BUILDDIR}
+	touch ${BUILDDIR}/${README} && \
 	  awk 'state==0 && /^# / { state=1 }; \
 	       /^## Auteur/ { printf("## Édition\n\n%s\n\n", "${VERSION}") } \
-	       state' ${README} >> ${TMPDIR}/${README}
-	cp ${MASTER} ${SCRIPTS} ${SCRIPTS:.R=.Rout} ${OTHER} ${COLLABORATEURS} ${TMPDIR}
-	cd ${TMPDIR} && zip --filesync -r ../${ARCHIVE} *
-	${RM} ${TMPDIR}
+	       state' ${README} >> ${BUILDDIR}/${README}
+	cp ${MASTER} ${SCRIPTS} ${SCRIPTS:.R=.Rout} ${OTHER} ${COLLABORATEURS} ${BUILDDIR}
+	cd ${BUILDDIR} && zip --filesync -r ../${ARCHIVE} *
+	${RM} ${BUILDDIR}
 
 create-release :
 	@echo ----- Creating release on GitHub...

@@ -82,6 +82,11 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ## Historique des versions
 
+### (en développement)
+
+- Améliorations à la typographie des nombres en divers endroits, notamment dans les pourcentages.
+- Référence incomplète au début de l'annexe C.
+
 ### 2018.02-3 (2018-02-19)
 
 #### Nouveautés

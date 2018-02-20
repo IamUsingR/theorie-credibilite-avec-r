@@ -120,9 +120,9 @@ où, par exemple:
 \subsection{Notation et relations de covariance}
 \label{sec:buhlmann-straub:modele:notation}
 
-Avec l'introduction des poids dans notre modèle de crédibilité, nous
-devrons dorénavant calculer des moyennes pondérées plutôt que des
-moyennes arithmétiques. Nous aurons recours à la notation suivante:
+Avec l'introduction des poids dans notre modèle, nous devrons
+dorénavant calculer des moyennes pondérées plutôt que des moyennes
+arithmétiques. Nous aurons recours à la notation suivante:
 \begin{align*}
   X_{iw}
   &= \sum_{t = 1}^n \frac{w_{it}}{w_{i\pt}}\, X_{it} &
@@ -532,7 +532,7 @@ suivants:
   \hat{s}^2 &= \nombre{46040} \\
   \hat{a}   &= \nombre{72310},
 \end{align*}
-ce qui mène aux résultats du \autoref{tab:buhlmann-straub:buhlman}. Le
+ce qui mène aux résultats du \autoref{tab:buhlmann-straub:buhlmann}. Le
 facteur de crédibilité est plutôt élevé. Une analyse rapide des
 données suffit pour constater que l'expérience des états est
 relativement stable dans le temps. Il en résulte une valeur de
@@ -852,7 +852,7 @@ Pour un traitement plus exhaustif, consultez l'excellent ouvrage de
 
 \begin{exercice}
   À la \autoref{sec:buhlmann-straub:estimation:sommaire}, il est
-  préciser d'utiliser $X_{ww}$ comme estimateur de la prime collective
+  précisé d'utiliser $X_{ww}$ comme estimateur de la prime collective
   lorsque l'estimateur de la variance inter est nul. Justifier ce
   choix en démontrant que lorsque tous les facteurs de crédibilité
   sont nuls (situation qui survient principalement lorsque $a = 0$),
@@ -904,7 +904,7 @@ Pour un traitement plus exhaustif, consultez l'excellent ouvrage de
     \begin{equation*}
       X_{it} = \frac{S_{it}}{w_{it}}.
     \end{equation*}
-    Pour la simulation des variables $S_{it}$, se reporter à la
+    Pour la simulation des montants de sinistres, se reporter à la
     solution de l'\autoref{ex:buhlmann:simulation}. Il faut
     toutefois ajouter les poids au modèle de simulation. Puisque la
     taille des contrats a une influence sur leur nombre de sinistres
@@ -1107,8 +1107,9 @@ summary(cm(~ employeur, X,
   \end{rep}
   \begin{sol}
     \begin{enumerate}
-    \item Il faut utiliser la formule de $\hat{s}^2$ pour données
-      manquantes. Tout d'abord, nous avons
+    \item Il faut utiliser la formule de l'estimateur $\hat{s}^2$ pour
+      données manquantes \eqref{eq:buhlmann-straub:s2hat-na}. Tout
+      d'abord, nous avons
       \begin{align*}
         w_{1\pt} &= 3  & X_{1w} &= 4 \\
         w_{2\pt} &= 10 & X_{2w} &= 8 \\

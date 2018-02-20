@@ -1708,8 +1708,8 @@ grandes lignes ici.
       &= \frac{0,1296}{0,1328} \\
       &= 0,9759.
     \end{align*}
-    De la même façon, nous trouvons $\Pr[\Theta = 0,2|S_1 = 4] =
-    0,0032/0,1328 = 0,02410$. Enfin,
+    De la même façon,
+    $\Pr[\Theta = 0,2|S_1 = 4] = 0,0032/0,1328 = 0,02410$. Enfin,
     \begin{align*}
       \esp{S_2|S_1 = 4}
       &= \esp{S_2|\theta = 0,6} \Pr[\Theta = 0,6|S_1 = 4] \\
@@ -1788,7 +1788,7 @@ grandes lignes ici.
       $\Pr[\Theta = 0,2|S_1 = 0, S_2 = 0] = 64/181 = 0,3536$ et
       $\Pr[\Theta = 0,4|S_1 = 0, S_2 = 0] = 36/181 = 0,1989$. Ainsi,
       \begin{align*}
-        \Pr[S_3 = 1|S_1 = 0, S_2 = 0]
+        \Pr[S_3 = 1|S_1 = 0&, S_2 = 0] \\
         &= \sum_\theta \Pr[S_3 = 1|\Theta = \theta] \Pr[\Theta = \theta|S_1 = 0, S_2 = 0] \\
         &= \left(\frac{1}{181}\right)[(0,1)(81) + (0,2)(64) + (0,4)(36)] \\
         &= \frac{35,3}{181} \\
@@ -1869,8 +1869,8 @@ curve(dbeta(x, 4, 2), from = 0, to = 1)
       $\Theta$ est une bêta et les paramètres $(a, b)$ après chaque
       lancer sont les suivants, dans l'ordre: $(1, 2)$, $(2, 2)$,
       $(3, 2)$, $(3, 3)$, $(4, 3)$, $(4, 4)$, $(5, 4)$, $(6, 4)$,
-      $(6, 5)$, $(6, 6)$. Quelques distributions à postériori sont
-      présentées aux figures
+      $(6, 5)$, $(6, 6)$. Les graphiques de quelques distributions à postériori sont
+      présentés aux figures
       \ref{fig:bayesienne:beta0}--\ref{fig:bayesienne:beta5}. Une
       première observation est le déplacement vers la gauche ou vers
       la droite de la distribution selon le nombre de résultats piles
@@ -2222,7 +2222,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         \Pr[\Theta = \theta|X_1 = \nombre{30000}]
         &= \frac{\Pr[X_1 = \nombre{30000}|\Theta = \theta]\Pr[\Theta =
           \theta]}%
-        {\sum_{\theta=A,B,C}\Pr[X_1 = \nombre{30000}|\Theta =
+        {\sum_{\theta}\Pr[X_1 = \nombre{30000}|\Theta =
           \theta]\Pr[\Theta = \theta]} \\
         &=
         \begin{cases}
@@ -2252,51 +2252,50 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         &=\nombre{5788,46}.
       \end{align*}
     \item Avec la distribution prédictive. Nous avons
-      \begin{multline*}
-        \Pr[X_2 = x|X_1 = \nombre{30000}]
-        = \frac{\Pr[X_2 = x, X_1 = \nombre{30000}]}{\Pr[X_1 =
-          \nombre{30000}]} \\
-        \begin{split}
-          &= \frac{\sum_{\theta=A,B,C} \Pr[X_2 = x|\Theta = \theta]
-            \Pr[X_1 = \nombre{30000}|\Theta = \theta]\Pr[\Theta =
-            \theta]}%
-          {\sum_{\theta=A,B,C} \Pr[X_1 = \nombre{30000}|\Theta =
-            \theta]\Pr[\Theta = \theta]} \\
-          &=
-          \begin{cases}
-            \frac{3}{4},
-            & x = 0 \\
-            \dfrac{(\frac{3}{4}) (\frac{1}{20}) +
-              (\frac{3}{4}) (\frac{1}{8}) +
-              (\frac{3}{4}) (\frac{3}{20})}{%
-              \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
-            & x = \nombre{10000} \\
-            \dfrac{(\frac{3}{20}) (\frac{1}{20}) +
-              (0) (\frac{1}{8}) +
-              (\frac{1}{20}) (\frac{3}{20})}{%
-              \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
-            & x = \nombre{20000} \\
-            \dfrac{(\frac{1}{20})^2 +
-              (\frac{1}{8})^2 +
-              (\frac{3}{20})^2}{%
-              \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
-            & x = \nombre{30000}
-          \end{cases} \\
-          &=
-          \begin{cases}
-            \frac{3}{4}, & x = 0 \\
-            \frac{6}{130}, & x = \nombre{10000} \\
-            \frac{41}{520}, & x = \nombre{20000} \\
-            \frac{65}{520}, & x = \nombre{30000},
-          \end{cases}
-        \end{split}
-      \end{multline*}
+      \begin{align*}
+        \Pr[&X_2 = x|X_1 = \nombre{30000}]
+              = \frac{\Pr[X_2 = x, X_1 = \nombre{30000}]}{\Pr[X_1 =
+              \nombre{30000}]} \\
+            &= \frac{\sum_{\theta=A,B,C} \Pr[X_2 = x|\Theta = \theta]
+              \Pr[X_1 = \nombre{30000}|\Theta = \theta]\Pr[\Theta =
+              \theta]}%
+              {\sum_{\theta=A,B,C} \Pr[X_1 = \nombre{30000}|\Theta =
+              \theta]\Pr[\Theta = \theta]} \\
+            &=
+              \begin{cases}
+                \frac{3}{4},
+                & x = 0 \\
+                \dfrac{(\frac{3}{4}) (\frac{1}{20}) +
+                  (\frac{3}{4}) (\frac{1}{8}) +
+                  (\frac{3}{4}) (\frac{3}{20})}{%
+                  \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
+                & x = \nombre{10000} \\
+                \dfrac{(\frac{3}{20}) (\frac{1}{20}) +
+                  (0) (\frac{1}{8}) +
+                  (\frac{1}{20}) (\frac{3}{20})}{%
+                  \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
+                & x = \nombre{20000} \\
+                \dfrac{(\frac{1}{20})^2 +
+                  (\frac{1}{8})^2 +
+                  (\frac{3}{20})^2}{%
+                  \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
+                & x = \nombre{30000}
+              \end{cases} \\
+            &=
+              \begin{cases}
+                \frac{3}{4}, & x = 0 \\
+                \frac{6}{130}, & x = \nombre{10000} \\
+                \frac{41}{520}, & x = \nombre{20000} \\
+                \frac{65}{520}, & x = \nombre{30000},
+              \end{cases}
+      \end{align*}
       d'où
       \begin{align*}
         \esp{X_2|X_1 = \nombre{30000}}
         &= \nombre{10000} \left( \frac{6}{130} \right)
-        + \nombre{20000} \left( \frac{41}{520} \right)
-        + \nombre{30000} \left( \frac{65}{520} \right) \\
+        + \nombre{20000} \left( \frac{41}{520} \right) \\
+        &\phantom{=}
+          + \nombre{30000} \left( \frac{65}{520} \right) \\
         &=\nombre{5788,46}.
       \end{align*}
     \end{enumerate}
@@ -2328,12 +2327,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     $\lambda = 1$.
     \begin{enumerate}
     \item Nous chargeons la prime collective à un nouvel assuré. Or,
-      \begin{align*}
-        \esp{S}
-        &= \esp{\esp{S|\Theta}} \\
-        &= \esp{\Theta} \\
-        &= 2.
-      \end{align*}
+      $\esp{S} = \esp{\esp{S|\Theta}} = \esp{\Theta} = 2$.
     \item Nous cherchons $\esp{\mu(\Theta)|S_1 + S_2 + S_3 = 8}$. Or,
       \begin{align*}
         u(\theta|x_1, x_2, x_3)
@@ -2385,7 +2379,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     \begin{enumerate}
     \item La fonction de masse de probabilités est:
       \begin{align*}
-        \Pr[\Theta = \theta|N_1 = 0, N_2 = 2]
+        \Pr[\Theta = \theta|N_1 = 0&, N_2 = 2] \\
         &= \frac{\Pr[N_1 = 0, N_2 = 2|\Theta = \theta]
           \Pr[\Theta = \theta]}{%
           \sum_{\theta} \Pr[N_1 = 0, N_2 = 2|\Theta = \theta]
@@ -2394,8 +2388,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
           \sum_{\theta} \theta^2 (1 - \theta)^2 \Pr[\Theta = \theta]} \\
         &=
         \begin{cases}
-          \frac{0,008789}{0,030396}, & \theta = 1/4 \\
-          \frac{0,015625}{0,030396}, & \theta = 1/2 \\
+          \frac{0,008789}{0,030396}, & \theta = 1/4 \\[6pt]
+          \frac{0,015625}{0,030396}, & \theta = 1/2 \\[6pt]
           \frac{0,005981}{0,030396}, & \theta = 1/8
         \end{cases} \\
         &=
@@ -2408,9 +2402,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     \item Nous devons calculer $\esp{N_3|N_1 = 0, N_2 = 2}$, ce qui
       peut se faire de deux façons. Tout d'abord, en trouvant d'abord
       la distribution prédictive:
-      \begin{multline*}
-        \Pr[N_3 = n|N_1 = 0, N_2 = 2] \\
-        \begin{split}
+      \begin{align*}
+        \Pr[N_3 = n&|N_1 = 0, N_2 = 2] \\
           &= \sum_\theta \Pr[N_3 = n|\Theta = \theta] \Pr[\Theta =
           \theta|N_1 = 0, N_2 = 2] \\
           &=
@@ -2419,8 +2412,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
             0,4085, & n = 1 \\
             0,1497, & n = 2.
           \end{cases}
-        \end{split}
-      \end{multline*}
+      \end{align*}
       Ainsi,
       \begin{align*}
         \esp{N_3|N_1 = 0, N_2 = 2}
@@ -2505,11 +2497,13 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
           0,2132, & \theta = 6.
         \end{cases}
       \end{align*}
-      Ainsi, puisque $\mu(\theta) = \esp{S|\Theta = \theta} = 50
-      \theta$, la prime bayésienne est
+      Ainsi, puisque
+      $\mu(\theta) = \esp{S|\Theta = \theta} = 50 \theta$, la prime
+      bayésienne est
       \begin{align*}
         \esp{\mu(\Theta)|S_1 = 80, S_2 = 340}
-        &=50 [(4)(0,4798) + (5)(0,3070) + (6)(0,2132)] \\
+        &=50 [(4)(0,4798) + (5)(0,3070) \\
+        &\phantom{=} + (6)(0,2132)] \\
         &= 236,67.
       \end{align*}
     \item Il faudrait que
@@ -2700,7 +2694,7 @@ pgamma(10, 6, 2)
         0,000036, & i = 3.
       \end{cases}
     \end{align*}
-    Finalement, la prime bayésienne pour la troisième année est
+    La prime bayésienne pour la troisième année est donc
     $\esp{\mu(\Theta)|S_1 = 1, S_2 = 2} = 2 (0,841507) + 4(0,158457) +
     5(0,000036) = 2,3170$.
   \end{sol}
@@ -2937,7 +2931,7 @@ pgamma(10, 6, 2)
     \item La prime collective est $\esp{\mu(\Theta)} = \nu
       \esp{\Theta} = \nu a/(a + b)$.
     \item La distribution à postériori de $\Theta$ sachant
-      l'expérience $S_1 = x_1, \dots, S_n = x_n$ est
+      $S_1 = x_1, \dots, S_n = x_n$ est
       \begin{align*}
         u(\theta|x_1, \dots, x_n)
         &\propto u(\theta) \prod_{t=1}^n \Pr[S = x_t|\Theta = \theta] \\
@@ -3151,7 +3145,7 @@ pgamma(10, 6, 2)
     $0,67$
   \end{rep}
   \begin{sol}
-    Nous avons un modèle exponentielle/gamma. Selon le tableau de
+    Nous avons un modèle exponentielle/gamma. Comme le confirme le tableau de
     l'\autoref{chap:formules}, la distribution marginale de $S$ dans
     un tel cas est une Pareto$(\alpha, \lambda)$ et la distribution de
     $\Theta|S_1 = x_1, \dots, S_n = x_n$ une

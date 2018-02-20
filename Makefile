@@ -47,7 +47,8 @@ TEXFILES = \
 	couverture-arriere.tex
 SCRIPTS = \
 	bayesienne.R \
-	buhlmann.R
+	buhlmann.R \
+	buhlmann-straub.R
 
 ## Informations de publication extraites du fichier maître
 TITLE = $(shell grep "\\\\title" ${MASTER:.pdf=.tex} \

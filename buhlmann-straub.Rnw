@@ -15,6 +15,7 @@
 <<echo=FALSE>>=
 library(actuar)
 options(width = 52)
+source("print.cm.R")                    # raccourcir affichage du Call
 @
 
 Le modèle de Bühlmann--Straub citep{BuhlmannStraub:1970} est une

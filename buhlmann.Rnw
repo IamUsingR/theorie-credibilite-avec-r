@@ -727,9 +727,10 @@ sans biais des paramètres.
 
 Intuitivement, un estimateur de la prime collective est la moyenne
 empirique des moyennes individuelles:
-\begin{equation*}
+\begin{equation}
+  \label{eq:buhlmann:mhat}
   \hat{m} = \bar{S} = \frac{1}{I n} \sum_{i = 1}^I \sum_{t = 1}^n S_{it}.
-\end{equation*}
+\end{equation}
 Cet estimateur est bel et bien sans biais:
 \begin{align*}
   \esp{\hat{m}}
@@ -749,10 +750,11 @@ $i = 1, \dots, n$, est
 \end{equation*}
 Pour obtenir un estimateur sans biais de la variance moyenne $s^2$, il
 suffit ensuite de calculer la moyenne de tous ces estimateurs:
-\begin{equation*}
+\begin{equation}
+  \label{eq:buhlmann:s2hat}
   \hat{s}^2 = \frac{1}{I(n - 1)} \sum_{i = 1}^I \sum_{t = 1}^n
   (S_{it} - \bar{S}_i)^2.
-\end{equation*}
+\end{equation}
 
 Pour démontrer l'absence de biais, remarquons d'abord que
 \begin{align*}
@@ -823,10 +825,11 @@ Or,
 Le biais de l'estimateur est donc $s^2/n$. Pour obtenir un estimateur
 sans biais, nous allons simplement retrancher cette valeur de la somme
 des écarts au carré. Un estimateur sans biais de $a$ est donc
-\begin{equation*}
+\begin{equation}
+  \label{eq:buhlmann:ahat}
   \hat{a} = \frac{1}{I - 1} \sum_{i = 1}^I (\bar{S}_i - \bar{S})^2 -
   \frac{1}{n}\, \hat{s}^2.
-\end{equation*}
+\end{equation}
 
 \importantbox{L'estimateur $\hat{a}$ peut être négatif. En pratique,
   nous devons utiliser $\hat{a}^\prime = \max(\hat{a}, 0)$, qui est un
@@ -1006,6 +1009,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
     graphiques.}
   \label{fig:buhlmann:a}
 \end{figure}
+
 
 \section{Code informatique}
 \label{sec:buhlmann:code}

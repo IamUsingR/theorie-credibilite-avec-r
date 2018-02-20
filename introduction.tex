@@ -13,53 +13,45 @@
 \addcontentsline{toc}{chapter}{Introduction}
 \markboth{Introduction}{Introduction}
 
-Ce document est le fruit de la mise en commun d'exercices colligés au
-fil du temps pour nos cours de théorie de la crédibilité à
-l'Université Laval et à l'Université Concordia. Nous ne sommes
-toutefois pas les uniques auteurs des exercices; certains ont, en
-effet, été rédigés par les Docteurs François Dufresne et Jacques
-Rioux, entre autres. Quelques exercices proviennent également
-d'anciens examens de la Society of Actuaries et de la Casualty
-Actuarial Society.
+«Les mathématiques de l'hétérogénéité.» C'est parfois ainsi que l'on
+décrit la théorie de la crédibilité, pierre angulaire des
+mathématiques de l'assurance IARD. Cet ouvrage offre un traitement
+rigoureux et exhaustif des modèles de base de la crédibilité, soit la
+crédibilité de stabilité (\emph{limited fluctuations}), la
+tarification basée sur l'expérience purement bayésienne et les modèles
+classiques de Bühlmann et de Bühlmann--Straub.
 
-C'est d'ailleurs afin de ne pas usurper de droits d'auteur que ce
-document est publié selon les termes du contrat Paternité-Partage des
-conditions initiales à l'identique 2.5 Canada de Creative Commons. Il
-s'agit donc d'un document «libre» que quiconque peut réutiliser et
-modifier à sa guise, à condition que le nouveau document soit publié
-avec le même contrat.
+Le paquetage \pkg{actuar} \citep{actuar} pour l'environnement
+statistique R \citep{R} permet d'effectuer les calculs relatifs aux
+modèles de crédibilité abordés dans l'ouvrage. Nous expliquons comment
+utiliser la fonction \code{cm} du paquetage par le biais de code
+informatique distribué avec le document et reproduit à la fin des
+chapitres \ref*{chap:bayesienne}, \ref*{chap:buhlmann} et
+\ref*{chap:buhlmann-straub}.
+
+L'ouvrage intègre également le recueil d'exercices et de solutions
+de \citet{Cossette:credibilite:2008}. Tel que mentionné en
+introduction de ce document, la collection d'exercices est le fruit de
+la mise en commun d'exercices colligés au fil du temps pour des cours
+de théorie de la crédibilité à l'Université Laval et à l'Université
+Concordia. Certains exercices ont été rédigés par les Professeurs
+François Dufresne et Jacques Rioux, entre autres. Quelques exercices
+proviennent également d'anciens examens de la Society of Actuaries et
+de la Casualty Actuarial Society.
 
 Le premier chapitre, tiré de \cite{Goulet:masters}, trace l'historique et
 l'évolution de la théorie de la crédibilité, de ses origines jusqu'au
-début des années 1990. Les chapitres \ref{chap:stabilite} à
-\ref{chap:bstraub} --- qui correspondent aux chapitres de notre cours
---- sont quant à eux uniquement constitués d'exercices. Dans cette
-seconde édition, les réponses des exercices se trouvent à la fin des
-chapitres, alors que les solutions complètes se trouvent à l'annexe
-\ref{chap:solutions}. De plus, à la fin de chaque chapitre
-d'exercices, on trouvera une liste d'exercices suggérés dans
-\cite{Klugman:lossmodels:2e:2004,Klugman:lossmodels:3e:2008}.
+début des années 1990. Ce chapitre ne comporte pas d'exercices.
 
-Un tableau synoptique des principaux résultats de crédibilité exacte
-se trouve à l'annexe \ref{chap:formules}. L'annexe
-\ref{chap:distributions}, présente la paramétrisation des lois de
-probabilité utilisée dans les exercices. En cas de doute, le lecteur
-est invité à la consulter. Il y trouvera également l'espérance, la
-variance et la fonction génératrice des moments (lorsqu'elle existe)
-des lois de probabilités rencontrées dans ce document. Enfin, l'annexe
-\ref{chap:normale} contient un tableau des quantiles de la loi
-normale
-
-Nous tenons à remercier M.~Mathieu Pigeon pour sa précieuse
-collaboration lors de la préparation de ce document, ainsi que tous
-les auxiliaires d'enseignement ayant, au fil des années, contribué à
-la rédaction d'exercices et de solutions.
-
-\begin{flushright}
-  Hélène Cossette \url{<helene.cossette@act.ulaval.ca>} \\
-  Vincent Goulet \url{<vincent.goulet@act.ulaval.ca>} \\
-  Québec, décembre 2007
-\end{flushright}
+L'\autoref{chap:estimation-bayesienne} offre un sommaire des
+principaux principes et résultats en estimation bayésienne. Un tableau
+synoptique des principaux résultats de crédibilité exacte se trouve à
+l'annexe \ref{chap:formules}. L'annexe \ref{chap:distributions},
+présente la paramétrisation des lois de probabilité utilisée dans les
+exercices. En cas de doute, le lecteur est invité à la consulter. Il y
+trouvera également l'espérance, la variance et la fonction génératrice
+des moments (lorsqu'elle existe) des lois de probabilités rencontrées
+dans ce document.
 
 %%% Local Variables:
 %%% TeX-master: "theorie-credibilite-avec-r"

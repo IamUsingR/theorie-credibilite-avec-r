@@ -90,6 +90,7 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 - Fichier de code informatique `buhlmann-straub.R` reprenant les calculs de l'exemple numérique de la section 5.4.
 - Références pour le modèle de Hachemeister à la section 5.4.3.
 - Calculs avec `cm` ajoutés à la solution de l'exercice 5.8.
+- Ajout d'une introduction à l'ouvrage.
 
 #### Autres modifications
 

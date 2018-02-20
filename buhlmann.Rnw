@@ -1159,9 +1159,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  Vous roulez un dé régulier. Si vous obtenez $1$, vous pigez dans
-  l'urne A, si vous obtenez $2$, $3$ ou $4$, vous pigez dans l'urne B
-  et si vous obtenez $5$ ou $6$, vous pigez dans l'urne C. Chaque urne
+  Vous roulez un dé régulier. Si vous obtenez 1, vous pigez dans
+  l'urne A, si vous obtenez 2, 3 ou 4, vous pigez dans l'urne B
+  et si vous obtenez 5 ou 6, vous pigez dans l'urne C. Chaque urne
   contient des balles rouges et blanches dans les proportions
   ci-dessous.
   \begin{center}
@@ -1900,7 +1900,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   la variable aléatoire $\sigma^2(\Theta)/\mu(\Theta)$ est uniforme
   sur l'intervalle $(0, 40)$. Calculer la prime de crédibilité pour la
   cinquième année dans le modèle de Bühlmann si la somme des sinistres
-  des quatre premières années est égale à 12.
+  des quatre premières années est égale à $12$.
   \begin{rep}
     $4,6$
   \end{rep}
@@ -2044,12 +2044,12 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   Une actuaire souhaite calculer la crédibilité de l'expérience de
   chaque police de deux portefeuilles d'assurance en utilisant le
   modèle de Bühlmann. Pour le portefeuille A, la variance de la prime
-  de risque représente $25$~\% de la variance du montant des sinistres.
-  Pour le portefeuille B, le montant des sinistres pour un assuré
-  quelconque suit une loi normale de moyenne $\mu$ et de variance $25$q.
-  La prime de risque est elle-même distribuée dans la population selon
-  une loi normale de moyenne $\alpha$ et variance 16. Quel
-  portefeuille mérite la plus grande crédibilité?
+  de risque représente $25$~\% de la variance du montant des
+  sinistres. Pour le portefeuille B, le montant des sinistres pour un
+  assuré quelconque suit une loi normale de moyenne $\mu$ et de
+  variance $25$. La prime de risque est elle-même distribuée dans la
+  population selon une loi normale de moyenne $\alpha$ et variance
+  $16$. Quel portefeuille mérite la plus grande crédibilité?
   \begin{rep}
     Portefeuille B
   \end{rep}
@@ -2479,6 +2479,7 @@ x <- data.frame(contract = 1:3,
 fit <- cm(~ contract, x)
 summary(fit)
 @
+    \vfill
   \end{sol}
 \end{exercice}
 

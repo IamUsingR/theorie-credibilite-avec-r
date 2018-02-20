@@ -60,8 +60,8 @@ plus loin.
 \section{Mise en situation}
 \label{sec:bayesienne:mise}
 
-Un portefeuille d'assurance automobile est composé de 75~\% de bons
-conducteurs et de 25~\% de mauvais conducteurs. Les bons conducteurs
+Un portefeuille d'assurance automobile est composé de $75$~\% de bons
+conducteurs et de $25$~\% de mauvais conducteurs. Les bons conducteurs
 ont une probabilité de $1/15$ d'avoir un accident, alors que la
 probabilité est de $1/10$ pour les mauvais conducteurs. Le coût d'un
 accident est de $\nombre{1000}$ et nous supposons qu'un conducteur ne
@@ -1541,8 +1541,8 @@ grandes lignes ici.
 %%%
 
 \begin{exercice}
-  Un portefeuille d'assurance automobile est composé de 35~\% de bons
-  conducteurs, 40~\% de conducteurs moyens et 25~\% de mauvais
+  Un portefeuille d'assurance automobile est composé de $35$~\% de bons
+  conducteurs, $40$~\% de conducteurs moyens et $25$~\% de mauvais
   conducteurs. L'actuaire a estimé que les bons conducteurs ont, en
   moyenne, un accident par 10 ans, les conducteurs moyens, deux
   accidents et les mauvais conducteurs, six accidents. L'actuaire
@@ -1677,7 +1677,7 @@ grandes lignes ici.
 
 \begin{exercice}
   Deux urnes contiennent chacune une pièce de monnaie. La pièce dans
-  l'urne A tombe sur face 40~\% des fois et celle dans l'urne B, 80~\%
+  l'urne A tombe sur face $40$~\% des fois et celle dans l'urne B, $80$~\%
   des fois. Nous choisissons une urne au hasard (la probabilité de choisir
   l'urne A est la même que celle de choisir l'urne B) et nous prenons la
   pièce qui s'y trouve. Nous lançons la pièce en l'air cinq fois et elle
@@ -1731,9 +1731,9 @@ grandes lignes ici.
       \toprule
       Groupe  & Probabilité de sinistre \\
       \midrule
-      Fréquence faible    & 10~\% \\
-      Fréquence moyenne   & 20~\% \\
-      Fréquence élevée    & 40~\% \\
+      Fréquence faible    & $10$~\% \\
+      Fréquence moyenne   & $20$~\% \\
+      Fréquence élevée    & $40$~\% \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -1994,8 +1994,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
   On demande à Camille d'élaborer un modèle pour la fréquence des
   sinistres au sein d'un portefeuille composé de dix contrats.
   Incertaine quant à la probabilité d'avoir un accident, Camille
-  estime à 20~\% la possibilité que la probabilité soit de $0,04$,
-  60~\% qu'elle soit de $0,10$ et 20~\% qu'elle soit de $0,16$.
+  estime à $20$~\% la possibilité que la probabilité soit de $0,04$,
+  $60$~\% qu'elle soit de $0,10$ et $20$~\% qu'elle soit de $0,16$.
   \begin{enumerate}
   \item Quel est le modèle de Camille pour $N$, le nombre total
     d'accidents du portefeuille au cours d'une année?
@@ -2352,7 +2352,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
   paramètre $n = 2$. Il y a toutefois incertitude quant à la
   probabilité $\theta$ que cet assuré ait un accident. Trois valeurs
   sont jugées possibles: $\frac{1}{4}$, $\frac{1}{2}$ et $\frac{1}{8}$
-  et ce, avec probabilité 25~\%, 25~\% et 50~\%, respectivement.
+  et ce, avec probabilité $25$~\%, $25$~\% et $50$~\%, respectivement.
   L'assuré n'a eu aucun accident la première année et deux accidents
   la deuxième année.
   \begin{enumerate}
@@ -2634,8 +2634,8 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  Un portefeuille d'assurance est composé de 25~\% de bons risques,
-  60~\% de risques moyens et 15~\% de mauvais risques. Tous les
+  Un portefeuille d'assurance est composé de $25$~\% de bons risques,
+  $60$~\% de risques moyens et $15$~\% de mauvais risques. Tous les
   risques ont une distribution de sinistres de type gamma, mais dont
   les paramètres diffèrent selon le tableau ci-dessous.
   \begin{center}
@@ -2739,7 +2739,7 @@ pgamma(10, 6, 2)
       avec $\theta = 1$ identifiant un risque de classe A et $\theta =
       3$ identifiant un risque de classe B. Comme chaque classe
       contient le même nombre de risques, la probabilité qu'un risque
-      choisi au hasard provienne d'une classe est de 50~\%:
+      choisi au hasard provienne d'une classe est de $50$~\%:
       \begin{equation*}
         \Pr[\Theta = \theta] =
         \begin{cases}

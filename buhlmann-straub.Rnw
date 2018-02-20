@@ -541,7 +541,7 @@ facteur de crédibilité.
 
 Pour l'État~1, dont l'expérience est la pire du portefeuille, un grand
 facteur de crédibilité a pour effet de ne réduire la prime de
-crédibilité ($\nombre{2044}$) que de 1~\% par rapport à la prime
+crédibilité ($\nombre{2044}$) que de $1$~\% par rapport à la prime
 individuelle ($\nombre{2064}$).
 
 \begin{table}[tbp]
@@ -569,9 +569,9 @@ individuelle ($\nombre{2064}$).
 
 Le \autoref{tab:buhlmann-straub:poids} montre que le poids relatif de
 chacun des cinq états (poids mesuré en nombre de sinistres) est très
-différent: l'État~1 compte pour 57,5~\% des sinistres du portefeuille,
+différent: l'État~1 compte pour $57,5$~\% des sinistres du portefeuille,
 alors qu'à l'autre bout du spectre, l'État~4 ne compte que pour
-2,4~\%. Dans une telle situation, il convient d'utiliser le modèle de
+$2,4$~\%. Dans une telle situation, il convient d'utiliser le modèle de
 Bühlmann--Straub dans la tarification afin de tenir compte des volumes
 très différents d'un contrat à un autre.
 

@@ -1039,8 +1039,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \begin{exercice}
   Un assureur couvre une proportion égale d'hommes et de femmes contre
   les accidents d'automobile. Les femmes ont une probabilité
-  d'accident de 20~\% par année alors que les hommes ont une
-  probabilité d'accident de 40~\% par année. La distribution de la
+  d'accident de $20$~\% par année alors que les hommes ont une
+  probabilité d'accident de $40$~\% par année. La distribution de la
   sévérité des sinistres est la suivante:
   \begin{equation*}
     \Pr[X = x] =
@@ -1169,9 +1169,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \toprule
       & Balles rouges & Balles blanches \\
       \midrule
-      Urne A & 75~\% & 25~\% \\
-      Urne B & 50~\% & 50~\% \\
-      Urne C & 25~\% & 75~\% \\
+      Urne A & $75$~\% & $25$~\% \\
+      Urne B & $50$~\% & $50$~\% \\
+      Urne C & $25$~\% & $75$~\% \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -1238,8 +1238,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \item Le nombre de risques de type A est le même que le nombre de
     risques de type B.
   \item Pour chaque risque, la probabilité d'avoir exactement un
-    sinistre au cours d'une année est de 20~\%, alors que la
-    probabilité de n'avoir aucun sinistre est de 80~\%.
+    sinistre au cours d'une année est de $20$~\%, alors que la
+    probabilité de n'avoir aucun sinistre est de $80$~\%.
   \item Le montant des sinistres des risques de type A est $2$.
   \item Le montant des sinistres des risques de type B est $c$, une
     constante inconnue.
@@ -1305,8 +1305,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  Un portefeuille d'assurance est composé de 25~\% de bons risques,
-  60~\% de risques moyens et 15~\% de mauvais risques. Tous les
+  Un portefeuille d'assurance est composé de $25$~\% de bons risques,
+  $60$~\% de risques moyens et $15$~\% de mauvais risques. Tous les
   risques ont une distribution de sinistres de type gamma, mais dont
   les paramètres diffèrent selon le tableau ci-dessous.
   \begin{center}
@@ -1437,8 +1437,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  Un portefeuille d'assurance est composé de 30~\% de bons risques,
-  50~\% de risques moyens et 20~\% de mauvais risques. La distribution
+  Un portefeuille d'assurance est composé de $30$~\% de bons risques,
+  $50$~\% de risques moyens et $20$~\% de mauvais risques. La distribution
   des montants de sinistres est telle que présentée dans le tableau
   ci-dessous.
   \begin{center}
@@ -1507,7 +1507,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   risque de $\nombre{4000}$~\$, et les mauvais assurés une prime de
   risque de $\nombre{5000}$~\$. L'actuaire responsable de la
   tarification pour ce type d'assurance estime que le portefeuille est
-  composé de 30~\% de bons assurés, de 50~\% de moyens et de 20~\% de
+  composé de $30$~\% de bons assurés, de $50$~\% de moyens et de $20$~\% de
   mauvais.  Calculer à l'aide du modèle de Bühlmann la prime de
   crédibilité d'un assuré ayant encouru un total de $\nombre{20000}$~\$
   de sinistres au cours des quatre années précédentes.
@@ -2044,7 +2044,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   Une actuaire souhaite calculer la crédibilité de l'expérience de
   chaque police de deux portefeuilles d'assurance en utilisant le
   modèle de Bühlmann. Pour le portefeuille A, la variance de la prime
-  de risque représente 25~\% de la variance du montant des sinistres.
+  de risque représente $25$~\% de la variance du montant des sinistres.
   Pour le portefeuille B, le montant des sinistres pour un assuré
   quelconque suit une loi normale de moyenne $\mu$ et de variance $25$q.
   La prime de risque est elle-même distribuée dans la population selon
@@ -2136,7 +2136,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 
 \begin{exercice}
   Pour un groupe d'assurés détenant une police d'assurance contre le
-  vol, un actuaire sait que 25~\% de la variance totale du montant des
+  vol, un actuaire sait que $25$~\% de la variance totale du montant des
   sinistres est expliquée par la variance de la prime de risque.
   Après $n$ années d'observation, un membre du groupe a eu des vols
   annuels de $125$~\$ en moyenne, et il a payé une prime de crédibilité

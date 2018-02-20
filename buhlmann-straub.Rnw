@@ -639,6 +639,10 @@ régression. L'utilisation d'un tel modèle est particulièrement
 indiquée dans des situations de forte inflation ou d'augmentation ou
 de diminution structurelle des coûts.
 
+La vignette \code{credibility} du paquetage \pkg{actuar} contient des
+informations succinctes sur le modèle de régression de Hachemeister.
+Pour un traitement plus exhaustif, consultez l'excellent ouvrage de
+\citet{Buhlmann:credibilitybook:2005}.
 
 \section{Code informatique}
 \label{sec:buhlmann-straub:code}

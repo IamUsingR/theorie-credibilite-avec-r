@@ -84,6 +84,7 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ### (en développement)
 
+- Exemple 2.3 transformé en texte normal. Son équation principale est maintenant numérotée.
 - Améliorations à la typographie des nombres en divers endroits, notamment dans les pourcentages.
 - Référence incomplète au début de l'annexe C.
 

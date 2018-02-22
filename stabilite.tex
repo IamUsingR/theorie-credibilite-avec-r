@@ -206,50 +206,48 @@ où $\varepsilon = 1 - p$ et $\zeta_\alpha$ est le $100(1 -
   \qed
 \end{exemple}
 
-\tipbox{Le seuil de pleine crédibilité \nombre{1082} est un nombre
+\tipbox{Le seuil de pleine crédibilité $\nombre{1082}$ est un nombre
   célèbre en théorie de la crédibilité. Malheureusement, il est très
   souvent utilisé à tort et à travers et sans aucunement tenir compte
   des hypothèses qui nous ont permis d'obtenir cette valeur.}
 
-\begin{exemple}
-  \label{exemple:stabilite:nombre_annees}
-  Dans les deux exemples précédents, nous avons déterminé le seuil de
-  pleine crédibilité d'un contrat pour une seule période. Nous
-  pourrions aussi choisir de fixer le seuil en fonction du nombre
-  d'années d'expérience. Pour cela, il suffit de définir
-  \begin{equation*}
-    W = \frac{S_1 + \dots + S_n}{n},
-  \end{equation*}
-  où $S_1, \dots, S_n$ sont des variables aléatoires indépendantes et
-  identiquement distribuées et $S_t$ est l'expérience de l'année
-  $t = 1, \dots, n$.  Nous avons alors
-  \begin{align*}
-    \esp{W} &= \esp{S_t} \\
-    \var{W} &= \frac{\var{S_t}}{n}.
-  \end{align*}
+Dans les deux exemples précédents, nous avons déterminé le seuil de
+pleine crédibilité d'un contrat pour une seule période. Nous pourrions
+aussi choisir de fixer le seuil en fonction du nombre d'années
+d'expérience. Pour cela, il suffit de définir
+\begin{equation*}
+  W = \frac{S_1 + \dots + S_n}{n},
+\end{equation*}
+où $S_1, \dots, S_n$ sont des variables aléatoires indépendantes et
+identiquement distribuées et $S_t$ est l'expérience de l'année
+$t = 1, \dots, n$. Nous avons alors
+\begin{align*}
+  \esp{W} &= \esp{S_t} \\
+  \var{W} &= \frac{\var{S_t}}{n}.
+\end{align*}
 
-  En appliquant le critère de crédibilité complète sur la variable
-  aléatoire $W$, nous obtenons une expression en tous points
-  équivalente à l'inégalité \eqref{eq:stabilite:complete} dans
-  laquelle nous remplaçons l'espérance et la variance par les
-  expressions ci-dessus. L'expérience d'un contrat est considérée
-  pleinement crédible après
-  \begin{equation*}
-    n \geq
-    \left(
-      \frac{\zeta_{\varepsilon/2}}{k}
-    \right)^2
-    \frac{\var{S_t}}{\esp{S_t}^2}
-  \end{equation*}
-  périodes.
-  \qed
-\end{exemple}
+En appliquant le critère de crédibilité complète sur la variable
+aléatoire $W$, nous obtenons une expression en tous points équivalente
+à l'inégalité \eqref{eq:stabilite:complete} dans laquelle nous
+remplaçons l'espérance et la variance par les expressions ci-dessus.
+L'expérience d'un contrat est considérée pleinement crédible après
+\begin{equation}
+  \label{eq:stabilite:complete_nombre_annees}
+  n \geq
+  \left(
+    \frac{\zeta_{\varepsilon/2}}{k}
+  \right)^2
+  \frac{\var{S_t}}{\esp{S_t}^2}
+\end{equation}
+périodes.
 
-\tipbox{La distribution de $S$ n'est en général pas symétrique. Est-il
-  alors correct d'utiliser le Théorème central limite (TCL)? Le
-  critère de crédibilité complète exige que la distribution de $S$
-  soit très concentrée autour de sa moyenne, donc presque symétrique.
-  Le TCL s'avère donc bien assez précis.}
+\tipbox{La distribution de $S$ n'étant en général pas symétrique, il
+  serait légitime de nous demander s'il est correct d'utiliser le
+  Théorème central limite (TCL) pour calculer le seuil de crédibilité
+  complète. En fait, puisque le critère impose que la distribution de
+  $S$ soit très concentrée autour de sa moyenne, elle s'en trouve
+  presque symétrique et le TCL s'avère donc bien assez précis
+  \citep{Goulet:limitedfluctuation:1998}.}
 
 \importantbox{Il y a en fait très peu d'applications légitimes de la
   crédibilité de stabilité. Un bon exemple, toutefois: la fixation du

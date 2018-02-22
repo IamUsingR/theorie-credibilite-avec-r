@@ -740,10 +740,11 @@ $f(x|x_1, \dots, x_n)$ réside dans l'utilisation de la distribution à
 priori de $\Theta$ pour la première et de la distribution à postériori
 pour la seconde.
 
-\tipbox{\label{tip:baysienne:predictive} La conséquence de la remarque
-  précédente, c'est que si la distribution à posteriori de $\Theta$
-  est du même type que la distribution à priori, alors la distribution
-  prédictive est du même type que la distribution marginale.}
+\label{tip:baysienne:predictive}
+\tipbox{La conséquence de la remarque précédente, c'est que si la
+  distribution à posteriori de $\Theta$ est du même type que la
+  distribution à priori, alors la distribution prédictive est du même
+  type que la distribution marginale.}
 
 Nous avons posé la relation \eqref{eq:bayesienne:predictive} de
 manière quelque peu intuitive. Démontrons maintenant qu'elle est

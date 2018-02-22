@@ -31,7 +31,7 @@ devrait se montrer plus stable dans le temps et, par conséquent,
 se mériter une plus grande crédibilité dans un système de tarification
 basée sur l'expérience. Or, avec le modèle de Bühlmann qui octroie la
 crédibilité uniquement sur la base du nombre d'années d'expérience,
-opn attribue la même crédibilité aux deux entreprises, même si leur
+on attribue la même crédibilité aux deux entreprises, même si leur
 taille diffère grandement.
 
 

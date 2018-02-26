@@ -17,6 +17,27 @@ library(actuar)
 options(width = 52)
 @
 
+\begin{objectifs}
+\item Expliquer le modèle d'hétérogénéité de Bühlmann, notamment le
+  rôle de la variable aléatoire représentant le niveau de risque.
+\item Définir la prime de risque, la prime collective, la prime
+  bayésienne et la prime de crédibilité.
+\item Calculer la distribution à postériori pour des modèles discrets
+  et continus.
+\item Calculer la distribution prédictive pour des modèles discrets et
+  continus.
+\item Utiliser le lien entre la distribution prédictive, la
+  distribution marginale et la distribution à postériori.
+\item Calculer la prime bayésienne pour des modèles discrets et
+  continus, en particulier pour les combinaisons de distributions
+  débouchant sur une prime linéaire.
+\item Énoncer les conditions du modèle de Jewell pour obtenir une
+  prime bayésienne linéaire.
+\item Utiliser la fonction \code{cm} du paquetage R \pkg{actuar} pour
+  calculer des primes bayésiennes linéaires et interpréter les
+  résultats de la fonction.
+\end{objectifs}
+
 Ce chapitre constitue notre porte d'entrée vers la crédibilité de
 précision. Il est très important pour la suite puisque nous y poserons
 les bases sur lesquelles nous construirons les modèles de crédibilité,

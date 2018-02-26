@@ -18,6 +18,24 @@ options(width = 52)
 source("print.cm.R")                    # raccourcir affichage du Call
 @
 
+\begin{objectifs}
+\item Comprendre l'utilité des poids dans le modèle de Bühlmann-Straub
+  et leur implication sur les hypothèses du modèle.
+\item Calculer la covariance entre des variables aléatoires du modèle
+  de Bühlmann-Straub, notamment entre diverses moyennes pondérées.
+\item Minimiser l'espérance quadratique moyenne dans le cadre du
+  modèle de Bühlmann-Straub.
+\item Calculer l'espérance des estimateurs des paramètres de structure
+  dans le modèle de Bühlmann-Straub.
+\item Justifier le choix des estimateurs des paramètres de structure.
+\item Calculer une prime de crédibilité de Bühlmann-Straub à partir de
+  données de sinistres. Adapter les calculs pour les données
+  manquantes.
+\item Utiliser la fonction \code{cm} du paquetage R \pkg{actuar} pour
+  calculer des primes de crédibilité de Bühlmann-Straub et interpréter
+  les résultats de la fonction.
+\end{objectifs}
+
 Le modèle de Bühlmann--Straub citep{BuhlmannStraub:1970} est une
 généralisation du modèle de Bühlmann tenant compte de l'exposition au
 risque des contrats. Ceci est particulièrement important dans les

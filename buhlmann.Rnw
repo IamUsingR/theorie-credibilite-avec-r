@@ -17,6 +17,24 @@ library(actuar)
 options(width = 52)
 @
 
+\begin{objectifs}
+\item Expliquer le lien entre la prime de crédibilité de Bühlmann et
+  la prime bayésienne.
+\item Calculer la covariance entre deux variables aléatoires du modèle
+  de Bühlmann.
+\item Minimiser l'espérance quadratique moyenne dans le cadre du
+  modèle de Bühlmann.
+\item Calculer l'espérance des estimateurs des paramètres de structure
+  dans le modèle de Bühlmann.
+\item Calculer une prime de crédibilité de Bühlmann dans un cadre
+  paramétrique.
+\item Calculer une prime de crédibilité de Bühlmann à partir de
+  données de sinistres.
+\item Utiliser la fonction \code{cm} du paquetage R \pkg{actuar} pour
+  calculer des primes de crédibilité de Bühlmann et interpréter les
+  résultats de la fonction.
+\end{objectifs}
+
 L'approche purement bayésienne que nous avons étudiée au chapitre
 précédent s'avère élégante, certes, mais elle recèle également deux
 inconvénients qui la rendent peu applicable en pratique. Tout d'abord,

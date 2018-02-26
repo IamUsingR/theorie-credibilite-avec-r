@@ -34,13 +34,6 @@ pour le cours
 de l'[École d'actuariat](https://www.act.ulaval.ca) de l'[Université
 Laval](https://ulaval.ca).
 
-## Objectifs généraux de l'ouvrage
-
-- Comprendre l'utilité et les fondements de la théorie de la crédibilité dans un système de tarification basé sur l'expérience.
-- Comprendre les différences entre la crédibilité de stabilité et la crédibilité de précision.
-- Comprendre les différences entre les primes bayésienne, de Bühlmann et de Bühlmann-Straub.
-- Effectuer une tarification basée sur l'expérience à l'aide des modèles classiques de la théorie de la crédibilité.
-
 ## Auteur
 
 Vincent Goulet, professeur titulaire, [École d'actuariat](https://www.act.ulaval.ca), [Université Laval](https://ulaval.ca).
@@ -48,6 +41,13 @@ Vincent Goulet, professeur titulaire, [École d'actuariat](https://www.act.ulava
 ## Édition
 
 2018.02-4 ([notes de mise à jour]({{ site.github.repository_url }}/releases/tag/v2018.02-4/))
+
+## Objectifs généraux de l'ouvrage
+
+- Comprendre l'utilité et les fondements de la théorie de la crédibilité dans un système de tarification basé sur l'expérience.
+- Comprendre les différences entre la crédibilité de stabilité et la crédibilité de précision.
+- Comprendre les différences entre les primes bayésienne, de Bühlmann et de Bühlmann-Straub.
+- Effectuer une tarification basée sur l'expérience à l'aide des modèles classiques de la théorie de la crédibilité.
 
 ## Table des matières abrégée
 

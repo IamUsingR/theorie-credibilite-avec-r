@@ -34,6 +34,12 @@ pour le cours
 de l'[École d'actuariat](https://www.act.ulaval.ca) de l'[Université
 Laval](https://ulaval.ca).
 
+## Objectifs généraux de l'ouvrage
+
+- Comprendre l'utilité et les fondements de la théorie de la crédibilité dans un système de tarification basé sur l'expérience.
+- Comprendre les différences entre la crédibilité de stabilité et la crédibilité de précision.
+- Comprendre les différences entre les primes bayésienne, de Bühlmann et de Bühlmann-Straub.
+- Effectuer une tarification basée sur l'expérience à l'aide des modèles classiques de la théorie de la crédibilité.
 
 ## Auteur
 

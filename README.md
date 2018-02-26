@@ -84,7 +84,12 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ### 2018.02-4 (2018-02-26)
 
+#### Nouveautés
+
 - Ajout des listes d'objectifs spécifiques pour chacun des chapitres.
+
+#### Autres modifications
+
 - Exemple 2.3 transformé en texte normal. Son équation principale est maintenant numérotée.
 - Améliorations à la typographie des nombres en divers endroits, notamment dans les pourcentages.
 - Correction d'une référence incomplète au début de l'annexe C.

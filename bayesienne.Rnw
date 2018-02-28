@@ -475,7 +475,7 @@ et étant donné l'indépendance conditionnelle des observations,
   u(\theta_i|x_{i1}, \dots, x_{in})
   &= \frac{f(x_{i1}, \dots, x_{in}|\theta_i) u(\theta_i)}{%
     \int_{-\infty}^\infty
-    f(x_{i1}, \dots, x_{in}|\theta) u(\theta)}\, d\theta \\
+    f(x_{i1}, \dots, x_{in}|\theta) u(\theta)\, d\theta} \\
   &= \frac{\prod_{t = 1}^n f(x_{it}|\theta_i) u(\theta_i)}{%
     \int_{-\infty}^\infty \prod_{t = 1}^n
     f(x_{it}|\theta) u(\theta)\, d\theta} \\

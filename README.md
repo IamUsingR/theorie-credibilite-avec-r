@@ -82,6 +82,12 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ## Historique des versions
 
+### (en développement)
+
+#### Autres modifications
+
+- Correction à l'introduction de l'annexe B: l'annexe ne fournit pas les distributions marginales.
+
 ### 2018.02-4 (2018-02-26)
 
 #### Nouveautés

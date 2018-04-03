@@ -2,7 +2,12 @@
 
 # Théorie de la crédibilité avec R
 
-(description à venir)
+La théorie de la crédibilité constitue la pierre angulaire des mathématiques de l'assurance IARD. *Théorie de la crédibilité avec R* offre un traitement rigoureux et exhaustif des modèles de base de la crédibilité, soit la crédibilité de stabilité (*limited fluctuations*), la tarification basée sur l'expérience purement bayésienne et les modèles classiques de Bühlmann et de Bühlmann-Straub.
+
+Le paquetage [**actuar**](https://cran.r-project.org/package=actuar) pour l'environnement statistique [R](https://www.r-project.org) permet d'effectuer les calculs relatifs aux modèles de crédibilité abordés dans l'ouvrage. Nous expliquons comment utiliser la fonction `cm` du
+paquetage par le biais de code informatique distribué avec le document.
+
+L'ouvrage intègre le recueil de [Cossette et Goulet (2008)](https://libre.act.ulaval.ca/index.php?id=451). Il compte donc près de 90 exercices de tous les niveaux de difficulté. Certains proviennent d'anciens examens de la [Society of Actuaries](https://www.soa.org) et de la [Casualty Actuarial Society](https://www.casact.org).
 
 ## Auteur
 

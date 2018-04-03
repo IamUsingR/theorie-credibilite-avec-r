@@ -12,6 +12,23 @@
 \chapter{Crédibilité de stabilité}
 \label{chap:stabilite}
 
+\begin{objectifs}
+\item Obtenir l'expression du seuil de crédibilité complète à partir
+  du modèle collectif du risque.
+\item Calculer le seuil de crédibilité complète pour un modèle de
+  risque quelconque, en particulier pour le modèle Poisson composée.
+\item Identifier la caractéristique d'un modèle la plus appropriée
+  pour exprimer le seuil de crédibilité complète.
+\item Calculer un seuil de crédibilité complète basé sur le nombre
+  d'années d'expérience.
+\item Calculer un facteur de crédibilité partielle selon l'approche de
+  crédibilité de stabilité, et ce, en utilisant l'une ou l'autre des
+  formules classiques (Whitney, racine carrée, puissance $2/3$).
+\item Utiliser le lien entre le seuil de crédibilité complète et les
+  composantes du modèle de risque (espérance, variance, coefficient de
+  variation, niveau et largeur de l'intervalle de confiance).
+\end{objectifs}
+
 La théorie de la crédibilité est apparue dans le domaine des accidents
 du travail au début des années 1900. Les actuaires cherchaient alors à
 déterminer la taille minimale (en nombre d'employés) qu'un employeur
@@ -25,9 +42,9 @@ prime pour laquelle la probabilité est forte qu'elle ne diffère pas de
 la vraie prime par plus d'une limite arbitraire».
 
 En termes mathématiques, nous souhaitons que
-\begin{displaymath}
+\begin{equation*}
   \Pr[(1 - k) \esp{S} \leq S \leq (1 + k) \esp{S}] \geq p,
-\end{displaymath}
+\end{equation*}
 où $S$ représente l'expérience d'un contrat, sous une forme ou une
 autre; $k$ est une petite valeur, habituellement autour de $5$~\%; $p$
 une valeur près de $1$, habituellement $0,90$, $0,95$ ou $0,99$.
@@ -57,9 +74,9 @@ sinistres, et non à la sévérité de ceux-ci.
   Une crédibilité complète d'ordre $(k, p)$ est attribuée à
   l'expérience $S$ d'un contrat si les paramètres de la distribution
   de $S$ sont tels que la relation
-  \begin{displaymath}
+  \begin{equation*}
     \Pr[(1 - k) \esp{S} \leq S \leq (1 + k) \esp{S}] \geq p
-  \end{displaymath}
+  \end{equation*}
   est vérifiée.
 \end{definition}
 
@@ -124,13 +141,13 @@ où $\varepsilon = 1 - p$ et $\zeta_\alpha$ est le $100(1 -
   isolant $n$ dans l'inégalité \eqref{eq:stabilite:complete}, nous
   obtenons la relation suivante pour le critère de crédibilité
   complète:
-  \begin{displaymath}
+  \begin{equation*}
     n \geq
     \left(
       \frac{\zeta_{\varepsilon/2}}{k}
     \right)^2
     \frac{1 - \theta}{\theta}.
-  \end{displaymath}
+  \end{equation*}
   \qed
 \end{exemple}
 
@@ -140,9 +157,9 @@ où $\varepsilon = 1 - p$ et $\zeta_\alpha$ est le $100(1 -
   espéré de sinistres dans une période --- typiquement une année. La
   distribution la plus populaire pour $S$ dans un tel cas est alors la
   Poisson composée, c'est-à-dire
-  \begin{displaymath}
+  \begin{equation*}
     S = X_1 + \dots + X_N
-  \end{displaymath}
+  \end{equation*}
   où $N \sim \text{Poisson}(\lambda)$ et la distribution de $X_1, X_2,
   \dots$ est $F_X(\cdot)$. Nous savons que
   \begin{align*}
@@ -175,9 +192,9 @@ où $\varepsilon = 1 - p$ et $\zeta_\alpha$ est le $100(1 -
     \end{split}
   \end{equation}
   où
-  \begin{displaymath}
+  \begin{equation*}
     \CV(X) = \frac{\sqrt{\var{X}}}{\esp{X}}
-  \end{displaymath}
+  \end{equation*}
   est le coefficient de variation de la variable aléatoire $X$.
 
   Vous remarquerez que, dans l'inégalité
@@ -187,69 +204,67 @@ où $\varepsilon = 1 - p$ et $\zeta_\alpha$ est le $100(1 -
   $\CV(X)$).
 
   Si $k = 0,05$ et $p = 0,90$, alors $\zeta_{0,05} = 1,645$ et
-  \begin{displaymath}
+  \begin{equation*}
     \lambda
     \geq
     \nombre{1082,41}
     \left(
       1 + \frac{\var{X}}{\esp{X}^2}
     \right).
-  \end{displaymath}
+  \end{equation*}
 
   Si, de plus, $X$ est une variable aléatoire dégénérée (c'est-à-dire
   que $\Pr[X = M] = 1$ pour $M$ quelconque), alors
-  \begin{displaymath}
+  \begin{equation*}
     \lambda \geq \nombre{1082,41}.
-  \end{displaymath}
+  \end{equation*}
   Ce cas revient en définitive à poser
   $S \sim \text{Poisson}(\lambda)$. %
   \qed
 \end{exemple}
 
-\tipbox{Le seuil de pleine crédibilité \nombre{1082} est un nombre
+\tipbox{Le seuil de pleine crédibilité $\nombre{1082}$ est un nombre
   célèbre en théorie de la crédibilité. Malheureusement, il est très
   souvent utilisé à tort et à travers et sans aucunement tenir compte
   des hypothèses qui nous ont permis d'obtenir cette valeur.}
 
-\begin{exemple}
-  \label{exemple:stabilite:nombre_annees}
-  Dans les deux exemples précédents, nous avons déterminé le seuil de
-  pleine crédibilité d'un contrat pour une seule période. Nous
-  pourrions aussi choisir de fixer le seuil en fonction du nombre
-  d'années d'expérience. Pour cela, il suffit de définir
-  \begin{displaymath}
-    W = \frac{S_1 + \dots + S_n}{n},
-  \end{displaymath}
-  où $S_1, \dots, S_n$ sont des variables aléatoires indépendantes et
-  identiquement distribuées et $S_t$ est l'expérience de l'année
-  $t = 1, \dots, n$.  Nous avons alors
-  \begin{align*}
-    \esp{W} &= \esp{S_t} \\
-    \var{W} &= \frac{\var{S_t}}{n}.
-  \end{align*}
+Dans les deux exemples précédents, nous avons déterminé le seuil de
+pleine crédibilité d'un contrat pour une seule période. Nous pourrions
+aussi choisir de fixer le seuil en fonction du nombre d'années
+d'expérience. Pour cela, il suffit de définir
+\begin{equation*}
+  W = \frac{S_1 + \dots + S_n}{n},
+\end{equation*}
+où $S_1, \dots, S_n$ sont des variables aléatoires indépendantes et
+identiquement distribuées et $S_t$ est l'expérience de l'année
+$t = 1, \dots, n$. Nous avons alors
+\begin{align*}
+  \esp{W} &= \esp{S_t} \\
+  \var{W} &= \frac{\var{S_t}}{n}.
+\end{align*}
 
-  En appliquant le critère de crédibilité complète sur la variable
-  aléatoire $W$, nous obtenons une expression en tous points
-  équivalente à l'inégalité \eqref{eq:stabilite:complete} dans
-  laquelle nous remplaçons l'espérance et la variance par les
-  expressions ci-dessus. L'expérience d'un contrat est considérée
-  pleinement crédible après
-  \begin{equation*}
-    n \geq
-    \left(
-      \frac{\zeta_{\varepsilon/2}}{k}
-    \right)^2
-    \frac{\var{S_t}}{\esp{S_t}^2}
-  \end{equation*}
-  périodes.
-  \qed
-\end{exemple}
+En appliquant le critère de crédibilité complète sur la variable
+aléatoire $W$, nous obtenons une expression en tous points équivalente
+à l'inégalité \eqref{eq:stabilite:complete} dans laquelle nous
+remplaçons l'espérance et la variance par les expressions ci-dessus.
+L'expérience d'un contrat est considérée pleinement crédible après
+\begin{equation}
+  \label{eq:stabilite:complete_nombre_annees}
+  n \geq
+  \left(
+    \frac{\zeta_{\varepsilon/2}}{k}
+  \right)^2
+  \frac{\var{S_t}}{\esp{S_t}^2}
+\end{equation}
+périodes.
 
-\tipbox{La distribution de $S$ n'est en général pas symétrique. Est-il
-  alors correct d'utiliser le Théorème central limite (TCL)? Le
-  critère de crédibilité complète exige que la distribution de $S$
-  soit très concentrée autour de sa moyenne, donc presque symétrique.
-  Le TCL s'avère donc bien assez précis.}
+\tipbox{La distribution de $S$ n'étant en général pas symétrique, il
+  serait légitime de nous demander s'il est correct d'utiliser le
+  Théorème central limite (TCL) pour calculer le seuil de crédibilité
+  complète. En fait, puisque le critère impose que la distribution de
+  $S$ soit très concentrée autour de sa moyenne, elle s'en trouve
+  presque symétrique et le TCL s'avère donc bien assez précis
+  \citep{Goulet:limitedfluctuation:1998}.}
 
 \importantbox{Il y a en fait très peu d'applications légitimes de la
   crédibilité de stabilité. Un bon exemple, toutefois: la fixation du
@@ -268,9 +283,9 @@ seuil de crédibilité complète apparait rapidement chez les assureurs.
 \citet{Whitney:1918} propose de pondérer l'expérience individuelle
 ($S$) et la prime collective ($m$) par un \emph{facteur de
   crédibilité} ($0 \leq z \leq 1$) en une prime de la forme
-\begin{displaymath}
+\begin{equation*}
   \pi = z S + (1 - z) m.
-\end{displaymath}
+\end{equation*}
 
 Plusieurs formules différentes ont été proposées pour $z$. Soit $n_0$
 le seuil de crédibilité complète. Les formules les plus populaires
@@ -365,13 +380,13 @@ stabilité d'une année à l'autre.
 
 \begin{exercice}
   Interpréter l'inégalité suivante:
-  \begin{displaymath}
+  \begin{equation*}
     \Pr
     \left[
       0,96 \esp{S} \leq S \leq 1,04 \esp{S}
     \right]
     \geq 0,95.
-  \end{displaymath}
+  \end{equation*}
   \begin{rep}
     L'inégalité signifie que l'on veut être certain à au moins $95$~\%
     que l'expérience individuelle d'un assuré ne varie pas de plus de
@@ -391,19 +406,19 @@ stabilité d'une année à l'autre.
   \begin{sol}
     Puisque $\esp{\bar{S}} = \esp{S}$ et $\var{\bar{S}} = \var{S}/n$,
     l'inégalité
-    \begin{displaymath}
+    \begin{equation*}
       \Pr
       \left[
         (1 - k) \esp{\bar{S}} \leq \bar{S} \leq (1 + k) \esp{\bar{S}}
       \right]
       \geq p
-    \end{displaymath}
+    \end{equation*}
     est satisfaite lorsque
-    \begin{displaymath}
+    \begin{equation*}
       n \ge
       \left( \frac{\zeta_{\varepsilon/2}}{k} \right)^2
       \frac{\var{S}}{\esp{S}^2}.
-    \end{displaymath}
+    \end{equation*}
     Nous savons que dans le cas d'une Poisson composée,
     $\esp{S} = \lambda \esp{X}$ et
     $\var{S} = \lambda (\var{X} + \esp{X}^2)$. Ainsi,
@@ -427,10 +442,10 @@ stabilité d'une année à l'autre.
   \begin{enumerate}
   \item Quelle est la plus petite marge d'erreur admissible autour de
     $\esp{S}$ faisant toujours en sorte que $S$ a une crédibilité
-    complète à 90~\%?  Interpréter brièvement le résultat.
+    complète à $90$~\%?  Interpréter brièvement le résultat.
   \item Quelle est la plus petite marge d'erreur admissible autour de
     $\esp{\bar{S}}$ faisant toujours en sorte que $\bar{S}$ a une
-    crédibilité complète à 90~\% après 10 années?
+    crédibilité complète à $90$~\% après dix années?
   \end{enumerate}
   \begin{rep}
     \begin{inparaenum}
@@ -443,7 +458,7 @@ stabilité d'une année à l'autre.
     \item Nous savons de l'\autoref{exemple:stabilite:comppois} que
       dans le cas d'une Poisson composée, la crédibilité complète est
       donnée par
-      \begin{displaymath}
+      \begin{equation*}
         \lambda \geq
         \left(
           \frac{\zeta_{\varepsilon/2}}{k}
@@ -451,25 +466,25 @@ stabilité d'une année à l'autre.
         \left(
           1 + \frac{\var{X}}{\esp{X}^2}
         \right).
-      \end{displaymath}
+      \end{equation*}
       Or, nous avons $\esp{X} = \theta/(\alpha - 1) = 1/40$ et
       $\var{X} = \alpha \theta^2/((\alpha - 1)^2(\alpha - 2)) =
       3/\nombre{1600}$. Comme nous exigeons un niveau de crédibilité
       de $90$~\%, $\zeta_{\varepsilon/2} = 1,645$. En isolant $k$ dans
       la formule, nous obtenons
-      \begin{displaymath}
+      \begin{equation*}
         k \ge
         \frac{1,645}{\sqrt{256}}
         \sqrt{1 + \frac{3/\nombre{1600}}{1/\nombre{1600}}} =
         0,2056 = 20,56~\%.
-      \end{displaymath}
+      \end{equation*}
       La valeur de $k$ obtenue est grande parce que la
       distribution du montant des sinistres est très asymétrique. Pour
       obtenir une valeur de $k$ plus usuelle (de l'ordre de $5$~\%),
       il faudrait augmenter le paramètre de Poisson, de manière à
       sommer un plus grand nombre de lois de Pareto.
     \item De manière similaire, mais en utilisant plutôt la formule
-      \begin{displaymath}
+      \begin{equation*}
         n \geq \frac{1}{\lambda}
         \left(
           \frac{\zeta_{\varepsilon/2}}{k}
@@ -477,14 +492,14 @@ stabilité d'une année à l'autre.
         \left(
           1 + \frac{\var{X}}{\esp{X}^2}
         \right)
-      \end{displaymath}
+      \end{equation*}
       obtenue à l'\autoref{ex:stabilite:nPC}
       avec $n = 10$, nous obtenons
-      \begin{displaymath}
+      \begin{equation*}
         k \geq
         \frac{1}{\sqrt{256}} \frac{1,645}{\sqrt{10}}
         \sqrt{1 + \frac{3/\nombre{1600}}{1/\nombre{1600}}} = 0,065 = 6,5~\%.
-      \end{displaymath}
+      \end{equation*}
       La marge d'erreur est plus petite qu'en a) puisque la
       distribution de $\bar{S}$ après 10 années est le résultat de la
       somme d'un beaucoup plus grand nombre de sinistres.
@@ -513,10 +528,10 @@ stabilité d'une année à l'autre.
   \begin{sol}
     Dans un tel cas normale pure, la formule générale
     \eqref{eq:stabilite:complete} devient simplement
-    \begin{displaymath}
+    \begin{equation*}
       \mu \geq \left( \frac{\zeta_{\varepsilon/2}}{k} \right)
       \sigma.
-    \end{displaymath}
+    \end{equation*}
     \begin{enumerate}
     \item On a $k = 0,04$ et $p = 0,95$ d'où $\zeta_{0,025} = 1,96$ et
       donc $\mu \geq 49 \sigma$.
@@ -536,10 +551,10 @@ stabilité d'une année à l'autre.
   une crédibilité complète d'ordre $(k, p)$ pour chacune des
   combinaisons de $k$ et $p$ suivantes.
   \begin{enumerate}
-  \item (0,05, 0,90)
-  \item (0,05, 0,95)
-  \item (0,01, 0,90)
-  \item (0,01, 0,95)
+  \item $(0,05, 0,90)$
+  \item $(0,05, 0,95)$
+  \item $(0,01, 0,90)$
+  \item $(0,01, 0,95)$
   \end{enumerate}
   \begin{rep}
     \begin{inparaenum}
@@ -552,15 +567,15 @@ stabilité d'une année à l'autre.
   \begin{sol}
     On nous donne que $\bar{S} \sim N(\mu, \sigma^2/9)$. La
     crédibilité complète d'ordre $(k, p)$ est donc atteinte lorsque
-    \begin{displaymath}
+    \begin{equation*}
       \esp{\bar{S}} \geq \left( \frac{\zeta_{\varepsilon/2}}{k} \right)
       \sqrt{\var{\bar{S}}},
-    \end{displaymath}
+    \end{equation*}
     soit
-    \begin{displaymath}
+    \begin{equation*}
       \mu \geq \left( \frac{\zeta_{\varepsilon/2}}{k} \right)
       \frac{\sigma}{3}.
-    \end{displaymath}
+    \end{equation*}
     \begin{enumerate}
     \item On a $k = 0,05$ et $p = 0,90$ d'où $\zeta_{0,05} = 1,645$ et
       $\mu \geq 10,97 \sigma$.
@@ -594,7 +609,7 @@ stabilité d'une année à l'autre.
     binomiale négative composée. Sachant que
     $\esp{N} = r(1 - \theta)/\theta$ et que
     $\var{N} = r (1 - \theta)/\theta^2$, nous obtenons
-    \begin{displaymath}
+    \begin{equation*}
       r \geq
       \left(
         \frac{\zeta_{\varepsilon/2}}{k}
@@ -603,7 +618,7 @@ stabilité d'une année à l'autre.
         \frac{1}{1 - \theta} +
         \frac{\theta}{1-\theta} \frac{\var{X}}{\esp{X}^2}
       \right).
-    \end{displaymath}
+    \end{equation*}
     Or, dans cet exercice, $\theta = 0,01$, $\var{X}/\esp{X}^2 =
     1/\alpha = 50$ et $\zeta_{\varepsilon/2}/k = 1,96/0,05 = 39,2$. Par
     conséquent, $r \geq \nombre{2328,24}$.
@@ -613,9 +628,9 @@ stabilité d'une année à l'autre.
 \begin{exercice}
   Soit $S_j$ le montant total des sinistres pour un assuré à la
   période $j = 1, \dots, n$ tel que
-  \begin{displaymath}
+  \begin{equation*}
     S_j = X_1 + X_2 + \dots + X_{N_j},
-  \end{displaymath}
+  \end{equation*}
   où $X_1, X_2, \dots$ sont les montants individuels des sinistres
   dont la distribution est dégénérée en $M$ et $N_j$ suit une loi de
   Poisson de paramètre $\lambda$. Calculer le nombre total de
@@ -630,13 +645,13 @@ stabilité d'une année à l'autre.
     complète est exprimé non pas en nombre d'années d'expérience, $n$,
     mais plutôt en nombre total de sinistres espéré, soit $n \lambda$.
     Nous avons donc
-    \begin{displaymath}
+    \begin{equation*}
       n \lambda \geq
       \left(
         \frac{\zeta_{\varepsilon/2}}{k}
       \right)^2
       (1 + \CV(X)^2).
-    \end{displaymath}
+    \end{equation*}
     Or, dans le cas présent, $\CV(X) = 0$ puisque $\Pr[X = M]
     = 1$ (distribution dégénérée en $M$), $k = 0,04$ et $\zeta_{0,05}
     = 1,645$, d'où $n \lambda \geq \nombre{1692}$.
@@ -684,8 +699,8 @@ stabilité d'une année à l'autre.
   individus du groupe A ne peuvent avoir que des sinistres de $50$
   alors que les individus du groupe B ont des sinistres obéissant à
   une loi gamma de moyenne $50$. Sachant que l'observation de
-  \nombre{1000} sinistres est suffisante pour accorder une crédibilité
-  complète au groupe A et que \nombre{3000} sinistres sont nécessaires
+  $\nombre{1000}$ sinistres est suffisante pour accorder une crédibilité
+  complète au groupe A et que $\nombre{3000}$ sinistres sont nécessaires
   pour accorder une crédibilité complète de même ordre au groupe B,
   calculer les paramètres de la loi gamma en question.
   \begin{rep}
@@ -700,16 +715,16 @@ stabilité d'une année à l'autre.
     des sinistres est une Poisson composée, donc le seuil de
     crédibilité complète est donné par \eqref{eq:stabilite:complete_comppois}.
 
-    Pour le groupe A $\lambda_A = \nombre{1000}$ et $\CV(X_A) = 0$,
+    Pour le groupe A, $\lambda_A = \nombre{1000}$ et $\CV(X_A) = 0$,
     d'où $(\zeta_{\varepsilon/2}/k)^2 = \nombre{1000}$. Ce facteur est
     identique pour le groupe B, mais $\lambda_B = \nombre{3000}$ et
     $\CV(X_B) = 1/\sqrt{\alpha}$, d'où
-    \begin{displaymath}
+    \begin{equation*}
       \nombre{3000} = \nombre{1000}
       \left(
         1 + \frac{1}{\alpha}
       \right),
-    \end{displaymath}
+    \end{equation*}
     soit $\alpha = 1/2$. Enfin, de $\alpha/\lambda = 50$ découle que
     $\lambda = 1/100$.
   \end{sol}
@@ -741,12 +756,12 @@ stabilité d'une année à l'autre.
     sinistres a un coefficient de variation de $1/\sqrt{2}$. Toujours
     à partir de la formule \eqref{eq:stabilite:complete_comppois},
     nous trouvons que, dans un premier temps,
-    \begin{displaymath}
+    \begin{equation*}
       \nombre{1000} =
       \left(
         \frac{\zeta_{\varepsilon/2}}{0,05}
       \right)^2,
-    \end{displaymath}
+    \end{equation*}
     soit $\zeta_{\varepsilon/2} = 0,05 \sqrt{\nombre{1000}}$. Dans un
     deuxième temps, nous avons
     \begin{align*}
@@ -785,21 +800,21 @@ stabilité d'une année à l'autre.
     et $\theta$, la probabilité qu'un employé ait un accident. Nous
     devons étudier deux cas: la binomiale pure et la binomiale
     composée. La formule de crédibilité de stabilité générale est
-    \begin{displaymath}
+    \begin{equation*}
       \esp{S} \geq
       \left(
         \frac{\zeta_{\varepsilon/2}}{k}
       \right) \sqrt{\var{S}}.
-    \end{displaymath}
+    \end{equation*}
     Si $S \sim \text{Binomiale}(n, \theta)$, alors
-    \begin{displaymath}
+    \begin{equation*}
       n \geq
       \left(
         \frac{\zeta_{\varepsilon/2}}{k}
       \right)^2 \frac{1 - \theta}{\theta}
-    \end{displaymath}
+    \end{equation*}
     et, si $S \sim \text{Binomiale composée}(n, \theta, F_X(\cdot))$,
-    \begin{displaymath}
+    \begin{equation*}
       n \geq
       \left(
         \frac{\zeta_{\varepsilon/2}}{k}
@@ -808,7 +823,7 @@ stabilité d'une année à l'autre.
         \frac{1}{\theta}\, \CV(X)^2 +
         \frac{1 - \theta}{\theta}
       \right).
-    \end{displaymath}
+    \end{equation*}
     (À noter que cette dernière équation revient à la première si
     $X = 1$ avec probabilité $1$, c'est-à-dire si $\CV(X) = 0$.) Nous
     avons $\theta = 0,04$ et, dans le cas d'une binomiale pure, un
@@ -837,23 +852,23 @@ stabilité d'une année à l'autre.
   \begin{sol}
     Avec la distribution Poisson composée, le seuil de crédibilité
     complète est
-    \begin{displaymath}
+    \begin{equation*}
       \lambda \geq
       \left( \frac{\zeta_{\varepsilon/2}}{k} \right)^2
       \left( 1 + \frac{\var{X}}{\esp{X}^2} \right).
-    \end{displaymath}
+    \end{equation*}
     Or, on nous donne $\esp{X} = 100/(3 - 1) = 50$ et $\var{X} = 3
     \cdot 100^2/((3 - 1)^2 (3 - 2)) = \nombre{7500}$. Si le seuil de
     crédibilité complète dans le cas Poisson composée est
     $\nombre{2500}$ quand $k = 0,05$, alors
-    \begin{displaymath}
+    \begin{equation*}
       \zeta_{\varepsilon/2}
       = 0,05 \sqrt{\frac{2500}{1 + 7500/50^2}}
       = 1,25.
-    \end{displaymath}
+    \end{equation*}
     Dans le cas binomiale négative composée, le seuil de crédibilité
     complète est plutôt donné par
-    \begin{displaymath}
+    \begin{equation*}
       r \geq
       \left(
         \frac{\zeta_{\varepsilon/2}}{k}
@@ -862,7 +877,7 @@ stabilité d'une année à l'autre.
         \frac{1}{1 - \theta} +
         \frac{\theta}{1-\theta} \frac{\var{X}}{\esp{X}^2}
       \right).
-    \end{displaymath}
+    \end{equation*}
     Avec $\var{X}/\esp{X}^2 = 3$, $\theta = 0,5$, $r = \nombre{2500}$
     et $\zeta_{\varepsilon/2} = 1,25$, nous obtenons $k = 0,0559$, d'où la
     largeur de l'intervalle de confiance autour de la moyenne est $2 k
@@ -872,7 +887,7 @@ stabilité d'une année à l'autre.
 
 \begin{exercice}
   On vous donne les renseignements suivants:
-  \begin{enumerate}[(i)]
+  \begin{enumerate}[i)]
   \item $S = \sum_{j=1}^{N} X_j$ et les variables aléatoires
     $X_j$ sont mutuellement indépendantes et indépendantes de $N$.
   \item $X_j \sim \text{Pareto}(3, 3)$
@@ -948,12 +963,12 @@ stabilité d'une année à l'autre.
       partielle à utiliser, nous allons utiliser sur la formule de la
       racine carrée. Pour une seule période d'expérience, nous avons
       $\bar{S} = S$, donc la crédibilité partielle $z$ serait
-      \begin{displaymath}
+      \begin{equation*}
         z = \min
         \left\{
           \sqrt{\frac{\lambda}{\nombre{4802}}}, 1
         \right\}.
-      \end{displaymath}
+      \end{equation*}
     \end{enumerate}
   \end{sol}
 \end{exercice}
@@ -986,12 +1001,12 @@ stabilité d'une année à l'autre.
 
 \begin{exercice}
   On vous donne les informations suivantes:
-  \begin{enumerate}[(i)]
+  \begin{enumerate}[label=\roman*),labelsep=*,leftmargin=2em]
   \item Le nombre de sinistres suit une loi de Poisson.
   \item Le montant des sinistres a une distribution log-normale avec un
-    coefficient de variation de 3.
+    coefficient de variation de $3$.
   \item Le nombre et les montants de sinistres sont indépendants.
-  \item Le nombre de sinistres la première année fut de \nombre{1000}.
+  \item Le nombre de sinistres la première année fut de $\nombre{1000}$.
   \item Le montant total des sinistres la première année fut de
     $6,75$~millions.
   \item La prime collective pour la seconde année est de
@@ -1014,22 +1029,22 @@ stabilité d'une année à l'autre.
     0,05$, $\CV(X) = 3$ et $\lambda = \nombre{1000}$. Puisque
     nous avons un modèle Poisson composée, le niveau de crédibilité
     complète $n_0$ est
-    \begin{displaymath}
+    \begin{equation*}
       n_0 =
       \frac{1}{\nombre{1000}}
       \left( \frac{1,96}{0,05} \right)^2
       (1 + (3)^2) =
       15,3664.
-    \end{displaymath}
+    \end{equation*}
     Après $n = 1$ année d'expérience, le facteur de crédibilité est
     \begin{equation*}
       z = \sqrt{1/15,3664} = 0,2551.
     \end{equation*}
     Puisque $\bar{S} = S_1 = 6,75$ et $m = 5,00$, la prime de
     crédibilité partielle est
-    \begin{displaymath}
+    \begin{equation*}
       P = 0,2551 (6,75) + (1 - 0,2551) (5) = 5,45.
-    \end{displaymath}
+    \end{equation*}
   \end{sol}
 \end{exercice}
 
@@ -1048,9 +1063,9 @@ stabilité d'une année à l'autre.
     Soit $\lambda$ la grandeur du portefeuille. Le seuil de
     crédibilité complète est $\lambda_0 = \nombre{103500}$. En
     utilisant la formule de la racine carrée, on a donc
-    \begin{displaymath}
+    \begin{equation*}
       z = 0,67 = \sqrt{\frac{\lambda}{\nombre{103500}}},
-    \end{displaymath}
+    \end{equation*}
     d'où $\lambda = \nombre{46462}$.
   \end{sol}
 \end{exercice}
@@ -1063,8 +1078,8 @@ stabilité d'une année à l'autre.
       \toprule
       & Nombre de sinistres & Montant des sinistres \\
       \midrule
-      Espérance & 10 & \nombre{5000} \\
-      Variance  & 10 & \nombre{6250000} \\
+      Espérance & $10$ & $\nombre{5000}$ \\
+      Variance  & $10$ & $\nombre{6250000}$ \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -1093,19 +1108,19 @@ stabilité d'une année à l'autre.
     \begin{align*}
       n_0
       &= \left( \frac{\zeta_{\varepsilon/2}}{k} \right)^2
-      \frac{\var{S}}{\esp{S}} \\
+      \frac{\var{S}}{\esp{S}^2} \\
       &= 270,6025 (0,125) \\
       &= 33,8253.
     \end{align*}
     \begin{enumerate}
     \item Avec la formule de la racine carrée,
-      \begin{displaymath}
+      \begin{equation*}
         0,54 = \sqrt{\frac{n}{33,8253}} \Rightarrow n = 9,86.
-      \end{displaymath}
+      \end{equation*}
     \item Avec la formule «puissance 2/3»,
-      \begin{displaymath}
+      \begin{equation*}
         0,54 = \left( \frac{n}{33,8253} \right)^{2/3} \Rightarrow n = 13,42.
-      \end{displaymath}
+      \end{equation*}
       Le temps requis pour atteindre la pleine crédibilité est donc
       plus élevé avec cette formule.
     \end{enumerate}

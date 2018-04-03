@@ -17,6 +17,27 @@ library(actuar)
 options(width = 52)
 @
 
+\begin{objectifs}
+\item Expliquer le modèle d'hétérogénéité de Bühlmann, notamment le
+  rôle de la variable aléatoire représentant le niveau de risque.
+\item Définir la prime de risque, la prime collective, la prime
+  bayésienne et la prime de crédibilité.
+\item Calculer la distribution à postériori pour des modèles discrets
+  et continus.
+\item Calculer la distribution prédictive pour des modèles discrets et
+  continus.
+\item Utiliser le lien entre la distribution prédictive, la
+  distribution marginale et la distribution à postériori.
+\item Calculer la prime bayésienne pour des modèles discrets et
+  continus, en particulier pour les combinaisons de distributions
+  débouchant sur une prime linéaire.
+\item Énoncer les conditions du modèle de Jewell pour obtenir une
+  prime bayésienne linéaire.
+\item Utiliser la fonction \code{cm} du paquetage R \pkg{actuar} pour
+  calculer des primes bayésiennes linéaires et interpréter les
+  résultats de la fonction.
+\end{objectifs}
+
 Ce chapitre constitue notre porte d'entrée vers la crédibilité de
 précision. Il est très important pour la suite puisque nous y poserons
 les bases sur lesquelles nous construirons les modèles de crédibilité,
@@ -32,7 +53,7 @@ L'approche purement bayésienne explorée dans ce chapitre est plutôt
 théorique. Vous constaterez que la notion de regroupement de contrats
 y joue un rôle très mineur, dans la mesure où nous pouvons effectuer
 toute notre modélisation sans vraiment y faire référence. Le
-portefeuille devient incontournable dans lorsque nous devons estimer
+portefeuille devient incontournable lorsque nous devons estimer
 certaines quantités à partir de données. Nous n'aborderons toutefois
 cette approche empirique qu'au \autoref{chap:buhlmann}.
 
@@ -60,8 +81,8 @@ plus loin.
 \section{Mise en situation}
 \label{sec:bayesienne:mise}
 
-Un portefeuille d'assurance automobile est composé de 75~\% de bons
-conducteurs et de 25~\% de mauvais conducteurs. Les bons conducteurs
+Un portefeuille d'assurance automobile est composé de $75$~\% de bons
+conducteurs et de $25$~\% de mauvais conducteurs. Les bons conducteurs
 ont une probabilité de $1/15$ d'avoir un accident, alors que la
 probabilité est de $1/10$ pour les mauvais conducteurs. Le coût d'un
 accident est de $\nombre{1000}$ et nous supposons qu'un conducteur ne
@@ -475,7 +496,7 @@ et étant donné l'indépendance conditionnelle des observations,
   u(\theta_i|x_{i1}, \dots, x_{in})
   &= \frac{f(x_{i1}, \dots, x_{in}|\theta_i) u(\theta_i)}{%
     \int_{-\infty}^\infty
-    f(x_{i1}, \dots, x_{in}|\theta) u(\theta)}\, d\theta \\
+    f(x_{i1}, \dots, x_{in}|\theta) u(\theta)\, d\theta} \\
   &= \frac{\prod_{t = 1}^n f(x_{it}|\theta_i) u(\theta_i)}{%
     \int_{-\infty}^\infty \prod_{t = 1}^n
     f(x_{it}|\theta) u(\theta)\, d\theta} \\
@@ -740,10 +761,11 @@ $f(x|x_1, \dots, x_n)$ réside dans l'utilisation de la distribution à
 priori de $\Theta$ pour la première et de la distribution à postériori
 pour la seconde.
 
-\tipbox{\label{tip:baysienne:predictive} La conséquence de la remarque
-  précédente, c'est que si la distribution à posteriori de $\Theta$
-  est du même type que la distribution à priori, alors la distribution
-  prédictive est du même type que la distribution marginale.}
+\label{tip:baysienne:predictive}
+\tipbox{La conséquence de la remarque précédente, c'est que si la
+  distribution à posteriori de $\Theta$ est du même type que la
+  distribution à priori, alors la distribution prédictive est du même
+  type que la distribution marginale.}
 
 Nous avons posé la relation \eqref{eq:bayesienne:predictive} de
 manière quelque peu intuitive. Démontrons maintenant qu'elle est
@@ -1541,8 +1563,8 @@ grandes lignes ici.
 %%%
 
 \begin{exercice}
-  Un portefeuille d'assurance automobile est composé de 35~\% de bons
-  conducteurs, 40~\% de conducteurs moyens et 25~\% de mauvais
+  Un portefeuille d'assurance automobile est composé de $35$~\% de bons
+  conducteurs, $40$~\% de conducteurs moyens et $25$~\% de mauvais
   conducteurs. L'actuaire a estimé que les bons conducteurs ont, en
   moyenne, un accident par 10 ans, les conducteurs moyens, deux
   accidents et les mauvais conducteurs, six accidents. L'actuaire
@@ -1677,7 +1699,7 @@ grandes lignes ici.
 
 \begin{exercice}
   Deux urnes contiennent chacune une pièce de monnaie. La pièce dans
-  l'urne A tombe sur face 40~\% des fois et celle dans l'urne B, 80~\%
+  l'urne A tombe sur face $40$~\% des fois et celle dans l'urne B, $80$~\%
   des fois. Nous choisissons une urne au hasard (la probabilité de choisir
   l'urne A est la même que celle de choisir l'urne B) et nous prenons la
   pièce qui s'y trouve. Nous lançons la pièce en l'air cinq fois et elle
@@ -1708,8 +1730,8 @@ grandes lignes ici.
       &= \frac{0,1296}{0,1328} \\
       &= 0,9759.
     \end{align*}
-    De la même façon, nous trouvons $\Pr[\Theta = 0,2|S_1 = 4] =
-    0,0032/0,1328 = 0,02410$. Enfin,
+    De la même façon,
+    $\Pr[\Theta = 0,2|S_1 = 4] = 0,0032/0,1328 = 0,02410$. Enfin,
     \begin{align*}
       \esp{S_2|S_1 = 4}
       &= \esp{S_2|\theta = 0,6} \Pr[\Theta = 0,6|S_1 = 4] \\
@@ -1731,9 +1753,9 @@ grandes lignes ici.
       \toprule
       Groupe  & Probabilité de sinistre \\
       \midrule
-      Fréquence faible    & 10~\% \\
-      Fréquence moyenne   & 20~\% \\
-      Fréquence élevée    & 40~\% \\
+      Fréquence faible    & $10$~\% \\
+      Fréquence moyenne   & $20$~\% \\
+      Fréquence élevée    & $40$~\% \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -1788,7 +1810,7 @@ grandes lignes ici.
       $\Pr[\Theta = 0,2|S_1 = 0, S_2 = 0] = 64/181 = 0,3536$ et
       $\Pr[\Theta = 0,4|S_1 = 0, S_2 = 0] = 36/181 = 0,1989$. Ainsi,
       \begin{align*}
-        \Pr[S_3 = 1|S_1 = 0, S_2 = 0]
+        \Pr[S_3 = 1|S_1 = 0&, S_2 = 0] \\
         &= \sum_\theta \Pr[S_3 = 1|\Theta = \theta] \Pr[\Theta = \theta|S_1 = 0, S_2 = 0] \\
         &= \left(\frac{1}{181}\right)[(0,1)(81) + (0,2)(64) + (0,4)(36)] \\
         &= \frac{35,3}{181} \\
@@ -1869,8 +1891,8 @@ curve(dbeta(x, 4, 2), from = 0, to = 1)
       $\Theta$ est une bêta et les paramètres $(a, b)$ après chaque
       lancer sont les suivants, dans l'ordre: $(1, 2)$, $(2, 2)$,
       $(3, 2)$, $(3, 3)$, $(4, 3)$, $(4, 4)$, $(5, 4)$, $(6, 4)$,
-      $(6, 5)$, $(6, 6)$. Quelques distributions à postériori sont
-      présentées aux figures
+      $(6, 5)$, $(6, 6)$. Les graphiques de quelques distributions à postériori sont
+      présentés aux figures
       \ref{fig:bayesienne:beta0}--\ref{fig:bayesienne:beta5}. Une
       première observation est le déplacement vers la gauche ou vers
       la droite de la distribution selon le nombre de résultats piles
@@ -1994,8 +2016,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
   On demande à Camille d'élaborer un modèle pour la fréquence des
   sinistres au sein d'un portefeuille composé de dix contrats.
   Incertaine quant à la probabilité d'avoir un accident, Camille
-  estime à 20~\% la possibilité que la probabilité soit de $0,04$,
-  60~\% qu'elle soit de $0,10$ et 20~\% qu'elle soit de $0,16$.
+  estime à $20$~\% la possibilité que la probabilité soit de $0,04$,
+  $60$~\% qu'elle soit de $0,10$ et $20$~\% qu'elle soit de $0,16$.
   \begin{enumerate}
   \item Quel est le modèle de Camille pour $N$, le nombre total
     d'accidents du portefeuille au cours d'une année?
@@ -2222,7 +2244,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         \Pr[\Theta = \theta|X_1 = \nombre{30000}]
         &= \frac{\Pr[X_1 = \nombre{30000}|\Theta = \theta]\Pr[\Theta =
           \theta]}%
-        {\sum_{\theta=A,B,C}\Pr[X_1 = \nombre{30000}|\Theta =
+        {\sum_{\theta}\Pr[X_1 = \nombre{30000}|\Theta =
           \theta]\Pr[\Theta = \theta]} \\
         &=
         \begin{cases}
@@ -2252,51 +2274,50 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         &=\nombre{5788,46}.
       \end{align*}
     \item Avec la distribution prédictive. Nous avons
-      \begin{multline*}
-        \Pr[X_2 = x|X_1 = \nombre{30000}]
-        = \frac{\Pr[X_2 = x, X_1 = \nombre{30000}]}{\Pr[X_1 =
-          \nombre{30000}]} \\
-        \begin{split}
-          &= \frac{\sum_{\theta=A,B,C} \Pr[X_2 = x|\Theta = \theta]
-            \Pr[X_1 = \nombre{30000}|\Theta = \theta]\Pr[\Theta =
-            \theta]}%
-          {\sum_{\theta=A,B,C} \Pr[X_1 = \nombre{30000}|\Theta =
-            \theta]\Pr[\Theta = \theta]} \\
-          &=
-          \begin{cases}
-            \frac{3}{4},
-            & x = 0 \\
-            \dfrac{(\frac{3}{4}) (\frac{1}{20}) +
-              (\frac{3}{4}) (\frac{1}{8}) +
-              (\frac{3}{4}) (\frac{3}{20})}{%
-              \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
-            & x = \nombre{10000} \\
-            \dfrac{(\frac{3}{20}) (\frac{1}{20}) +
-              (0) (\frac{1}{8}) +
-              (\frac{1}{20}) (\frac{3}{20})}{%
-              \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
-            & x = \nombre{20000} \\
-            \dfrac{(\frac{1}{20})^2 +
-              (\frac{1}{8})^2 +
-              (\frac{3}{20})^2}{%
-              \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
-            & x = \nombre{30000}
-          \end{cases} \\
-          &=
-          \begin{cases}
-            \frac{3}{4}, & x = 0 \\
-            \frac{6}{130}, & x = \nombre{10000} \\
-            \frac{41}{520}, & x = \nombre{20000} \\
-            \frac{65}{520}, & x = \nombre{30000},
-          \end{cases}
-        \end{split}
-      \end{multline*}
+      \begin{align*}
+        \Pr[&X_2 = x|X_1 = \nombre{30000}]
+              = \frac{\Pr[X_2 = x, X_1 = \nombre{30000}]}{\Pr[X_1 =
+              \nombre{30000}]} \\
+            &= \frac{\sum_{\theta=A,B,C} \Pr[X_2 = x|\Theta = \theta]
+              \Pr[X_1 = \nombre{30000}|\Theta = \theta]\Pr[\Theta =
+              \theta]}%
+              {\sum_{\theta=A,B,C} \Pr[X_1 = \nombre{30000}|\Theta =
+              \theta]\Pr[\Theta = \theta]} \\
+            &=
+              \begin{cases}
+                \frac{3}{4},
+                & x = 0 \\
+                \dfrac{(\frac{3}{4}) (\frac{1}{20}) +
+                  (\frac{3}{4}) (\frac{1}{8}) +
+                  (\frac{3}{4}) (\frac{3}{20})}{%
+                  \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
+                & x = \nombre{10000} \\
+                \dfrac{(\frac{3}{20}) (\frac{1}{20}) +
+                  (0) (\frac{1}{8}) +
+                  (\frac{1}{20}) (\frac{3}{20})}{%
+                  \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
+                & x = \nombre{20000} \\
+                \dfrac{(\frac{1}{20})^2 +
+                  (\frac{1}{8})^2 +
+                  (\frac{3}{20})^2}{%
+                  \frac{1}{20} + \frac{1}{8} + \frac{3}{20}},
+                & x = \nombre{30000}
+              \end{cases} \\
+            &=
+              \begin{cases}
+                \frac{3}{4}, & x = 0 \\
+                \frac{6}{130}, & x = \nombre{10000} \\
+                \frac{41}{520}, & x = \nombre{20000} \\
+                \frac{65}{520}, & x = \nombre{30000},
+              \end{cases}
+      \end{align*}
       d'où
       \begin{align*}
         \esp{X_2|X_1 = \nombre{30000}}
         &= \nombre{10000} \left( \frac{6}{130} \right)
-        + \nombre{20000} \left( \frac{41}{520} \right)
-        + \nombre{30000} \left( \frac{65}{520} \right) \\
+        + \nombre{20000} \left( \frac{41}{520} \right) \\
+        &\phantom{=}
+          + \nombre{30000} \left( \frac{65}{520} \right) \\
         &=\nombre{5788,46}.
       \end{align*}
     \end{enumerate}
@@ -2328,12 +2349,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     $\lambda = 1$.
     \begin{enumerate}
     \item Nous chargeons la prime collective à un nouvel assuré. Or,
-      \begin{align*}
-        \esp{S}
-        &= \esp{\esp{S|\Theta}} \\
-        &= \esp{\Theta} \\
-        &= 2.
-      \end{align*}
+      $\esp{S} = \esp{\esp{S|\Theta}} = \esp{\Theta} = 2$.
     \item Nous cherchons $\esp{\mu(\Theta)|S_1 + S_2 + S_3 = 8}$. Or,
       \begin{align*}
         u(\theta|x_1, x_2, x_3)
@@ -2358,7 +2374,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
   paramètre $n = 2$. Il y a toutefois incertitude quant à la
   probabilité $\theta$ que cet assuré ait un accident. Trois valeurs
   sont jugées possibles: $\frac{1}{4}$, $\frac{1}{2}$ et $\frac{1}{8}$
-  et ce, avec probabilité 25~\%, 25~\% et 50~\%, respectivement.
+  et ce, avec probabilité $25$~\%, $25$~\% et $50$~\%, respectivement.
   L'assuré n'a eu aucun accident la première année et deux accidents
   la deuxième année.
   \begin{enumerate}
@@ -2385,7 +2401,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     \begin{enumerate}
     \item La fonction de masse de probabilités est:
       \begin{align*}
-        \Pr[\Theta = \theta|N_1 = 0, N_2 = 2]
+        \Pr[\Theta = \theta|N_1 = 0&, N_2 = 2] \\
         &= \frac{\Pr[N_1 = 0, N_2 = 2|\Theta = \theta]
           \Pr[\Theta = \theta]}{%
           \sum_{\theta} \Pr[N_1 = 0, N_2 = 2|\Theta = \theta]
@@ -2394,8 +2410,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
           \sum_{\theta} \theta^2 (1 - \theta)^2 \Pr[\Theta = \theta]} \\
         &=
         \begin{cases}
-          \frac{0,008789}{0,030396}, & \theta = 1/4 \\
-          \frac{0,015625}{0,030396}, & \theta = 1/2 \\
+          \frac{0,008789}{0,030396}, & \theta = 1/4 \\[6pt]
+          \frac{0,015625}{0,030396}, & \theta = 1/2 \\[6pt]
           \frac{0,005981}{0,030396}, & \theta = 1/8
         \end{cases} \\
         &=
@@ -2408,9 +2424,8 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
     \item Nous devons calculer $\esp{N_3|N_1 = 0, N_2 = 2}$, ce qui
       peut se faire de deux façons. Tout d'abord, en trouvant d'abord
       la distribution prédictive:
-      \begin{multline*}
-        \Pr[N_3 = n|N_1 = 0, N_2 = 2] \\
-        \begin{split}
+      \begin{align*}
+        \Pr[N_3 = n&|N_1 = 0, N_2 = 2] \\
           &= \sum_\theta \Pr[N_3 = n|\Theta = \theta] \Pr[\Theta =
           \theta|N_1 = 0, N_2 = 2] \\
           &=
@@ -2419,8 +2434,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
             0,4085, & n = 1 \\
             0,1497, & n = 2.
           \end{cases}
-        \end{split}
-      \end{multline*}
+      \end{align*}
       Ainsi,
       \begin{align*}
         \esp{N_3|N_1 = 0, N_2 = 2}
@@ -2505,11 +2519,13 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
           0,2132, & \theta = 6.
         \end{cases}
       \end{align*}
-      Ainsi, puisque $\mu(\theta) = \esp{S|\Theta = \theta} = 50
-      \theta$, la prime bayésienne est
+      Ainsi, puisque
+      $\mu(\theta) = \esp{S|\Theta = \theta} = 50 \theta$, la prime
+      bayésienne est
       \begin{align*}
         \esp{\mu(\Theta)|S_1 = 80, S_2 = 340}
-        &=50 [(4)(0,4798) + (5)(0,3070) + (6)(0,2132)] \\
+        &=50 [(4)(0,4798) + (5)(0,3070) \\
+        &\phantom{=} + (6)(0,2132)] \\
         &= 236,67.
       \end{align*}
     \item Il faudrait que
@@ -2628,7 +2644,7 @@ pgamma(10, 6, 2)
       \begin{equation*}
         \Pr[\Theta=\theta|N_1=4, N_2=4] =
         \begin{cases}
-          \frac{0,008140(0,5)}{0,023154} = 0,175779, & \theta=2 \\
+          \frac{0,008140(0,5)}{0,023154} = 0,175779, & \theta=2 \\[6pt]
           \frac{0,038168(0,5)}{0,023154} = 0,824221, & \theta=4.
         \end{cases}
       \end{equation*}
@@ -2640,8 +2656,8 @@ pgamma(10, 6, 2)
 \end{exercice}
 
 \begin{exercice}
-  Un portefeuille d'assurance est composé de 25~\% de bons risques,
-  60~\% de risques moyens et 15~\% de mauvais risques. Tous les
+  Un portefeuille d'assurance est composé de $25$~\% de bons risques,
+  $60$~\% de risques moyens et $15$~\% de mauvais risques. Tous les
   risques ont une distribution de sinistres de type gamma, mais dont
   les paramètres diffèrent selon le tableau ci-dessous.
   \begin{center}
@@ -2700,7 +2716,7 @@ pgamma(10, 6, 2)
         0,000036, & i = 3.
       \end{cases}
     \end{align*}
-    Finalement, la prime bayésienne pour la troisième année est
+    La prime bayésienne pour la troisième année est donc
     $\esp{\mu(\Theta)|S_1 = 1, S_2 = 2} = 2 (0,841507) + 4(0,158457) +
     5(0,000036) = 2,3170$.
   \end{sol}
@@ -2745,7 +2761,7 @@ pgamma(10, 6, 2)
       avec $\theta = 1$ identifiant un risque de classe A et $\theta =
       3$ identifiant un risque de classe B. Comme chaque classe
       contient le même nombre de risques, la probabilité qu'un risque
-      choisi au hasard provienne d'une classe est de 50~\%:
+      choisi au hasard provienne d'une classe est de $50$~\%:
       \begin{equation*}
         \Pr[\Theta = \theta] =
         \begin{cases}
@@ -2937,7 +2953,7 @@ pgamma(10, 6, 2)
     \item La prime collective est $\esp{\mu(\Theta)} = \nu
       \esp{\Theta} = \nu a/(a + b)$.
     \item La distribution à postériori de $\Theta$ sachant
-      l'expérience $S_1 = x_1, \dots, S_n = x_n$ est
+      $S_1 = x_1, \dots, S_n = x_n$ est
       \begin{align*}
         u(\theta|x_1, \dots, x_n)
         &\propto u(\theta) \prod_{t=1}^n \Pr[S = x_t|\Theta = \theta] \\
@@ -3151,7 +3167,7 @@ pgamma(10, 6, 2)
     $0,67$
   \end{rep}
   \begin{sol}
-    Nous avons un modèle exponentielle/gamma. Selon le tableau de
+    Nous avons un modèle exponentielle/gamma. Comme le confirme le tableau de
     l'\autoref{chap:formules}, la distribution marginale de $S$ dans
     un tel cas est une Pareto$(\alpha, \lambda)$ et la distribution de
     $\Theta|S_1 = x_1, \dots, S_n = x_n$ une
@@ -3274,7 +3290,7 @@ predict(cm("bayes", x, likelihood = "poisson",
     d'où $\Theta|X_1 = 7, X_2 = 13, X_3 = 1, X_4 = 4 \sim
     \text{Bêta}(26, 29)$. Ainsi,
     \begin{align*}
-      \esp{\mu(\Theta)|X_1=7, X_2=13, X_3=1, X_4=4}
+      \esp{\mu(\Theta)|X_1 = 7, X_2 = 13&, X_3 = 1, X_4 = 4} \\
       &= 5\, \frac{\Gamma(55)}{\Gamma(26) \Gamma(29)}
       \int_0^1 \theta^{24} (1 - \theta)^{29}\, d\theta \\
       &= 5\, \left(\frac{\Gamma(55)}{\Gamma(26) \Gamma(29)}\right)

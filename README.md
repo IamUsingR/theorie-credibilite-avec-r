@@ -82,6 +82,38 @@ Question d'éviter les publications accidentelles, `make all` est équivalent à
 
 ## Historique des versions
 
+### (en développement)
+
+#### Autres modifications
+
+- Correction à l'introduction de l'annexe B: l'annexe ne fournit pas les distributions marginales.
+
+### 2018.02-4 (2018-02-26)
+
+#### Nouveautés
+
+- Ajout des listes d'objectifs spécifiques pour chacun des chapitres.
+
+#### Autres modifications
+
+- Exemple 2.3 transformé en texte normal. Son équation principale est maintenant numérotée.
+- Améliorations à la typographie des nombres en divers endroits, notamment dans les pourcentages.
+- Correction d'une référence incomplète au début de l'annexe C.
+
+### 2018.02-3 (2018-02-19)
+
+#### Nouveautés
+
+- Chapitre 5 entièrement révisé.
+- Fichier de code informatique `buhlmann-straub.R` reprenant les calculs de l'exemple numérique de la section 5.4.
+- Références pour le modèle de Hachemeister à la section 5.4.3.
+- Calculs avec `cm` ajoutés à la solution de l'exercice 5.8.
+- Ajout d'une introduction à l'ouvrage.
+
+#### Autres modifications
+
+- Texte de l'introduction du chapitre 4 légèrement retravaillé.
+
 ### 2018.02-2 (2018-02-13)
 
 #### Nouveautés

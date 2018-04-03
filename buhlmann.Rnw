@@ -17,6 +17,24 @@ library(actuar)
 options(width = 52)
 @
 
+\begin{objectifs}
+\item Expliquer le lien entre la prime de crédibilité de Bühlmann et
+  la prime bayésienne.
+\item Calculer la covariance entre deux variables aléatoires du modèle
+  de Bühlmann.
+\item Minimiser l'espérance quadratique moyenne dans le cadre du
+  modèle de Bühlmann.
+\item Calculer l'espérance des estimateurs des paramètres de structure
+  dans le modèle de Bühlmann.
+\item Calculer une prime de crédibilité de Bühlmann dans un cadre
+  paramétrique.
+\item Calculer une prime de crédibilité de Bühlmann à partir de
+  données de sinistres.
+\item Utiliser la fonction \code{cm} du paquetage R \pkg{actuar} pour
+  calculer des primes de crédibilité de Bühlmann et interpréter les
+  résultats de la fonction.
+\end{objectifs}
+
 L'approche purement bayésienne que nous avons étudiée au chapitre
 précédent s'avère élégante, certes, mais elle recèle également deux
 inconvénients qui la rendent peu applicable en pratique. Tout d'abord,
@@ -25,29 +43,26 @@ calculer et à interpréter --- que pour certaines combinaisons de
 distributions seulement. Ensuite, tout le calcul de la prime repose
 sur des hypothèses très subjectives pour les distributions de $\Theta$
 et $S_t|\Theta$. L'effet du choix de distributions s'estompe avec le
-volume d'expérience, mais cela peut nécessiter plusieurs années.
+volume d'expérience, nécessite un nombre années d'expérience bien plus
+grand que ce dont nous disposons habituellement en pratique
 
 Nous avons déjà vu à la \autoref{sec:bayesienne:modele} que l'une des
 contributions importantes du père de la théorie du risque moderne,
 Hans Bühlmann, à la théorie de la crédibilité de précision est le
 modèle d'hétérogénéité. Dans ce chapitre, nous étudions deux autres de
-ses contributions importantes qui visent à pallier aux inconvénients
-de l'approche bayésienne mentionnés ci-dessus. Pour résoudre le
-l'enjeu de linéarité de la prime bayésienne,
-\citet{Buhlmann:credibility:1967} a proposé de restreindre
-l'approximation de la prime de risque aux fonctions linéaires des
-observations, c'est-à-dire de la forme
-\begin{equation*}
-  c_0 + \sum_{t = 1}^n c_t S_{it}.
-\end{equation*}
-Nous verrons que la meilleure approximation se trouve être une prime
-de crédibilité.
+ses contributions qui visent à pallier aux inconvénients de l'approche
+bayésienne mentionnés ci-dessus. Pour résoudre l'enjeu de linéarité de
+la prime bayésienne, \citet{Buhlmann:credibility:1967} a proposé de
+restreindre l'approximation de la prime de risque aux fonctions
+linéaires des observations, c'est-à-dire de la forme
+$c_0 + \sum_{t = 1}^n c_t S_{it}$. Nous verrons que la meilleure
+approximation se trouve être une prime de crédibilité.
 
-\citet{Buhlmann:credibility:1969} a ensuite montré la voie pour
-contourner le problème du choix des distributions: il s'agit
-d'utiliser une approche non paramétrique dans laquelle le calcul de la
-prime de crédibilité repose sur l'estimation de paramètres à partir
-des données accumulées.
+\citet{Buhlmann:credibility:1969} a ensuite proposé d'avoir recours à
+la statistique bayésienne empirique pour contourner le problème du
+choix des distributions. Dans cette approche non paramétrique, le
+calcul de la prime de crédibilité repose sur l'estimation de
+paramètres à partir des données accumulées.
 
 
 \section{Notation et relations de covariance}
@@ -403,7 +418,7 @@ se trouve dans le théorème suivant.
   la meilleure prévision du montant des sinistres de la prochaine
   période sont des problèmes en tous points équivalents. En effet,
   remplacer $\mu(\Theta_i)$ dans le \autoref{thm:buhlmann:prime} par
-  $S_{i, n + 1}$ ne change rien puisquen
+  $S_{i, n + 1}$ ne change rien puisque
   $\esp{\mu(\Theta_i)} = \esp{S_{i, n + 1}} = m$ et
   $\Cov(\mu(\Theta_i), S_{it}) = \Cov(S_{i, n + 1}, S_{it}) = a$ pour
   $t = 1, \dots, n$.}
@@ -730,9 +745,10 @@ sans biais des paramètres.
 
 Intuitivement, un estimateur de la prime collective est la moyenne
 empirique des moyennes individuelles:
-\begin{equation*}
+\begin{equation}
+  \label{eq:buhlmann:mhat}
   \hat{m} = \bar{S} = \frac{1}{I n} \sum_{i = 1}^I \sum_{t = 1}^n S_{it}.
-\end{equation*}
+\end{equation}
 Cet estimateur est bel et bien sans biais:
 \begin{align*}
   \esp{\hat{m}}
@@ -752,10 +768,11 @@ $i = 1, \dots, n$, est
 \end{equation*}
 Pour obtenir un estimateur sans biais de la variance moyenne $s^2$, il
 suffit ensuite de calculer la moyenne de tous ces estimateurs:
-\begin{equation*}
+\begin{equation}
+  \label{eq:buhlmann:s2hat}
   \hat{s}^2 = \frac{1}{I(n - 1)} \sum_{i = 1}^I \sum_{t = 1}^n
   (S_{it} - \bar{S}_i)^2.
-\end{equation*}
+\end{equation}
 
 Pour démontrer l'absence de biais, remarquons d'abord que
 \begin{align*}
@@ -826,10 +843,11 @@ Or,
 Le biais de l'estimateur est donc $s^2/n$. Pour obtenir un estimateur
 sans biais, nous allons simplement retrancher cette valeur de la somme
 des écarts au carré. Un estimateur sans biais de $a$ est donc
-\begin{equation*}
+\begin{equation}
+  \label{eq:buhlmann:ahat}
   \hat{a} = \frac{1}{I - 1} \sum_{i = 1}^I (\bar{S}_i - \bar{S})^2 -
   \frac{1}{n}\, \hat{s}^2.
-\end{equation*}
+\end{equation}
 
 \importantbox{L'estimateur $\hat{a}$ peut être négatif. En pratique,
   nous devons utiliser $\hat{a}^\prime = \max(\hat{a}, 0)$, qui est un
@@ -1010,6 +1028,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \label{fig:buhlmann:a}
 \end{figure}
 
+
 \section{Code informatique}
 \label{sec:buhlmann:code}
 
@@ -1038,8 +1057,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \begin{exercice}
   Un assureur couvre une proportion égale d'hommes et de femmes contre
   les accidents d'automobile. Les femmes ont une probabilité
-  d'accident de 20~\% par année alors que les hommes ont une
-  probabilité d'accident de 40~\% par année. La distribution de la
+  d'accident de $20$~\% par année alors que les hommes ont une
+  probabilité d'accident de $40$~\% par année. La distribution de la
   sévérité des sinistres est la suivante:
   \begin{equation*}
     \Pr[X = x] =
@@ -1158,9 +1177,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  Vous roulez un dé régulier. Si vous obtenez $1$, vous pigez dans
-  l'urne A, si vous obtenez $2$, $3$ ou $4$, vous pigez dans l'urne B
-  et si vous obtenez $5$ ou $6$, vous pigez dans l'urne C. Chaque urne
+  Vous roulez un dé régulier. Si vous obtenez 1, vous pigez dans
+  l'urne A, si vous obtenez 2, 3 ou 4, vous pigez dans l'urne B
+  et si vous obtenez 5 ou 6, vous pigez dans l'urne C. Chaque urne
   contient des balles rouges et blanches dans les proportions
   ci-dessous.
   \begin{center}
@@ -1168,9 +1187,9 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
       \toprule
       & Balles rouges & Balles blanches \\
       \midrule
-      Urne A & 75~\% & 25~\% \\
-      Urne B & 50~\% & 50~\% \\
-      Urne C & 25~\% & 75~\% \\
+      Urne A & $75$~\% & $25$~\% \\
+      Urne B & $50$~\% & $50$~\% \\
+      Urne C & $25$~\% & $75$~\% \\
       \bottomrule
     \end{tabular}
   \end{center}
@@ -1237,8 +1256,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   \item Le nombre de risques de type A est le même que le nombre de
     risques de type B.
   \item Pour chaque risque, la probabilité d'avoir exactement un
-    sinistre au cours d'une année est de 20~\%, alors que la
-    probabilité de n'avoir aucun sinistre est de 80~\%.
+    sinistre au cours d'une année est de $20$~\%, alors que la
+    probabilité de n'avoir aucun sinistre est de $80$~\%.
   \item Le montant des sinistres des risques de type A est $2$.
   \item Le montant des sinistres des risques de type B est $c$, une
     constante inconnue.
@@ -1304,8 +1323,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  Un portefeuille d'assurance est composé de 25~\% de bons risques,
-  60~\% de risques moyens et 15~\% de mauvais risques. Tous les
+  Un portefeuille d'assurance est composé de $25$~\% de bons risques,
+  $60$~\% de risques moyens et $15$~\% de mauvais risques. Tous les
   risques ont une distribution de sinistres de type gamma, mais dont
   les paramètres diffèrent selon le tableau ci-dessous.
   \begin{center}
@@ -1436,8 +1455,8 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 \end{exercice}
 
 \begin{exercice}
-  Un portefeuille d'assurance est composé de 30~\% de bons risques,
-  50~\% de risques moyens et 20~\% de mauvais risques. La distribution
+  Un portefeuille d'assurance est composé de $30$~\% de bons risques,
+  $50$~\% de risques moyens et $20$~\% de mauvais risques. La distribution
   des montants de sinistres est telle que présentée dans le tableau
   ci-dessous.
   \begin{center}
@@ -1506,7 +1525,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   risque de $\nombre{4000}$~\$, et les mauvais assurés une prime de
   risque de $\nombre{5000}$~\$. L'actuaire responsable de la
   tarification pour ce type d'assurance estime que le portefeuille est
-  composé de 30~\% de bons assurés, de 50~\% de moyens et de 20~\% de
+  composé de $30$~\% de bons assurés, de $50$~\% de moyens et de $20$~\% de
   mauvais.  Calculer à l'aide du modèle de Bühlmann la prime de
   crédibilité d'un assuré ayant encouru un total de $\nombre{20000}$~\$
   de sinistres au cours des quatre années précédentes.
@@ -1899,7 +1918,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   la variable aléatoire $\sigma^2(\Theta)/\mu(\Theta)$ est uniforme
   sur l'intervalle $(0, 40)$. Calculer la prime de crédibilité pour la
   cinquième année dans le modèle de Bühlmann si la somme des sinistres
-  des quatre premières années est égale à 12.
+  des quatre premières années est égale à $12$.
   \begin{rep}
     $4,6$
   \end{rep}
@@ -2043,12 +2062,12 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
   Une actuaire souhaite calculer la crédibilité de l'expérience de
   chaque police de deux portefeuilles d'assurance en utilisant le
   modèle de Bühlmann. Pour le portefeuille A, la variance de la prime
-  de risque représente 25~\% de la variance du montant des sinistres.
-  Pour le portefeuille B, le montant des sinistres pour un assuré
-  quelconque suit une loi normale de moyenne $\mu$ et de variance $25$q.
-  La prime de risque est elle-même distribuée dans la population selon
-  une loi normale de moyenne $\alpha$ et variance 16. Quel
-  portefeuille mérite la plus grande crédibilité?
+  de risque représente $25$~\% de la variance du montant des
+  sinistres. Pour le portefeuille B, le montant des sinistres pour un
+  assuré quelconque suit une loi normale de moyenne $\mu$ et de
+  variance $25$. La prime de risque est elle-même distribuée dans la
+  population selon une loi normale de moyenne $\alpha$ et variance
+  $16$. Quel portefeuille mérite la plus grande crédibilité?
   \begin{rep}
     Portefeuille B
   \end{rep}
@@ -2135,7 +2154,7 @@ curve(dnorm(x, mean = 15, sd = 1), xlim = c(12, 18), lwd = 3, add = TRUE)
 
 \begin{exercice}
   Pour un groupe d'assurés détenant une police d'assurance contre le
-  vol, un actuaire sait que 25~\% de la variance totale du montant des
+  vol, un actuaire sait que $25$~\% de la variance totale du montant des
   sinistres est expliquée par la variance de la prime de risque.
   Après $n$ années d'observation, un membre du groupe a eu des vols
   annuels de $125$~\$ en moyenne, et il a payé une prime de crédibilité
@@ -2478,6 +2497,7 @@ x <- data.frame(contract = 1:3,
 fit <- cm(~ contract, x)
 summary(fit)
 @
+    \vfill
   \end{sol}
 \end{exercice}
 

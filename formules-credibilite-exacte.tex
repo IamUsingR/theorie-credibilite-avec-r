@@ -7,7 +7,6 @@ exponentielle univariée. Outre les noms des distributions
 conditionnelle de $S|\Theta = \theta$ et à priori de $\Theta$, on
 trouvera ci-dessous, pour chaque combinaison:
 \begin{itemize}
-\item la distribution marginale de $S$;
 \item la distribution à postériori de
   $\Theta|S_1 = x_1, \dots, S_n = x_n$, toujours du même type que la
   distribution à priori, mais avec des paramètres mis à jour;
@@ -29,7 +28,7 @@ se trouvent à l'\autoref{chap:distributions}.
 \begingroup
 \setlist[itemize]{label={},leftmargin=0pt,align=left,nosep}
 
-\section{Combinaison Bernoulli--bêta}
+\section{Combinaison Bernoulli/bêta}
 
 \begin{itemize}
 \item $S|\Theta = \theta \sim \text{Bernoulli}(\theta)$
@@ -59,7 +58,7 @@ se trouvent à l'\autoref{chap:distributions}.
 \end{itemize}
 
 
-\section{Combinaison géométrique--bêta}
+\section{Combinaison géométrique/bêta}
 
 \begin{itemize}
 \item $S|\Theta = \theta \sim \text{Géométrique}(\theta)$
@@ -88,7 +87,7 @@ se trouvent à l'\autoref{chap:distributions}.
   \end{equation*}
 \end{itemize}
 
-\section{Combinaison Poisson--gamma}
+\section{Combinaison Poisson/gamma}
 
 \begin{itemize}
 \item $S|\Theta = \theta \sim \text{Poisson}(\theta)$
@@ -118,7 +117,7 @@ se trouvent à l'\autoref{chap:distributions}.
 \end{itemize}
 
 
-\section{Combinaison exponentielle--gamma}
+\section{Combinaison exponentielle/gamma}
 
 \begin{itemize}
 \item $S|\Theta = \theta \sim \text{Exponentielle}(\theta)$
@@ -148,7 +147,7 @@ se trouvent à l'\autoref{chap:distributions}.
 \end{itemize}
 
 
-\section{Combinaison normale--normale}
+\section{Combinaison normale/normale}
 
 \begin{itemize}
 \item $S|\Theta = \theta \sim \text{Normale}(\theta, \sigma_2^2)$
@@ -173,7 +172,7 @@ se trouvent à l'\autoref{chap:distributions}.
 \item Prime bayésienne
   \begin{equation*}
     B_{n + 1} =
-      \frac{\sigma_1^2 \sum_{t = 1}^n x_t + \sigma_2^2 \mu}{n \sigma_1^2 +
+      \frac{\sigma_1^2 \sum_{t = 1}^n S_t + \sigma_2^2 \mu}{n \sigma_1^2 +
         \sigma_2^2}
   \end{equation*}
 \item Facteur de crédibilité

@@ -3428,7 +3428,7 @@ predict(cm("bayes", x, likelihood = "poisson",
       \begin{align*}
         \int_{-\infty}^\infty \frac{d}{d\theta} u(\theta)\, d\theta
         &= t_0 \int_{-\infty}^\infty \mu(\theta) u(\theta)\, d\theta -
-        x_0 \int_{-\infty}^\infty u(\theta) \\
+        x_0 \int_{-\infty}^\infty u(\theta)\, d\theta \\
         &= t_0 \esp{\mu(\Theta)} - x_0,
       \end{align*}
       d'où $\esp{\mu(\Theta)} = x_0/t_0$.

@@ -53,7 +53,7 @@ L'approche purement bayésienne explorée dans ce chapitre est plutôt
 théorique. Vous constaterez que la notion de regroupement de contrats
 y joue un rôle très mineur, dans la mesure où nous pouvons effectuer
 toute notre modélisation sans vraiment y faire référence. Le
-portefeuille devient incontournable dans lorsque nous devons estimer
+portefeuille devient incontournable lorsque nous devons estimer
 certaines quantités à partir de données. Nous n'aborderons toutefois
 cette approche empirique qu'au \autoref{chap:buhlmann}.
 
@@ -2356,7 +2356,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         &\propto \prod_{t = 1}^3 f(x_t|\theta) u(\theta) \\
         &\propto \prod_{t = 1}^3 \theta^{x_t} e^{-\theta}
         \theta^{2 - 1} e^{-\theta} \\
-        &= \theta^{\sum_{t = 1}^3 x_t + 2 - 1} e^{-4 \theta},
+        &= \theta^{\sum_{t = 1}^3 x_t + 2 - 1} e^{-2 \theta},
       \end{align*}
       d'où
       $\Theta|S_1 = x_1, S_2 = x_2, S_3 = x_3 \sim

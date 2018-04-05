@@ -67,7 +67,7 @@ portefeuille. De ce modèle découleront, à la
 \autoref{sec:bayesienne:prevision}, diverses prévisions, pour employer
 la terminologie statistique. En termes actuariels, ces prévisions
 constituent des primes d'assurance. À l'aide de plusieurs exemples,
-nous démontrerons que calcul de la prime bayésienne peut parfois
+nous démontrerons que le calcul de la prime bayésienne peut parfois
 s'avérer ardu et nous établirons les conditions faisant en sorte que
 cette prime est non seulement simple à calculer, mais qu'elle adopte
 une forme linéaire facile à interpréter.

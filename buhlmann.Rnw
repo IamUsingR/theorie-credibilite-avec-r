@@ -325,7 +325,7 @@ conditionnellement non corrélées.
 Avec le modèle et les hypothèses en main, nous pouvons maintenant
 procéder au calcul de la prévision de la prime de risque à partir des
 observations. Au \autoref{chap:bayesienne}, nous n'avons posé aucune
-restriction sur la forme cette prévision, avec pour conséquence
+restriction sur la forme de cette prévision, avec pour conséquence
 qu'elle peut s'avérer difficile à calculer. Le trait de génie de
 \citet{Buhlmann:credibility:1967}, c'aura été de contraindre la
 prévision a être une fonction linéaire des observations. Le résultat

@@ -53,7 +53,7 @@ L'approche purement bayésienne explorée dans ce chapitre est plutôt
 théorique. Vous constaterez que la notion de regroupement de contrats
 y joue un rôle très mineur, dans la mesure où nous pouvons effectuer
 toute notre modélisation sans vraiment y faire référence. Le
-portefeuille devient incontournable dans lorsque nous devons estimer
+portefeuille devient incontournable lorsque nous devons estimer
 certaines quantités à partir de données. Nous n'aborderons toutefois
 cette approche empirique qu'au \autoref{chap:buhlmann}.
 
@@ -67,7 +67,7 @@ portefeuille. De ce modèle découleront, à la
 \autoref{sec:bayesienne:prevision}, diverses prévisions, pour employer
 la terminologie statistique. En termes actuariels, ces prévisions
 constituent des primes d'assurance. À l'aide de plusieurs exemples,
-nous démontrerons que calcul de la prime bayésienne peut parfois
+nous démontrerons que le calcul de la prime bayésienne peut parfois
 s'avérer ardu et nous établirons les conditions faisant en sorte que
 cette prime est non seulement simple à calculer, mais qu'elle adopte
 une forme linéaire facile à interpréter.
@@ -245,7 +245,7 @@ crédibilité de précision. Établi par
 permet de décrire remarquablement bien la situation à laquelle nous
 sommes confrontés, à savoir que nous avons regroupé des contrats
 d'assurance aux caractéristiques semblables, mais que subsiste dans le
-groups de l'hétérogénéité dans les niveaux de risque. C'est cette
+groupe de l'hétérogénéité dans les niveaux de risque. C'est cette
 hétérogénéité qui exige que nous ayons recours à l'expérience des
 contrats pour établir une tarification juste et équitable.
 
@@ -2356,7 +2356,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         &\propto \prod_{t = 1}^3 f(x_t|\theta) u(\theta) \\
         &\propto \prod_{t = 1}^3 \theta^{x_t} e^{-\theta}
         \theta^{2 - 1} e^{-\theta} \\
-        &= \theta^{\sum_{t = 1}^3 x_t + 2 - 1} e^{-4 \theta},
+        &= \theta^{\sum_{t = 1}^3 x_t + 2 - 1} e^{-2 \theta},
       \end{align*}
       d'où
       $\Theta|S_1 = x_1, S_2 = x_2, S_3 = x_3 \sim
@@ -3428,7 +3428,7 @@ predict(cm("bayes", x, likelihood = "poisson",
       \begin{align*}
         \int_{-\infty}^\infty \frac{d}{d\theta} u(\theta)\, d\theta
         &= t_0 \int_{-\infty}^\infty \mu(\theta) u(\theta)\, d\theta -
-        x_0 \int_{-\infty}^\infty u(\theta) \\
+        x_0 \int_{-\infty}^\infty u(\theta)\, d\theta \\
         &= t_0 \esp{\mu(\Theta)} - x_0,
       \end{align*}
       d'où $\esp{\mu(\Theta)} = x_0/t_0$.

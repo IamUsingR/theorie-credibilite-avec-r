@@ -2536,7 +2536,7 @@ curve(dbeta(x, 4, 3), xlim = c(0, 1))
         \left(
           \frac{1}{6}
         \right) \\
-        &= 175 - 35 z,
+        &= 175 + 35 z,
       \end{align*}
       soit $z = 1,76$. Comme $z$ ne peut être plus grand que $1$ par
       définition, il est impossible d'écrire la prime bayésienne sous

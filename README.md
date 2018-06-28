@@ -1,5 +1,8 @@
 <!-- Emacs: -*- coding: utf-8; eval: (auto-fill-mode -1); eval: (visual-line-mode t) -*- -->
 
+> **Ce projet est maintenant hébergé [dans GitLab](https://gitlab.com/vigou3/theorie-credibilite-avec-r).**
+> **Les fichiers du présent dépôt ne sont plus mis à jour depuis le 2018-06-27.**
+
 # Théorie de la crédibilité avec R
 
 La théorie de la crédibilité constitue la pierre angulaire des mathématiques de l'assurance IARD. *Théorie de la crédibilité avec R* offre un traitement rigoureux et exhaustif des modèles de base de la crédibilité, soit la crédibilité de stabilité (*limited fluctuations*), la tarification basée sur l'expérience purement bayésienne et les modèles classiques de Bühlmann et de Bühlmann-Straub.

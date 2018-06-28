@@ -3,6 +3,9 @@ title: Théorie de la crédibilité avec R
 description: "Notes, code informatique et exercices de théorie de la crédibilité"
 ---
 
+> **Ce projet est maintenant hébergé [dans GitLab](https://vigou3.gitlab.io/theorie-credibilite-avec-r).**
+> **Cette page n'est plus mise à jour depuis le 2018-06-27.**
+
 ## Présentation
 
 «Les mathématiques de l'hétérogénéité.» C'est parfois ainsi que l'on
